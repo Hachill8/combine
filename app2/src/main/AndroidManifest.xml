@@ -16,7 +16,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".calendar"></activity>
+        <activity android:name=".calendar" />
+        <activity android:name=".record" />
+        <activity android:name=".search" />
+        <activity android:name=".imformation"></activity>
     </application>
 
 </manifest>

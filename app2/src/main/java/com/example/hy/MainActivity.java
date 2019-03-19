@@ -56,6 +56,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        fab_ft01.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,record.class);
+                startActivity(intent);
+            }
+        });
+        fab_ft03.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,search.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void openmenu(View view){
