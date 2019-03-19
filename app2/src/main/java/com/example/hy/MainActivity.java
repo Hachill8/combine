@@ -95,4 +95,6 @@ public class MainActivity extends AppCompatActivity {
         tv.setVisibility(View.GONE);
         tv.startAnimation(alphaAnimation);
     }
+
+    int zzz=1;
 }
