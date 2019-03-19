@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_紀"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="207dp"
+        android:layout_marginRight="67dp"
+        android:backgroundTint="#fff111"
+        android:src="@drawable/function01"
+        android:visibility="invisible" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_討"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/function02"
+        android:backgroundTint="#fff111"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="136dp"
+        android:layout_marginRight="16dp"
+        android:visibility="invisible"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_尋"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/function03"
+        android:backgroundTint="#fff111"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="110dp"
+        android:layout_marginRight="110dp"
+        android:visibility="invisible"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_曆"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="71dp"
+        android:layout_marginRight="206dp"
+        android:backgroundTint="#fff111"
+        android:src="@drawable/function04"
+        android:visibility="invisible" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_商"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="16dp"
+        android:layout_marginRight="136dp"
+        android:backgroundTint="#fff111"
+        android:src="@drawable/function05"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/cloud"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffff"
+        />
+
+</FrameLayout>
