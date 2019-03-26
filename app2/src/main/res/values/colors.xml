@@ -12,4 +12,5 @@
     <color name="colorPrimaryDark2">#828d8c</color>
     <color name="white">#ffffff</color>
     <color name="Green1">#61D169</color>
+    <color name="record_backgroundcolor">#89B094</color>
 </resources>

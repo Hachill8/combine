@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/record_backgroundcolor">
 
 
     <RelativeLayout
@@ -11,15 +13,16 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
+
+        <SearchView
+            android:layout_width="250dp"
+            android:layout_height="match_parent"
             android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginLeft="0dp"
-            android:background="@drawable/record_bar" />
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="15dp"
+            android:queryHint="查詢作物紀錄" />
+
 
         <TableLayout
             android:layout_width="match_parent"
@@ -38,363 +41,104 @@
 
                 <Button
                     android:id="@+id/bt1"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="120dp"
+                    android:layout_height="140dp"
                     android:background="@drawable/imv01"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="50dp"
+
                     android:text="" />
+
+
 
                 <Button
                     android:id="@+id/bt2"
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
+                    android:layout_width="120dp"
+                    android:layout_height="140dp"
+                    android:background="@drawable/imv01"
+
                     android:text="" />
 
+
+            </TableRow>
+
+
+
+            <TableRow>
                 <Button
                     android:id="@+id/bt3"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="120dp"
+                    android:layout_height="140dp"
                     android:background="@drawable/imv01"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="50dp"
+                    android:layout_marginTop="30dp"
                     android:text="" />
+
 
                 <Button
                     android:id="@+id/bt4"
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
+                    android:layout_width="120dp"
+                    android:layout_height="140dp"
+                    android:background="@drawable/imv01"
+                    android:layout_marginTop="30dp"
                     android:text="" />
 
+            </TableRow>
 
+            <TableRow>
                 <Button
                     android:id="@+id/bt5"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="120dp"
+                    android:layout_height="140dp"
                     android:background="@drawable/imv01"
-                    android:text="" />
-
-            </TableRow>
-
-
-            <TableRow>
-
-                <TextView
-                    android:id="@+id/TXV1"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="30dp"
-                    android:text="小白菜" />
-
-                <TextView
-                    android:id="@+id/TXV2"
-                    android:layout_width="10dp"
-                    android:layout_height="wrap_content"
-                    android:text="" />
-
-                <TextView
-                    android:id="@+id/TXV3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="30dp"
-                    android:text="高麗菜" />
-
-                <TextView
-                    android:id="@+id/TXV4"
-                    android:layout_width="10dp"
-                    android:layout_height="wrap_content"
-                    android:text="" />
-
-                <TextView
-                    android:id="@+id/TXV5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="30dp"
-                    android:text="花椰菜" />
-
-            </TableRow>
-
-
-            <TableRow>
-                <Button
-                    android:id="@+id/bt11"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:background="@drawable/imv01"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/bt12"
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/bt13"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:background="@drawable/imv01"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/bt14"
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="50dp"
+                    android:layout_marginTop="30dp"
                     android:text="" />
 
 
-                <Button
-                    android:id="@+id/bt15"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:background="@drawable/imv01"
-                    android:text="" />
-
-            </TableRow>
-
-
-            <TableRow>
-
-                <TextView
-                    android:id="@+id/TXV11"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="30dp"
-                    android:text="小白菜" />
-
-                <TextView
-                    android:id="@+id/TXV12"
-                    android:layout_width="10dp"
-                    android:layout_height="wrap_content"
-                    android:text="" />
-
-                <TextView
-                    android:id="@+id/TXV13"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="30dp"
-                    android:text="高麗菜" />
-
-                <TextView
-                    android:id="@+id/TXV14"
-                    android:layout_width="10dp"
-                    android:layout_height="wrap_content"
-                    android:text="" />
-
-                <TextView
-                    android:id="@+id/TXV15"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="30dp"
-                    android:text="花椰菜" />
-
-            </TableRow>
-
-            <TableRow>
-                <Button
-                    android:id="@+id/bt16"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:background="@drawable/imv01"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/bt17"
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/bt18"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:background="@drawable/imv01"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/bt19"
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:text="" />
-
-
-                <Button
-                    android:id="@+id/bt20"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:background="@drawable/imv01"
-                    android:text="" />
-
-            </TableRow>
-
-
-            <TableRow>
-
-                <TextView
-                    android:id="@+id/TXV16"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="30dp"
-                    android:text="小白菜" />
-
-                <TextView
-                    android:id="@+id/TXV17"
-                    android:layout_width="10dp"
-                    android:layout_height="wrap_content"
-                    android:text="" />
-
-                <TextView
-                    android:id="@+id/TXV18"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="30dp"
-                    android:text="高麗菜" />
-
-                <TextView
-                    android:id="@+id/TXV19"
-                    android:layout_width="10dp"
-                    android:layout_height="wrap_content"
-                    android:text="" />
-
-                <TextView
-                    android:id="@+id/TXV20"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="30dp"
-                    android:text="花椰菜" />
-
-            </TableRow>
-
-
-            <TableRow>
                 <Button
                     android:id="@+id/bt6"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="120dp"
+                    android:layout_height="140dp"
                     android:background="@drawable/imv01"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/bt7"
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/bt8"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:background="@drawable/imv01"
-                    android:text="" />
-
-                <Button
-                    android:id="@+id/bt9"
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:text="" />
-
-
-                <Button
-                    android:id="@+id/bt10"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:background="@drawable/imv01"
+                    android:layout_marginTop="30dp"
                     android:text="" />
 
             </TableRow>
 
-
-            <TableRow>
-
-                <TextView
-                    android:id="@+id/TXV6"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="30dp"
-                    android:text="小白菜" />
-
-                <TextView
-                    android:id="@+id/TXV7"
-                    android:layout_width="10dp"
-                    android:layout_height="wrap_content"
-                    android:text="" />
-
-                <TextView
-                    android:id="@+id/TXV8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="30dp"
-                    android:text="高麗菜" />
-
-                <TextView
-                    android:id="@+id/TXV9"
-                    android:layout_width="10dp"
-                    android:layout_height="wrap_content"
-                    android:text="" />
-
-                <TextView
-                    android:id="@+id/TXV10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="30dp"
-                    android:text="花椰菜" />
-
-            </TableRow>
 
         </TableLayout>
 
-
-        <!--<EditText-->
-        <!--android:id="@+id/search_bar"-->
-        <!--android:layout_width="271dp"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignParentStart="true"-->
-        <!--android:layout_alignParentLeft="true"-->
-        <!--android:layout_alignParentTop="true"-->
-        <!--android:layout_marginStart="21dp"-->
-        <!--android:layout_marginLeft="21dp"-->
-        <!--android:layout_marginTop="15dp"-->
-        <!--android:background="@drawable/record_bar"-->
-        <!--android:ems="10"-->
-        <!--android:inputType="text"-->
-        <!--android:paddingLeft="15dp"-->
-        <!--android:text="搜尋你栽種過的作物"-->
-        <!--android:textColor="#99999999"-->
-        <!--android:textSize="20sp"-->
-        <!--android:textStyle="normal" />-->
-
         <Button
             android:id="@+id/button"
-            android:layout_width="29dp"
-            android:layout_height="26dp"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="21dp"
-            android:layout_marginEnd="36dp"
-            android:layout_marginRight="36dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="35dp"
+            android:layout_marginRight="35dp"
             android:background="@drawable/search_condition"
             android:text="" />
 
+
         <Button
-            android:id="@+id/back"
+            android:id="@+id/imageButton"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="328dp"
-            android:layout_marginLeft="328dp"
-            android:layout_marginTop="463dp"
-            android:background="@drawable/back_to_previous_page"
 
-            android:text="" />
-
-        <SearchView
-            android:layout_width="290dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="12dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="6dp" />
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="482dp"
+            android:layout_marginEnd="9dp"
+            android:layout_marginRight="9dp"
+            android:layout_marginBottom="54dp"
+            android:background="@drawable/back_icon" />
+
 
 
     </RelativeLayout>
