@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    >
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_紀"
@@ -43,7 +47,7 @@
         android:layout_marginBottom="71dp"
         android:layout_marginRight="206dp"
         android:backgroundTint="#fff111"
-        android:src="@drawable/function04"
+        android:src="@drawable/function045"
         android:visibility="invisible" />
 
     <android.support.design.widget.FloatingActionButton
@@ -62,7 +66,7 @@
         android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#ffff"
+        android:background="@drawable/function_background"
         />
 
 </FrameLayout>
