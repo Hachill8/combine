@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -9,32 +9,53 @@
     android:background="@drawable/function_background"
     >
 
-    <TextView
-        android:id="@+id/TX01"
-        android:layout_width="355dp"
-        android:layout_height="64dp"
-        android:text="HELLO WORLD !"
-        android:textAlignment="center"
-        android:textSize="30sp"
-        app:layout_anchor="@+id/include"
-        app:layout_anchorGravity="top|center" />
+    <ImageButton
+        android:id="@+id/fab_紀"
+        android:layout_width="80dp"
+        android:layout_height="90dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="60dp"
+        android:layout_marginBottom="80dp"
+        android:background="@drawable/record" />
 
-    <android.support.design.widget.FloatingActionButton
+    <ImageButton
+        android:id="@+id/fab_商"
+        android:layout_width="80dp"
+        android:layout_height="90dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="140dp"
+        android:layout_marginBottom="150dp"
+        android:background="@drawable/market" />
+
+    <ImageButton
+        android:id="@+id/fab_曆"
+        android:layout_width="80dp"
+        android:layout_height="90dp"
+
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="140dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/cal" />
+
+    <ImageButton
+        android:id="@+id/fab_討"
+        android:layout_width="80dp"
+        android:layout_height="90dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="220dp"
+        android:layout_marginBottom="80dp"
+
+        android:background="@drawable/forum" />
+
+    <ImageButton
         android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/add_black"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
-        android:backgroundTint="#fff111"/>
-
-    <include
-        android:id="@+id/include"
-        layout="@layout/fab_layout" />
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="280dp"
+        android:layout_marginBottom="0dp"
+        android:background="@drawable/back_to_home" />
 
 
-
-
-
-</android.support.design.widget.CoordinatorLayout>
+</RelativeLayout>
 
