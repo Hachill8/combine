@@ -41,46 +41,46 @@ public class record extends AppCompatActivity {
 
                 //給予對應item的資料
                 ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(record.this,
-                        android.R.layout.simple_spinner_item,
-                        getResources().getStringArray(R.array.農地編號));
+                        R.layout.record_select_item,                            //選項資料內容
+                        getResources().getStringArray(R.array.農地編號));   //自訂getView()介面格式(Spinner介面未展開時的View)
                 ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(record.this,
-                        android.R.layout.simple_spinner_item,
+                        R.layout.record_select_item,
                         getResources().getStringArray(R.array.月份));
 
-                //選擇item的動畫方式
-                adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                //自訂getDropDownView()介面格式(Spinner介面展開時，View所使用的每個item格式)
+                adapter1.setDropDownViewResource(R.layout.record_select_dropdown_item);
+                adapter2.setDropDownViewResource(R.layout.record_select_dropdown_item);
 
                 //匯入item資料
                 mSpinner1.setAdapter(adapter1);
                 mSpinner2.setAdapter(adapter2);
 
                 //內建可用Button的方式
-                mBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener()
-                {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i)
-                    {
-
-                        //除了選擇第一項外皆符合
-                        if(!mSpinner1.getSelectedItem().toString().equalsIgnoreCase("選擇農地編號…"))
-                        {
-                            Toast.makeText(record.this,
-                                    mSpinner1.getSelectedItem().toString(),Toast.LENGTH_SHORT).show();
-                            dialogInterface.dismiss();
-                        }
-                    }
-                });
-
-                //內建可用Button的方式
-                mBuilder.setNegativeButton("Dismiss", new DialogInterface.OnClickListener()
-                {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i)
-                    {
-                        dialogInterface.dismiss();
-                    }
-                });
+//                mBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener()
+//                {
+//                    @Override
+//                    public void onClick(DialogInterface dialogInterface, int i)
+//                    {
+//
+//                        //除了選擇第一項外皆符合
+//                        if(!mSpinner1.getSelectedItem().toString().equalsIgnoreCase("選擇農地編號…"))
+//                        {
+//                            Toast.makeText(record.this,
+//                                    mSpinner1.getSelectedItem().toString(),Toast.LENGTH_SHORT).show();
+//                            dialogInterface.dismiss();
+//                        }
+//                    }
+//                });
+//
+//                //內建可用Button的方式
+//                mBuilder.setNegativeButton("Dismiss", new DialogInterface.OnClickListener()
+//                {
+//                    @Override
+//                    public void onClick(DialogInterface dialogInterface, int i)
+//                    {
+//                        dialogInterface.dismiss();
+//                    }
+//                });
 
                 mBuilder.setView(mView);
                 AlertDialog dialog = mBuilder.create();
@@ -109,8 +109,8 @@ public class record extends AppCompatActivity {
                 WindowManager m = getWindowManager();
                 Display d = m.getDefaultDisplay(); // 取得螢幕寬和高
                 WindowManager.LayoutParams p = dialogWindow.getAttributes(); // 取得對話框目前數值
-                p.height = (int) (d.getHeight() * 0.4); // 高度設為螢幕的0.6
-                p.width = (int) (d.getWidth() * 0.8);  // 寬度設為螢幕的0.65
+                p.height = (int) (d.getHeight() * 0.8); // 高度設為螢幕的0.6
+                p.width = (int) (d.getWidth() * 0.75);  // 寬度設為螢幕的0.65
                 dialogWindow.setAttributes(p);
 
             }
