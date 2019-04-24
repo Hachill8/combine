@@ -64,7 +64,6 @@
                     android:background="@drawable/imv01"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="50dp"
-
                     android:text="" />
 
 

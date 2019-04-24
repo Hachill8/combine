@@ -19,7 +19,10 @@
         <activity android:name=".calendar" />
         <activity android:name=".record" />
         <activity android:name=".search" />
-        <activity android:name=".imformation"></activity>
+        <activity android:name=".imformation"/>
+        <activity android:name=".record_Information">
+
+        </activity>
     </application>
 
 </manifest>

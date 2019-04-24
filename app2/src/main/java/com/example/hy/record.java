@@ -3,6 +3,7 @@ package com.example.hy;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,13 +19,24 @@ import android.widget.Toast;
 
 public class record extends AppCompatActivity {
 
-    Button showDialog;
+    Button showDialog,BT1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_record);
 
+        BT1 = (Button) findViewById(R.id.bt1);
+        BT1.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(record.this,record_Information.class);
+                startActivity(intent);
+            }
+        });
         showDialog = (Button) findViewById(R.id.Select_item);
+
         showDialog.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -116,5 +128,4 @@ public class record extends AppCompatActivity {
             }
         });
     }
-
 }
