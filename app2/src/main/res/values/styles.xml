@@ -1,11 +1,17 @@
 <resources>
-
-    <!-- Base application theme. -->
+        <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+
+    <style name="Theme.SearchView" parent="Base.Widget.AppCompat.SearchView">
+        <item name="searchIcon">@drawable/icon2_2_1</item>
+        <item name="queryHint">搜尋作物</item>
+        <item name="queryBackground">@drawable/icon2_2</item>
     </style>
 
 </resources>
