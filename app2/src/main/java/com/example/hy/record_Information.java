@@ -72,21 +72,17 @@ public class record_Information extends AppCompatActivity {
             p.setStrokeWidth(5);
             canvas.drawCircle(70, 300, 30, p);
 
-            while(num > 1) {
 
-                if (fg == true) {
+            if (fg == true) {
 
-                    canvas.drawLine(70, ly, 70, ly + 450, p);
-                    p.setAntiAlias(true);
-                    p.setStyle(Paint.Style.STROKE);
-                    p.setStrokeWidth(5);
-                    canvas.drawCircle(70, cy, 30, p);
-                }
-                ly = ly + num * 480;
-                cy = cy + ly - 480;
-                num--;
-                invalidate();
+                canvas.drawLine(70, ly, 70, ly + 450, p);
+                p.setAntiAlias(true);
+                p.setStyle(Paint.Style.STROKE);
+                p.setStrokeWidth(5);
+                canvas.drawCircle(70, cy, 30, p);
             }
+
+            invalidate();
         }
     }
 
@@ -158,8 +154,16 @@ public class record_Information extends AppCompatActivity {
 
         public void addItem(int i) {
 
+
+//            if(fg == false)
+//            {
+//                cy = cy + 480;
+//                ly = ly + 480;
+//            }
+
             fg = true;
             num = cardviewList.size()-1;
+
             //add(位置,資料)
             cardviewList.add(cardviewList.size(), new record_Cardview("幼苗期", "19/04/27~19/04/28", "澆水2次", "施肥1次", "間拔5次", R.drawable.imv03));
             notifyItemInserted(cardviewList.size());
