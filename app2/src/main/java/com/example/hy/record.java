@@ -53,10 +53,10 @@ public class record extends AppCompatActivity {
 
                 //給予對應item的資料
                 ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(record.this,
-                        R.layout.record_select_item,                            //選項資料內容
+                        R.layout.record_select_dropdown_item,                            //選項資料內容
                         getResources().getStringArray(R.array.農地編號));   //自訂getView()介面格式(Spinner介面未展開時的View)
                 ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(record.this,
-                        R.layout.record_select_item,
+                        R.layout.record_select_dropdown_item,
                         getResources().getStringArray(R.array.月份));
 
                 //自訂getDropDownView()介面格式(Spinner介面展開時，View所使用的每個item格式)
@@ -121,8 +121,8 @@ public class record extends AppCompatActivity {
                 WindowManager m = getWindowManager();
                 Display d = m.getDefaultDisplay(); // 取得螢幕寬和高
                 WindowManager.LayoutParams p = dialogWindow.getAttributes(); // 取得對話框目前數值
-                p.height = (int) (d.getHeight() * 0.8); // 高度設為螢幕的0.6
-                p.width = (int) (d.getWidth() * 0.75);  // 寬度設為螢幕的0.65
+                p.height = (int) (d.getHeight() * 0.8); // 高度設為螢幕的0.8
+                p.width = (int) (d.getWidth() * 0.75);  // 寬度設為螢幕的0.75
                 dialogWindow.setAttributes(p);
 
             }

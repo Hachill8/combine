@@ -2,11 +2,20 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/record_information_RL"
     >
 
+    <android.support.v7.widget.RecyclerView
+        android:id = "@+id/recyclerView"
+        android:layout_marginLeft="40dp"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView5"
+
+        />
 
 
 
@@ -19,6 +28,7 @@
         app:srcCompat="@color/record_backgroundcolor"
         android:outlineProvider="background"
         />
+
 
 
     <TextView
@@ -34,5 +44,8 @@
         android:textColor="#fff"
 
         />
+
+
+
 
 </RelativeLayout>
