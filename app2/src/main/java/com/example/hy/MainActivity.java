@@ -14,7 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    ImageButton fab,fab_ft01,fab_ft02,fab_ft03,fab_ft04;
+    ImageButton fab,fab_ft01,fab_ft02,fab_ft03,fab_ft04,fab_ft05;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +25,17 @@ public class MainActivity extends AppCompatActivity {
         fab_ft02=(ImageButton)findViewById(R.id.fab_討);
         fab_ft03=(ImageButton)findViewById(R.id.fab_商);
         fab_ft04=(ImageButton)findViewById(R.id.fab_曆);
+        fab_ft05=(ImageButton)findViewById(R.id.fab_搜);
+
+
+
+        fab_ft05.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,search.class);
+                startActivity(intent);
+            }
+        });
 
         fab_ft04.setOnClickListener(new View.OnClickListener() {
             @Override

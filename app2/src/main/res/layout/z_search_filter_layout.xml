@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/record_select_shape"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <View
+        android:layout_width="180dp"
+        android:layout_height="2dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="50dp"
+        android:layout_below="@+id/spinner1"
+        android:background="#E4E4E4" />
+
+
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="50dp" />
+
+    <View
+        android:layout_width="180dp"
+        android:layout_height="2dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="50dp"
+        android:layout_below="@+id/spinner2"
+        android:background="#E4E4E4" />
+
+    <Button
+        android:id="@+id/select_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="130dp"
+        android:background="#7B9D84"
+        android:text="篩選"
+        android:textColor="#fff"
+        android:textSize="20dp"/>
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="50dp"
+        android:layout_height="35dp"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="64dp"
+        android:layout_below="@+id/select_item"
+        android:text="" />
+
+
+</RelativeLayout>

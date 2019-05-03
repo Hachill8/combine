@@ -40,7 +40,7 @@ public class search extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.z_search);
 
         iv1 = (ImageView) findViewById(R.id.Img_crop);               //讓照片可以左右滑動
         gestureDetector = new GestureDetector(onGestureListener);
@@ -55,7 +55,7 @@ public class search extends AppCompatActivity {
             {
 
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(search.this);
-                View mView = getLayoutInflater().inflate(R.layout.record_select, null);
+                View mView = getLayoutInflater().inflate(R.layout.z_search_filter_layout, null);
                 //Dialog的標題
                 mBuilder.setTitle("");
 
@@ -64,7 +64,7 @@ public class search extends AppCompatActivity {
 
                 //給予對應item的資料
                 ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(search.this,
-                        R.layout.record_select_item,
+                        R.layout.record_select_dropdown_item,
                         getResources().getStringArray(R.array.月份));
                 //自訂getDropDownView()介面格式(Spinner介面展開時，View所使用的每個item格式)
                 adapter2.setDropDownViewResource(R.layout.record_select_dropdown_item);
