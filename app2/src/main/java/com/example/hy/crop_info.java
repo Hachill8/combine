@@ -14,11 +14,9 @@ public class crop_info extends AppCompatActivity
 {
     private Button bt01,bt02;
     private int[] resId = new int[]
-            {
-                    R.drawable.icon201, R.drawable.icon202,
+            {       R.drawable.icon201, R.drawable.icon202,
                     R.drawable.icon203, R.drawable.icon204,
-                    R.drawable.icon205
-            };
+                    R.drawable.icon205                  };
 
     int count = 0;
     private GestureDetector gestureDetector;

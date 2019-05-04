@@ -22,29 +22,14 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 public class search extends AppCompatActivity {
-    private SearchView mSearchView;
-    private Button btnextPageBtn1, btnextPageBtn2, bt_filter, bt_re_back;
-
-    //
-    private ImageView iv1;
-    int[] resId = new int[]
-            {
-                    R.drawable.icon201, R.drawable.icon202,
-                    R.drawable.icon203, R.drawable.icon204,
-                    R.drawable.icon205
-            };
-    int count = 0;
-    private GestureDetector gestureDetector;
+    SearchView mSearchView;
+    Button btnextPageBtn1, btnextPageBtn2, bt_filter;
 
     //
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.z_search);
-
-        iv1 = (ImageView) findViewById(R.id.Img_crop);               //讓照片可以左右滑動
-        gestureDetector = new GestureDetector(onGestureListener);
-
 
         //篩選
         bt_filter = (Button) findViewById(R.id.BT_filter);
@@ -105,20 +90,6 @@ public class search extends AppCompatActivity {
             }
         });
 
-
-
-
-//        bt_filter = (Button) findViewById(R.id.BT_filter);
-//        final AlertDialog mutiItemDialog = getMutiItemDialog(new String[]{"栽種月份", "用途"});
-//        bt_filter.setOnClickListener(new Button.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                //顯示對話框
-//                mutiItemDialog.show();
-//            }
-//        });
-
-
         //
         btnextPageBtn1 = (Button) findViewById(R.id.BT_nextPageBtn1);
         btnextPageBtn1.setOnClickListener(new View.OnClickListener() {
@@ -144,32 +115,7 @@ public class search extends AppCompatActivity {
         ImageView searchIcon = (ImageView) mSearchView.findViewById(android.support.v7.appcompat.R.id.search_mag_icon);
         searchIcon.setImageDrawable(null);
         mSearchView.setIconifiedByDefault(false);
-
-
     }
-
-    //
-    public boolean onTouchEvent(MotionEvent event) {
-        return gestureDetector.onTouchEvent(event);
-    }
-
-    public GestureDetector.OnGestureListener onGestureListener
-            = new GestureDetector.SimpleOnGestureListener() {
-        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-            //得到手触碰位置的起始点和结束点坐标 x , y ，并进行计算
-            float x = e2.getX() - e1.getX();
-            if (x > 0) {
-                count++;
-                count %= (resId.length - 1);        //想显示多少图片，就把定义图片的数组长度-1
-            } else if (x < 0) {
-                count--;
-                count = (count + (resId.length - 1)) % (resId.length - 1);
-
-            }
-            iv1.setImageResource(resId[count]);  //切换imageView的图片
-            return true;
-        }
-    };
 
     public AlertDialog getMutiItemDialog(final String[] items) {
         Builder builder = new Builder(this);

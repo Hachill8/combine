@@ -9,12 +9,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.animation.AlphaAnimation;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    ImageButton fab,fab_ft01,fab_ft02,fab_ft03,fab_ft04,fab_ft05;
+    ImageButton fab,fab_ft01,fab_ft02,fab_ft03,fab_ft04;
+    Button fab_ft05;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         fab_ft02=(ImageButton)findViewById(R.id.fab_討);
         fab_ft03=(ImageButton)findViewById(R.id.fab_商);
         fab_ft04=(ImageButton)findViewById(R.id.fab_曆);
-        fab_ft05=(ImageButton)findViewById(R.id.fab_搜);
+        fab_ft05=(Button)findViewById(R.id.fab_搜);
 
 
 

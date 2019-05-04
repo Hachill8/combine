@@ -9,14 +9,16 @@
     android:background="@drawable/function_background"
     >
 
-    <ImageButton
+    <Button
         android:id="@+id/fab_搜"
         android:layout_width="200dp"
         android:layout_height="90dp"
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="60dp"
         android:layout_marginBottom="280dp"
-        android:background="@drawable/icon_tomato" />
+        android:background="@drawable/icon_tomato"
+        android:text="search暫時在這裡"
+        android:textSize="40dp"/>
 
     <ImageButton
         android:id="@+id/fab_紀"
