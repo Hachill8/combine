@@ -220,7 +220,7 @@
 
         <!--返回鍵-->
         <Button
-            android:id="@+id/re_back"
+            android:id="@+id/BT_back"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@drawable/icon08"
