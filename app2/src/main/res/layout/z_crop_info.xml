@@ -114,26 +114,18 @@
         <LinearLayout
             android:id="@+id/separa1_l_layout"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="25dp"
             android:orientation="horizontal"
             android:paddingLeft="10dp"
             android:paddingRight="20dp">
 
-            <RelativeLayout
-                android:id="@+id/separa1_r_layout"
+            <View
+                android:id="@+id/line_01"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="25dp">
+                android:layout_height="1dp"
+                android:background="#777"
+                android:layout_marginTop="6dp" />
 
-                <View
-                    android:id="@+id/line_01"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#777"
-                    android:layout_marginTop="6dp"
-                    />
-            </RelativeLayout>
         </LinearLayout>
 
         <!--栽培曆.病蟲防治.注意事項  -->

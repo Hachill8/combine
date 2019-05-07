@@ -1,6 +1,5 @@
 package com.example.hy;
 
-
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -126,6 +125,27 @@ public class crop_info extends AppCompatActivity
             }
         }   );
 
+
+        bt_注意事項 = (Button)findViewById(R.id.BT_注意事項);
+        bt_注意事項.setOnClickListener (new Button.OnClickListener()
+        {
+            boolean fg1=true;
+            @Override
+            public void onClick(View v)
+            {
+                if(fg1==true)
+                {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(crop_info.this);    //main是class name
+                    builder.setTitle("小白菜_注意事項");//作物名稱需隨查詢作物不同而變動
+                    builder.setMessage("一、\n" +"小白菜採撒播的方式栽種，必須注意種子要疏密適當，苗株才能均勻生長。\n" +
+                            "\n" +
+                            "二、\n" +"小白菜根系淺，不耐旱，生長期間要有充足的水分。此外，必須注意土壤要排水良好，以防產生病蟲害。澆水時注意避免沖散種子。\n" +
+                            "\n" +
+                            "三、\n" +"栽種小白菜可以紗網覆蓋，略為抵擋風雨。");//內容需隨查詢作物不同而變動
+                    builder.show();
+                }
+            }
+        }   );
 
 
         bt_back = (Button) findViewById(R.id.BT_back);

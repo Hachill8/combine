@@ -18,7 +18,7 @@ import android.widget.Spinner;
 
 public class search extends AppCompatActivity {
     SearchView mSearchView;
-    Button btnextPageBtn1, btnextPageBtn2, bt_filter,bt_back;
+    Button btnextPageBtn1, btnextPageBtn2,btnextPageBtn3, bt_filter,bt_back;
 
     //
     @Override
@@ -105,6 +105,17 @@ public class search extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        btnextPageBtn3 = (Button) findViewById(R.id.BT_nextPageBtn3);
+        btnextPageBtn3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(search.this, crop_info.class);
+                startActivity(intent);
+            }
+        });
+
 
         mSearchView = (SearchView) findViewById(R.id.search_view);
         ImageView searchIcon = (ImageView) mSearchView.findViewById(android.support.v7.appcompat.R.id.search_mag_icon);
