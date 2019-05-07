@@ -11,19 +11,14 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
 import android.widget.ImageView;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.app.AlertDialog.Builder;
 import android.support.v7.widget.SearchView;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 public class search extends AppCompatActivity {
     SearchView mSearchView;
-    Button btnextPageBtn1, btnextPageBtn2, bt_filter;
+    Button btnextPageBtn1, btnextPageBtn2,btnextPageBtn3, bt_filter,bt_back;
 
     //
     @Override
@@ -111,24 +106,35 @@ public class search extends AppCompatActivity {
             }
         });
 
+        btnextPageBtn3 = (Button) findViewById(R.id.BT_nextPageBtn3);
+        btnextPageBtn3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(search.this, crop_info.class);
+                startActivity(intent);
+            }
+        });
+
+
         mSearchView = (SearchView) findViewById(R.id.search_view);
         ImageView searchIcon = (ImageView) mSearchView.findViewById(android.support.v7.appcompat.R.id.search_mag_icon);
         searchIcon.setImageDrawable(null);
         mSearchView.setIconifiedByDefault(false);
-    }
 
-    public AlertDialog getMutiItemDialog(final String[] items) {
-        Builder builder = new Builder(this);
-        //設定對話框內的項目
-        builder.setItems(items, new DialogInterface.OnClickListener() {
+        bt_back = (Button) findViewById(R.id.BT_back);
+        bt_back.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                //當使用者點選對話框時，顯示使用者所點選的項目
-                Toast.makeText(search.this, "您選擇的是" + items[which], Toast.LENGTH_SHORT).show();
+            public void onClick(View v)
+            {
+                {
+                    Intent intent = new Intent();
+                    intent.setClass(search.this, MainActivity.class);
+                    startActivity(intent);
+                }
             }
         });
-        return builder.create();
     }
-
 }
 

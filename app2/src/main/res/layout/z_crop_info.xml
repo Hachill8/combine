@@ -9,7 +9,7 @@
     android:scrollbars="none">
 
     <LinearLayout
-        android:layout_width="385dp"
+        android:layout_width="370dp"
         android:layout_height="0dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -20,13 +20,14 @@
         android:layout_weight="1"
         android:background="#E6EAE7">
 
-        <!--小白菜照片 10-->
+        <!--小白菜照片 -->
         <LinearLayout
             android:id="@+id/picture_layout"
             android:layout_width="match_parent"
             android:layout_height="190dp"
             android:orientation="horizontal"
-            android:paddingHorizontal="30dp">
+            android:paddingLeft="10dp"
+            android:paddingRight="20dp">
 
             <ImageView
                 android:id="@+id/Img_crop"
@@ -36,13 +37,14 @@
 
         </LinearLayout>
 
-        <!--菜名+收藏按鍵  3-->
+        <!--菜名+收藏按鍵  -->
         <LinearLayout
             android:id="@+id/cropname_l_layout"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:orientation="horizontal"
-            android:paddingHorizontal="25dp">
+            android:paddingLeft="10dp"
+            android:paddingRight="15dp">
 
             <TextView
                 android:id="@+id/textView6"
@@ -56,24 +58,25 @@
 
             <Button
                 android:id="@+id/BT_heart"
-                android:layout_width="100dp"
+                android:layout_width="90dp"
                 android:layout_height="match_parent"
                 android:layout_marginStart="125dp"
                 android:background="@drawable/like_2" />
 
         </LinearLayout>
 
-        <!--開始種植按鈕 3-->
+        <!--開始種植按鈕 -->
         <LinearLayout
             android:id="@+id/st_plant_l_layout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="3"
             android:orientation="horizontal"
-            android:paddingHorizontal="25dp">
+            android:paddingLeft="10dp"
+            android:paddingRight="20dp">
 
             <Button
-                android:id="@+id/button10"
+                android:id="@+id/BT_stplant"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="1dp"
@@ -86,14 +89,15 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
-        <!--提示#文字  3-->
+        <!--提示#文字  -->
         <LinearLayout
             android:id="@+id/remindtx_l_layout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="3"
             android:orientation="horizontal"
-            android:paddingHorizontal="25dp">
+            android:paddingLeft="10dp"
+            android:paddingRight="20dp">
 
             <TextView
                 android:id="@+id/textView22"
@@ -106,42 +110,36 @@
                 />
         </LinearLayout>
 
-        <!--插入分隔線  1-->
+        <!--插入分隔線  -->
         <LinearLayout
             android:id="@+id/separa1_l_layout"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="25dp"
             android:orientation="horizontal"
-            android:paddingHorizontal="15dp">
+            android:paddingLeft="10dp"
+            android:paddingRight="20dp">
 
-            <RelativeLayout
-                android:id="@+id/separa1_r_layout"
+            <View
+                android:id="@+id/line_01"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="25dp">
+                android:layout_height="1dp"
+                android:background="#777"
+                android:layout_marginTop="6dp" />
 
-                <View
-                    android:id="@+id/line_01"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#777"
-                    android:layout_marginTop="6dp"
-                    />
-            </RelativeLayout>
         </LinearLayout>
 
-        <!--栽培曆.病蟲防治.注意事項  3-->
+        <!--栽培曆.病蟲防治.注意事項  -->
         <LinearLayout
             android:id="@+id/three_bt_layout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="3"
             android:orientation="horizontal"
-            android:paddingHorizontal="25dp">
+            android:paddingLeft="10dp"
+            android:paddingRight="20dp">
 
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/BT_栽培曆"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -152,7 +150,7 @@
                 android:textSize="20sp" />
 
             <Button
-                android:id="@+id/button5"
+                android:id="@+id/BT_病蟲害"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -163,7 +161,7 @@
                 android:textSize="20sp" />
 
             <Button
-                android:id="@+id/button6"
+                android:id="@+id/BT_注意事項"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -174,21 +172,21 @@
                 android:textSize="20sp" />
         </LinearLayout>
 
-        <!--插入分隔線  1-->
+        <!--插入分隔線  -->
         <LinearLayout
             android:id="@+id/separa2_l_layout"
             android:layout_width="match_parent"
             android:layout_height="25dp"
             android:orientation="horizontal"
             android:paddingTop="10dp"
-            android:paddingHorizontal="25dp">
+            android:paddingLeft="10dp"
+            android:paddingRight="20dp">
             <View
                 android:id="@+id/line_02"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="#777"
-                android:layout_marginTop="6dp"
-                />
+                android:layout_marginTop="6dp"/>
         </LinearLayout>
 
         <!--所需材料  2-->
@@ -198,7 +196,8 @@
             android:layout_height="0dp"
             android:layout_weight="2"
             android:orientation="vertical"
-            android:paddingHorizontal="25dp">
+            android:paddingLeft="10dp"
+            android:paddingRight="20dp">
 
             <TextView
                 android:id="@+id/textView8"
@@ -215,7 +214,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="5"
-            android:paddingHorizontal="12dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="10dp"
             android:orientation="horizontal">
 
             <Button
