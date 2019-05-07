@@ -7,17 +7,25 @@
     android:layout_height="match_parent"
     android:id="@+id/record_information_RL"
     >
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/imageView5">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:id="@+id/canvas_draw"
+        >
     <android.support.v7.widget.RecyclerView
         android:id = "@+id/recyclerView"
         android:layout_marginLeft="40dp"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView5"
-
         />
-
-
+    </RelativeLayout>
+    </ScrollView>
 
     <ImageView
         android:id="@+id/imageView5"
