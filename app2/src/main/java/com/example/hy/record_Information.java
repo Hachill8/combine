@@ -145,7 +145,7 @@ public class record_Information extends AppCompatActivity {
             });
         }
 
-        
+
         @Override
         public int getItemCount() {
             return cardviewList.size();

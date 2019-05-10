@@ -54,5 +54,12 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        fab_ft02.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,forum.class);
+                startActivity(intent);
+            }
+        });
     }
 }

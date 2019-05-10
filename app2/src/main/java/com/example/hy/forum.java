@@ -1,14 +1,12 @@
 package com.example.hy;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.TabItem;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 
 public class forum extends AppCompatActivity {
     Toolbar toolbar;
@@ -21,7 +19,7 @@ public class forum extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_forum);
 
         toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(getResources().getString(R.string.app_name));
@@ -32,7 +30,8 @@ public class forum extends AppCompatActivity {
         tabExchange = findViewById(R.id.tabexchange);
         viewPager = findViewById(R.id.viewpager);
 
-        pagerAdapter = new PagerAdapter (getSupportFragmentManager(), tabLayout.getTabCount());
+        pagerAdapter = new forum_PagerAdapter(getSupportFragmentManager(),tabLayout.getTabCount()) ;
+
         viewPager.setAdapter(pagerAdapter);
     }
 }
