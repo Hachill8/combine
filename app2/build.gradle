@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
+
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.example.hy"
@@ -16,6 +17,23 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    sourceSets {
+            main {
+                res.srcDirs =
+                        [
+                                'src/main/res/layouts/calendar',
+                                'src/main/res/layouts/forum',
+                                'src/main/res/layouts/main',
+                                'src/main/res/layouts/market',
+                                'src/main/res/layouts/record',
+                                'src/main/res/layouts/search',
+                                'src/main/res/layouts',
+                                'src/main/res'
+                        ]
+            }
+    }
+
 }
 
 dependencies {
