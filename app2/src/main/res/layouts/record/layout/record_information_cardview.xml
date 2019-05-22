@@ -15,10 +15,9 @@
     >
 
     <RelativeLayout
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
         android:id="@+id/info_cardview_RL"
-        >
+        android:layout_width="300dp"
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/plant_imvId"
@@ -38,9 +37,8 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
-            android:textSize="20dp"
             android:background="@drawable/period"
-            />
+            android:textSize="20dp" />
 
         <TextView
             android:id="@+id/dateId"
@@ -49,46 +47,42 @@
             android:layout_alignBottom="@+id/periodId"
 
             android:layout_marginLeft="90dp"
-            android:textSize="20dp"
             android:background="@drawable/period"
-            />
+            android:textSize="20dp" />
 
         <TextView
             android:id="@+id/tx1Id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/plant_imvId"
             android:layout_alignParentLeft="true"
+            android:layout_alignTop="@+id/plant_imvId"
             android:layout_marginLeft="140dp"
-            android:textSize="15dp"
-            android:textColor="@color/white"
             android:background="@drawable/record_textview"
-            />
+            android:textColor="@color/white"
+            android:textSize="15dp" />
 
         <TextView
             android:id="@+id/tx2Id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="87dp"
             android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
             android:layout_marginLeft="140dp"
-            android:textSize="15dp"
-            android:textColor="@color/white"
+            android:layout_marginTop="87dp"
             android:background="@drawable/record_textview"
-            />
+            android:textColor="@color/white"
+            android:textSize="15dp" />
 
         <TextView
             android:id="@+id/tx3Id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="117dp"
             android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
             android:layout_marginLeft="140dp"
-            android:textSize="15dp"
-            android:textColor="@color/white"
+            android:layout_marginTop="117dp"
             android:background="@drawable/record_textview"
-            />
+            android:textColor="@color/white"
+            android:textSize="15dp" />
     </RelativeLayout>
 </android.support.v7.widget.CardView>

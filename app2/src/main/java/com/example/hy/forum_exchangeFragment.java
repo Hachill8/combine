@@ -23,7 +23,7 @@ public class forum_exchangeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_forum_exchange, container, false);
+        return inflater.inflate(R.layout.forum_exchange_fragment, container, false);
     }
 
 }
