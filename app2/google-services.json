@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "980041908163",
+    "firebase_url": "https://farmim20.firebaseio.com",
+    "project_id": "farmim20",
+    "storage_bucket": "farmim20.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:980041908163:android:5beb5762b5bec772",
+        "android_client_info": {
+          "package_name": "com.example.hy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "980041908163-v904rsoineib9692v3kdm6ghl89ggq4j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hy",
+            "certificate_hash": "05f44bded70bfc165f8efc2f0d5ec4b3a2f86352"
+          }
+        },
+        {
+          "client_id": "980041908163-bp3unkgkjr0p6k7t9e27km4172hs8jtt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOR_fGemscWPRT0RoBLvRRNOmImsvxnd4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "980041908163-bp3unkgkjr0p6k7t9e27km4172hs8jtt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
