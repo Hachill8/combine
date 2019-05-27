@@ -22,7 +22,7 @@
         <activity android:name=".record" />
         <activity android:name=".search" />
         <activity android:name=".crop_info"/>
-        <activity android:name=".cal_edittext"/>
+        <activity android:name=".calendar_memo"/>
         <activity android:name=".forum"/>
         <activity android:name=".market"/>
         <activity android:name=".record_Information">

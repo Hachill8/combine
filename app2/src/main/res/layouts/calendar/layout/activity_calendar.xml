@@ -1,133 +1,397 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".calendar"
+    tools:context="calendar"
     android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/spinner"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    app:layout_constraintBottom_toTopOf="@+id/CV01"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <TextView
+                    android:id="@+id/TV01"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/switch1"
+                    android:layout_marginTop="16dp"
+                    android:layout_weight="1"
+                    android:text="2019年 1月7日"
+                    android:textColor="@color/black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/CV01" />
+
+                <Switch
+                    android:id="@+id/switch1"
+                    android:layout_width="167dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/spinner"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+        </LinearLayout>
 
         <CalendarView
             android:id="@+id/CV01"
-            android:layout_width="1dp"
-            android:layout_height="302dp"
+            android:layout_width="match_parent"
+            android:layout_height="307dp"
             android:layout_marginTop="36dp"
+            android:layout_weight="1"
+            android:layout_centerHorizontal="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Switch
-            android:id="@+id/switch1"
-            android:layout_width="51dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/spinner"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="129dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/CV01"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <View
-            android:id="@+id/view"
-            android:layout_width="155dp"
-            android:layout_height="2dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="24dp"
-            android:background="@color/gray"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/TV01"
-            app:layout_constraintTop_toBottomOf="@+id/CV01" />
-
-        <View
-            android:id="@+id/view2"
-            android:layout_width="155dp"
-            android:layout_height="2dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="24dp"
-            android:background="@color/gray"
-            app:layout_constraintEnd_toStartOf="@+id/TV01"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/CV01" />
-
-        <TextView
-            android:id="@+id/TV01"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/switch1"
-            android:layout_marginTop="16dp"
-            android:text="2019年 1月7日"
-            android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/CV01" />
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="195dp"
+            android:layout_height="223dp"
             android:layout_alignParentStart="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginBottom="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteY="384dp">
+            android:layout_below="@+id/CV01">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                        <Button
-                            android:id="@+id/edit"
+                        <RelativeLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="新增日記"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.0"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/TV01" />
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
 
-                        <Button
-                            android:id="@+id/addact"
+                                <View
+                                    android:id="@+id/view"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:layout_weight="1"
+                                    android:background="@color/Green1" />
+
+                                <Button
+                                    android:id="@+id/addact"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="40dp"
+                                    android:layout_alignRight="@id/view"
+                                    android:layout_weight="1"
+                                    android:gravity="right"
+                                    android:text="新增活動"
+                                    tools:layout_editor_absoluteX="85dp"
+                                    tools:layout_editor_absoluteY="415dp" />
+
+                                <TextView
+                                    android:id="@+id/textView2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_alignParentStart="true"
+                                    android:layout_alignParentTop="true"
+                                    android:layout_marginStart="15dp"
+                                    android:text="當日活動"
+                                    android:textSize="24sp" />
+
+                        </RelativeLayout>
+
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="新增活動"
-                            tools:layout_editor_absoluteX="85dp"
-                            tools:layout_editor_absoluteY="415dp" />
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="34dp"
+                                    android:layout_weight="1"
+                                    android:orientation="horizontal">
+
+                                        <View
+                                            android:id="@+id/VW01"
+                                            android:layout_width="40dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1" />
+
+                                        <CheckBox
+                                            android:id="@+id/CB01"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:text="開始種植"
+                                            android:textSize="20sp" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="34dp"
+                                    android:orientation="horizontal">
+
+                                        <View
+                                            android:id="@+id/VW02"
+                                            android:layout_width="15dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1" />
+
+                                        <CheckBox
+                                            android:id="@+id/CB02"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:text="施肥"
+                                            android:textSize="20sp" />
+
+                                        <TextView
+                                            android:id="@+id/TV03"
+                                            android:layout_width="240dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:textSize="20sp"/>
+
+                                        <ImageButton
+                                            android:id="@+id/IMB01"
+                                            android:layout_width="37dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:src="@android:drawable/ic_menu_edit" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="34dp"
+                                    android:layout_weight="1"
+                                    android:orientation="horizontal">
+
+                                        <View
+                                            android:id="@+id/VW03"
+                                            android:layout_width="15dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1" />
+
+                                        <CheckBox
+                                            android:id="@+id/CB03"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:text="澆水"
+                                            android:textSize="20sp" />
+
+                                        <TextView
+                                            android:id="@+id/TV04"
+                                            android:layout_width="240dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:textSize="20sp"/>
+
+                                        <ImageButton
+                                            android:id="@+id/IMB02"
+                                            android:layout_width="37dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:src="@android:drawable/ic_menu_edit" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="34dp"
+                                    android:layout_weight="1"
+                                    android:orientation="horizontal">
+
+                                        <View
+                                            android:id="@+id/VW04"
+                                            android:layout_width="15dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1" />
+
+                                        <CheckBox
+                                            android:id="@+id/CB04"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:text="鋤草"
+                                            android:textSize="20sp" />
+
+                                        <TextView
+                                            android:id="@+id/TV05"
+                                            android:layout_width="240dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:textSize="20sp"/>
+
+                                        <ImageButton
+                                            android:id="@+id/IMB03"
+                                            android:layout_width="37dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:src="@android:drawable/ic_menu_edit" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="34dp"
+                                    android:layout_weight="1"
+                                    android:orientation="horizontal">
+
+                                        <View
+                                            android:id="@+id/VW05"
+                                            android:layout_width="15dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1" />
+
+                                        <CheckBox
+                                            android:id="@+id/CB05"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:text="防病"
+                                            android:textSize="20sp" />
+
+                                        <TextView
+                                            android:id="@+id/TV06"
+                                            android:layout_width="240dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:textSize="20sp"/>
+
+                                        <ImageButton
+                                            android:id="@+id/IMB04"
+                                            android:layout_width="37dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:src="@android:drawable/ic_menu_edit" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="34dp"
+                                    android:layout_weight="1"
+                                    android:orientation="horizontal">
+
+                                        <View
+                                            android:id="@+id/VW06"
+                                            android:layout_width="15dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1" />
+
+                                        <CheckBox
+                                            android:id="@+id/CB06"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:text="防蟲"
+                                            android:textSize="20sp" />
+
+                                        <TextView
+                                            android:id="@+id/TV07"
+                                            android:layout_width="240dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:textSize="20sp"/>
+
+                                        <ImageButton
+                                            android:id="@+id/IMB05"
+                                            android:layout_width="37dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:src="@android:drawable/ic_menu_edit" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="34dp"
+                                    android:layout_weight="1"
+                                    android:orientation="horizontal">
+
+                                        <View
+                                            android:id="@+id/VW07"
+                                            android:layout_width="40dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1" />
+
+                                        <CheckBox
+                                            android:id="@+id/CB07"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:text="收成"
+                                            android:textSize="20sp" />
+
+                                </LinearLayout>
+
+                        </LinearLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
+
+                                <Button
+                                    android:id="@+id/edit"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="40dp"
+                                    android:layout_alignRight="@id/view2"
+                                    android:layout_weight="1"
+                                    android:text="新增備註"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.0"
+                                    app:layout_constraintStart_toStartOf="parent" />
+
+                                <View
+                                    android:id="@+id/view2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="42dp"
+                                    android:layout_alignParentStart="true"
+                                    android:layout_alignParentTop="true"
+                                    android:layout_weight="1"
+                                    android:background="@color/Green1" />
+
+                                <TextView
+                                    android:id="@+id/textView3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentStart="true"
+                                    android:layout_alignParentTop="true"
+                                    android:layout_marginStart="15dp"
+                                    android:text="當日備註"
+                                    android:textSize="24sp" />
+
+                        </RelativeLayout>
 
                         <TextView
-                            android:id="@+id/TV2"
+                            android:id="@+id/TV02"
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_marginTop="4dp"
-                            android:layout_marginEnd="4dp"
-                            android:background="@drawable/rec"
+                            android:layout_height="150dp"
+                            android:layout_weight="1"
                             android:textSize="20sp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/edit" />
+                            android:onClick="sendMessage" />
 
                 </LinearLayout>
         </ScrollView>
 
-</LinearLayout>
+
+</RelativeLayout>
