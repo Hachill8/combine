@@ -53,5 +53,15 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:16.0.9'
     implementation 'com.google.android.gms:play-services-auth:16.0.1'
     implementation 'com.google.android.gms:play-services-base:16.1.0'
+
+    //BubbleSeekBar library
+    implementation 'com.xw.repo:bubbleseekbar:3.5-lite'
+
+    //floatingactionbutton
+    implementation 'com.getbase:floatingactionbutton:1.10.1'
+
+    //sparkbtton
+    implementation 'com.github.varunest:sparkbutton:1.0.6'
+
 }
 apply plugin: 'com.google.gms.google-services'

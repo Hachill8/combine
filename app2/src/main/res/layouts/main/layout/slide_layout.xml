@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <ImageButton
+        android:id="@+id/slide_imagebtn"
+        android:layout_width="320dp"
+        android:layout_height="240dp"
+        android:background="@drawable/potted_plant"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/slide_heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="初階_盆栽種植"
+        android:textSize="40sp"
+        android:textColor="#402C2B"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:id="@+id/slide_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="適合剛學習種植的新手，占地範圍小，成功率高。"
+        android:textSize="25sp"
+        android:layout_gravity="center"
+        android:gravity="left"
+        android:lineSpacingExtra="10dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="20dp"/>
+
+</LinearLayout>

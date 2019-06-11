@@ -16,4 +16,11 @@
     <color name="test">#89b094</color>
 
 
+    //like_animation用
+    <color name="primary_color">#FC9D33</color>
+    <color name="secondary_color">#89B094</color>
+    //floatingactionbtn用
+    <color name="floating_main_color">#FC9D33</color>
+
+
 </resources>

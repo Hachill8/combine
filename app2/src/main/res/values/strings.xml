@@ -27,6 +27,13 @@
         <item>12月</item>
     </string-array>
 
+    <string-array name="sex_list">
+        <item>女</item>
+        <item>男</item>
+    </string-array>
+    <string name="spn_sex_list_prompt">請選擇性別</string>
+    <string name="title_activity_home2">home2</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

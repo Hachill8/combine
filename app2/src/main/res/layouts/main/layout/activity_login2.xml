@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bgtwo"
+    tools:context=".login2">
+
+    <TextView
+        android:id="@+id/loginsub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="個人資訊"
+        android:textColor="#ffff"
+        android:textSize="60sp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_margin="30dp"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                        <EditText
+                            android:id="@+id/name"
+                            android:textColorHint="#80ffffff"
+                            android:hint="輸入暱稱"
+                            android:textColor="#ffffff"
+                            android:textSize="30sp"
+                            android:layout_width="320dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="20dp"/>
+
+
+
+
+                        <EditText
+                            android:id="@+id/phonenum"
+                            android:textColorHint="#80ffffff"
+                            android:hint="輸入電話"
+                            android:textColor="#ffffff"
+                            android:textSize="30sp"
+                            android:layout_width="320dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="30dp"/>
+
+                        <TextView
+                            android:layout_width="320dp"
+                            android:layout_height="wrap_content"
+                            android:text="選擇性別"
+                            android:textColor="#89B094"
+                            android:textSize="30sp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="30dp"
+                            />
+
+                        <Spinner
+                            android:id="@+id/spnSex"
+                            android:layout_width="320dp"
+                            android:layout_height="40dp"
+                            android:entries="@array/sex_list"
+                            android:spinnerMode="dialog"
+                            android:layout_gravity="center"
+                            android:prompt="@string/spn_sex_list_prompt"
+                            />
+
+
+                        <TextView
+                            android:id="@+id/tvShowNumbers"
+                            android:layout_width="320dp"
+                            android:layout_height="wrap_content"
+                            android:text="種植經驗"
+                            android:textColor="#89B094"
+                            android:textSize="30sp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="30dp"
+                            />
+
+                        <NumberPicker
+                            android:id="@+id/numberPicker"
+                            android:layout_width="320dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="10dp"/>
+
+                        <Button
+                            android:id="@+id/btntomodel"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_gravity="center"
+                            android:background="@drawable/getstart"
+                            android:layout_marginTop="30dp"/>
+
+
+
+
+                </LinearLayout>
+
+
+
+
+
+        </ScrollView>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</LinearLayout>

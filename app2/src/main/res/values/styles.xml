@@ -5,6 +5,11 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        //改變EditText底線顏色
+        <item name="colorControlNormal">#808080</item>
+        <item name="colorControlActivated">#89B094</item>
+
     </style>
 
 
@@ -13,5 +18,16 @@
         <item name="queryHint">搜尋作物</item>
         <item name="queryBackground">@drawable/icon2_2</item>
     </style>
+
+    <style name="custem_fab">
+        <item name="android:background">@drawable/fab_label_background</item>
+        <item name="android:textColor">#E6EAE7</item>
+
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 
 </resources>

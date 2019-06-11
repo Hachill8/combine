@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".pot_size"
+    android:orientation="vertical"
+    android:background="#E6EAE7">
+
+    <ImageView
+        android:id="@+id/packageplace"
+        android:layout_width="219dp"
+        android:layout_height="226dp"
+        android:src="@drawable/ssize"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"/>
+    <TextView
+        android:id="@+id/pagetitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="深度20公分"
+        android:textSize="30sp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        android:textColor="#402C2B"/>
+    <TextView
+    android:id="@+id/pagesubtitle"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="適合葉菜類根系較短，生長快速"
+    android:textSize="20sp"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:layout_marginTop="15dp"
+    android:textColor="#796868"/>
+
+    <TextView
+        android:id="@+id/pagevegedecs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="#小紅蘿蔔 #大蒜"
+        android:textSize="22sp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        android:textColor="#89B094"/>
+    
+    
+    
+
+
+
+    <com.xw.repo.BubbleSeekBar
+        android:id="@+id/bubbleseekbar"
+        android:layout_width="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        app:bsb_bubble_color="#89B094"
+        app:bsb_bubble_text_color="#E6EAE7"
+        app:bsb_track_color="#89B094"
+        app:bsb_second_track_color="#89B094"
+        app:bsb_max="40"
+        app:bsb_min="20"
+        app:bsb_progress="25"
+        app:bsb_section_count="1"
+        app:bsb_section_text_position="bottom_sides"
+        app:bsb_show_progress_in_float="false"
+        app:bsb_show_section_mark="false"
+        app:bsb_show_section_text="false"
+        app:bsb_show_thumb_text="true"
+        android:layout_marginTop="90dp"
+        />
+    
+
+
+
+
+
+
+    <Button
+        android:id="@+id/btntake"
+        android:layout_width="194dp"
+        android:layout_height="wrap_content"
+        android:text="確定"
+        android:textSize="20sp"
+        android:background="@drawable/choose_pot_or_vege_btn_pot"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textColor="#ffff"
+        android:layout_marginTop="40dp"
+        />
+
+
+
+</LinearLayout>

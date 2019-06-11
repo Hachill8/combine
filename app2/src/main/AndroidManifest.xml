@@ -11,13 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".MainActivity"></activity>
         <activity android:name=".calendar" />
         <activity android:name=".record" />
         <activity android:name=".search" />
@@ -25,9 +19,29 @@
         <activity android:name=".calendar_memo"/>
         <activity android:name=".forum"/>
         <activity android:name=".market"/>
-        <activity android:name=".record_Information">
+        <activity android:name=".record_Information"/>
+        <activity android:name=".Welcome_woo">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
+
+        <activity android:name=".VegeInfo" />
+        <activity android:name=".choose_vege" />
+        <activity android:name=".test_two" />
+        <activity android:name=".pot_size" />
+        <activity android:name=".home" />
+        <activity android:name=".thirdcard" />
+        <activity android:name=".secondcard" />
+        <activity android:name=".firstcard" />
+        <activity android:name=".select_model" />
+        <activity android:name=".login2" />
+        <activity android:name=".login" />
+        <activity android:name=".home2" />
+
+
     </application>
 
 </manifest>
