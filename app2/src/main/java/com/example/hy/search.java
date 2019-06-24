@@ -24,6 +24,7 @@ public class search extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags( WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.z_search);
 
         //篩選
@@ -130,7 +131,7 @@ public class search extends AppCompatActivity {
             {
                 {
                     Intent intent = new Intent();
-                    intent.setClass(search.this, MainActivity.class);
+                    intent.setClass(search.this, home2.class);
                     startActivity(intent);
                 }
             }

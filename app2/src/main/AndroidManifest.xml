@@ -14,11 +14,13 @@
         <activity android:name=".MainActivity"></activity>
         <activity android:name=".calendar" />
         <activity android:name=".record" />
+        <activity android:name=".edit_pot" />
         <activity android:name=".search" />
         <activity android:name=".crop_info"/>
         <activity android:name=".calendar_memo"/>
         <activity android:name=".forum"/>
         <activity android:name=".market"/>
+        <activity android:name=".user_setting"/>
         <activity android:name=".record_Information"/>
         <activity android:name=".Welcome_woo">
             <intent-filter>

@@ -15,6 +15,7 @@ public class edit_pot extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate( savedInstanceState );
+
         setContentView( R.layout.activity_edit_pot );
 
         parent_linear_layout = (LinearLayout) findViewById(R.id.parent_linear_layout);

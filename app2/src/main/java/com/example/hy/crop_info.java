@@ -27,6 +27,7 @@ public class crop_info extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.z_crop_info);
 
         iv1 = (ImageView) findViewById(R.id.Img_crop); //獲取ImageView控件id
