@@ -46,7 +46,7 @@ public class search extends AppCompatActivity {
                 //給予對應item的資料
                 ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(search.this,
                         R.layout.record_select_dropdown_item,
-                        getResources().getStringArray(R.array.月份));
+                        getResources().getStringArray(R.array.sex_list));
                 //自訂getDropDownView()介面格式(Spinner介面展開時，View所使用的每個item格式)
                 adapter2.setDropDownViewResource(R.layout.record_select_dropdown_item);
                 //匯入item資料

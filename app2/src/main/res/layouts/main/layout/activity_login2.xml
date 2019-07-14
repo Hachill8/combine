@@ -29,7 +29,7 @@
                     android:orientation="vertical">
 
                         <EditText
-                            android:id="@+id/name"
+                            android:id="@+id/tv_name"
                             android:textColorHint="#80ffffff"
                             android:hint="輸入暱稱"
                             android:textColor="#ffffff"
@@ -38,9 +38,6 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginTop="20dp"/>
-
-
-
 
                         <EditText
                             android:id="@+id/phonenum"
@@ -63,18 +60,18 @@
                             android:layout_marginTop="30dp"
                             />
 
-                        <Spinner
-                            android:id="@+id/spnSex"
-                            android:layout_width="320dp"
-                            android:layout_height="40dp"
-                            android:entries="@array/sex_list"
-                            android:spinnerMode="dialog"
-                            android:layout_gravity="center"
-                            android:prompt="@string/spn_sex_list_prompt"
-                            />
+                    <Spinner
+                        android:id="@+id/spnSex"
+                        android:layout_width="321dp"
+                        android:layout_height="57dp"
+                        android:layout_gravity="center"
+                        android:entries="@array/sex_list"
+                        android:prompt="@string/spn_sex_list_prompt"
+                        android:spinnerMode="dialog"
+                        android:textColor="#ffff"
+                        android:textSize="30sp" />
 
-
-                        <TextView
+                    <TextView
                             android:id="@+id/tvShowNumbers"
                             android:layout_width="320dp"
                             android:layout_height="wrap_content"

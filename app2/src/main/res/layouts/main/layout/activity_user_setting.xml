@@ -20,10 +20,22 @@
             android:background="@drawable/person_photo"/>
 
         <TextView
+            android:id="@+id/user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="chen210115@gmail.com"
+            android:text="user1"
             android:layout_below="@+id/head_photo"
+            android:layout_centerHorizontal="true"
+            android:textSize="20sp"
+            android:textColor="#796868"
+            android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:id="@+id/user_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="a@gmail.com"
+            android:layout_below="@+id/user_name"
             android:layout_centerHorizontal="true"
             android:textSize="20sp"
             android:textColor="#796868"
