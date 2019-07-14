@@ -1,4 +1,4 @@
-package com.example.hy;
+package com.example.hy.search;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -10,6 +10,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+
+import com.example.hy.R;
+import com.example.hy.home.home2;
 
 public class VegeInfo extends AppCompatActivity {
 
@@ -34,7 +37,7 @@ public class VegeInfo extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                Intent b = new Intent(VegeInfo.this,home2.class);
+                Intent b = new Intent(VegeInfo.this, home2.class);
                 startActivity(b);
             }
         } );

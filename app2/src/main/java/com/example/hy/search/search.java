@@ -1,4 +1,4 @@
-package com.example.hy;
+package com.example.hy.search;
 
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
@@ -15,6 +15,9 @@ import android.widget.ImageView;
 import android.app.AlertDialog;
 import android.support.v7.widget.SearchView;
 import android.widget.Spinner;
+
+import com.example.hy.R;
+import com.example.hy.home.home2;
 
 public class search extends AppCompatActivity {
     SearchView mSearchView;
@@ -92,7 +95,7 @@ public class search extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setClass(search.this, crop_info.class);
+                intent.setClass(search.this, VegeInfo.class);
                 startActivity(intent);
             }
         });
@@ -102,7 +105,7 @@ public class search extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setClass(search.this, crop_info.class);
+                intent.setClass(search.this, VegeInfo.class);
                 startActivity(intent);
             }
         });
@@ -112,7 +115,7 @@ public class search extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setClass(search.this, crop_info.class);
+                intent.setClass(search.this, VegeInfo.class);
                 startActivity(intent);
             }
         });

@@ -1,4 +1,4 @@
-package com.example.hy;
+package com.example.hy.home;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -10,6 +10,9 @@ import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+
+import com.example.hy.R;
+import com.example.hy.search.search;
 
 
 public class home extends AppCompatActivity {
@@ -42,7 +45,7 @@ public class home extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                Intent a = new Intent(home.this,search.class);
+                Intent a = new Intent(home.this, search.class);
                 startActivity(a);
 
             }

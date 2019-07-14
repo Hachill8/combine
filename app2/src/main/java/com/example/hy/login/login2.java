@@ -1,4 +1,4 @@
-package com.example.hy;
+package com.example.hy.login;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,9 @@ import android.widget.Button;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.example.hy.R;
+import com.example.hy.select_model;
 
 public class login2 extends AppCompatActivity implements  NumberPicker.OnValueChangeListener {
 //AdapterView.OnItemSelectedListener,
@@ -52,7 +55,7 @@ public class login2 extends AppCompatActivity implements  NumberPicker.OnValueCh
         btntomodel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent a = new Intent(login2.this,select_model.class);
+                Intent a = new Intent(login2.this, select_model.class);
                 startActivity(a);
 
             }

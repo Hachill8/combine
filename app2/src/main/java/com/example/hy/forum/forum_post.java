@@ -1,4 +1,4 @@
-package com.example.hy;
+package com.example.hy.forum;
 
 public class forum_post {
     private int id;

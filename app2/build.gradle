@@ -24,12 +24,12 @@ android {
             main {
                 res.srcDirs =
                         [
+                                'src/main/res/layouts/search',
                                 'src/main/res/layouts/calendar',
                                 'src/main/res/layouts/forum',
                                 'src/main/res/layouts/main',
                                 'src/main/res/layouts/market',
                                 'src/main/res/layouts/record',
-                                'src/main/res/layouts/search',
                                 'src/main/res/layouts',
                                 'src/main/res'
                         ]

@@ -1,4 +1,4 @@
-package com.example.hy;
+package com.example.hy.search;
 
 import android.content.Intent;
 import android.os.Build;
@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.view.View;
 import android.view.WindowManager;
+
+import com.example.hy.R;
 
 public class choose_vege extends AppCompatActivity implements View.OnClickListener
 {

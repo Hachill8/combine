@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.hy.search.choose_vege;
 import com.xw.repo.BubbleSeekBar;
 
 public class pot_size extends AppCompatActivity
@@ -64,7 +65,7 @@ public class pot_size extends AppCompatActivity
                             toast.show();
 
 
-                            Intent a = new Intent(pot_size.this,choose_vege.class);
+                            Intent a = new Intent(pot_size.this, choose_vege.class);
                             startActivity(a);
                         }
                     } );

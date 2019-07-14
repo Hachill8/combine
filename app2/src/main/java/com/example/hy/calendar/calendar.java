@@ -1,4 +1,4 @@
-package com.example.hy;
+package com.example.hy.calendar;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,8 +13,9 @@ import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.hy.R;
 
 
 public class calendar extends AppCompatActivity {
@@ -64,7 +65,7 @@ public class calendar extends AppCompatActivity {
         addact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(calendar.this,addactivity.class);
+                Intent intent = new Intent(calendar.this, addactivity.class);
                 startActivity(intent);
             }
         });

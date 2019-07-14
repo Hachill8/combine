@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bgtwo"
-    tools:context=".login">
+    tools:context=".login.login">
 
     <TextView
         android:id="@+id/loginsub"
@@ -35,8 +35,8 @@
             android:layout_height="70dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="11dp"
-            android:layout_marginTop="0dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="4dp"
             android:background="@drawable/btn_google_signin"
             tools:ignore="OnClick">
 

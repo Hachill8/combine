@@ -1,9 +1,11 @@
-package com.example.hy;
+package com.example.hy.user_setting;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
 import android.widget.TextView;
+
+import com.example.hy.R;
 
 public class user_setting extends AppCompatActivity
 {

@@ -1,4 +1,4 @@
-package com.example.hy;
+package com.example.hy.home;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -13,6 +13,12 @@ import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+
+import com.example.hy.R;
+import com.example.hy.forum.forum;
+import com.example.hy.market.market;
+import com.example.hy.search.search;
+import com.example.hy.user_setting.user_setting;
 
 public class home2 extends AppCompatActivity implements View.OnClickListener {
 
@@ -37,7 +43,7 @@ public class home2 extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void onClick(View v)
             {
-                Intent a = new Intent(home2.this,edit_pot.class);
+                Intent a = new Intent(home2.this, com.example.hy.edit_pot.class);
                 startActivity(a);
             }
         } );
@@ -82,7 +88,7 @@ public class home2 extends AppCompatActivity implements View.OnClickListener {
                 @Override
                 public void onClick(View v)
                 {
-                    Intent a = new Intent(home2.this,record.class);
+                    Intent a = new Intent(home2.this, com.example.hy.record.record.class);
                     startActivity(a);
                 }
             } );
@@ -91,7 +97,7 @@ public class home2 extends AppCompatActivity implements View.OnClickListener {
                 @Override
                 public void onClick(View v)
                 {
-                    Intent a = new Intent(home2.this,calendar.class);
+                    Intent a = new Intent(home2.this, com.example.hy.calendar.calendar.class);
                     startActivity(a);
                 }
             } );
@@ -100,7 +106,7 @@ public class home2 extends AppCompatActivity implements View.OnClickListener {
                 @Override
                 public void onClick(View v)
                 {
-                    Intent a = new Intent(home2.this,forum.class);
+                    Intent a = new Intent(home2.this, forum.class);
                     startActivity(a);
                 }
             } );
@@ -109,7 +115,7 @@ public class home2 extends AppCompatActivity implements View.OnClickListener {
                 @Override
                 public void onClick(View v)
                 {
-                    Intent a = new Intent(home2.this,market.class);
+                    Intent a = new Intent(home2.this, market.class);
                     startActivity(a);
                 }
             } );
@@ -118,7 +124,7 @@ public class home2 extends AppCompatActivity implements View.OnClickListener {
                 @Override
                 public void onClick(View v)
                 {
-                    Intent a = new Intent(home2.this,search.class);
+                    Intent a = new Intent(home2.this, search.class);
                     startActivity(a);
                 }
             } );
@@ -127,7 +133,7 @@ public class home2 extends AppCompatActivity implements View.OnClickListener {
                 @Override
                 public void onClick(View v)
                 {
-                    Intent a = new Intent(home2.this,user_setting.class);
+                    Intent a = new Intent(home2.this, user_setting.class);
                     startActivity(a);
                 }
             } );

@@ -1,4 +1,4 @@
-package com.example.hy;
+package com.example.hy.forum;
 
 import android.os.Bundle;
 import android.support.design.widget.TabItem;
@@ -11,6 +11,8 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.WindowManager;
 import android.widget.Button;
+
+import com.example.hy.R;
 
 import java.util.ArrayList;
 import java.util.List;
