@@ -28,27 +28,43 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                        <EditText
-                            android:id="@+id/tv_name"
-                            android:textColorHint="#80ffffff"
-                            android:hint="輸入暱稱"
-                            android:textColor="#ffffff"
-                            android:textSize="30sp"
-                            android:layout_width="320dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="20dp"/>
+                    <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
+                        android:id="@+id/text_field_boxes"
+                        android:layout_width="320dp"
+                        android:layout_height="wrap_content"
+                        app:labelText="輸入暱稱"
+                        android:layout_gravity="center"
+                        app:primaryColor="#518D62"
+                        android:layout_marginTop="30dp"
+                        app:iconSignifier="@drawable/edit_pencil">
 
-                        <EditText
-                            android:id="@+id/phonenum"
-                            android:textColorHint="#80ffffff"
-                            android:hint="輸入電話"
-                            android:textColor="#ffffff"
-                            android:textSize="30sp"
-                            android:layout_width="320dp"
+                        <studio.carbonylgroup.textfieldboxes.ExtendedEditText
+                            android:id="@+id/extended_edit_text"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="30dp"/>
+                            />
+
+                    </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
+
+
+
+                    <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
+                        android:id="@+id/text_field_boxes2"
+                        android:layout_width="320dp"
+                        android:layout_height="wrap_content"
+                        app:labelText="輸入電話"
+                        android:layout_gravity="center"
+                        app:primaryColor="#518D62"
+                        android:layout_marginTop="30dp"
+                        app:iconSignifier="@drawable/edit_pencil">
+
+                        <studio.carbonylgroup.textfieldboxes.ExtendedEditText
+                            android:id="@+id/extended_edit_text2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            />
+
+                    </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
 
                         <TextView
                             android:layout_width="320dp"
@@ -60,18 +76,47 @@
                             android:layout_marginTop="30dp"
                             />
 
-                    <Spinner
-                        android:id="@+id/spnSex"
-                        android:layout_width="321dp"
-                        android:layout_height="57dp"
+                    <co.ceryle.radiorealbutton.RadioRealButtonGroup
+                        android:layout_width="320dp"
+                        android:layout_height="60dp"
                         android:layout_gravity="center"
-                        android:entries="@array/sex_list"
-                        android:prompt="@string/spn_sex_list_prompt"
-                        android:spinnerMode="dialog"
-                        android:textColor="#ffff"
-                        android:textSize="30sp" />
+                        app:rrbg_animateDrawables_enter="overshoot"
+                        app:rrbg_animateTexts_enter="overshoot"
+                        app:rrbg_dividerColor="@color/black"
+                        app:rrbg_dividerSize="4dp"
+                        app:rrbg_radius="10dp"
 
-                    <TextView
+                        app:rrbg_selectorColor="@color/red_700"
+                        app:rrbg_selectorSize="6dp">
+
+                        <co.ceryle.radiorealbutton.RadioRealButton
+                            android:layout_width="50dp"
+                            android:layout_height="60dp"
+                            app:rrb_drawable="@mipmap/ic_launcher"
+                            app:rrb_drawableHeight="36dp"
+                            app:rrb_drawablePadding="8dp"
+                            app:rrb_drawableWidth="36dp"
+                            app:rrb_ripple="true"
+                            app:rrb_rippleColor="@color/black"
+                            app:rrb_text="男"
+                            app:rrb_textColor="@color/black"/>
+
+                        <co.ceryle.radiorealbutton.RadioRealButton
+                            android:layout_width="50dp"
+                            android:layout_height="60dp"
+                            android:layout_marginLeft="50dp"
+                            app:rrb_drawable="@mipmap/ic_launcher"
+                            app:rrb_drawableGravity="right"
+                            app:rrb_drawableHeight="36dp"
+                            app:rrb_drawablePadding="8dp"
+                            app:rrb_drawableWidth="36dp"
+                            app:rrb_ripple="true"
+                            app:rrb_rippleColor="@color/black"
+                            app:rrb_text="女"
+                            app:rrb_textColor="@color/black" />
+                    </co.ceryle.radiorealbutton.RadioRealButtonGroup>
+
+                        <TextView
                             android:id="@+id/tvShowNumbers"
                             android:layout_width="320dp"
                             android:layout_height="wrap_content"
@@ -82,12 +127,47 @@
                             android:layout_marginTop="30dp"
                             />
 
-                        <NumberPicker
-                            android:id="@+id/numberPicker"
-                            android:layout_width="320dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="10dp"/>
+                    <co.ceryle.radiorealbutton.RadioRealButtonGroup
+                        android:layout_width="320dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
+                        app:rrbg_animateDrawables_enter="overshoot"
+                        app:rrbg_animateTexts_enter="overshoot"
+                        app:rrbg_dividerColor="@color/black"
+                        app:rrbg_dividerSize="4dp"
+                        app:rrbg_radius="10dp"
+
+                        app:rrbg_selectorColor="@color/red_700"
+                        app:rrbg_selectorSize="6dp">
+
+                        <co.ceryle.radiorealbutton.RadioRealButton
+                            android:layout_width="100dp"
+                            android:layout_height="60dp"
+                            app:rrb_drawable="@mipmap/ic_launcher"
+                            app:rrb_drawableHeight="36dp"
+                            app:rrb_drawablePadding="8dp"
+                            app:rrb_drawableWidth="36dp"
+                            app:rrb_ripple="true"
+                            app:rrb_rippleColor="@color/black"
+                            app:rrb_text="1年以下"
+                            app:rrb_textColor="@color/black"/>
+
+                        <co.ceryle.radiorealbutton.RadioRealButton
+                            android:layout_width="100dp"
+                            android:layout_height="60dp"
+                            android:layout_marginLeft="100dp"
+                            app:rrb_drawable="@mipmap/ic_launcher"
+                            app:rrb_drawableGravity="right"
+                            app:rrb_drawableHeight="36dp"
+                            app:rrb_drawablePadding="8dp"
+                            app:rrb_drawableWidth="36dp"
+                            app:rrb_ripple="true"
+                            app:rrb_rippleColor="@color/black"
+                            app:rrb_text="2~3年"
+                            app:rrb_textColor="@color/black" />
+                    </co.ceryle.radiorealbutton.RadioRealButtonGroup>
+
+
 
                         <Button
                             android:id="@+id/btntomodel"

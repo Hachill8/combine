@@ -16,6 +16,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.hy.R;
+import com.example.hy.select_model;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
@@ -65,6 +66,8 @@ public class login extends AppCompatActivity implements GoogleApiClient.Connecti
         Email=(TextView)findViewById(R.id.email);
         SignIn=(SignInButton)findViewById(R.id.bn_login);
         SignOut=(Button)findViewById(R.id.bn_logout);
+
+
         SignIn.setOnClickListener(this);
         SignOut.setOnClickListener(this);
         Prof_Section.setVisibility(View.GONE);
@@ -100,6 +103,7 @@ public class login extends AppCompatActivity implements GoogleApiClient.Connecti
     {
         switch(v.getId())
         {
+
             case R.id.bn_login:
                 signIn();break;
             case R.id.bn_logout:
@@ -113,8 +117,15 @@ public class login extends AppCompatActivity implements GoogleApiClient.Connecti
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) { }
 
+    public void test()
+    {
+        Intent b = new Intent(login.this, login2.class);
+        startActivity(b);
+    }
+
     public void signIn()
-    {   //signInButton 按下時，啟動登入頁面
+    {
+        //signInButton 按下時，啟動登入頁面
         Intent googleSignInIntent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
         startActivityForResult(googleSignInIntent,GoogleSignInRequestCode);
     }

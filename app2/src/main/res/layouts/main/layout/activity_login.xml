@@ -7,6 +7,7 @@
     android:background="@drawable/bgtwo"
     tools:context=".login.login">
 
+
     <TextView
         android:id="@+id/loginsub"
         android:layout_width="wrap_content"

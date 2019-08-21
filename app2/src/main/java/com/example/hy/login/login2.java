@@ -30,6 +30,7 @@ public class login2 extends AppCompatActivity implements  NumberPicker.OnValueCh
         Name=(TextView)findViewById(R.id.tv_name);
         //取得intent中的bundle物件
         Bundle bundle01 =this.getIntent().getExtras();
+        assert bundle01 != null;
         String name = bundle01.getString("name");
         Name.setText(name);
 

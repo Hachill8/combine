@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".calendar.calendar"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#E6EAE7">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -31,8 +32,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignStart="@+id/switch1"
-                    android:layout_marginTop="16dp"
                     android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginLeft="45dp"
                     android:text="2019年 1月7日"
                     android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -41,7 +44,7 @@
 
                 <Switch
                     android:id="@+id/switch1"
-                    android:layout_width="167dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:layout_marginLeft="8dp"
@@ -65,18 +68,20 @@
             android:layout_centerHorizontal="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:outlineAmbientShadowColor="#000"
+            />
 
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="223dp"
+            android:layout_height="match_parent"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/CV01">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:orientation="vertical">
 
                         <RelativeLayout
@@ -94,11 +99,13 @@
                                 <Button
                                     android:id="@+id/addact"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="40dp"
+                                    android:layout_height="30dp"
                                     android:layout_alignRight="@id/view"
                                     android:layout_weight="1"
-                                    android:gravity="right"
+                                    android:background="@drawable/btn_round"
+                                    android:layout_centerInParent="true"
                                     android:text="新增活動"
+                                    android:textColor="#fff"
                                     tools:layout_editor_absoluteX="85dp"
                                     tools:layout_editor_absoluteY="415dp" />
 
@@ -110,7 +117,8 @@
                                     android:layout_alignParentTop="true"
                                     android:layout_marginStart="15dp"
                                     android:text="當日活動"
-                                    android:textSize="24sp" />
+                                    android:textSize="24sp"
+                                    android:textColor="#518D62"/>
 
                         </RelativeLayout>
 
@@ -138,7 +146,8 @@
                                             android:layout_height="match_parent"
                                             android:layout_weight="1"
                                             android:text="開始種植"
-                                            android:textSize="20sp" />
+                                            android:textSize="20sp"
+                                            android:textColor="#402C2B"/>
 
                                 </LinearLayout>
 
@@ -159,7 +168,8 @@
                                             android:layout_height="match_parent"
                                             android:layout_weight="1"
                                             android:text="施肥"
-                                            android:textSize="20sp" />
+                                            android:textSize="20sp"
+                                            android:textColor="#796868"/>
 
                                         <TextView
                                             android:id="@+id/TV03"
@@ -173,7 +183,7 @@
                                             android:layout_width="37dp"
                                             android:layout_height="wrap_content"
                                             android:layout_weight="1"
-                                            android:src="@android:drawable/ic_menu_edit" />
+                                            android:src="@drawable/edit_pencil" />
 
                                 </LinearLayout>
 
@@ -195,7 +205,8 @@
                                             android:layout_height="match_parent"
                                             android:layout_weight="1"
                                             android:text="澆水"
-                                            android:textSize="20sp" />
+                                            android:textSize="20sp"
+                                            android:textColor="#796868"/>
 
                                         <TextView
                                             android:id="@+id/TV04"
@@ -209,7 +220,7 @@
                                             android:layout_width="37dp"
                                             android:layout_height="wrap_content"
                                             android:layout_weight="1"
-                                            android:src="@android:drawable/ic_menu_edit" />
+                                            android:src="@drawable/edit_pencil" />
 
                                 </LinearLayout>
 
@@ -231,7 +242,8 @@
                                             android:layout_height="match_parent"
                                             android:layout_weight="1"
                                             android:text="鋤草"
-                                            android:textSize="20sp" />
+                                            android:textSize="20sp"
+                                            android:textColor="#796868"/>
 
                                         <TextView
                                             android:id="@+id/TV05"
@@ -245,7 +257,7 @@
                                             android:layout_width="37dp"
                                             android:layout_height="wrap_content"
                                             android:layout_weight="1"
-                                            android:src="@android:drawable/ic_menu_edit" />
+                                            android:src="@drawable/edit_pencil" />
 
                                 </LinearLayout>
 
@@ -267,21 +279,23 @@
                                             android:layout_height="match_parent"
                                             android:layout_weight="1"
                                             android:text="防病"
-                                            android:textSize="20sp" />
+                                            android:textSize="20sp"
+                                            android:textColor="#796868"/>
 
                                         <TextView
                                             android:id="@+id/TV06"
                                             android:layout_width="240dp"
                                             android:layout_height="match_parent"
                                             android:layout_weight="1"
-                                            android:textSize="20sp"/>
+                                            android:textSize="20sp"
+                                            android:textColor="#796868"/>
 
                                         <ImageButton
                                             android:id="@+id/IMB04"
                                             android:layout_width="37dp"
                                             android:layout_height="wrap_content"
                                             android:layout_weight="1"
-                                            android:src="@android:drawable/ic_menu_edit" />
+                                            android:src="@drawable/edit_pencil" />
 
                                 </LinearLayout>
 
@@ -303,7 +317,8 @@
                                             android:layout_height="match_parent"
                                             android:layout_weight="1"
                                             android:text="防蟲"
-                                            android:textSize="20sp" />
+                                            android:textSize="20sp"
+                                            android:textColor="#796868"/>
 
                                         <TextView
                                             android:id="@+id/TV07"
@@ -317,7 +332,7 @@
                                             android:layout_width="37dp"
                                             android:layout_height="wrap_content"
                                             android:layout_weight="1"
-                                            android:src="@android:drawable/ic_menu_edit" />
+                                            android:src="@drawable/edit_pencil"/>
 
                                 </LinearLayout>
 
@@ -337,8 +352,9 @@
                                             android:id="@+id/CB07"
                                             android:layout_width="match_parent"
                                             android:layout_height="match_parent"
-                                            android:layout_weight="1"
+                                            android:layout_weight="2"
                                             android:text="收成"
+                                            android:textColor="#796868"
                                             android:textSize="20sp" />
 
                                 </LinearLayout>
@@ -353,13 +369,16 @@
                                 <Button
                                     android:id="@+id/edit"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="40dp"
+                                    android:layout_height="30dp"
                                     android:layout_alignRight="@id/view2"
                                     android:layout_weight="1"
                                     android:text="新增備註"
+                                    android:textColor="#fff"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintHorizontal_bias="0.0"
-                                    app:layout_constraintStart_toStartOf="parent" />
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    android:background="@drawable/btn_round"
+                                    android:layout_centerInParent="true"/>
 
                                 <View
                                     android:id="@+id/view2"
@@ -378,7 +397,8 @@
                                     android:layout_alignParentTop="true"
                                     android:layout_marginStart="15dp"
                                     android:text="當日備註"
-                                    android:textSize="24sp" />
+                                    android:textSize="24sp"
+                                    android:textColor="#518D62"/>
 
                         </RelativeLayout>
 

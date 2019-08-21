@@ -26,14 +26,18 @@
                 style="@style/Theme.SearchView"
                 android:layout_width="300dp"
                 android:layout_height="60dp"
+                android:layout_gravity="center"
                 android:text="" />
 
-            <Button
-                android:id="@+id/BT_filter"
-                android:layout_width="50dp"
-                android:layout_height="60dp"
-                android:background="@drawable/icon2_3"
-                android:layout_gravity="center"/>
+            <ImageButton
+                android:id="@+id/edit_pot"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/search_choose"
+                android:layout_gravity="center"
+                android:elevation="4dp"
+                android:background="@drawable/search_choose_bg"/>
 
         </LinearLayout>
 
@@ -301,12 +305,17 @@
         </FrameLayout>
 
         <!--返回鍵-->
-        <Button
-            android:id="@+id/BT_back"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/icon08"
-            android:text="" />
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/open_bottom_sheet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_icon="@drawable/back"
+            app:fab_colorNormal="#FC9D33"
+            app:fab_colorPressed="#F7C389"
+            android:onClick="showDialog"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="10dp"/>
 
     </LinearLayout>
 </ScrollView>
