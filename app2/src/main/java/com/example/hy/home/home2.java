@@ -7,6 +7,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
@@ -14,11 +15,13 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import com.example.hy.GlobalVariable;
 import com.example.hy.R;
 import com.example.hy.forum.forum;
 import com.example.hy.market.market;
 import com.example.hy.search.search;
 import com.example.hy.user_setting.user_setting;
+import com.example.hy.webservice;
 
 public class home2 extends AppCompatActivity implements View.OnClickListener {
 
@@ -27,6 +30,9 @@ public class home2 extends AppCompatActivity implements View.OnClickListener {
     BottomSheetDialog bottomSheetDialog;
     ImageButton record,calendar,discuss,store,setting,user,hat,edit_pot;
     Dialog banboo_hat_level;
+    String insert_vege_item="";
+    GlobalVariable vege_item;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +66,8 @@ public class home2 extends AppCompatActivity implements View.OnClickListener {
 
         createBottomSheetDialog();
 
+        vege_item = (GlobalVariable)getApplicationContext();
+        insert_vege_item();
 
     }
 
@@ -124,6 +132,7 @@ public class home2 extends AppCompatActivity implements View.OnClickListener {
                 @Override
                 public void onClick(View v)
                 {
+                    vege_item.setVege_item(insert_vege_item);
                     Intent a = new Intent(home2.this, search.class);
                     startActivity(a);
                 }
@@ -157,6 +166,15 @@ public class home2 extends AppCompatActivity implements View.OnClickListener {
     }
 
 
+    public void insert_vege_item() {
+        Thread thread = new Thread() {
+            public void run() {
+                insert_vege_item = webservice.Vegename_list("s");
+            }
+        };
+        thread.start();
+        Log.v("test","1."+insert_vege_item+"2");
+    }
 
     public void showDialog(View view)
     {

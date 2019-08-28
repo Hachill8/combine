@@ -61,16 +61,16 @@ public class login extends AppCompatActivity implements GoogleApiClient.Connecti
         loginsub = (TextView) findViewById(R.id.loginsub);
 
         //
-        Prof_Section=(RelativeLayout)findViewById(R.id.prof_section);
-        Name=(TextView)findViewById(R.id.name);
-        Email=(TextView)findViewById(R.id.email);
+//        Prof_Section=(RelativeLayout)findViewById(R.id.prof_section);
+//        Email=(TextView)findViewById(R.id.email);
+//        SignOut=(Button)findViewById(R.id.bn_logout);
+//        Name=(TextView)findViewById(R.id.name);
         SignIn=(SignInButton)findViewById(R.id.bn_login);
-        SignOut=(Button)findViewById(R.id.bn_logout);
 
 
         SignIn.setOnClickListener(this);
-        SignOut.setOnClickListener(this);
-        Prof_Section.setVisibility(View.GONE);
+        //SignOut.setOnClickListener(this);
+        //Prof_Section.setVisibility(View.GONE);
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);//try
         // 設定 FirebaseAuth 介面
         mAuth = FirebaseAuth.getInstance();//try
@@ -106,8 +106,8 @@ public class login extends AppCompatActivity implements GoogleApiClient.Connecti
 
             case R.id.bn_login:
                 signIn();break;
-            case R.id.bn_logout:
-                signOut();break;
+//            case R.id.bn_logout:
+//                signOut();break;
         }
     }
     @Override
@@ -117,11 +117,11 @@ public class login extends AppCompatActivity implements GoogleApiClient.Connecti
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) { }
 
-    public void test()
-    {
-        Intent b = new Intent(login.this, login2.class);
-        startActivity(b);
-    }
+//    public void test()
+//    {
+//        Intent b = new Intent(login.this, login2.class);
+//        startActivity(b);
+//    }
 
     public void signIn()
     {
@@ -130,14 +130,14 @@ public class login extends AppCompatActivity implements GoogleApiClient.Connecti
         startActivityForResult(googleSignInIntent,GoogleSignInRequestCode);
     }
 
-    public void signOut()
-    {   Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(new ResultCallback<Status>()
-    {
-        @Override
-        public void onResult(@NonNull Status status)
-        { updateUI(false); }
-
-    }); }
+//    public void signOut()
+//    {   Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(new ResultCallback<Status>()
+//    {
+//        @Override
+//        public void onResult(@NonNull Status status)
+//        { updateUI(false); }
+//
+//    }); }
 
     private  void handleResult(GoogleSignInResult result)
     {
@@ -146,10 +146,10 @@ public class login extends AppCompatActivity implements GoogleApiClient.Connecti
             GoogleSignInAccount account = result.getSignInAccount();
             //取得使用者並試登入
 //                firebaseAuthWithGoogle(account);//try
-            name = account.getDisplayName();
-            email = account.getEmail();
-            Name.setText(name);
-            Email.setText(email);
+//            name = account.getDisplayName();
+//            email = account.getEmail();
+//            Name.setText(name);
+//            Email.setText(email);
             updateUI(true);
             Log.v("test", "true");
         }
@@ -169,27 +169,28 @@ public class login extends AppCompatActivity implements GoogleApiClient.Connecti
 
             //以下為將資料/數據值傳遞到下一個java檔
             //new一個intent物件，並指定Activity切換的class
-            Intent intent = new Intent();
-            intent.setClass(login.this, login2.class);
 
-            //new一個Bundle物件，並將要傳遞的資料傳入
-            Bundle bundle = new Bundle();
-//          bundle.putString("email",email);
-            bundle.putString("name", name);
-            //將Bundle物件assign給intent
-            intent.putExtras(bundle);
-            //切換Activity
-            startActivity(intent);
+//            Intent intent = new Intent();
+//            intent.setClass(login.this, login2.class);
+//
+//            //new一個Bundle物件，並將要傳遞的資料傳入
+//            Bundle bundle = new Bundle();
+//            bundle.putString("name", name);
+//            //將Bundle物件assign給intent
+//            intent.putExtras(bundle);
+//
+//            //切換Activity
+//            startActivity(intent);
 
             Toast.makeText(login.this, "帳號連結成功", Toast.LENGTH_SHORT).show();
 
-//            Intent a = new Intent( login.this,login2.class);
-//            startActivity(a);
+            Intent a = new Intent( login.this,login2.class);
+            startActivity(a);
             Log.v("test", "成功");
         }
         else
         {
-            Prof_Section.setVisibility(View.GONE);
+//            Prof_Section.setVisibility(View.GONE);
             SignIn.setVisibility(View.VISIBLE);
             Log.v("test","失敗");
         }

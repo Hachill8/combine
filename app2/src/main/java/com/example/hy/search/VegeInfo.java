@@ -25,9 +25,9 @@ import org.w3c.dom.Text;
 public class VegeInfo extends AppCompatActivity {
 
     GlobalVariable vege;
-    Button start_plant,vege_info;
+    Button start_plant;
     Dialog variety_info;
-    String line, vegeinfo_name;
+    String line="can't not found", vegeinfo_name;
     TextView step/**  小撇步  **/,
             container/**  容器 **/,
             soil/**  土壤 **/,
@@ -80,20 +80,16 @@ public class VegeInfo extends AppCompatActivity {
         vegeinfo_name=vege.getWord();
 
         //聘請一個特約工人，有其經紀人派遣其工人做事 (另起一個有Handler的Thread)
-
         mThread = new HandlerThread("");
 
         //讓Worker待命，等待其工作 (開啟Thread)
-
         mThread.start();
 
         //找到特約工人的經紀人，這樣才能派遣工作 (找到Thread上的Handler)
-
         mThreadHandler=new Handler(mThread.getLooper());
 
 
         //請經紀人指派工作名稱 r，給工人做
-
         mThreadHandler.post(r1);
 
 
@@ -109,25 +105,6 @@ public class VegeInfo extends AppCompatActivity {
             }
         } );
 
-        vege_info=(Button)findViewById(R.id.vege_info);
-        vege_info.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                ShowPopUp_vege_info();
-            }
-        } );
-
-
-    }
-
-    private void ShowPopUp_vege_info()
-    {
-        variety_info.setContentView(R.layout.variety_info);
-
-
-        variety_info.getWindow().setBackgroundDrawable(new ColorDrawable( Color.TRANSPARENT));
-        variety_info.show();
     }
 
     //工作名稱 r1 的工作內容
@@ -136,12 +113,11 @@ public class VegeInfo extends AppCompatActivity {
 
         public void run() {
 
-            if(!vegeinfo_name.equals("")) {
+            if(!vegeinfo_name.equals("No_message")) {
                 line = webservice.VegeInfo_WS(vegeinfo_name);
             }
 
             //請經紀人指派工作名稱 r，給工人做
-
             mUI_Handler.post(r2);
 
         }
@@ -155,13 +131,9 @@ public class VegeInfo extends AppCompatActivity {
         public void run() {
 
                         String can = "can't not found";
-
                         if (!line.equals("can't not found"))
                         {
                             String[] split_line = line.split("%");
-
-                            Log.v("test", "0. " + split_line[0] + "1. " + split_line[1] + "2. " + split_line[2] + "3. " + split_line[3]
-                                    + "4. " + split_line[4] + "5. " + split_line[5] + "6. " + split_line[6] + "7. " + split_line[7]);
 
                             vege_name.setText(vegeinfo_name);
                             step.setText(split_line[0]);
@@ -190,7 +162,6 @@ public class VegeInfo extends AppCompatActivity {
     };
 
     @Override
-
     protected void onDestroy() {
         super.onDestroy();
 
@@ -204,27 +175,4 @@ public class VegeInfo extends AppCompatActivity {
         }
     }
 }
-
-
-//    public void vegeinfo_ws() {
-//        final String finalName = vegeinfo_name;
-//        if(!vegeinfo_name.equals("")) {
-//            Thread thread = new Thread() {
-//                public void run(){
-//                        String line = webservice.VegeInfo_WS(finalName);
-//                        String can = "can't not found";
-//                        String name = finalName;
-//                        if (!line.equals("can't not found")){
-//                            String[] split_line = line.split("%");
-////                          vege_name.setText(name);
-//                            step.setText(split_line[0]);       container.setText(split_line[1]);
-//                            soil.setText(split_line[2]);       place.setText(split_line[3]);
-//                            water.setText(split_line[4]);      fertilizer.setText(split_line[5]);
-//                            bug.setText(split_line[6]);        harvest.setText(split_line[7]);
-//                        } else if (line.equals(can)){
-//                            vege_name.setText(name);     step.setText(can);
-//                            container.setText(can);     soil.setText(can);
-//                            place.setText(can);     water.setText(can);
-//                            fertilizer.setText(can);     bug.setText(can);     harvest.setText(can);
-//                        }} };     thread.start(); } }
 

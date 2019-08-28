@@ -1,29 +1,51 @@
 package com.example.hy.search;
 
+import android.app.ActionBar;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.app.AlertDialog;
 import android.support.v7.widget.SearchView;
+import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
+import com.example.hy.GlobalVariable;
 import com.example.hy.R;
 import com.example.hy.home.home2;
+import com.example.hy.webservice;
+import com.getbase.floatingactionbutton.FloatingActionButton;
 
-public class search extends AppCompatActivity {
-    SearchView mSearchView;
-    Button btnextPageBtn1, btnextPageBtn2,btnextPageBtn3, bt_filter,bt_back;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
 
-    //
+public class search extends AppCompatActivity implements View.OnClickListener {
+    ImageButton bt_filter;
+    CardView vege_card_view1,vege_card_view2,vege_card_view3;
+    TextView vege1_id,vege2_id,vege3_id;
+    GlobalVariable vege_name,vege_item;
+    String insert_vege_item="";
+    String[] split_line={};
+    AutoCompleteTextView searchview;
+    View v;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +53,7 @@ public class search extends AppCompatActivity {
         setContentView(R.layout.z_search);
 
         //篩選
-        bt_filter = (Button) findViewById(R.id.BT_filter);
+        bt_filter = (ImageButton) findViewById(R.id.BT_filter);
         bt_filter.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -49,7 +71,7 @@ public class search extends AppCompatActivity {
                 //給予對應item的資料
                 ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(search.this,
                         R.layout.record_select_dropdown_item,
-                        getResources().getStringArray(R.array.sex_list));
+                        getResources().getStringArray(R.array.月份));
                 //自訂getDropDownView()介面格式(Spinner介面展開時，View所使用的每個item格式)
                 adapter2.setDropDownViewResource(R.layout.record_select_dropdown_item);
                 //匯入item資料
@@ -57,17 +79,6 @@ public class search extends AppCompatActivity {
 
                 mBuilder.setView(mView);
                 AlertDialog dialog = mBuilder.create();
-
-                // 調整dialog大小的位置的方法(絕對值)
-//                Window dialogWindow = dialog.getWindow();
-//                WindowManager.LayoutParams lp = dialogWindow.getAttributes();
-//                dialogWindow.setGravity(Gravity.RIGHT | Gravity.TOP);
-//                lp.x = 100; // 新位置X
-//                lp.y = 100; // 新位置Y
-//                lp.width = 300; // 宽度
-//                lp.height = 300; // 高度
-//                lp.alpha = 0.7f; // 透明度
-//                dialogWindow.setAttributes(lp);
 
                 dialog.show();
 
@@ -89,56 +100,91 @@ public class search extends AppCompatActivity {
             }
         });
 
-        //
-        btnextPageBtn1 = (Button) findViewById(R.id.BT_nextPageBtn1);
-        btnextPageBtn1.setOnClickListener(new View.OnClickListener() {
+        vege_card_view1=(CardView)findViewById( R.id.vege_card_view1 );
+        vege_card_view2=(CardView)findViewById( R.id.vege_card_view2 );
+        vege_card_view3=(CardView)findViewById( R.id.vege_card_view3 );
+        vege1_id=(TextView)findViewById(R.id.vege1_id);
+        vege2_id=(TextView)findViewById(R.id.vege2_id);
+        vege3_id=(TextView)findViewById(R.id.vege3_id);
+
+
+        vege_card_view1.setOnClickListener(this);
+        vege_card_view2.setOnClickListener(this);
+        vege_card_view3.setOnClickListener(this);
+
+        vege_name  = (GlobalVariable)getApplicationContext();
+        vege_item  = (GlobalVariable)getApplicationContext();
+        insert_vege_item = vege_item.getVege_item();
+
+
+        searchview = (AutoCompleteTextView) findViewById(R.id.search_view);
+        searchview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            //點擊後抓searchview的文字並跳轉到作物資訊
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(search.this, VegeInfo.class);
-                startActivity(intent);
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.v("test","TextView:"+searchview.getText());
+                vege_name.setWord(searchview.getText().toString());
+                Intent x=new Intent(search.this,VegeInfo.class);
+                startActivity(x);
             }
         });
-
-        btnextPageBtn2 = (Button) findViewById(R.id.BT_nextPageBtn2);
-        btnextPageBtn2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(search.this, VegeInfo.class);
-                startActivity(intent);
-            }
-        });
-
-        btnextPageBtn3 = (Button) findViewById(R.id.BT_nextPageBtn3);
-        btnextPageBtn3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(search.this, VegeInfo.class);
-                startActivity(intent);
-            }
-        });
+        listview(v);
+    }
 
 
-        mSearchView = (SearchView) findViewById(R.id.search_view);
-        ImageView searchIcon = (ImageView) mSearchView.findViewById(android.support.v7.appcompat.R.id.search_mag_icon);
-        searchIcon.setImageDrawable(null);
-        mSearchView.setIconifiedByDefault(false);
+    //searchview的列表
+    public void listview(View view)
+    {
 
-        bt_back = (Button) findViewById(R.id.BT_back);
-        bt_back.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
+        if (!insert_vege_item.equals("")) {
+            split_line = insert_vege_item.split("%");
+            for(int num = 0; num < split_line.length;num++)
             {
+                for(int i = 0; i < split_line[num].length();i++)
                 {
-                    Intent intent = new Intent();
-                    intent.setClass(search.this, home2.class);
-                    startActivity(intent);
+                    if(split_line[num].substring(i,i+1).equals(" "))
+                    {
+                        split_line[num]=split_line[num].substring(0,i);
+                        Log.v("test","切割後的字串:"+split_line[num]);
+                        break;
+                    }
                 }
             }
-        });
+
+
+            Log.v("test","it3: "+split_line[0]+"1");
+        }
+        searchview.setAdapter(new ArrayAdapter<>(search.this,
+                android.R.layout.simple_list_item_1, split_line));
     }
+
+    @Override
+    public void onClick(View v)
+    {
+        Intent i;
+        switch (v.getId())
+        {
+
+            case R.id.vege_card_view1 :
+                Log.v("test","1."+vege_name.getWord());
+                i = new Intent( this,VegeInfo.class );
+                vege_name.setWord("高麗菜");
+                Log.v("test",vege_name.getWord());
+                startActivity( i );
+                break;
+            case R.id.vege_card_view2 :
+                i = new Intent( this,VegeInfo.class );
+                vege_name.setWord("番茄");
+                startActivity( i );
+                break;
+            case R.id.vege_card_view3 :
+                i = new Intent( this,VegeInfo.class );
+                vege_name.setWord("小蘿蔔");
+                startActivity( i );
+                break;
+            default:break;
+        }
+    }
+
 }
 

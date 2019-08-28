@@ -14,9 +14,10 @@
 
 
     <style name="Theme.SearchView" parent="Base.Widget.AppCompat.SearchView">
-        <item name="searchIcon">@drawable/searchbar</item>
+
+        <item name="queryBackground">@drawable/searchbar2</item>
         <item name="queryHint">搜尋作物</item>
-        <item name="queryBackground">@drawable/searchbar</item>
+
     </style>
 
     <style name="custem_fab">
@@ -28,6 +29,7 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 
 
 </resources>

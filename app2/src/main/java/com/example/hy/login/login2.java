@@ -3,6 +3,7 @@ package com.example.hy.login;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
@@ -14,60 +15,30 @@ import android.widget.TextView;
 import com.example.hy.R;
 import com.example.hy.select_model;
 
-public class login2 extends AppCompatActivity implements  NumberPicker.OnValueChangeListener {
-//AdapterView.OnItemSelectedListener,
-
-    private TextView tvShowNumbers;
-    public TextView Name;
+public class login2 extends AppCompatActivity  {
     Button btntomodel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.v("test","進入login2最上面");
         super.onCreate(savedInstanceState);
         getWindow().setFlags( WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_login2);
+        Log.v("test","進入login2.xml");
 
-        Name=(TextView)findViewById(R.id.tv_name);
-        //取得intent中的bundle物件
-        Bundle bundle01 =this.getIntent().getExtras();
-        assert bundle01 != null;
-        String name = bundle01.getString("name");
-        Name.setText(name);
-
-
-        Spinner spinner = (Spinner) findViewById(R.id.spnSex);
-        final String[] item = {"男", "女"};
-        //將下拉選單改為自行設定樣式
-        ArrayAdapter<String> itemlist = new ArrayAdapter<>(this,R.layout.z_spnsex_setting,item);
-        spinner.setAdapter(itemlist);
-        //下拉選單改回預設樣式
-        //ArrayAdapter<CharSequence> adapter=ArrayAdapter.createFromResource(this,R.array.sex_list,android.R.layout.simple_spinner_item);
-        //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        //spinner.setOnItemSelectedListener(this);
-
-        tvShowNumbers=findViewById(R.id.tvShowNumbers);
-        NumberPicker numberPicker=findViewById(R.id.numberPicker);
-        numberPicker.setMinValue(1);
-        numberPicker.setMaxValue(10);
-        numberPicker.setOnValueChangedListener(this);
 
         btntomodel = (Button) findViewById(R.id.btntomodel);
-
+        Log.v("test","btntomodel");
         btntomodel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.v("test","onClick");
                 Intent a = new Intent(login2.this, select_model.class);
                 startActivity(a);
 
             }
         });
 
-    }
-
-    @Override
-    public void onValueChange(NumberPicker picker, int i, int newVal)
-    {
-        tvShowNumbers.setText("種植年數: "+i+" 年");
     }
 
 }

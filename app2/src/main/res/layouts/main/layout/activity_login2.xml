@@ -8,6 +8,7 @@
     android:background="@drawable/bgtwo"
     tools:context=".login.login2">
 
+
     <TextView
         android:id="@+id/loginsub"
         android:layout_width="wrap_content"
@@ -28,43 +29,29 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
+                    <EditText
                         android:id="@+id/text_field_boxes"
                         android:layout_width="320dp"
-                        android:layout_height="wrap_content"
-                        app:labelText="輸入暱稱"
+                        android:layout_height="56dp"
+                        android:paddingLeft="47dp"
                         android:layout_gravity="center"
-                        app:primaryColor="#518D62"
                         android:layout_marginTop="30dp"
-                        app:iconSignifier="@drawable/edit_pencil">
+                        android:textColor="#518D62"
+                        android:background="@drawable/edit_pencil2"
+                        android:text="輸入姓名" />
 
-                        <studio.carbonylgroup.textfieldboxes.ExtendedEditText
-                            android:id="@+id/extended_edit_text"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            />
-
-                    </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
-
-
-
-                    <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
+                    <EditText
                         android:id="@+id/text_field_boxes2"
                         android:layout_width="320dp"
-                        android:layout_height="wrap_content"
-                        app:labelText="輸入電話"
+                        android:layout_height="56dp"
+                        android:text="輸入電話"
                         android:layout_gravity="center"
-                        app:primaryColor="#518D62"
+                        android:textColor="#518D62"
                         android:layout_marginTop="30dp"
-                        app:iconSignifier="@drawable/edit_pencil">
+                        android:paddingLeft="47dp"
+                        android:inputType="phone"
+                        android:background="@drawable/edit_pencil2"/>
 
-                        <studio.carbonylgroup.textfieldboxes.ExtendedEditText
-                            android:id="@+id/extended_edit_text2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            />
-
-                    </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
 
                         <TextView
                             android:layout_width="320dp"
@@ -76,45 +63,45 @@
                             android:layout_marginTop="30dp"
                             />
 
-                    <co.ceryle.radiorealbutton.RadioRealButtonGroup
+                    <LinearLayout
                         android:layout_width="320dp"
                         android:layout_height="60dp"
                         android:layout_gravity="center"
-                        app:rrbg_animateDrawables_enter="overshoot"
-                        app:rrbg_animateTexts_enter="overshoot"
-                        app:rrbg_dividerColor="@color/black"
-                        app:rrbg_dividerSize="4dp"
-                        app:rrbg_radius="10dp"
+                        android:orientation="horizontal"
+                        >
 
-                        app:rrbg_selectorColor="@color/red_700"
-                        app:rrbg_selectorSize="6dp">
 
-                        <co.ceryle.radiorealbutton.RadioRealButton
-                            android:layout_width="50dp"
+
+
+                        <Button
+                            android:id="@+id/gender1"
+                            android:layout_width="wrap_content"
                             android:layout_height="60dp"
-                            app:rrb_drawable="@mipmap/ic_launcher"
-                            app:rrb_drawableHeight="36dp"
-                            app:rrb_drawablePadding="8dp"
-                            app:rrb_drawableWidth="36dp"
-                            app:rrb_ripple="true"
-                            app:rrb_rippleColor="@color/black"
-                            app:rrb_text="男"
-                            app:rrb_textColor="@color/black"/>
+                            android:layout_weight="2"
+                            android:text="男"
+                            android:textColor="#89B094"
 
-                        <co.ceryle.radiorealbutton.RadioRealButton
-                            android:layout_width="50dp"
+                            android:background="@drawable/gender"
+                            android:textSize="35dp" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/gender_space"
+                            android:layout_weight="1"
+                            />
+
+                        <Button
+                            android:id="@+id/gender2"
+                            android:layout_width="wrap_content"
                             android:layout_height="60dp"
-                            android:layout_marginLeft="50dp"
-                            app:rrb_drawable="@mipmap/ic_launcher"
-                            app:rrb_drawableGravity="right"
-                            app:rrb_drawableHeight="36dp"
-                            app:rrb_drawablePadding="8dp"
-                            app:rrb_drawableWidth="36dp"
-                            app:rrb_ripple="true"
-                            app:rrb_rippleColor="@color/black"
-                            app:rrb_text="女"
-                            app:rrb_textColor="@color/black" />
-                    </co.ceryle.radiorealbutton.RadioRealButtonGroup>
+                            android:layout_weight="2"
+                            android:text="女"
+                            android:background="@drawable/gender"
+                            android:textColor="#89B094"
+
+                            android:textSize="35dp" />
+                    </LinearLayout>
 
                         <TextView
                             android:id="@+id/tvShowNumbers"
@@ -127,48 +114,44 @@
                             android:layout_marginTop="30dp"
                             />
 
-                    <co.ceryle.radiorealbutton.RadioRealButtonGroup
+                    <LinearLayout
                         android:layout_width="320dp"
                         android:layout_height="60dp"
                         android:layout_gravity="center"
-                        app:rrbg_animateDrawables_enter="overshoot"
-                        app:rrbg_animateTexts_enter="overshoot"
-                        app:rrbg_dividerColor="@color/black"
-                        app:rrbg_dividerSize="4dp"
-                        app:rrbg_radius="10dp"
+                        android:orientation="horizontal"
+                        >
+                        <ImageView
+                            android:layout_width="10dp"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/gender"
+                            />
 
-                        app:rrbg_selectorColor="@color/red_700"
-                        app:rrbg_selectorSize="6dp">
-
-                        <co.ceryle.radiorealbutton.RadioRealButton
+                        <Button
                             android:layout_width="100dp"
                             android:layout_height="60dp"
-                            app:rrb_drawable="@mipmap/ic_launcher"
-                            app:rrb_drawableHeight="36dp"
-                            app:rrb_drawablePadding="8dp"
-                            app:rrb_drawableWidth="36dp"
-                            app:rrb_ripple="true"
-                            app:rrb_rippleColor="@color/black"
-                            app:rrb_text="1年以下"
-                            app:rrb_textColor="@color/black"/>
+                            android:background="@drawable/gender"
+                            android:text="1年以下"
+                            android:textSize="20dp"
+                            android:textColor="#89B094"
+                            />
 
-                        <co.ceryle.radiorealbutton.RadioRealButton
+                        <Button
                             android:layout_width="100dp"
                             android:layout_height="60dp"
-                            android:layout_marginLeft="100dp"
-                            app:rrb_drawable="@mipmap/ic_launcher"
-                            app:rrb_drawableGravity="right"
-                            app:rrb_drawableHeight="36dp"
-                            app:rrb_drawablePadding="8dp"
-                            app:rrb_drawableWidth="36dp"
-                            app:rrb_ripple="true"
-                            app:rrb_rippleColor="@color/black"
-                            app:rrb_text="2~3年"
-                            app:rrb_textColor="@color/black" />
-                    </co.ceryle.radiorealbutton.RadioRealButtonGroup>
-
-
-
+                            android:background="@drawable/gender"
+                            android:text="2~3年"
+                            android:textSize="20dp"
+                            android:textColor="#89B094"
+                            />
+                        <Button
+                            android:layout_width="100dp"
+                            android:layout_height="60dp"
+                            android:background="@drawable/gender"
+                            android:text="3年以上"
+                            android:textSize="20dp"
+                            android:textColor="#89B094"
+                            />
+                    </LinearLayout>
                         <Button
                             android:id="@+id/btntomodel"
                             android:layout_width="100dp"
@@ -176,38 +159,8 @@
                             android:layout_gravity="center"
                             android:background="@drawable/getstart"
                             android:layout_marginTop="30dp"/>
-
-
-
-
                 </LinearLayout>
 
-
-
-
-
         </ScrollView>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </LinearLayout>

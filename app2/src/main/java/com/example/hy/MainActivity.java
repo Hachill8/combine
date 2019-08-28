@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.hy.login.login;
+import com.example.hy.login.login2;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -55,7 +56,8 @@ public class MainActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent a = new Intent( MainActivity.this, login.class);
+                //Intent a = new Intent( MainActivity.this, login.class);
+                Intent a = new Intent( MainActivity.this, login2.class);
                 startActivity(a);
 
             }

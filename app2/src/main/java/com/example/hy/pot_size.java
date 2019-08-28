@@ -91,8 +91,8 @@ public class pot_size extends AppCompatActivity
                             toast.setGravity( Gravity.CENTER, 0, 0);
                             toast.show();
 
-                            Intent b = new Intent(pot_size.this,test_two.class);
-                            startActivity(b);
+//                            Intent b = new Intent(pot_size.this,test_two.class);
+//                            startActivity(b);
                         }
                     } );
 
@@ -118,8 +118,8 @@ public class pot_size extends AppCompatActivity
                             toast.setGravity( Gravity.CENTER, 0, 0);
                             toast.show();
 
-                            Intent b = new Intent(pot_size.this,test_two.class);
-                            startActivity(b);
+//                            Intent b = new Intent(pot_size.this,test_two.class);
+//                            startActivity(b);
                         }
                     } );
                 }

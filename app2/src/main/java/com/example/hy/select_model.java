@@ -20,6 +20,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.hy.search.choose_vege;
+import com.example.hy.search.search;
+
 public class select_model extends AppCompatActivity {
 
     private ViewPager slideViewPager;
@@ -43,14 +46,7 @@ public class select_model extends AppCompatActivity {
         sliderAdapter=new SliderAdapter(this);
 
         slideViewPager.setAdapter(sliderAdapter);
-
-
-
-
     }
-
-
-
 
     private class SliderAdapter extends PagerAdapter
     {
@@ -127,7 +123,8 @@ public class select_model extends AppCompatActivity {
                 @Override
                 public void onClick(View v)
                 {
-                    ShowPopUp();
+                    Intent a = new Intent(select_model.this, choose_vege.class);
+                    startActivity(a);
                 }
             });
 
@@ -150,44 +147,42 @@ public class select_model extends AppCompatActivity {
     }
 
 
-    //跳出對話框
-    private void ShowPopUp()
-    {
-        Button btn_choose_pot,btn_choose_vege;
-
-        choose_pot_or_vege.setContentView(R.layout.choose_pot_ot_vege);
-
-        btn_choose_pot=(Button)choose_pot_or_vege.findViewById(R.id.btn_choose_pot);
-        btn_choose_vege=(Button)choose_pot_or_vege.findViewById(R.id.btn_choose_vege);
-
-
-
-        btn_choose_pot.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                Intent a = new Intent(select_model.this,pot_size.class);
-                startActivity(a);
-            }
-        });
-
-        btn_choose_vege.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                Intent b = new Intent(select_model.this,pot_size.class);
-                startActivity(b);
-            }
-        });
-
-
-        choose_pot_or_vege.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        choose_pot_or_vege.show();
-    }
-
-
-
-
+//    //跳出對話框
+//    private void ShowPopUp()
+//    {
+//        Button btn_choose_pot,btn_choose_vege;
+//
+//        choose_pot_or_vege.setContentView(R.layout.choose_pot_ot_vege);
+//
+//        btn_choose_pot=(Button)choose_pot_or_vege.findViewById(R.id.btn_choose_pot);
+//        btn_choose_vege=(Button)choose_pot_or_vege.findViewById(R.id.btn_choose_vege);
+//
+//
+//        //選有盆栽
+//        btn_choose_pot.setOnClickListener(new View.OnClickListener()
+//        {
+//            @Override
+//            public void onClick(View v)
+//            {
+//                Intent a = new Intent(select_model.this, search.class);
+//                startActivity(a);
+//            }
+//        });
+//
+//
+//        //選沒盆栽
+//        btn_choose_vege.setOnClickListener(new View.OnClickListener()
+//        {
+//            @Override
+//            public void onClick(View v)
+//            {
+//                Intent b = new Intent(select_model.this,pot_size.class);
+//                startActivity(b);
+//            }
+//        });
+//
+//
+//        choose_pot_or_vege.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//        choose_pot_or_vege.show();
+//    }
 }

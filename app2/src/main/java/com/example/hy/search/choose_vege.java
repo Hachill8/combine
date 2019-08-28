@@ -8,11 +8,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.TextView;
 
 
 import com.example.hy.GlobalVariable;
 import com.example.hy.R;
+import com.example.hy.home.home2;
 
 public class choose_vege extends AppCompatActivity implements View.OnClickListener
 {
@@ -20,6 +22,7 @@ public class choose_vege extends AppCompatActivity implements View.OnClickListen
     CardView vege_card_view1,vege_card_view2,vege_card_view3;
     TextView vege1_id,vege2_id,vege3_id;
     GlobalVariable vege_name;
+    Button To_search;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -35,11 +38,13 @@ public class choose_vege extends AppCompatActivity implements View.OnClickListen
         vege1_id=(TextView)findViewById(R.id.vege1_id);
         vege2_id=(TextView)findViewById(R.id.vege2_id);
         vege3_id=(TextView)findViewById(R.id.vege3_id);
-
+        To_search=(Button)findViewById(R.id.to_search);
 
         vege_card_view1.setOnClickListener(this);
         vege_card_view2.setOnClickListener(this);
         vege_card_view3.setOnClickListener(this);
+        To_search.setOnClickListener(this);
+
 
         vege_name  = (GlobalVariable)getApplicationContext();
 
@@ -50,6 +55,12 @@ public class choose_vege extends AppCompatActivity implements View.OnClickListen
     public void onClick(View v)
     {
         Intent i;
+
+        if(v==To_search)
+        {
+            Intent a= new Intent(choose_vege.this, home2.class);
+            startActivity(a);
+        }
 
 
         switch (v.getId())

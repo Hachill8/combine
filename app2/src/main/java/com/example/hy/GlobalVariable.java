@@ -1,10 +1,12 @@
 package com.example.hy;
 
 import android.app.Application;
+import android.util.Log;
 
 public class GlobalVariable extends Application
 {
-    private String Word;     //要傳送的字串
+    private String Word="No_message";     //要傳送的作物名稱
+    private String Vege_item="";
     //修改 變數字串
     public void setWord(String word){
         this.Word = word;
@@ -13,4 +15,7 @@ public class GlobalVariable extends Application
     public String getWord() {
         return Word;
     }
+
+    public void setVege_item(String vege_item){this.Vege_item = vege_item;}
+    public String getVege_item(){ return Vege_item;}
 }

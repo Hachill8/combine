@@ -45,6 +45,7 @@
 
     </RelativeLayout>
 
+    <!---
     <RelativeLayout
         android:id="@+id/prof_section"
         android:layout_width="340dp"
@@ -108,7 +109,7 @@
             android:textSize="25dp" />
 
     </RelativeLayout>
-
+    -->
 
 
 </RelativeLayout>
