@@ -14,15 +14,22 @@ import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.hy.R;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 
 public class calendar extends AppCompatActivity {
     CalendarView cv1;
-    TextView tv1,tv2,tv3,tv4,tv5,tv6,tv7;
-    Button edit,addact;
-    ImageButton imb1,imb2,imb3,imb4,imb5;
+    TextView tv1,tv2,mTv;
+    String[] listItems;
+    boolean[] checkedItems;
+    ArrayList<Integer> mUserItems = new ArrayList<>();
+    Button edit,mBtn;
     private static  final  int REQUEST_CODE=1;
 
     @Override
@@ -31,21 +38,81 @@ public class calendar extends AppCompatActivity {
         getWindow().setFlags( WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_calendar);
 
+        edit =(Button)findViewById(R.id.edit);
         cv1 = (CalendarView)findViewById(R.id.CV01);
         tv1 = (TextView)findViewById(R.id.TV01);
         tv2 = (TextView)findViewById(R.id.TV02);
-        tv3 = (TextView)findViewById(R.id.TV03);
-        tv4 = (TextView)findViewById(R.id.TV04);
-        tv5 = (TextView)findViewById(R.id.TV05);
-        tv6 = (TextView)findViewById(R.id.TV06);
-        tv7 = (TextView)findViewById(R.id.TV07);
-        edit =(Button)findViewById(R.id.edit);
-        imb1 =(ImageButton) findViewById(R.id.IMB01);
-        imb2 =(ImageButton) findViewById(R.id.IMB02);
-        imb3 =(ImageButton) findViewById(R.id.IMB03);
-        imb4 =(ImageButton) findViewById(R.id.IMB04);
-        imb5 =(ImageButton) findViewById(R.id.IMB05);
-        addact =(Button)findViewById(R.id.addact);
+        mBtn = (Button)findViewById(R.id.bt01);
+        mTv = (TextView)findViewById(R.id.tv01);
+
+        listItems = getResources().getStringArray(R.array.action_item);
+        checkedItems = new boolean[listItems.length];
+
+        mBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(calendar.this);
+                //String array for alert dialog multichoice items
+                final String[] actionsArray = new String[]{"育苗","播種","澆水","施肥","鋤草","防蟲","除病","收成"};
+                //Boolean array for initial selected items
+                final boolean[] checkedActionsArray = new boolean[]{
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+                        false,
+
+                };
+                //convert the acts array to list
+                final List<String> actionsList = Arrays.asList(actionsArray);
+                //set AlertDialog title
+                builder.setTitle("選擇活動");
+                //set icon(optional)
+                builder.setIcon(R.drawable.ico);
+                //set multichoice
+                builder.setMultiChoiceItems(actionsArray, checkedActionsArray, new DialogInterface.OnMultiChoiceClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                        //update current focused item's checked status
+                        checkedActionsArray[which] = isChecked;
+                        //get the current focused item
+                        String currentItem = actionsList.get(which);
+                        //notify the current action
+                        Toast.makeText(calendar.this, "很棒喔! 有"+currentItem, Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                //set positive/yes button click listener
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mTv.setText("");
+                        for (int i=0; i<checkedActionsArray.length; i++){
+                            boolean checked = checkedActionsArray[i];
+                            if (checked){
+                                mTv.setText(mTv.getText()+ actionsList.get(i) + " / ");
+                            }
+                        }
+                    }
+                });
+
+                //set neutral/cancel button click listener
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //do something here
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                //show alert dialog
+                dialog.show();
+            }
+        });
+
 
         cv1.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
@@ -62,135 +129,13 @@ public class calendar extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        addact.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(calendar.this, addactivity.class);
-                startActivity(intent);
-            }
-        });
+
         Intent intent = getIntent();
         //把傳送進來的String型別的Message的值賦給新的變數message
         String message = intent.getStringExtra("EXTRA_MESSAGE");
         //把佈局檔案中的文字框和textview連結起來
         //在textview中顯示出來message
         tv2.setText(message);
-        imb1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final EditText input = new EditText(calendar.this);
-                AlertDialog dialog = new AlertDialog.Builder(calendar.this)
-                        .setTitle("備註:")
-                        .setView(input)
-                        .setPositiveButton("確定", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                String inputName = input.getText().toString();
-                                Log.d("Main", "成功加入");
-                                tv3.setText("#"+inputName);
-                            }
-                        })
-                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                Log.d("Main", "click cancel");
-                            }
-                        })
-                        .create();
-                dialog.show();
-            }
-        });
-        imb2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final EditText input = new EditText(calendar.this);
-                AlertDialog dialog = new AlertDialog.Builder(calendar.this)
-                        .setTitle("備註:")
-                        .setView(input)
-                        .setPositiveButton("確定", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                String inputName = input.getText().toString();
-                                Log.d("Main", "成功加入");
-                                tv4.setText("#"+inputName);
-                            }
-                        })
-                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                Log.d("Main", "click cancel");
-                            }
-                        })
-                        .create();
-                dialog.show();
-            }
-        });
-        imb3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final EditText input = new EditText(calendar.this);
-                AlertDialog dialog = new AlertDialog.Builder(calendar.this)
-                        .setTitle("備註:")
-                        .setView(input)
-                        .setPositiveButton("確定", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                String inputName = input.getText().toString();
-                                Log.d("Main", "成功加入");
-                                tv5.setText("#"+inputName);
-                            }
-                        })
-                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                Log.d("Main", "click cancel");
-                            }
-                        })
-                        .create();
-                dialog.show();
-            }
-        });
-        imb4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final EditText input = new EditText(calendar.this);
-                AlertDialog dialog = new AlertDialog.Builder(calendar.this)
-                        .setTitle("備註:")
-                        .setView(input)
-                        .setPositiveButton("確定", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                String inputName = input.getText().toString();
-                                Log.d("Main", "成功加入");
-                                tv6.setText("#"+inputName);
-                            }
-                        })
-                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                Log.d("Main", "click cancel");
-                            }
-                        })
-                        .create();
-                dialog.show();
-            }
-        });
-        imb5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final EditText input = new EditText(calendar.this);
-                AlertDialog dialog = new AlertDialog.Builder(calendar.this)
-                        .setTitle("備註:")
-                        .setView(input)
-                        .setPositiveButton("確定", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                String inputName = input.getText().toString();
-                                Log.d("Main", "成功加入");
-                                tv7.setText("#"+inputName);
-                            }
-                        })
-                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                Log.d("Main", "click cancel");
-                            }
-                        })
-                        .create();
-                dialog.show();
-            }
-        });
-
     }
     public void sendMessage(View v)
     {
