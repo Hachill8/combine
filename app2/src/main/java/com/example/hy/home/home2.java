@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
@@ -23,7 +25,7 @@ import com.example.hy.search.search;
 import com.example.hy.user_setting.user_setting;
 import com.example.hy.webservice;
 
-public class home2 extends AppCompatActivity implements View.OnClickListener {
+public class home2 extends AppCompatActivity{
 
     LinearLayout menuLinearLayout,second_menuLinearLayout;
     RelativeLayout recordLayout, calendarLayout, discussLayout,storeLayout,settingLayout,userLayout;
@@ -31,7 +33,9 @@ public class home2 extends AppCompatActivity implements View.OnClickListener {
     ImageButton record,calendar,discuss,store,setting,user,hat,edit_pot;
     Dialog banboo_hat_level;
     String insert_vege_item="";
-    GlobalVariable vege_item;
+    GlobalVariable vege_item
+            ,vege_home; //首頁作物照片(暫時)
+    ImageView Vege_image_home;
 
 
     @Override
@@ -69,6 +73,14 @@ public class home2 extends AppCompatActivity implements View.OnClickListener {
         vege_item = (GlobalVariable)getApplicationContext();
         insert_vege_item();
 
+
+        vege_home = (GlobalVariable)getApplicationContext();
+        Vege_image_home = (ImageView) findViewById(R.id.vege_image_home);
+        if(!vege_home.getVege_image_home().equals("無"))
+        {
+            Vege_image_home.setImageDrawable(getResources().getDrawable( R.drawable.carrot_pot ));
+        }
+
     }
 
     private void ShowPopUp_level()
@@ -83,13 +95,6 @@ public class home2 extends AppCompatActivity implements View.OnClickListener {
 
         if (bottomSheetDialog == null) {
             View view = LayoutInflater.from( this ).inflate( R.layout.bottom_sheet, null );
-            menuLinearLayout = view.findViewById( R.id.menuLinearLayout );
-            recordLayout = view.findViewById( R.id.recordLayout );
-            calendarLayout = view.findViewById( R.id.calendarLayout );
-            discussLayout = view.findViewById( R.id.discussLayout );
-            storeLayout = view.findViewById( R.id.storeLayout );
-            settingLayout = view.findViewById( R.id.settingLayout );
-            userLayout = view.findViewById( R.id.userLayout );
 
             record= view.findViewById( R.id.record );
             record.setOnClickListener( new View.OnClickListener() {
@@ -148,13 +153,6 @@ public class home2 extends AppCompatActivity implements View.OnClickListener {
             } );
 
 
-            recordLayout.setOnClickListener( this );
-            calendarLayout.setOnClickListener( this );
-            discussLayout.setOnClickListener( this );
-            storeLayout.setOnClickListener( this );
-            settingLayout.setOnClickListener( this );
-            userLayout.setOnClickListener( this );
-
             bottomSheetDialog = new BottomSheetDialog( this );
             bottomSheetDialog.setContentView( view );
 
@@ -181,42 +179,4 @@ public class home2 extends AppCompatActivity implements View.OnClickListener {
         bottomSheetDialog.show();
     }
 
-    @Override
-    public void onClick(View v)
-    {
-        switch (v.getId()) {
-            case R.id.recordLayout:
-                Intent a = new Intent(home2.this,search.class);
-                startActivity(a);
-                bottomSheetDialog.dismiss();
-                break;
-
-            case R.id.calendarLayout:
-
-            case R.id.userLayout:
-                bottomSheetDialog.dismiss();
-                Intent b = new Intent(home2.this,search.class);
-                startActivity(b);
-                break;
-
-            case R.id.discussLayout:
-                bottomSheetDialog.dismiss();
-                Intent c = new Intent(home2.this,search.class);
-                startActivity(c);
-                break;
-
-            case R.id.storeLayout:
-                bottomSheetDialog.dismiss();
-                Intent d = new Intent(home2.this,search.class);
-                startActivity(d);
-                break;
-
-            case R.id.settingLayout:
-                bottomSheetDialog.dismiss();
-                Intent e = new Intent(home2.this,search.class);
-                startActivity(e);
-                break;
-
-        }
-    }
 }

@@ -18,14 +18,12 @@ import android.widget.TextView;
 import com.example.hy.GlobalVariable;
 import com.example.hy.R;
 import com.example.hy.home.home2;
-import com.example.hy.home_add_vege;
 import com.example.hy.webservice;
-
-import org.w3c.dom.Text;
 
 public class VegeInfo extends AppCompatActivity {
 
-    GlobalVariable vege;
+    GlobalVariable vege
+            ,vege_home;     //首頁作物照片(暫時)
     Button start_plant;
     Dialog variety_info;
     String line="can't not found", vegeinfo_name;
@@ -93,16 +91,18 @@ public class VegeInfo extends AppCompatActivity {
         //請經紀人指派工作名稱 r，給工人做
         mThreadHandler.post(r1);
 
+        //首頁作物照片(暫時)
+        vege_home = (GlobalVariable)getApplicationContext();
 
         variety_info=new Dialog(this);
-
         start_plant=(Button)findViewById(R.id.start_plant);
         start_plant.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
-
-                Intent b = new Intent(VegeInfo.this, home_add_vege.class);
+                vege_home.setVege_image_home("紅蘿蔔");
+              //  Intent b = new Intent(VegeInfo.this, home_add_vege.class);
+                Intent b = new Intent(VegeInfo.this, home2.class);
                 startActivity(b);
             }
         } );

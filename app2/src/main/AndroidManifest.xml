@@ -24,6 +24,7 @@
         <activity android:name=".market.market"/>
         <activity android:name=".user_setting.user_setting"/>
         <activity android:name=".record.record_Information"/>
+        <activity android:name=".record.record_Information2"/>
         <activity android:name=".MainActivity">
 
             <intent-filter>
