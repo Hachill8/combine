@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.example.hy.GlobalVariable;
 import com.example.hy.R;
 import com.example.hy.home.home2;
+import com.example.hy.home_add_vege;
 import com.example.hy.webservice;
 
 import org.w3c.dom.Text;
@@ -100,7 +101,7 @@ public class VegeInfo extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                Intent b = new Intent(VegeInfo.this,home2.class);
+                Intent b = new Intent(VegeInfo.this, home_add_vege.class);
                 startActivity(b);
             }
         } );
