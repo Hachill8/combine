@@ -101,6 +101,7 @@ public class VegeInfo extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
+                
                 Intent b = new Intent(VegeInfo.this, home_add_vege.class);
                 startActivity(b);
             }
