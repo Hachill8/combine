@@ -195,7 +195,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_centerHorizontal="true"
-                android:background="@drawable/person_photo"/>
+                android:background="@drawable/personal_photo"/>
 
             <TextView
                 android:layout_width="wrap_content"

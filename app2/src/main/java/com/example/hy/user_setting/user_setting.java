@@ -15,8 +15,7 @@ public class user_setting extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate( savedInstanceState );
-        getWindow().setFlags( WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView( R.layout.activity_user_setting );
+        setContentView( R.layout.personal_page );
 
 
 //        Name=(TextView)findViewById(R.id.name);

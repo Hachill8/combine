@@ -192,6 +192,8 @@ public class home2 extends AppCompatActivity implements View.OnClickListener {
                 break;
 
             case R.id.calendarLayout:
+
+            case R.id.userLayout:
                 bottomSheetDialog.dismiss();
                 Intent b = new Intent(home2.this,search.class);
                 startActivity(b);
@@ -213,12 +215,6 @@ public class home2 extends AppCompatActivity implements View.OnClickListener {
                 bottomSheetDialog.dismiss();
                 Intent e = new Intent(home2.this,search.class);
                 startActivity(e);
-                break;
-
-            case R.id.userLayout:
-                bottomSheetDialog.dismiss();
-                Intent f = new Intent(home2.this,search.class);
-                startActivity(f);
                 break;
 
         }
