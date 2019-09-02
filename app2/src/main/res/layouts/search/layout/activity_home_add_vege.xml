@@ -4,10 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".home.home2"
-    tools:showIn="@layout/activity_home2"
+    tools:context=".home_add_vege"
     android:background="#E6EAE7">
+
 
     <RelativeLayout
         android:layout_width="200dp"
@@ -40,13 +39,21 @@
 
     </RelativeLayout>
 
-    
+
 
 
     <RelativeLayout
         android:layout_width="1000dp"
         android:layout_height="600dp"/>
 
+
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:src="@drawable/carrot_pot"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        />
 
 
     <com.getbase.floatingactionbutton.FloatingActionButton
@@ -56,7 +63,6 @@
         app:fab_icon="@drawable/ic_menu_black_24dp"
         app:fab_colorNormal="#FC9D33"
         app:fab_colorPressed="#F7C389"
-        android:onClick="showDialog"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:layout_margin="10dp"/>
@@ -70,10 +76,6 @@
         android:layout_marginTop="20dp"
         android:layout_marginRight="15dp"
         android:background="@drawable/home_edit_pot_btn_style"/>
-
-
-
-
 
 
 </RelativeLayout>

@@ -21,20 +21,20 @@ android {
     }
 
     sourceSets {
-            main {
-                res.srcDirs =
-                        [
-                                'src/main/res/layouts/search',
-                                'src/main/res/layouts/calendar',
-                                'src/main/res/layouts/forum',
-                                'src/main/res/layouts/main',
-                                'src/main/res/layouts/market',
-                                'src/main/res/layouts/record',
-                                'src/main/res/layouts/personal_page',
-                                'src/main/res/layouts',
-                                'src/main/res'
-                        ]
-            }
+        main {
+            res.srcDirs =
+                    [
+                            'src/main/res/layouts/search',
+                            'src/main/res/layouts/calendar',
+                            'src/main/res/layouts/forum',
+                            'src/main/res/layouts/main',
+                            'src/main/res/layouts/market',
+                            'src/main/res/layouts/record',
+                            'src/main/res/layouts/personal_page',
+                            'src/main/res/layouts',
+                            'src/main/res'
+                    ]
+        }
     }
 }
 
@@ -64,10 +64,10 @@ dependencies {
     implementation 'com.github.varunest:sparkbutton:1.0.6'
     implementation files('libs/ksoap2-android-assembly-3.6.4-jar-with-dependencies.jar')
 
-    implementation'com.github.HITGIF:TextFieldBoxes:1.4.4'
+    implementation 'com.github.HITGIF:TextFieldBoxes:1.4.4'
 
-    implementation'com.github.ceryle:RadioRealButton:v2.1.1'
+    implementation 'com.github.ceryle:RadioRealButton:v2.1.1'
 
-    implementation'com.miguelcatalan:materialsearchview:1.4.0'
+    implementation 'com.miguelcatalan:materialsearchview:1.4.0'
 }
 apply plugin: 'com.google.gms.google-services'
