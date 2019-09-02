@@ -7,16 +7,16 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="880dp"
         >
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="340dp">
+            android:layout_height="300dp">
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
+                android:layout_height="200dp"
                 android:background="@drawable/personal_back">
 
             </ImageView>
@@ -25,7 +25,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginLeft="130dp"
-                android:layout_marginTop="200dp"
+                android:layout_marginTop="150dp"
                 android:background="@drawable/personal_photo">
             </ImageView>
 
@@ -34,7 +34,7 @@
                 android:layout_width="100dp"
                 android:layout_height="35dp"
                 android:layout_marginLeft="130dp"
-                android:layout_marginTop="300dp"
+                android:layout_marginTop="250dp"
                 android:text="狠愛種"
                 android:gravity="center_horizontal"
                 android:textSize="24dp">
@@ -44,14 +44,14 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="230dp"
-            android:layout_marginTop="240dp">
+            android:layout_height="170dp"
+            android:layout_marginTop="200dp">
 
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="80dp"
                 android:background="@drawable/record_line1"
-                android:layout_marginTop="125dp"
+                android:layout_marginTop="85dp"
                 android:layout_marginLeft="170dp">
 
             </ImageView>
@@ -59,7 +59,7 @@
             <Button
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:layout_marginTop="100dp"
+                android:layout_marginTop="60dp"
                 android:layout_marginLeft="65dp"
                 android:background="@drawable/personal_plant">
             </Button>
@@ -67,7 +67,7 @@
             <Button
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:layout_marginTop="100dp"
+                android:layout_marginTop="60dp"
                 android:layout_marginLeft="240dp"
                 android:background="@drawable/personal_upgrade">
 
@@ -77,7 +77,7 @@
                 android:layout_width="140dp"
                 android:layout_height="30dp"
                 android:layout_marginLeft="25dp"
-                android:layout_marginTop="180dp"
+                android:layout_marginTop="130dp"
                 android:text="階段、盆栽"
                 android:textSize="18dp"
                 android:gravity="center_horizontal">
@@ -88,7 +88,7 @@
                 android:layout_width="140dp"
                 android:layout_height="30dp"
                 android:layout_marginLeft="195dp"
-                android:layout_marginTop="180dp"
+                android:layout_marginTop="130dp"
                 android:text="等級：888"
                 android:textSize="18dp"
                 android:gravity="center_horizontal">
@@ -101,34 +101,34 @@
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:background="#ECECEC"
-            android:layout_marginTop="470dp">
+            android:layout_marginTop="370dp">
 
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="75dp"
+            android:layout_height="60dp"
             android:background="#fff"
-            android:layout_marginTop="500dp">
+            android:layout_marginTop="400dp">
 
             <Button
                 android:id="@+id/personal_user_data_icon"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginLeft="15dp"
-                android:layout_width="65dp"
-                android:layout_height="60dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:background="@drawable/personal_user_data">
             </Button>
 
             <Button
                 android:id="@+id/personal_user_data"
                 android:layout_width="match_parent"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="10dp"
                 android:layout_height="40dp"
-                android:layout_marginLeft="110dp"
+                android:layout_marginLeft="85dp"
                 android:background="#00000000"
                 android:text="個人資料"
-                android:textSize="24dp"
+                android:textSize="22dp"
                 android:gravity="fill_horizontal">
 
             </Button>
@@ -136,8 +136,8 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="70dp"
-                android:layout_marginLeft="110dp"
+                android:layout_marginTop="55dp"
+                android:layout_marginLeft="85dp"
                 android:background="@drawable/personal_line">
 
             </ImageView>
@@ -146,28 +146,28 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="75dp"
+            android:layout_height="60dp"
             android:background="#fff"
-            android:layout_marginTop="575dp">
+            android:layout_marginTop="460dp">
 
             <Button
                 android:id="@+id/personal_article_icon"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginLeft="15dp"
-                android:layout_width="65dp"
-                android:layout_height="60dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:background="@drawable/personal_article">
             </Button>
 
             <Button
                 android:id="@+id/personal_article"
                 android:layout_width="match_parent"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="10dp"
                 android:layout_height="40dp"
-                android:layout_marginLeft="110dp"
+                android:layout_marginLeft="85dp"
                 android:background="#00000000"
                 android:text="我的文章"
-                android:textSize="24dp"
+                android:textSize="22dp"
                 android:gravity="fill_horizontal">
 
             </Button>
@@ -175,8 +175,8 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="70dp"
-                android:layout_marginLeft="110dp"
+                android:layout_marginTop="55dp"
+                android:layout_marginLeft="85dp"
                 android:background="@drawable/personal_line">
 
             </ImageView>
@@ -187,28 +187,28 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="75dp"
+            android:layout_height="60dp"
             android:background="#fff"
-            android:layout_marginTop="650dp">
+            android:layout_marginTop="520dp">
 
             <Button
                 android:id="@+id/personal_collect_icon"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginLeft="15dp"
-                android:layout_width="65dp"
-                android:layout_height="60dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:background="@drawable/personal_collect">
             </Button>
 
             <Button
                 android:id="@+id/personal_collect"
                 android:layout_width="match_parent"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="10dp"
                 android:layout_height="40dp"
-                android:layout_marginLeft="110dp"
+                android:layout_marginLeft="85dp"
                 android:background="#00000000"
                 android:text="收藏作物"
-                android:textSize="24dp"
+                android:textSize="22dp"
                 android:gravity="fill_horizontal">
 
             </Button>
@@ -216,8 +216,8 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="70dp"
-                android:layout_marginLeft="110dp"
+                android:layout_marginTop="55dp"
+                android:layout_marginLeft="85dp"
                 android:background="@drawable/personal_line">
 
             </ImageView>
@@ -226,28 +226,28 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="75dp"
+            android:layout_height="60dp"
             android:background="#fff"
-            android:layout_marginTop="725dp">
+            android:layout_marginTop="580dp">
 
             <Button
                 android:id="@+id/personal_article_like_icon"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginLeft="15dp"
-                android:layout_width="65dp"
-                android:layout_height="60dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:background="@drawable/personal_article_like">
             </Button>
 
             <Button
                 android:id="@+id/personal_article_like"
                 android:layout_width="match_parent"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="10dp"
                 android:layout_height="40dp"
-                android:layout_marginLeft="110dp"
+                android:layout_marginLeft="85dp"
                 android:background="#00000000"
                 android:text="收藏文章"
-                android:textSize="24dp"
+                android:textSize="22dp"
                 android:gravity="fill_horizontal">
 
             </Button>
@@ -257,36 +257,36 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="20dp"
+            android:layout_height="30dp"
             android:background="#ECECEC"
-            android:layout_marginTop="800dp">
+            android:layout_marginTop="640dp">
 
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="75dp"
+            android:layout_height="60dp"
             android:background="#fff"
-            android:layout_marginTop="820dp">
+            android:layout_marginTop="670dp">
 
             <Button
                 android:id="@+id/personal_set_icon"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginLeft="15dp"
-                android:layout_width="65dp"
-                android:layout_height="60dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:background="@drawable/personal_set">
             </Button>
 
             <Button
                 android:id="@+id/personal_set"
                 android:layout_width="match_parent"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="10dp"
                 android:layout_height="40dp"
-                android:layout_marginLeft="110dp"
+                android:layout_marginLeft="85dp"
                 android:background="#00000000"
                 android:text="設定與隱私"
-                android:textSize="24dp"
+                android:textSize="22dp"
                 android:gravity="fill_horizontal">
 
             </Button>
@@ -294,8 +294,8 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="70dp"
-                android:layout_marginLeft="110dp"
+                android:layout_marginTop="55dp"
+                android:layout_marginLeft="85dp"
                 android:background="@drawable/personal_line">
 
             </ImageView>
@@ -304,28 +304,28 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="75dp"
+            android:layout_height="60dp"
             android:background="#fff"
-            android:layout_marginTop="895dp">
+            android:layout_marginTop="730dp">
 
             <Button
                 android:id="@+id/personal_help_icon"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginLeft="15dp"
-                android:layout_width="65dp"
-                android:layout_height="60dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:background="@drawable/personal_help">
             </Button>
 
             <Button
                 android:id="@+id/persinal_help"
                 android:layout_width="match_parent"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="10dp"
                 android:layout_height="40dp"
-                android:layout_marginLeft="110dp"
+                android:layout_marginLeft="85dp"
                 android:background="#00000000"
                 android:text="幫助"
-                android:textSize="24dp"
+                android:textSize="22dp"
                 android:gravity="fill_horizontal">
 
             </Button>
@@ -333,8 +333,8 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="70dp"
-                android:layout_marginLeft="110dp"
+                android:layout_marginTop="55dp"
+                android:layout_marginLeft="85dp"
                 android:background="@drawable/personal_line">
 
             </ImageView>
@@ -343,36 +343,45 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="75dp"
+            android:layout_height="60dp"
             android:background="#fff"
-            android:layout_marginTop="970dp">
+            android:layout_marginTop="790dp">
 
             <Button
                 android:id="@+id/personal_signout_icon"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginLeft="15dp"
-                android:layout_width="65dp"
-                android:layout_height="60dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:background="@drawable/personal_signout">
             </Button>
 
             <Button
                 android:id="@+id/personal_signout"
                 android:layout_width="match_parent"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="10dp"
                 android:layout_height="40dp"
-                android:layout_marginLeft="110dp"
+                android:layout_marginLeft="85dp"
                 android:background="#00000000"
                 android:text="登出"
-                android:textSize="24dp"
+                android:textSize="22dp"
                 android:gravity="fill_horizontal">
 
             </Button>
 
         </RelativeLayout>
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginTop="850dp"
+            android:background="#ECECEC">
+
+        </RelativeLayout>
 
 
     </RelativeLayout>
+
+
 
 </ScrollView>
