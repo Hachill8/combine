@@ -22,7 +22,7 @@
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/hat"
             android:layout_marginLeft="-30dp"
-            android:text="550 / 1000"
+            android:text="650 / 1000"
             android:textColor="#89B094"
             style="?android:attr/borderlessButtonStyle"/>
 
