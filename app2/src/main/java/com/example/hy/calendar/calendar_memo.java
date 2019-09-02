@@ -3,14 +3,17 @@ package com.example.hy.calendar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
+import com.example.hy.GlobalVariable;
 import com.example.hy.R;
 
 public class calendar_memo extends AppCompatActivity {
 
     EditText ed;
+    GlobalVariable action_item_value,action_item_value2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +21,10 @@ public class calendar_memo extends AppCompatActivity {
         setContentView(R.layout.calendar_memo);
 
         ed = (EditText)findViewById(R.id.edit_message1);
-
+        action_item_value= (GlobalVariable)getApplicationContext();
+        action_item_value2= (GlobalVariable)getApplicationContext();
+        action_item_value2.setAction_item(action_item_value.getAction_item());
+        Log.v("test",action_item_value.getAction_item());
         Intent intent = getIntent();
         //把傳送進來的String型別的Message的值賦給新的變數message
         String message = intent.getStringExtra("EXTRA_MESSAGE");

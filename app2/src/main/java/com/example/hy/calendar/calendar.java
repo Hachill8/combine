@@ -16,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.hy.GlobalVariable;
 import com.example.hy.R;
 
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ public class calendar extends AppCompatActivity {
     ArrayList<Integer> mUserItems = new ArrayList<>();
     Button edit,mBtn;
     private static  final  int REQUEST_CODE=1;
+    GlobalVariable action_item_value,action_item_value2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,9 @@ public class calendar extends AppCompatActivity {
         tv2 = (TextView)findViewById(R.id.TV02);
         mBtn = (Button)findViewById(R.id.bt01);
         mTv = (TextView)findViewById(R.id.tv01);
+        action_item_value= (GlobalVariable)getApplicationContext();
+        action_item_value2= (GlobalVariable)getApplicationContext();
+
 
         listItems = getResources().getStringArray(R.array.action_item);
         checkedItems = new boolean[listItems.length];
@@ -85,19 +90,27 @@ public class calendar extends AppCompatActivity {
                     }
                 });
 
+
+
+
                 //set positive/yes button click listener
                 builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         mTv.setText("");
+                        String action="";
                         for (int i=0; i<checkedActionsArray.length; i++){
                             boolean checked = checkedActionsArray[i];
                             if (checked){
-                                mTv.setText(mTv.getText()+ actionsList.get(i) + " / ");
+                                action = mTv.getText()+ actionsList.get(i) + " / ";
+                                mTv.setText(action);
                             }
                         }
+                        action_item_value.setAction_item(action);
                     }
                 });
+
+
 
                 //set neutral/cancel button click listener
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -136,6 +149,9 @@ public class calendar extends AppCompatActivity {
         //把佈局檔案中的文字框和textview連結起來
         //在textview中顯示出來message
         tv2.setText(message);
+        if((!tv2.getText().equals("")) || tv2.getText().equals("")) {
+            mTv.setText(action_item_value2.getAction_item());
+        }
     }
     public void sendMessage(View v)
     {
