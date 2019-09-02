@@ -110,16 +110,6 @@ public class record extends AppCompatActivity {
                 mBuilder.setView(mView);
                 AlertDialog dialog = mBuilder.create();
 
-                // 調整dialog大小的位置的方法(絕對值)
-//                Window dialogWindow = dialog.getWindow();
-//                WindowManager.LayoutParams lp = dialogWindow.getAttributes();
-//                dialogWindow.setGravity(Gravity.RIGHT | Gravity.TOP);
-//                lp.x = 100; // 新位置X
-//                lp.y = 100; // 新位置Y
-//                lp.width = 300; // 宽度
-//                lp.height = 300; // 高度
-//                lp.alpha = 0.7f; // 透明度
-//                dialogWindow.setAttributes(lp);
 
                 dialog.show();
 
@@ -167,7 +157,7 @@ public class record extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     addItem(cardviewList.size());
-                    Intent intent = new Intent(record.this, record_Information.class);
+                    Intent intent = new Intent(record.this, record_Information2.class);
                     startActivity(intent);
                 }
             });
