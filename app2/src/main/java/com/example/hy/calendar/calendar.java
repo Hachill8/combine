@@ -9,10 +9,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +36,8 @@ public class calendar extends AppCompatActivity {
     boolean[] checkedItems;
     ArrayList<Integer> mUserItems = new ArrayList<>();
     Button edit,mBtn;
+    Spinner spi;
+    Switch swi;
     private static  final  int REQUEST_CODE=1;
     GlobalVariable action_item_value,action_item_value2;
 
@@ -48,8 +55,36 @@ public class calendar extends AppCompatActivity {
         mTv = (TextView)findViewById(R.id.tv01);
         action_item_value= (GlobalVariable)getApplicationContext();
         action_item_value2= (GlobalVariable)getApplicationContext();
+        spi = (Spinner)findViewById(R.id.spinner);
+        swi = (Switch) findViewById(R.id.switch1);
 
+        swi.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    Intent intent = new Intent(calendar.this, fake_plant_suggestion.class);
+                    startActivity(intent);
+                } else {
 
+                }
+            }
+        });
+        final String[] lunch = {"A101 紅蘿蔔","B102 秋葵", "B103 空心菜", "C104 九層塔", "C105 迷迭香"};
+        ArrayAdapter<String> lunchList = new ArrayAdapter<>(calendar.this,
+                android.R.layout.simple_spinner_dropdown_item,
+                lunch);
+        spi.setAdapter(lunchList);
+        spi.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(calendar.this, "你選的是" + lunch[position], Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
         listItems = getResources().getStringArray(R.array.action_item);
         checkedItems = new boolean[listItems.length];
 

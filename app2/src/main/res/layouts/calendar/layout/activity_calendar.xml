@@ -138,7 +138,7 @@
                                     android:layout_width="378dp"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
-                                    android:textSize="25dp" />
+                                    android:textSize="20dp" />
 
                                 <View
                                     android:id="@+id/view5"
@@ -201,7 +201,7 @@
                                 <TextView
                                     android:id="@+id/TV02"
                                     android:layout_width="378dp"
-                                    android:layout_height="wrap_content"
+                                    android:layout_height="400dp"
                                     android:layout_gravity="center"
                                     android:onClick="sendMessage"
                                     android:textSize="20sp" />

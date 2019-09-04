@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".calendar.fake_plant_suggestion"
+    android:orientation="vertical"
+    android:background="#E6EAE7">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/imageButton2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/primary_color"
+            app:srcCompat="@drawable/ic_action_navigation_arrow_back" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="-栽種提示-"
+            android:textColor="@color/red"
+            android:textSize="25sp" />
+
+    </LinearLayout>
+
+    <CalendarView
+        android:id="@+id/fakeCV01"
+        android:layout_width="match_parent"
+        android:layout_height="307dp"
+        android:layout_marginTop="36dp"
+        android:layout_weight="1"
+        android:layout_centerHorizontal="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:outlineAmbientShadowColor="#000"
+        />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/fakeCV01">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <View
+                    android:id="@+id/fakeview"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@color/deepgray" />
+
+                <TextView
+                    android:id="@+id/faketextView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="15dp"
+                    android:text="當日活動"
+                    android:textSize="24sp"
+                    android:textColor="#518D62"/>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <View
+                    android:id="@+id/fakeview4"
+                    android:layout_width="14dp"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/faketv01"
+                    android:layout_width="378dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="25dp" />
+
+                <View
+                    android:id="@+id/fakeview5"
+                    android:layout_width="14dp"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <View
+                    android:id="@+id/fakeview2"
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_weight="1"
+                    android:background="@color/deepgray" />
+
+                <TextView
+                    android:id="@+id/faketextView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="15dp"
+                    android:text="當日備註"
+                    android:textColor="#518D62"
+                    android:textSize="24sp" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+
+                <View
+                    android:id="@+id/fakeview6"
+                    android:layout_width="14dp"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/fakeTV02"
+                    android:layout_width="378dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:textSize="20sp" />
+
+                <View
+                    android:id="@+id/fakeview7"
+                    android:layout_width="14dp"
+                    android:layout_height="wrap_content" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</RelativeLayout>

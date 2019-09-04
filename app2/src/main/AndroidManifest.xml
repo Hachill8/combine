@@ -16,6 +16,7 @@
         >
 
         <activity android:name=".calendar.calendar" />
+        <activity android:name=".calendar.fake_plant_suggestion" />
         <activity android:name=".record.record" />
         <activity android:name=".edit_pot" />
         <activity android:name=".search.search" />
