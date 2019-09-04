@@ -15,7 +15,7 @@
         android:text="栽培日曆"
         android:textSize="40sp"
         android:textColor="#89B094"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:layout_marginLeft="20dp"/>
 
     <TextView
@@ -25,22 +25,23 @@
         android:textSize="25sp"
         android:textColor="#796868"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="20dp"/>
 
     <HorizontalScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="30dp">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginLeft="10dp">
 
             <android.support.v7.widget.CardView
                 android:layout_width="wrap_content"
-                android:layout_height="500dp"
+                android:layout_height="wrap_content"
                 app:cardBackgroundColor="#E6EAE7">
 
                 <LinearLayout
@@ -52,7 +53,7 @@
                     <ImageButton
                         android:layout_width="274dp"
                         android:layout_height="391dp"
-                        android:background="@drawable/calendar_one"/>
+                        android:background="@drawable/calendar_one" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -66,7 +67,9 @@
                             android:text="所在地 : "
                             android:textSize="35sp"
                             android:textColor="#402C2B"
-                            android:gravity="center"/>
+                            android:gravity="center"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="20dp"/>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -74,6 +77,123 @@
                             android:text="壽豐"
                             android:textSize="35sp"
                             android:textColor="#402C2B"
+                            android:layout_marginTop="5dp"
+                            android:layout_gravity="center"/>
+
+                    </LinearLayout>
+
+
+
+
+
+
+
+
+                </LinearLayout>
+
+
+
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="#E6EAE7"
+                android:layout_marginLeft="30dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <ImageButton
+                        android:layout_width="274dp"
+                        android:layout_height="391dp"
+                        android:background="@drawable/calendar_three" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="所在地 : "
+                            android:textSize="35sp"
+                            android:textColor="#402C2B"
+                            android:gravity="center"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="20dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="美崙"
+                            android:textSize="35sp"
+                            android:textColor="#402C2B"
+                            android:layout_marginTop="5dp"
+                            android:layout_gravity="center"/>
+
+                    </LinearLayout>
+
+
+
+
+
+
+
+
+                </LinearLayout>
+
+
+
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="#E6EAE7"
+                android:layout_marginLeft="30dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <ImageButton
+                        android:layout_width="274dp"
+                        android:layout_height="391dp"
+                        android:background="@drawable/calendar_two" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="所在地 : "
+                            android:textSize="35sp"
+                            android:textColor="#402C2B"
+                            android:gravity="center"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="20dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="吉安"
+                            android:textSize="35sp"
+                            android:textColor="#402C2B"
+                            android:layout_marginTop="5dp"
                             android:layout_gravity="center"/>
 
                     </LinearLayout>

@@ -487,6 +487,7 @@
 
 
             <Button
+                android:id="@+id/choose_calendar"
                 android:layout_width="140dp"
                 android:layout_height="match_parent"
                 android:text="栽 培 日 曆"

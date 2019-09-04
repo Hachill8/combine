@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.example.hy.GlobalVariable;
 import com.example.hy.R;
+import com.example.hy.choose_calendar;
 import com.example.hy.home.home2;
 import com.example.hy.webservice;
 
@@ -24,7 +25,7 @@ public class VegeInfo extends AppCompatActivity {
 
     GlobalVariable vege
             ,vege_home;     //首頁作物照片(暫時)
-    Button start_plant;
+    Button start_plant,choose_calendar;
     Dialog variety_info;
     String line="can't not found", vegeinfo_name;
     TextView step/**  小撇步  **/,
@@ -105,6 +106,18 @@ public class VegeInfo extends AppCompatActivity {
                 vege_home.setVege_image_home(vege_name.getText().toString());
               //  Intent b = new Intent(VegeInfo.this, home_add_vege.class);
                 Intent b = new Intent(VegeInfo.this, home2.class);
+                startActivity(b);
+            }
+        } );
+
+        choose_calendar=(Button)findViewById(R.id.choose_calendar);
+        choose_calendar.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                vege_home.setVege_image_home(vege_name.getText().toString());
+                //  Intent b = new Intent(VegeInfo.this, home_add_vege.class);
+                Intent b = new Intent(VegeInfo.this, com.example.hy.choose_calendar.class);
                 startActivity(b);
             }
         } );
