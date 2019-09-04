@@ -20,7 +20,6 @@
             android:layout_width="349dp"
             android:layout_height="169dp">
 
-            <ImageView
                 android:id="@+id/plant"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -37,8 +37,8 @@ import java.util.ArrayList;
 
 public class search extends AppCompatActivity implements View.OnClickListener {
     ImageButton bt_filter;
-    CardView vege_card_view1,vege_card_view2,vege_card_view3;
-    TextView vege1_id,vege2_id,vege3_id;
+    CardView vege_card_view1,vege_card_view2,vege_card_view3,vege_card_view4;
+    TextView vege1_id,vege2_id,vege3_id,vege4_id;
     GlobalVariable vege_name,vege_item;
     String insert_vege_item="";
     String[] split_line={};
@@ -103,14 +103,17 @@ public class search extends AppCompatActivity implements View.OnClickListener {
         vege_card_view1=(CardView)findViewById( R.id.vege_card_view1 );
         vege_card_view2=(CardView)findViewById( R.id.vege_card_view2 );
         vege_card_view3=(CardView)findViewById( R.id.vege_card_view3 );
+        vege_card_view4=(CardView)findViewById( R.id.vege_card_view4 );
+
         vege1_id=(TextView)findViewById(R.id.vege1_id);
         vege2_id=(TextView)findViewById(R.id.vege2_id);
         vege3_id=(TextView)findViewById(R.id.vege3_id);
-
+        vege4_id=(TextView)findViewById(R.id.vege4_id);
 
         vege_card_view1.setOnClickListener(this);
         vege_card_view2.setOnClickListener(this);
         vege_card_view3.setOnClickListener(this);
+        vege_card_view4.setOnClickListener(this);
 
         vege_name  = (GlobalVariable)getApplicationContext();
         vege_item  = (GlobalVariable)getApplicationContext();
@@ -174,14 +177,20 @@ public class search extends AppCompatActivity implements View.OnClickListener {
                 break;
             case R.id.vege_card_view2 :
                 i = new Intent( this,VegeInfo.class );
-                vege_name.setWord("番茄");
+                vege_name.setWord("空心菜");
                 startActivity( i );
                 break;
             case R.id.vege_card_view3 :
                 i = new Intent( this,VegeInfo.class );
-                vege_name.setWord("小蘿蔔");
+                vege_name.setWord("秋葵");
                 startActivity( i );
                 break;
+            case R.id.vege_card_view4 :
+                i = new Intent( this,VegeInfo.class );
+                vege_name.setWord("紅蘿蔔");
+                startActivity( i );
+                break;
+
             default:break;
         }
     }

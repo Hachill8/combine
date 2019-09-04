@@ -78,6 +78,8 @@ public class VegeInfo extends AppCompatActivity {
         vege = (GlobalVariable)getApplicationContext();
         vegeinfo_name=vege.getWord();
 
+        Log.v("test","vege name: "+vegeinfo_name);
+
         //聘請一個特約工人，有其經紀人派遣其工人做事 (另起一個有Handler的Thread)
         mThread = new HandlerThread("");
 
