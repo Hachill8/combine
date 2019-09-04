@@ -40,8 +40,8 @@ public class record extends AppCompatActivity {
         //cardview 建立
 
         List<record_Cardview> cardviewList = new ArrayList<>();
-        cardviewList.add(new record_Cardview(0,"高麗菜",R.drawable.example_2));
-        cardviewList.add(new record_Cardview(1,"高麗菜",R.drawable.example_2));
+        cardviewList.add(new record_Cardview(0,"紅蘿蔔 19/09/06",R.drawable.carrot));
+        cardviewList.add(new record_Cardview(1,"空心菜",R.drawable.record_vege_4));
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
         recyclerView.setAdapter(new record.CardAdapter(this, cardviewList));
@@ -152,6 +152,7 @@ public class record extends AppCompatActivity {
             final record_Cardview cardview = cardviewList.get(i);
             viewHolder.tx1.setText(String.valueOf(cardview.getName()));
             viewHolder.plantId.setImageResource(cardview.getImage());
+            viewHolder.tx2.setText("19/09/06");
 
             viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -170,21 +171,22 @@ public class record extends AppCompatActivity {
 
         class ViewHolder extends RecyclerView.ViewHolder{
                     ImageView plantId;
-                    TextView tx1;
+                    TextView tx1,tx2;
 
                     ViewHolder(View itemView){
                         super(itemView);
                         plantId = (ImageView) itemView.findViewById(R.id.plantId);
                         tx1 = (TextView) itemView.findViewById(R.id.tx1);
+                        tx2 = (TextView) itemView.findViewById(R.id.tx2);
                     }
         }
         public  void addItem(int i){
             fg = true;
-            num = cardviewList.size()-1;
-            //add(位置,資料)
-            cardviewList.add(i, new record_Cardview(id,"小白菜", R.drawable.icon201));
-            id=id+1;
-            notifyItemInserted(i);
+//            num = cardviewList.size()-1;
+//            //add(位置,資料)
+//            cardviewList.add(i, new record_Cardview(id,"小白菜", R.drawable.icon201));
+//            id=id+1;
+//            notifyItemInserted(i);
         }
     }
 }

@@ -22,6 +22,7 @@
         <activity android:name=".calendar.calendar_memo"/>
         <activity android:name=".forum.forum"/>
         <activity android:name=".market.market"/>
+        <activity android:name=".market.market2"/>
         <activity android:name=".user_setting.user_setting"/>
         <activity android:name=".record.record_Information"/>
         <activity android:name=".record.record_Information2"/>
