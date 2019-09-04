@@ -78,7 +78,7 @@ public class home2 extends AppCompatActivity{
         Vege_image_home = (ImageView) findViewById(R.id.vege_image_home);
         if(!vege_home.getVege_image_home().equals("無"))
         {
-            Vege_image_home.setImageDrawable(getResources().getDrawable( R.drawable.carrot_pot ));
+            Vege_image_home.setImageDrawable(getResources().getDrawable( R.drawable.vege_carrot_pot ));
         }
 
     }
