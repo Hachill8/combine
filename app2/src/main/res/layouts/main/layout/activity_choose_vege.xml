@@ -37,13 +37,13 @@
                     android:id="@+id/to_search"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="280dp"
-                    android:layout_marginEnd="280dp"
+                    android:layout_marginStart="255dp"
                     android:layout_marginTop="10dp"
+                    android:layout_marginEnd="280dp"
+                    android:background="@drawable/choose_btn"
                     android:text="略過"
                     android:textColor="#ffff"
-                    android:textSize="20dp"
-                    android:background="@drawable/choose_btn"/>
+                    android:textSize="20dp" />
 
             </RelativeLayout>
 
@@ -85,6 +85,7 @@
                             android:layout_marginLeft="10dp"/>
 
                         <TextView
+
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="#03~04、07~11月"
