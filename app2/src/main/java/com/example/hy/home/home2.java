@@ -27,8 +27,6 @@ import com.example.hy.webservice;
 
 public class home2 extends AppCompatActivity{
 
-    LinearLayout menuLinearLayout,second_menuLinearLayout;
-    RelativeLayout recordLayout, calendarLayout, discussLayout,storeLayout,settingLayout,userLayout;
     BottomSheetDialog bottomSheetDialog;
     ImageButton record,calendar,discuss,store,setting,user,hat,edit_pot;
     Dialog banboo_hat_level;
@@ -78,7 +76,23 @@ public class home2 extends AppCompatActivity{
         Vege_image_home = (ImageView) findViewById(R.id.vege_image_home);
         if(!vege_home.getVege_image_home().equals("無"))
         {
-            Vege_image_home.setImageDrawable(getResources().getDrawable( R.drawable.vege_carrot_pot ));
+            if (vege_home.getVege_image_home().equals("紅蘿蔔"))
+            {
+                Vege_image_home.setImageDrawable(getResources().getDrawable( R.drawable.vege_carrot_pot ));
+            }
+            else if (vege_home.getVege_image_home().equals("空心菜"))
+            {
+                Vege_image_home.setImageDrawable(getResources().getDrawable( R.drawable.vege_kon_pot ));
+            }
+            else if (vege_home.getVege_image_home().equals("秋葵"))
+            {
+                Vege_image_home.setImageDrawable(getResources().getDrawable( R.drawable.vege_ciu_pot ));
+            }
+            else if (vege_home.getVege_image_home().equals("高麗菜"))
+            {
+                Vege_image_home.setImageDrawable(getResources().getDrawable( R.drawable.vege_cabbage_pot ));
+            }
+
         }
 
     }

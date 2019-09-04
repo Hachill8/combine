@@ -102,7 +102,7 @@ public class VegeInfo extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                vege_home.setVege_image_home("紅蘿蔔");
+                vege_home.setVege_image_home(vege_name.getText().toString());
               //  Intent b = new Intent(VegeInfo.this, home_add_vege.class);
                 Intent b = new Intent(VegeInfo.this, home2.class);
                 startActivity(b);
