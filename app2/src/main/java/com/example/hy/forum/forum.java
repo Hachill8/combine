@@ -31,6 +31,7 @@ public class forum extends AppCompatActivity {
     RecyclerView recyclerView;
     forum_postadaper adapter;
     ImageView imageView;
+    Button im00;
 
     List<forum_post> postList;
 
@@ -45,6 +46,17 @@ public class forum extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(getResources().getString(R.string.app_name));
         setSupportActionBar(toolbar);
+
+        im00 = (Button)findViewById(R.id.im00);
+        im00.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent a=new Intent(forum.this, postpage.class);
+                startActivity(a);
+            }
+        });
+
+
 
         tabLayout = findViewById(R.id.tablayout);
         tabDiscussion = findViewById(R.id.tabdiscussion);
@@ -102,6 +114,10 @@ public class forum extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
+    public void abc(View view) {
+        Intent a=new Intent(forum.this, postpage.class);
+        startActivity(a);
+    }
 
 
 }
