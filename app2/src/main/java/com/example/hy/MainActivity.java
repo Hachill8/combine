@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.hy.forum.forum;
+import com.example.hy.forum.postpage;
 import com.example.hy.login.login;
 import com.example.hy.login.login2;
 
@@ -62,6 +64,11 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void abc(View view) {
+        Intent a=new Intent(this, postpage.class);
+        startActivity(a);
     }
 
 }

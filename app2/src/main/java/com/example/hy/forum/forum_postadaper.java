@@ -13,11 +13,11 @@ import com.example.hy.R;
 
 import java.util.List;
 
-public class forum_postadaper extends RecyclerView.Adapter<forum_postadaper.postviewholder>{
+public class forum_postadaper extends RecyclerView.Adapter<forum_postadaper.postviewholder>  {
 
     private Context mctx;
     private List<forum_post> postList;
-
+    String s="";
     public forum_postadaper(Context mctx, List<forum_post> postList) {
         this.mctx = mctx;
         this.postList = postList;
@@ -32,11 +32,15 @@ public class forum_postadaper extends RecyclerView.Adapter<forum_postadaper.post
 
     @Override
     public void onBindViewHolder(@NonNull postviewholder holder, int position) {
-        forum_post post=postList.get(position);
+        final forum_post post=postList.get(position);
 
         holder.textViewtitle.setText(post.getTitle());
         holder.textViewdesc.setText(post.getShortdesc());
+        holder.time.setText(post.getTime());
+        holder.commentnum.setText(post.getCommentnumnum());
+        holder.heartnum.setText(post.getHeartnum());
         holder.imageView.setImageDrawable(mctx.getResources().getDrawable(post.getImage()));
+        holder.userimg.setImageDrawable(mctx.getResources().getDrawable(post.getUserimg()));
     }
 
     @Override
@@ -44,10 +48,13 @@ public class forum_postadaper extends RecyclerView.Adapter<forum_postadaper.post
         return postList.size();
     }
 
-    class postviewholder extends RecyclerView.ViewHolder{
 
-        ImageView imageView;
-        TextView textViewtitle,textViewdesc;
+
+    class postviewholder extends RecyclerView.ViewHolder {
+
+        ImageView imageView,userimg;
+        TextView textViewtitle,textViewdesc,time,heartnum,commentnum;
+
 
         public postviewholder(@NonNull View itemView) {
             super(itemView);
@@ -55,7 +62,16 @@ public class forum_postadaper extends RecyclerView.Adapter<forum_postadaper.post
             imageView=itemView.findViewById(R.id.plant);
             textViewtitle=itemView.findViewById(R.id.tx1);
             textViewdesc=itemView.findViewById(R.id.tx2);
-
+            userimg=itemView.findViewById((R.id.imageView7));
+            time=itemView.findViewById(R.id.textView13);
+            heartnum=itemView.findViewById(R.id.textView4);
+            commentnum=itemView.findViewById(R.id.textView6);
         }
+
+
     }
+
+
+
+
 }

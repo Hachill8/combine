@@ -88,6 +88,13 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/BT1"
-        android:layout_marginTop="176dp"></android.support.v7.widget.RecyclerView>
+        android:layout_marginTop="176dp"
+        ></android.support.v7.widget.RecyclerView>
+
+    <ImageView
+        android:id="@+id/im00"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:onClick="abc" />
 
 </RelativeLayout>
