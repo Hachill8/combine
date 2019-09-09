@@ -70,7 +70,7 @@ public class forum extends AppCompatActivity {
         bt1=findViewById(R.id.BT1);
         bt2=findViewById(R.id.BT2);
 
-
+        imageView=findViewById(R.id.imageView10);
 
         postList=new ArrayList<>();
         recyclerView=(RecyclerView) findViewById(R.id.recyclerView);
