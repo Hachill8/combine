@@ -515,23 +515,7 @@
                 app:sparkbutton_primaryColor="@color/primary_color"
                 app:sparkbutton_secondaryColor="@color/secondary_color" />
 
-
-
-
-
-
-
-
-
-
-
-
         </LinearLayout>
-
-
-
-
-
 
     </android.support.design.widget.BottomNavigationView>
 
