@@ -11,9 +11,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.example.hy.R;
+import com.example.hy.home.home2;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +35,7 @@ public class market extends AppCompatActivity
 
     private FragmentManager fmgr;
     private market_commodity mc;
+    private Button goto_product_detail_1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -40,19 +44,26 @@ public class market extends AppCompatActivity
         getWindow().setFlags( WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_market2);
 
-
-
+        goto_product_detail_1=(Button) findViewById(R.id.goto_product_detail_1);
+        goto_product_detail_1.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent a = new Intent(market.this,market2.class);
+                startActivity(a);
+            }
+        } );
 
 //        fmgr = getSupportFragmentManager();
 //        mc = new market_commodity();
-//
-//
-//
-//
+
 //        initView();
 //        initPageAdapter();
 //        initPointer();
 //        initEvent();
+
+
     }
 //    public void setcommo(View view)
 //    {
