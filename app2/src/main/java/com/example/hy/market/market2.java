@@ -18,61 +18,79 @@ import com.example.hy.R;
 
 public class market2 extends AppCompatActivity
 {
-    private static final String TAG = "AmountView";
-    private int amount=1;
-    private TextView etAmount;
+    private int amount=1,count_product_num_in_cart=0;
+    public TextView etAmount,product_num_in_cart;
     private Button btnDecrease;
     private Button btnIncrease;
-
-    //****以下為原code***//
     private Button back_2_market;
+    private Button add_to_cart;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_market3);
-        etAmount = (TextView)findViewById(R.id.etAmount);
-        btnIncrease=(Button)findViewById(R.id.btnIncrease);
-        btnIncrease.setOnClickListener(new View.OnClickListener()
-        {
+
+        etAmount = (TextView) findViewById(R.id.etAmount);
+        product_num_in_cart = (TextView) findViewById(R.id.product_num_in_cart);
+
+        btnIncrease = (Button) findViewById(R.id.btnIncrease);
+        btnIncrease.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 int i = v.getId();
-                if (i == R.id.btnIncrease)
-                {amount++; etAmount.setText(amount+"");}
+                if (i == R.id.btnIncrease) {
+                    amount++;
+                    etAmount.setText(amount + "");
+                }
             }
         });
 
-        btnDecrease=(Button)findViewById(R.id.btnDecrease);
-        btnDecrease.setOnClickListener(new View.OnClickListener()
-        {
+        btnDecrease = (Button) findViewById(R.id.btnDecrease);
+        btnDecrease.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
                 int i = v.getId();
                 if (i == R.id.btnDecrease)
                 {
-                    if (amount > 1)
-                    { amount--; etAmount.setText(amount+""); }
-                    else
-                    { amount=1; etAmount.setText(amount+""); }
+                    if (amount > 1) {
+                        amount--;
+                        etAmount.setText(amount + "");
+                    } else {
+                        amount = 1;
+                        etAmount.setText(amount + "");
+                    }
                 }
             }
         });
 
-        back_2_market=(Button) findViewById(R.id.back_2_market);
-        back_2_market.setOnClickListener(new View.OnClickListener()
+        back_2_market = (Button) findViewById(R.id.back_2_market);
+        back_2_market.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent a = new Intent(market2.this, market.class);
+                startActivity(a);
+            }
+        });
+
+
+        add_to_cart = (Button) findViewById(R.id.add_to_cart);
+        add_to_cart.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                Intent a = new Intent(market2.this,market.class);
-                startActivity(a);
-            }
-        } );
+                int i = v.getId();
+                if (i == R.id.add_to_cart)
+                {
+                    count_product_num_in_cart=count_product_num_in_cart+amount;
+                    product_num_in_cart.setText(count_product_num_in_cart+ "");
+                }
 
+            }
+        });
     }
 
     public void click(View view)

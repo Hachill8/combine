@@ -22,6 +22,18 @@
                 android:layout_marginLeft="15dp">
             </Button>
 
+            <TextView
+                android:id="@+id/product_num_in_cart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#fff"
+                android:text=""
+                android:textSize="10dp"
+                android:textStyle="bold"
+                android:layout_marginTop="7dp"
+                android:layout_marginLeft="340dp"
+                />
+
             <Button
                 android:layout_width="25dp"
                 android:layout_height="25dp"
@@ -56,9 +68,18 @@
                 android:text="白鐵移植鏝"
                 android:textColor="#000000"
                 android:layout_marginTop="25dp"
-                android:layout_marginLeft="35dp">
+                android:layout_marginLeft="35dp"/>
 
-            </TextView>
+            <TextView
+                android:id="@+id/price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:text="$85"
+                android:textColor="#61D169"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="250dp"
+                android:textStyle="bold"/>
 
             <ImageView
                 android:layout_width="70dp"
@@ -208,6 +229,7 @@
                     app:sparkbutton_secondaryColor="@color/secondary_color" />
 
                 <Button
+                    android:id="@+id/add_to_cart"
                     android:layout_width="250dp"
                     android:layout_height="40dp"
                     android:layout_marginTop="15dp"
