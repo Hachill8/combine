@@ -47,8 +47,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/market_product_background">
-            </ImageView>
+                android:background="@drawable/market_product_background"></ImageView>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -61,13 +60,44 @@
 
             </TextView>
 
-            <Button
+            <ImageView
                 android:layout_width="70dp"
                 android:layout_height="40dp"
                 android:background="@drawable/market_product_number"
                 android:layout_marginTop="80dp"
                 android:layout_marginLeft="35dp">
 
+            </ImageView>
+
+            <Button
+                android:id="@+id/btnDecrease"
+                android:layout_width="25dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="87dp"
+                android:layout_marginLeft="35dp"
+                android:background="#00000000">
+            </Button>
+
+            <TextView
+                android:id="@+id/etAmount"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="58dp"
+                android:layout_marginTop="89dp"
+                android:gravity="center"
+                android:text="1"
+                android:textColor="#000000"
+                android:textSize="17dp"
+                android:textStyle="bold"
+                android:background="#fff"/>
+
+            <Button
+                android:id="@+id/btnIncrease"
+                android:layout_width="25dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="87dp"
+                android:layout_marginLeft="80dp"
+                android:background="#00000000">
             </Button>
 
             <TextView
@@ -187,6 +217,7 @@
                 </Button>
 
             </RelativeLayout>
+
 
         </RelativeLayout>
 

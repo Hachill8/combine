@@ -15,6 +15,7 @@ import com.example.hy.forum.forum;
 import com.example.hy.forum.postpage;
 import com.example.hy.login.login;
 import com.example.hy.login.login2;
+import com.example.hy.market.market2;
 
 public class MainActivity extends AppCompatActivity {
 
