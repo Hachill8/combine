@@ -19,8 +19,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="0dp"
                 android:layout_marginHorizontal="0dp"
-                android:background="@drawable/market_headind_bkgd">
-            </ImageView>
+                android:background="@drawable/market_headind_bkgd" />
 
             <Button
                 android:layout_width="25dp"
@@ -63,15 +62,15 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="165dp">
 
-            <Button
-                android:id="@+id/search_bar"
+            <AutoCompleteTextView
+                android:id="@+id/search_market_bar"
                 android:layout_width="220dp"
                 android:layout_height="35dp"
                 android:layout_alignRight="@+id/search_bar"
                 android:layout_centerHorizontal="true"
-                android:background="@drawable/market_search_bar">
-
-            </Button>
+                android:background="@drawable/market_search_bar"
+                android:completionThreshold="1"
+                card_view:ignore="LabelFor" />
 
             <Button
                     android:layout_width="35dp"

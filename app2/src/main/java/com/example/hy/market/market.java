@@ -1,41 +1,56 @@
 package com.example.hy.market;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.HandlerThread;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import com.example.hy.GlobalVariable;
 import com.example.hy.R;
 import com.example.hy.home.home2;
+import com.example.hy.search.VegeInfo;
+import com.example.hy.search.search;
+import com.example.hy.search.vege_cardview;
+import com.example.hy.webservice;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class market extends AppCompatActivity
 {
-    private ViewPager viewPager;
-    private PagerAdapter adapter;
-    private List<View> viewPages = new ArrayList<>();
 
-    //包點點的LinearLayout
-    private ViewGroup group;
-    private ImageView imageView;
-    //定義ImageView陣列存放小點
-    private ImageView[] imageViews;
-
-    private FragmentManager fmgr;
-    private market_commodity mc;
-    private Button goto_product_detail_1;
+    //找到UI工人的經紀人，這樣才能派遣工作  (找到顯示畫面的UI Thread上的Handler)
+    private Handler mUI_Handler = new Handler();
+    //宣告特約工人的經紀人
+    private Handler mThreadHandler;
+    //宣告特約工人
+    private HandlerThread mThread;
+    private AutoCompleteTextView Search_bar; //搜尋商品
+    String good_name="can't not found"; //商品字串
+    String[] split_line={}; //搜尋的listview
+    GlobalVariable market_item; //傳遞商品名稱
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -44,7 +59,7 @@ public class market extends AppCompatActivity
         getWindow().setFlags( WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_market2);
 
-        goto_product_detail_1=(Button) findViewById(R.id.goto_product_detail_1);
+        Button goto_product_detail_1 = (Button) findViewById(R.id.goto_product_detail_1);
         goto_product_detail_1.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -55,126 +70,77 @@ public class market extends AppCompatActivity
             }
         } );
 
-//        fmgr = getSupportFragmentManager();
-//        mc = new market_commodity();
 
-//        initView();
-//        initPageAdapter();
-//        initPointer();
-//        initEvent();
+        //聘請一個特約工人，有其經紀人派遣其工人做事 (另起一個有Handler的Thread)
+        mThread = new HandlerThread("");
+        //讓Worker待命，等待其工作 (開啟Thread)
+        mThread.start();
+        //找到特約工人的經紀人，這樣才能派遣工作 (找到Thread上的Handler)
+        mThreadHandler=new Handler(mThread.getLooper());
+        mThreadHandler.post(r1);
 
+        market_item  = (GlobalVariable)getApplicationContext();
+        Search_bar = (AutoCompleteTextView) findViewById(R.id.search_market_bar);
+        Search_bar.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            //點擊後抓searchview的文字並跳轉到作物資訊
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.v("test","TextView:"+Search_bar.getText());
+                market_item.setMarket_item(Search_bar.getText().toString());
+                Intent x=new Intent(market.this, market2.class);
+                startActivity(x);
+            }
+        });
 
     }
-//    public void setcommo(View view)
-//    {
-//        FragmentTransaction transaction = fmgr.beginTransaction();
-//        transaction.replace(R.id.activity_market_fragment,mc);
-//        transaction.commit();
-//    }
-//
-//    //為控制元件繫結事件,繫結介面卡
-//    private void initEvent() {
-//        viewPager.setAdapter(adapter);
-//        viewPager.addOnPageChangeListener(new GuidePageChangeListener());
-//    }
-//    //初始化ViewPager
-//    private void initPageAdapter() {
-///**
-// * 對於這幾個想要動態載入的page頁面，使用LayoutInflater.inflate()來找到其佈局檔案，並例項化為View物件
-// */
-//        LayoutInflater inflater = LayoutInflater.from(this);
-//        View page1 = inflater.inflate(R.layout.market_viewpage1, null);
-//        View page2 = inflater.inflate(R.layout.market_viewpage2, null);
-//        View page3 = inflater.inflate(R.layout.market_viewpage3, null);
-////新增到集合中
-//        viewPages.add(page1);
-//        viewPages.add(page2);
-//        viewPages.add(page3);
-//        adapter = new PagerAdapter() {
-//            //獲取當前介面個數
-//            @Override
-//            public int getCount() {
-//                return viewPages.size();
-//            }
-//            //判斷是否由物件生成頁面
-//            @Override
-//            public boolean isViewFromObject(View view, Object object) {
-//                return view == object;
-//            }
-//            @Override
-//            public void destroyItem(ViewGroup container, int position, Object object) {
-//                container.removeView(viewPages.get(position));
-//            }
-//            //返回一個物件，這個物件表明了PagerAdapter介面卡選擇哪個物件放在當前的ViewPager中
-//            @Override
-//            public Object instantiateItem(ViewGroup container, int position) {
-//                View view = viewPages.get(position);
-//                container.addView(view);
-//                return view;
-//            }
-//        };
-//    }
-//    //繫結控制元件
-//    private void initView() {
-//        viewPager = (ViewPager) findViewById(R.id.market_viewpager);
-//        group = (ViewGroup) findViewById(R.id.market_viewgroup);
-//    }
-//    //初始化下面的小圓點的方法
-//    private void initPointer() {
-////有多少個介面就new多長的陣列
-//        imageViews = new ImageView[viewPages.size()];
-//        for (int i = 0; i < imageViews.length; i++ )
-//        {
-//            imageView = new ImageView(this);
-////設定控制元件的寬高
-//            imageView.setLayoutParams(new ViewGroup.LayoutParams(30, 30));
-////設定控制元件的padding屬性
-//            imageView.setPadding(60, 0, 60, 0);
-//            imageViews[i] = imageView;
-////初始化第一個page頁面的圖片的原點為選中狀態
-//            if (i == 0) {
-////表示當前圖片
-//                imageViews[i].setBackgroundResource(R.drawable.page_focused);
-///**
-// * 在java程式碼中動態生成ImageView的時候
-// * 要設定其BackgroundResource屬性才有效
-// * 設定ImageResource屬性無效
-// */
-//            } else {
-//                imageViews[i].setBackgroundResource(R.drawable.page_unfocused);
-//            }
-//
-//            group.addView(imageViews[i]);
-//        }
-//    }
-//    //ViewPager的onPageChangeListener監聽事件，當ViewPager的page頁發生變化的時候呼叫
-//    public class GuidePageChangeListener implements ViewPager.OnPageChangeListener {
-//        @Override
-//        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-//        }
-//        //頁面滑動完成後執行
-//        @Override
-//        public void onPageSelected(int position) {
-////判斷當前是在那個page，就把對應下標的ImageView原點設定為選中狀態的圖片
-//            for (int i = 0; i < imageViews.length; i ++ )
-//            {
-//                imageViews[position].setBackgroundResource(R.drawable.page_focused);
-//                if (position != i)
-//                {
-//                    imageViews[i].setBackgroundResource(R.drawable.page_unfocused);
-//                }
-//            }
-//        }
-//        //監聽頁面的狀態，0--靜止 1--滑動  2--滑動完成
-//        @Override
-//        public void onPageScrollStateChanged(int state) {
-//        }
-//    }
 
-    public void Click(View view)
-    {
-        Intent a = new Intent(market.this,market2.class);
-        startActivity(a);
+
+    Runnable r1=new Runnable () {
+        public void run() {
+            good_name =  webservice.Goodname_list(good_name);
+            //請經紀人指派工作名稱 r，給工人做
+            mUI_Handler.post(r2);
+        }
+
+    };
+    //工作名稱 r2 的工作內容
+    Runnable r2=new Runnable () {
+        public void run() {
+
+            if (!good_name.equals("can't not found"))
+            {
+                split_line=good_name.split("%");   //searchview的列表
+
+                for(int num = 0; num < split_line.length;num++)
+                {
+                    for(int i = 0; i < split_line[num].length();i++)
+                    {
+                        if(split_line[num].substring(i,i+1).equals(" "))
+                        {
+                            split_line[num]=split_line[num].substring(0,i);
+                            Log.v("test","切割後的字串:"+split_line[num]);
+                            break;
+                        }
+                    }
+                }
+                Search_bar.setAdapter(new ArrayAdapter<>(market.this,
+                        android.R.layout.simple_list_item_1, split_line));
+            }
+        }
+    };
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //移除工人上的工作
+        if (mThreadHandler != null) {
+            mThreadHandler.removeCallbacks(r1);
+        }
+        //解聘工人 (關閉Thread)
+        if (mThread != null) {
+            mThread.quit();
+        }
     }
-
 }
+
+
+

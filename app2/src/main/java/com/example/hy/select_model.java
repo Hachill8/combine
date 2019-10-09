@@ -20,6 +20,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.hy.forum.forum;
+import com.example.hy.forum.forum_add_new_post;
+import com.example.hy.home.home2;
 import com.example.hy.search.choose_vege;
 import com.example.hy.search.search;
 
@@ -123,7 +126,7 @@ public class select_model extends AppCompatActivity {
                 @Override
                 public void onClick(View v)
                 {
-                    Intent a = new Intent(select_model.this, choose_vege.class);
+                    Intent a = new Intent(select_model.this, search.class);
                     startActivity(a);
                 }
             });

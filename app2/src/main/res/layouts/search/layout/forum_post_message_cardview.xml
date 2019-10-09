@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/message_RL"
+            >
+            <ImageView
+                android:id="@+id/user_img"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="17dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/post_jaili" />
+
+            <TextView
+                android:id="@+id/user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="狠愛種"
+                android:gravity="center"
+                android:textColor="#141313"
+                android:textSize="20sp"
+                android:layout_toRightOf="@+id/user_img"
+                android:layout_marginLeft="8dp"
+                />
+
+            <TextView
+                android:id="@+id/message_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2019/10/03   21:02"
+                android:layout_toRightOf="@+id/user_img"
+                android:layout_below="@+id/user_name"
+                android:layout_marginLeft="8dp"
+                android:textSize="15sp"
+
+                />
+
+            <TextView
+                android:id="@+id/B_num"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:text="B1"
+                android:textSize="22dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="15dp"
+                android:gravity="center"
+                android:layout_marginTop="15dp"
+
+                />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:paddingLeft="10dp"
+            android:text="123"
+            android:textSize="15dp"
+            />
+
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="10dp"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1.3dp"
+            android:layout_gravity="center"
+            android:background="#D2D5D3"
+            android:layout_marginTop="10dp"
+            />
+
+
+
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

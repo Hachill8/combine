@@ -21,7 +21,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
             
-            android:text="A01 空心菜"
+            android:text="A101 紅蘿蔔"
             android:layout_gravity="center"
             android:gravity="center"
              />
@@ -117,7 +117,9 @@
                     android:layout_width="378dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:textSize="25dp" />
+                    android:text="澆水/鋤草/"
+
+                    android:textSize="20sp" />
 
                 <View
                     android:id="@+id/view5"
@@ -168,9 +170,10 @@
                 <TextView
                     android:id="@+id/TV02"
                     android:layout_width="378dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="400dp"
                     android:layout_gravity="center"
                     android:onClick="sendMessage"
+                    android:text="今天很熱所以多澆點水"
                     android:textSize="20sp" />
 
                 <View

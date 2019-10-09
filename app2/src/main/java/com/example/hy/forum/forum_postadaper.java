@@ -60,12 +60,12 @@ public class forum_postadaper extends RecyclerView.Adapter<forum_postadaper.post
             super(itemView);
 
             imageView=itemView.findViewById(R.id.plant);
-            textViewtitle=itemView.findViewById(R.id.tx1);
-            textViewdesc=itemView.findViewById(R.id.tx2);
-            userimg=itemView.findViewById((R.id.imageView7));
-            time=itemView.findViewById(R.id.textView13);
-            heartnum=itemView.findViewById(R.id.textView4);
-            commentnum=itemView.findViewById(R.id.textView6);
+            textViewtitle=itemView.findViewById(R.id.user_name);
+            textViewdesc=itemView.findViewById(R.id.post);
+            userimg=itemView.findViewById((R.id.user_img));
+            time=itemView.findViewById(R.id.post_time);
+            heartnum=itemView.findViewById(R.id.post_heart_num);
+            commentnum=itemView.findViewById(R.id.post_chat_num);
         }
 
 

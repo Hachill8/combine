@@ -69,15 +69,16 @@ public class calendar extends AppCompatActivity {
                 }
             }
         });
-        final String[] lunch = {"A101 紅蘿蔔","B102 秋葵", "B103 空心菜", "C104 九層塔", "C105 迷迭香"};
+        final String[] lunch = {"A101 小白菜","B102 秋葵", "B103 空心菜", "C104 九層塔", "C105 迷迭香"};
         ArrayAdapter<String> lunchList = new ArrayAdapter<>(calendar.this,
-                android.R.layout.simple_spinner_dropdown_item,
+                R.layout.zzz,
                 lunch);
+
         spi.setAdapter(lunchList);
         spi.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(calendar.this, "你選的是" + lunch[position], Toast.LENGTH_SHORT).show();
+//                Toast.makeText(calendar.this, "你選的是" + lunch[position], Toast.LENGTH_SHORT).show();
             }
 
             @Override

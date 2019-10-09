@@ -30,9 +30,8 @@ public class home2 extends AppCompatActivity{
     BottomSheetDialog bottomSheetDialog;
     ImageButton record,calendar,discuss,store,setting,user,hat,edit_pot;
     Dialog banboo_hat_level;
-    String insert_vege_item="";
-    GlobalVariable vege_item
-            ,vege_home; //首頁作物照片(暫時)
+
+    GlobalVariable vege_home; //首頁作物照片(暫時)
     ImageView Vege_image_home;
 
 
@@ -68,8 +67,7 @@ public class home2 extends AppCompatActivity{
 
         createBottomSheetDialog();
 
-        vege_item = (GlobalVariable)getApplicationContext();
-        insert_vege_item();
+
 
 
         vege_home = (GlobalVariable)getApplicationContext();
@@ -88,9 +86,9 @@ public class home2 extends AppCompatActivity{
             {
                 Vege_image_home.setImageDrawable(getResources().getDrawable( R.drawable.vege_ciu_pot ));
             }
-            else if (vege_home.getVege_image_home().equals("高麗菜"))
+            else if (vege_home.getVege_image_home().equals("小白菜"))
             {
-                Vege_image_home.setImageDrawable(getResources().getDrawable( R.drawable.vege_cabbage_pot ));
+                Vege_image_home.setImageDrawable(getResources().getDrawable( R.drawable.vege_small_pot));
             }
 
         }
@@ -151,7 +149,6 @@ public class home2 extends AppCompatActivity{
                 @Override
                 public void onClick(View v)
                 {
-                    vege_item.setVege_item(insert_vege_item);
                     Intent a = new Intent(home2.this, search.class);
                     startActivity(a);
                 }
@@ -178,15 +175,7 @@ public class home2 extends AppCompatActivity{
     }
 
 
-    public void insert_vege_item() {
-        Thread thread = new Thread() {
-            public void run() {
-                insert_vege_item = webservice.Vegename_list("s");
-            }
-        };
-        thread.start();
-        Log.v("test","1."+insert_vege_item+"2");
-    }
+
 
     public void showDialog(View view)
     {

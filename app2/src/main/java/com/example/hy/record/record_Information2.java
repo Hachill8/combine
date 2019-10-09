@@ -56,6 +56,6 @@ public class record_Information2 extends AppCompatActivity{
             String message = intent.getStringExtra("EXTRA_MESSAGE");
             //把佈局檔案中的文字框和textview連結起來
             //在textview中顯示出來message
-            tv2.setText(message);
+//            tv2.setText(message);
         }
 }

@@ -5,6 +5,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Handler;
+import android.os.HandlerThread;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -31,6 +33,7 @@ public class record extends AppCompatActivity {
     boolean fg = false;
     int num = 0,id=2;
     Button showDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,8 +43,8 @@ public class record extends AppCompatActivity {
         //cardview 建立
 
         List<record_Cardview> cardviewList = new ArrayList<>();
-        cardviewList.add(new record_Cardview(0,"紅蘿蔔 19/09/06",R.drawable.carrot));
-        cardviewList.add(new record_Cardview(1,"空心菜",R.drawable.record_vege_4));
+        cardviewList.add(new record_Cardview(0,"紅蘿蔔 19/08/06",R.drawable.carrot));
+        cardviewList.add(new record_Cardview(1,"空心菜 19/08/06",R.drawable.record_vege_4));
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
         recyclerView.setAdapter(new record.CardAdapter(this, cardviewList));
@@ -152,7 +155,7 @@ public class record extends AppCompatActivity {
             final record_Cardview cardview = cardviewList.get(i);
             viewHolder.tx1.setText(String.valueOf(cardview.getName()));
             viewHolder.plantId.setImageResource(cardview.getImage());
-            viewHolder.tx2.setText("19/09/06");
+            viewHolder.tx2.setText("19/08/06");
 
             viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

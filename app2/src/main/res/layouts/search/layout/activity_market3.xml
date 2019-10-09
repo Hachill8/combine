@@ -11,9 +11,10 @@
         android:layout_height="620dp"
         android:background="#fff">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -28,6 +29,26 @@
                     android:layout_marginLeft="15dp">
                 </Button>
 
+
+
+                <Button
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="315dp"
+                    android:background="@drawable/market_shopping_cart">
+                </Button>
+
+            <ImageView
+                android:id="@+id/product_img"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/market_product_1_detail"
+                android:layout_centerInParent="true"
+                android:scaleType="fitXY"
+                >
+            </ImageView>
+
                 <TextView
                     android:id="@+id/product_num_in_cart"
                     android:layout_width="wrap_content"
@@ -39,27 +60,12 @@
                     android:layout_marginTop="7dp"
                     android:layout_marginLeft="340dp" />
 
-                <Button
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginLeft="315dp"
-                    android:background="@drawable/market_shopping_cart">
-                </Button>
+        </RelativeLayout>
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/market_product_1_detail"
-                    android:layout_centerInParent="true">
-                </ImageView>
-
-            </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="360dp"
                 android:background="#fff">
 
                 <Button
@@ -86,13 +92,14 @@
                     android:background="@drawable/market_product_number" />
 
                 <TextView
+                    android:id="@+id/product_name1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="35dp"
-                    android:layout_marginTop="25dp"
+                    android:textSize="30dp"
                     android:text="白鐵移植鏝"
                     android:textColor="#000000"
-                    android:textSize="30dp" />
+                    android:layout_marginTop="25dp"
+                    android:layout_marginLeft="35dp"/>
 
                 <TextView
                     android:id="@+id/price"
@@ -127,47 +134,68 @@
                     android:textSize="20dp"
                     android:textStyle="bold" />
 
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="35dp"
-                    android:layout_marginTop="165dp"
                     android:text="品名："
                     android:textSize="15dp" />
 
                 <TextView
-                    android:id="@+id/product_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="80dp"
-                    android:layout_marginTop="165dp"
-                    android:text="白鐵移植鏝"
-                    android:textSize="15dp">
+                android:id="@+id/product_name2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:text="白鐵移植鏝"
+                >
 
                 </TextView>
 
-                <TextView
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="35dp"
-                    android:layout_marginTop="190dp"
                     android:text="產地："
                     android:textSize="15dp"></TextView>
 
-                <TextView
+                    <TextView
                     android:id="@+id/origin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="80dp"
-                    android:layout_marginTop="190dp"
                     android:text="台灣"
                     android:textSize="15dp"></TextView>
 
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="35dp"
-                    android:layout_marginTop="215dp"
                     android:text="特色："
                     android:textSize="15dp"></TextView>
 
@@ -175,51 +203,40 @@
                     android:id="@+id/characteristic"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="80dp"
-                    android:layout_marginTop="215dp"
                     android:text="全柄一體成型，折不彎，附刻度"
-                    android:textSize="15dp"></TextView>
+                    android:textSize="15dp"/>
 
-                <TextView
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="35dp"
-                    android:layout_marginTop="240dp"
                     android:text="規格："
-                    android:textSize="15dp"></TextView>
+                    android:textSize="15dp"/>
 
-                <TextView
+                    <TextView
                     android:id="@+id/product_format"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="80dp"
-                    android:layout_marginTop="240dp"
-                    android:text="鏟深15.5cm
+                    android:text="規格內容"
+                    android:textSize="15dp"/>
 
-                    /鏟寬 7.8cm
+                </LinearLayout>
 
-                    鏟深15.5cm
 
-                    鏟深15.5cm
+                </LinearLayout>
 
-                    鏟深15.5cm
 
-                    鏟深15.5cm
-
-                    鏟深15.5cm
-
-                    鏟深15.5cm
-
-                    鏟深15.5cm
-
-                    鏟深15.5cm"
-                    android:textSize="15dp"></TextView>
-
-            </RelativeLayout>
-
-        </RelativeLayout>
-
+        </LinearLayout>
     </ScrollView>
+
+
 
     <android.support.design.widget.BottomNavigationView
         android:layout_width="match_parent"

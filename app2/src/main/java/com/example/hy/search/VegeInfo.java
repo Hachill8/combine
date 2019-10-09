@@ -2,6 +2,8 @@ package com.example.hy.search;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -9,10 +11,13 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.hy.GlobalVariable;
@@ -39,18 +44,22 @@ public class VegeInfo extends AppCompatActivity {
             vege_name /**  菜名 **/;
 
 
+
+     ImageView imageview;
+     String img_result; //圖片字串
+
+//     ImageAdapter imgadapter;
+//     //加入圖片用
+//
+//     ViewPager viewPager;
+
+
     //找到UI工人的經紀人，這樣才能派遣工作  (找到顯示畫面的UI Thread上的Handler)
-
     private Handler mUI_Handler = new Handler();
-
     //宣告特約工人的經紀人
-
     private Handler mThreadHandler;
-
     //宣告特約工人
-
     private HandlerThread mThread;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -59,9 +68,12 @@ public class VegeInfo extends AppCompatActivity {
         getWindow().setFlags( WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView( R.layout.activity_vege_info );
 
-        ViewPager viewPager=findViewById( R.id.viewpager );
-        ImageAdapter adapter=new ImageAdapter( this );
-        viewPager.setAdapter( adapter );
+//        viewPager=findViewById( R.id.viewpager );
+//        imgadapter=new ImageAdapter( this);
+//        //設定圖片的位置
+//        viewPager.setAdapter( imgadapter );
+
+        imageview = (ImageView)findViewById (R.id.vege_img);
 
         // 各欄位宣告
 
@@ -75,6 +87,7 @@ public class VegeInfo extends AppCompatActivity {
         harvest = (TextView) findViewById(R.id.harvest);
         vege_name = (TextView) findViewById(R.id.vege_name);
 
+
         //globalvariable變數
         vege = (GlobalVariable)getApplicationContext();
         vegeinfo_name=vege.getWord();
@@ -83,17 +96,12 @@ public class VegeInfo extends AppCompatActivity {
 
         //聘請一個特約工人，有其經紀人派遣其工人做事 (另起一個有Handler的Thread)
         mThread = new HandlerThread("");
-
         //讓Worker待命，等待其工作 (開啟Thread)
         mThread.start();
-
         //找到特約工人的經紀人，這樣才能派遣工作 (找到Thread上的Handler)
         mThreadHandler=new Handler(mThread.getLooper());
-
-
         //請經紀人指派工作名稱 r，給工人做
         mThreadHandler.post(r1);
-
         //首頁作物照片(暫時)
         vege_home = (GlobalVariable)getApplicationContext();
 
@@ -132,6 +140,8 @@ public class VegeInfo extends AppCompatActivity {
 
             if(!vegeinfo_name.equals("No_message")) {
                 line = webservice.VegeInfo_WS(vegeinfo_name);
+
+                img_result = webservice.downImage(vegeinfo_name);
             }
 
             //請經紀人指派工作名稱 r，給工人做
@@ -147,9 +157,9 @@ public class VegeInfo extends AppCompatActivity {
 
         public void run() {
 
-                        String can = "can't not found";
-                        if (!line.equals("can't not found"))
-                        {
+            String can = "can't not found";
+            if (!line.equals("can't not found"))
+            {
                             String[] split_line = line.split("%");
 
                             vege_name.setText(vegeinfo_name);
@@ -162,8 +172,8 @@ public class VegeInfo extends AppCompatActivity {
                             bug.setText(split_line[6]);
                             harvest.setText(split_line[7]);
                         }
-                        else if (line.equals(can))
-                        {
+            else if (line.equals(can))
+            {
                             vege_name.setText(vegeinfo_name);
                             step.setText(can);
                             container.setText(can);
@@ -174,6 +184,20 @@ public class VegeInfo extends AppCompatActivity {
                             bug.setText(can);
                             harvest.setText(can);
                         }
+                        //下載照片
+            try {
+
+                Bitmap bitmap=null;
+                byte[] decode = Base64.decode(img_result,Base64.NO_CLOSE);
+                bitmap = BitmapFactory.decodeByteArray(decode, 0, decode.length);
+                Log.v("test","bitmap: "+decode.toString());
+                imageview.setImageBitmap(bitmap);
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                Log.v("test","錯誤: "+e.toString());
+            }
         }
 
     };

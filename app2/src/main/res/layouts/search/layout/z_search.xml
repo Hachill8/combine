@@ -22,10 +22,10 @@
             android:paddingTop="7dp"
             >
             <RelativeLayout
-                android:layout_width="300dp"
+                android:layout_width="250dp"
                 android:layout_height="match_parent">
                 <ImageView
-                    android:layout_width="280dp"
+                    android:layout_width="230dp"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
                     android:background="@drawable/searchbar"
@@ -34,26 +34,38 @@
                 <AutoCompleteTextView
                     android:id="@+id/search_view"
                     style="@style/Theme.SearchView"
-                    android:layout_width="250dp"
+                    android:layout_width="200dp"
                     android:layout_height="70dp"
                     android:layout_gravity="center"
                     android:layout_marginLeft="20dp"
                     android:background="@null"
-                    android:textSize="20dp"
-                    android:completionThreshold="1" />
+                    android:completionThreshold="1"
+                    android:textSize="20dp" />
 
 
             </RelativeLayout>
+
+            <ImageButton
+                android:id="@+id/BT_plus"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginLeft="-15dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/custom_plus2"/>
 
             <ImageButton
                 android:id="@+id/BT_filter"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:layout_alignParentRight="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="2dp"
                 android:src="@drawable/search_choose"
                 android:layout_gravity="center"
                 android:elevation="4dp"
                 android:background="@drawable/search_choose_bg"/>
+
+
 
         </LinearLayout>
 
@@ -74,235 +86,18 @@
 
         </LinearLayout>
 
-        <android.support.v7.widget.CardView
-            android:id="@+id/vege_card_view1"
+        <android.support.v7.widget.RecyclerView
+            android:id = "@+id/search_recyclerView"
+            android:layout_marginLeft="17dp"
             android:layout_width="340dp"
-            android:layout_height="130dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            app:cardCornerRadius="20dp"
-            >
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="150dp"
-                    android:layout_height="105dp"
-                    android:src="@drawable/vege_cabbage"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="15dp"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/vege1_id"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="高麗菜"
-                        android:textSize="25sp"
-                        android:textColor="#402C2B"
-                        android:layout_marginTop="17dp"
-                        android:layout_marginLeft="10dp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="#03~04、07~11月"
-                        android:textSize="15dp"
-                        android:textColor="#89B094"
-                        android:layout_marginTop="2dp"
-                        android:layout_marginLeft="10dp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="#1~3個月可採收"
-                        android:textSize="15dp"
-                        android:textColor="#89B094"
-                        android:layout_marginLeft="10dp"/>
-
-                </LinearLayout>
-            </LinearLayout>
-
-        </android.support.v7.widget.CardView>
-
-        <android.support.v7.widget.CardView
-            android:id="@+id/vege_card_view2"
-            android:layout_width="340dp"
-            android:layout_height="130dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            app:cardCornerRadius="20dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="150dp"
-                    android:layout_height="105dp"
-                    android:src="@drawable/vege_kon"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="15dp"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/vege2_id"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="空心菜"
-                        android:textSize="25sp"
-                        android:textColor="#402C2B"
-                        android:layout_marginTop="17dp"
-                        android:layout_marginLeft="10dp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="#04~08月"
-                        android:textSize="15dp"
-                        android:textColor="#89B094"
-                        android:layout_marginTop="2dp"
-                        android:layout_marginLeft="10dp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="#15~30天可採收"
-                        android:textSize="15dp"
-                        android:textColor="#89B094"
-                        android:layout_marginLeft="10dp"/>
-
-                </LinearLayout>
-            </LinearLayout>
-
-        </android.support.v7.widget.CardView>
-
-        <android.support.v7.widget.CardView
-            android:id="@+id/vege_card_view3"
-            android:layout_width="340dp"
-            android:layout_height="130dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            app:cardCornerRadius="20dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="150dp"
-                    android:layout_height="105dp"
-                    android:src="@drawable/vege_ciu"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="15dp"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/vege3_id"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="秋葵"
-                        android:textSize="25sp"
-                        android:textColor="#402C2B"
-                        android:layout_marginTop="17dp"
-                        android:layout_marginLeft="10dp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="#04~06月"
-                        android:textSize="15dp"
-                        android:textColor="#89B094"
-                        android:layout_marginTop="2dp"
-                        android:layout_marginLeft="10dp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="#3~4個月可採收"
-                        android:textSize="15dp"
-                        android:textColor="#89B094"
-                        android:layout_marginLeft="10dp"/>
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </android.support.v7.widget.CardView>
-
-        <android.support.v7.widget.CardView
-            android:id="@+id/vege_card_view4"
-            android:layout_width="340dp"
-            android:layout_height="130dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            app:cardCornerRadius="20dp">
-
-            <LinearLayout
-
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="150dp"
-                    android:layout_height="105dp"
-                    android:src="@drawable/vege_carrot"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="15dp"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/vege4_id"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="紅蘿蔔"
-                        android:textSize="25sp"
-                        android:textColor="#402C2B"
-                        android:layout_marginTop="17dp"
-                        android:layout_marginLeft="10dp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="#08~02月"
-                        android:textSize="15dp"
-                        android:textColor="#89B094"
-                        android:layout_marginTop="2dp"
-                        android:layout_marginLeft="10dp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="#3~4個月可採收"
-                        android:textSize="15dp"
-                        android:textColor="#89B094"
-                        android:layout_marginLeft="10dp"/>
-
-                </LinearLayout>
-            </LinearLayout>
-
-        </android.support.v7.widget.CardView>
-
+            />
 
 
 
     </LinearLayout>
+
 </ScrollView>
 

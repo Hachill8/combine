@@ -25,6 +25,8 @@
         <activity android:name=".market.market2" />
         <activity android:name=".user_setting.user_setting" />
         <activity android:name=".record.record_Information" />
+        <activity android:name=".forum.forum_add_new_post"/>
+        <activity android:name=".forum.forum_post2"/>
         <activity android:name=".forum.postpage" />
         <activity android:name=".record.record_Information2" />
         <activity android:name=".MainActivity">

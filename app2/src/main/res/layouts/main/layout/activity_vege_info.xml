@@ -17,18 +17,26 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-
+            <!--
             <android.support.v4.view.ViewPager
                 android:id="@+id/viewpager"
                 android:layout_width="fill_parent"
                 android:layout_height="300dp"
                 android:layout_marginTop="-8dp"/>
 
+            -->
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:id="@+id/vege_img"
+                android:scaleType="fitXY"
+                />
 
             <TextView
                 android:id="@+id/vege_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:text="高麗菜"
                 android:textSize="30dp"
                 android:textColor="#402C2B"

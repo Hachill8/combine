@@ -17,8 +17,11 @@ import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.hy.GlobalVariable;
 import com.example.hy.R;
+import com.example.hy.search.search;
 import com.example.hy.select_model;
+import com.example.hy.webservice;
 
 import static com.example.hy.R.drawable.login2_button_action;
 
@@ -27,7 +30,8 @@ public class login2 extends AppCompatActivity  {
     int gender=0, //判斷目前選到哪個性別
             experience=0; //判斷目前種植經驗多久
     Spinner County,Age;
-
+    String insert_vege_item="";
+    GlobalVariable vege_item;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.v("test","進入login2最上面");
@@ -36,12 +40,15 @@ public class login2 extends AppCompatActivity  {
         setContentView(R.layout.activity_login2);
         Log.v("test","進入login2.xml");
 
+        vege_item = (GlobalVariable)getApplicationContext();
+        insert_vege_item();
 
         btntomodel = (Button) findViewById(R.id.btntomodel);
         btntomodel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.v("test","onClick");
+                vege_item.setVege_item(insert_vege_item);
                 Intent a = new Intent(login2.this, select_model.class);
                 startActivity(a);
 
@@ -55,6 +62,7 @@ public class login2 extends AppCompatActivity  {
         Two_year = (Button) findViewById(R.id.two_year);
         Three_year = (Button) findViewById(R.id.three_year);
 
+        // 選取的效果
         Man.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -156,9 +164,16 @@ public class login2 extends AppCompatActivity  {
         County.setAdapter(adapter1);
         Age.setAdapter(adapter2);
 
-
-
-
     }
 
+
+    public void insert_vege_item() {
+        Thread thread = new Thread() {
+            public void run() {
+                insert_vege_item = webservice.Vegename_list("s");
+            }
+        };
+        thread.start();
+        Log.v("test","1."+insert_vege_item+"2");
+    }
 }
