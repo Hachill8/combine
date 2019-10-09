@@ -472,7 +472,6 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-
             <Button
                 android:id="@+id/start_plant"
                 android:layout_width="140dp"

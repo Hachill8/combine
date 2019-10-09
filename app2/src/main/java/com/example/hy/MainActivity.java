@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent a = new Intent( MainActivity.this, login.class);
+                Intent a = new Intent( MainActivity.this, market2.class);
                 startActivity(a);
 
             }
