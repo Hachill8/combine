@@ -442,24 +442,9 @@
 
             </HorizontalScrollView>
 
-
-
-
-
-
-
-
-
         </LinearLayout>
 
-
-
-
     </ScrollView>
-
-
-
-
 
 
     <android.support.design.widget.BottomNavigationView
@@ -517,16 +502,6 @@
         </LinearLayout>
 
     </android.support.design.widget.BottomNavigationView>
-
-
-
-
-
-
-
-
-
-
 
 
 </LinearLayout>
