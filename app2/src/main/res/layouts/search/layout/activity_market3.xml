@@ -21,44 +21,55 @@
                 android:layout_height="360dp">
 
                 <Button
-                    android:id="@+id/back_2_market"
-                    android:layout_width="35dp"
+                    android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:background="@drawable/market_back2search_product"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginLeft="15dp">
-                </Button>
-
-
-
-                <Button
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginLeft="315dp"
+                    android:layout_marginTop="21dp"
+                    android:layout_marginLeft="312dp"
                     android:background="@drawable/market_shopping_cart">
                 </Button>
 
-            <ImageView
-                android:id="@+id/product_img"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/market_product_1_detail"
-                android:layout_centerInParent="true"
-                android:scaleType="fitXY"
-                >
-            </ImageView>
+                <ImageView
+                    android:id="@+id/product_img"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/market_product_1_detail"
+                    android:scaleType="fitXY"/>
+
+                <ImageView
+                    android:id="@+id/market_cart_base"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginLeft="308dp"
+                    android:background="@drawable/market_cart_back"/>
 
                 <TextView
                     android:id="@+id/product_num_in_cart"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#fff"
-                    android:text=""
-                    android:textSize="10dp"
+                    android:textColor="#f00"
+                    android:text="12"
+                    android:textSize="14dp"
                     android:textStyle="bold"
-                    android:layout_marginTop="7dp"
-                    android:layout_marginLeft="340dp" />
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="331dp" />
+
+                <ImageView
+                    android:id="@+id/market_back_base"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_alignBottom="@+id/market_cart_base"
+                    android:background="@drawable/market_cart_back" />
+
+                <Button
+                    android:id="@+id/back_2_market"
+                    android:layout_width="25dp"
+                    android:layout_height="15dp"
+                    android:background="@drawable/market_back2search_product"
+                    android:layout_marginTop="21dp"
+                    android:layout_marginLeft="13dp">
+                </Button>
 
         </RelativeLayout>
 
