@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#89B094">
+    android:background="#fff">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -20,14 +20,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="360dp">
 
-                <Button
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginTop="21dp"
-                    android:layout_marginLeft="312dp"
-                    android:background="@drawable/market_shopping_cart">
-                </Button>
-
                 <ImageView
                     android:id="@+id/product_img"
                     android:layout_width="match_parent"
@@ -35,41 +27,55 @@
                     android:background="@drawable/market_product_1_detail"
                     android:scaleType="fitXY"/>
 
-                <ImageView
-                    android:id="@+id/market_cart_base"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="14dp"
-                    android:layout_marginLeft="308dp"
-                    android:background="@drawable/market_cart_back"/>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp">
 
-                <TextView
-                    android:id="@+id/product_num_in_cart"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#f00"
-                    android:text="12"
-                    android:textSize="14dp"
-                    android:textStyle="bold"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="331dp" />
+                    <Button
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="312dp"
+                        android:background="@drawable/market_shopping_cart">
+                    </Button>
 
-                <ImageView
-                    android:id="@+id/market_back_base"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="12dp"
-                    android:layout_alignBottom="@+id/market_cart_base"
-                    android:background="@drawable/market_cart_back" />
+                    <ImageView
+                        android:id="@+id/market_cart_base"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="308dp"
+                        android:background="@drawable/market_cart_back"/>
 
-                <Button
-                    android:id="@+id/back_2_market"
-                    android:layout_width="25dp"
-                    android:layout_height="15dp"
-                    android:background="@drawable/market_back2search_product"
-                    android:layout_marginTop="21dp"
-                    android:layout_marginLeft="13dp">
-                </Button>
+                    <TextView
+                        android:id="@+id/product_num_in_cart"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#f00"
+                        android:text="12"
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="7dp"
+                        android:layout_marginLeft="332dp"/>
+
+                    <ImageView
+                        android:id="@+id/market_back_base"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="14dp"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/market_cart_back" />
+
+                    <Button
+                        android:id="@+id/back_2_market"
+                        android:layout_width="25dp"
+                        android:layout_height="15dp"
+                        android:background="@drawable/market_back2search_product"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="15dp">
+                    </Button>
+
+                </RelativeLayout>
 
         </RelativeLayout>
 
@@ -248,12 +254,12 @@
     </ScrollView>
 
 
-
     <android.support.design.widget.BottomNavigationView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="620dp"
-        android:background="#fff">
+        android:background="#fff"
+        android:layout_alignParentBottom="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
