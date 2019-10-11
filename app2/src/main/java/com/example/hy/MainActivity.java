@@ -19,6 +19,7 @@ import com.example.hy.login.login;
 import com.example.hy.login.login2;
 import com.example.hy.market.market;
 import com.example.hy.market.market2;
+import com.example.hy.market.market_p4;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags( WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_main );
+        setContentView(R.layout.activity_main);
 
         logo = (TextView) findViewById(R.id.logo);
         tx2 = (TextView) findViewById(R.id.tx2);
@@ -62,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent a = new Intent( MainActivity.this,market.class);
+                Intent a = new Intent( MainActivity.this, market_p4.class);
                 startActivity(a);
 
             }

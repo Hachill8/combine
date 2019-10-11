@@ -77,6 +77,22 @@
         <item>65歲以上</item>
     </string-array>
 
+
+    <string-array name="運送方式">
+        <item>選擇運送方式</item>
+        <item>7-11取貨</item>
+        <item>全家取貨</item>
+        <item>宅配</item>
+
+    </string-array>
+
+    <string-array name="付款方式">
+        <item>選擇付款方式</item>
+        <item>貨到付款</item>
+        <item>銀行轉帳</item>
+        <item>信用卡/金融卡</item>
+    </string-array>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

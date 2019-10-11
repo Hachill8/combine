@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto">
+
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:layout_gravity="center"
+        card_view:cardCornerRadius="0dp"
+        android:background="#fff">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="190dp">
+
+            <Button
+                android:id="@+id/goto_product_detail_1"
+                android:layout_width="150dp"
+                android:layout_height="160dp"
+                android:background="@drawable/market_product_1"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp">
+            </Button>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="白鐵移植鏝"
+                android:textSize="20dp"
+                android:layout_marginLeft="200dp"
+                android:layout_marginTop="30dp">
+            </TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="單價：NT$85"
+                android:textSize="20dp"
+                android:layout_marginTop="70dp"
+                android:layout_marginLeft="200dp">
+            </TextView>
+
+            <Button
+                android:id="@+id/btnDecrease"
+                android:layout_width="25dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="200dp"
+                android:layout_marginTop="117dp"
+                android:background="#00000000"/>
+
+            <Button
+                android:id="@+id/btnIncrease"
+                android:layout_width="25dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="245dp"
+                android:layout_marginTop="117dp"
+                android:background="#00000000" />
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="200dp"
+                android:layout_marginTop="110dp"
+                android:background="@drawable/market_product_number" />
+
+            <TextView
+                android:id="@+id/etAmount"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="223dp"
+                android:layout_marginTop="119dp"
+                android:background="#fff"
+                android:gravity="center"
+                android:text="1"
+                android:textColor="#000000"
+                android:textSize="17dp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/market_p4_line1"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="190dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#808080"
+                android:textSize="18dp"
+                android:text="小計：NT$85"
+                android:layout_marginLeft="250dp"
+                android:layout_centerVertical="true" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/market_p4_line1"/>
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</android.support.v7.widget.CardView>

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto">
 
     <RelativeLayout
         android:id="@+id/market_p4_head"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="40dp"
         android:background="@drawable/market_p4_heading_back">
 
         <TextView
@@ -16,7 +17,7 @@
             android:layout_centerInParent="true"
             android:text="務農族"
             android:textColor="#000"
-            android:textSize="32dp"/>
+            android:textSize="22dp"/>
 
         <Button
             android:id="@+id/back_2_market"
@@ -28,11 +29,10 @@
 
     </RelativeLayout>
 
-    
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:layout_marginTop="70dp">
+        android:layout_marginTop="40dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -50,5 +50,156 @@
             android:background="@drawable/market_p4_line1"/>
 
     </RelativeLayout>
+
+    <ScrollView
+       android:layout_width="match_parent"
+       android:layout_height="280dp"
+       android:layout_marginTop="70dp">
+
+       <android.support.v7.widget.RecyclerView
+                android:id = "@+id/market4_shopping_cart_recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="240dp"
+                android:layout_marginTop="5dp"/>
+
+   </ScrollView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="350dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <Spinner
+                android:id="@+id/shopping_cart_deliver_spinner"
+                android:layout_width="260dp"
+                android:layout_height="35dp"
+                android:layout_centerInParent="true"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="55dp">
+
+            <Spinner
+                android:id="@+id/shopping_cart_pay_spinner"
+                android:layout_width="260dp"
+                android:layout_height="35dp"
+                android:layout_centerInParent="true"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_marginTop="450dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:textColor="#808080"
+                android:text="共計 2 件商品"
+                android:gravity="right"
+                android:layout_marginRight="35dp"
+                android:layout_centerVertical="true"/>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:textColor="#808080"
+                android:text="商品總計：NT$284"
+                android:gravity="right"
+                android:layout_marginRight="35dp"
+                android:layout_centerVertical="true"/>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="40dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:textColor="#808080"
+                android:text="運費：NT$80"
+                android:gravity="right"
+                android:layout_marginRight="35dp"
+                android:layout_centerVertical="true"/>
+
+
+        </RelativeLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/market_p4_line2"/>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="515dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textSize="20dp"
+            android:textColor="#D10000"
+            android:text="應付金額：NT$364"
+            android:gravity="right"
+            android:layout_marginRight="35dp"
+            android:layout_centerVertical="true"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginTop="555dp">
+        
+        <Button
+            android:layout_width="180dp"
+            android:layout_height="50dp"
+            android:background="@drawable/market_p4_bt1"
+            android:layout_marginTop="0dp"
+            android:layout_alignParentEnd="true"
+            android:text="下一步"
+            android:textSize="20dp"
+            android:textColor="#fff"/>
+
+
+
+    </RelativeLayout>
+
 
 </RelativeLayout>

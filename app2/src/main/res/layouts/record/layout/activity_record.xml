@@ -43,7 +43,9 @@
             android:layout_marginRight="20dp"
             android:background="@drawable/search_condition2"
             android:text="" />
+
     </RelativeLayout>
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
