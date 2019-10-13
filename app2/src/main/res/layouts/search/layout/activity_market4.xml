@@ -7,41 +7,25 @@
     <RelativeLayout
         android:id="@+id/market_p4_head"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="@drawable/market_p4_heading_back">
+        android:layout_height="50dp"
+        android:background="#779880">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerInParent="true"
-            android:text="務農族"
-            android:textColor="#000"
-            android:textSize="22dp"/>
+            android:text="購物車()"
+            android:textColor="#fff"
+            android:textSize="24dp"/>
 
         <Button
             android:id="@+id/back_2_market"
             android:layout_width="25dp"
             android:layout_height="15dp"
-            android:background="@drawable/market_p4_back"
+            android:background="@drawable/market_back2search_product"
             android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"/>
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_marginTop="40dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#808080"
-            android:textSize="16dp"
-            android:text="購物車()"
-            android:layout_marginLeft="15dp"
-            android:layout_centerVertical="true" />
 
         <ImageView
             android:layout_width="match_parent"
@@ -53,8 +37,8 @@
 
     <ScrollView
        android:layout_width="match_parent"
-       android:layout_height="280dp"
-       android:layout_marginTop="70dp">
+       android:layout_height="370dp"
+       android:layout_marginTop="50dp">
 
        <android.support.v7.widget.RecyclerView
                 android:id = "@+id/market4_shopping_cart_recyclerView"
@@ -67,12 +51,19 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_marginTop="350dp">
+        android:layout_marginTop="420dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/market_p4_line1"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp">
+
 
             <Spinner
                 android:id="@+id/shopping_cart_deliver_spinner"
@@ -100,21 +91,21 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="65dp"
-        android:layout_marginTop="450dp">
+        android:layout_marginTop="520dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="20dp">
 
             <TextView
+                android:id="@+id/product_amount_sum"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="16dp"
-                android:textColor="#808080"
-                android:text="共計 2 件商品"
-                android:gravity="right"
                 android:layout_marginRight="35dp"
-                android:layout_centerVertical="true"/>
+                android:gravity="right"
+                android:text="共計 2 件商品"
+                android:textColor="#808080"
+                android:textSize="16dp" />
 
 
         </RelativeLayout>
@@ -125,11 +116,12 @@
             android:layout_marginTop="20dp">
 
             <TextView
+                android:id="@+id/product_price_sum"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16dp"
                 android:textColor="#808080"
-                android:text="商品總計：NT$284"
+                android:text="商品總計：NT$ 284"
                 android:gravity="right"
                 android:layout_marginRight="35dp"
                 android:layout_centerVertical="true"/>
@@ -167,15 +159,16 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_marginTop="515dp">
+        android:layout_marginTop="585dp">
 
         <TextView
+            android:id="@+id/product_all_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:textSize="20dp"
             android:textColor="#D10000"
-            android:text="應付金額：NT$364"
+            android:text="應付金額：NT$ 364"
             android:gravity="right"
             android:layout_marginRight="35dp"
             android:layout_centerVertical="true"/>
@@ -185,7 +178,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:layout_marginTop="555dp">
+        android:layout_marginTop="625dp">
         
         <Button
             android:layout_width="180dp"

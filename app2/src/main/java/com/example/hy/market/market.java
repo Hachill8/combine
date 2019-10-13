@@ -1,5 +1,6 @@
 package com.example.hy.market;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -25,10 +26,14 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.hy.GlobalVariable;
 import com.example.hy.R;
 import com.example.hy.home.home2;
+import com.example.hy.record.record;
+import com.example.hy.record.record_Cardview;
+import com.example.hy.record.record_Information2;
 import com.example.hy.search.VegeInfo;
 import com.example.hy.search.search;
 import com.example.hy.search.vege_cardview;
@@ -59,18 +64,6 @@ public class market extends AppCompatActivity
         getWindow().setFlags( WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_market2);
 
-        Button goto_product_detail_1 = (Button) findViewById(R.id.goto_product_detail_1);
-        goto_product_detail_1.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                Intent a = new Intent(market.this,market2.class);
-                startActivity(a);
-            }
-        } );
-
-
         //聘請一個特約工人，有其經紀人派遣其工人做事 (另起一個有Handler的Thread)
         mThread = new HandlerThread("");
         //讓Worker待命，等待其工作 (開啟Thread)
@@ -91,6 +84,25 @@ public class market extends AppCompatActivity
                 startActivity(x);
             }
         });
+
+
+        //cardview1 建立
+        List<market_cardview> cardviewList = new ArrayList<>();
+        cardviewList.add(new market_cardview(0,R.drawable.market_product_1,"白鐵移植鏝","85"));
+        cardviewList.add(new market_cardview(1,R.drawable.market_product_2,"長型盆栽","199"));
+        cardviewList.add(new market_cardview(2,R.drawable.market_product_3,"二合一澆水器","268"));
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.market2_recyclerview1);
+        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL));
+        recyclerView.setAdapter(new market.CardAdapter(this, cardviewList));
+
+        //cardview2 建立
+        List<market_cardview> cardviewList2 = new ArrayList<>();
+        cardviewList2.add(new market_cardview(0,R.drawable.market_product_4,"園藝工具組","228"));
+        cardviewList2.add(new market_cardview(1,R.drawable.market_product_5,"靚土培養土","159"));
+        cardviewList2.add(new market_cardview(2,R.drawable.market_product_6,"防刺園藝手套","178"));
+        RecyclerView recyclerView2 = (RecyclerView) findViewById(R.id.market2_recyclerview2);
+        recyclerView2.setLayoutManager(new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL));
+        recyclerView2.setAdapter(new market.CardAdapter(this, cardviewList2));
 
     }
 
@@ -138,6 +150,68 @@ public class market extends AppCompatActivity
         //解聘工人 (關閉Thread)
         if (mThread != null) {
             mThread.quit();
+        }
+    }
+
+
+
+
+    private class CardAdapter extends  RecyclerView.Adapter<market.CardAdapter.ViewHolder>{
+        private Context context;
+        public List<market_cardview> cardviewList;
+
+        CardAdapter(Context context, List<market_cardview> cardviewList) {
+            this.context = context;
+            this.cardviewList = cardviewList;
+        }
+
+        @Override
+        public market.CardAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+            View view = LayoutInflater.from(context).inflate(R.layout.activity_market2_cardview,viewGroup,false);
+            return new market.CardAdapter.ViewHolder(view);
+        }
+
+        @Override
+        public void onBindViewHolder(market.CardAdapter.ViewHolder viewHolder, int i) {
+            final market_cardview cardview = cardviewList.get(i);
+            viewHolder.name.setText(String.valueOf(cardview.getName()));
+            viewHolder.product_img.setImageResource(cardview.getImage());
+            viewHolder.price.setText("NT$ "+cardview.getPrice());
+
+            viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    addItem(cardviewList.size());
+                    market_item.setMarket_item(String.valueOf(cardview.getName()));
+                    Intent intent = new Intent(market.this, market2.class);
+                    startActivity(intent);
+                }
+            });
+        }
+
+        @Override
+        public int getItemCount() {
+            return cardviewList.size();
+        }
+
+        class ViewHolder extends RecyclerView.ViewHolder{
+            ImageView product_img;
+            TextView name,price;
+
+            ViewHolder(View itemView){
+                super(itemView);
+                product_img = (ImageView) itemView.findViewById(R.id.goto_product_detail);
+                name = (TextView) itemView.findViewById(R.id.product_name);
+                price = (TextView) itemView.findViewById(R.id.product_price);
+            }
+        }
+        public  void addItem(int i){
+//            fg = true;
+//            num = cardviewList.size()-1;
+//            //add(位置,資料)
+//            cardviewList.add(i, new record_Cardview(id,"小白菜", R.drawable.icon201));
+//            id=id+1;
+//            notifyItemInserted(i);
         }
     }
 }

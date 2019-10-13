@@ -1,6 +1,5 @@
 package com.example.hy.market;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -8,18 +7,15 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.AttributeSet;
 import android.util.Base64;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.hy.GlobalVariable;
 import com.example.hy.R;
@@ -33,7 +29,7 @@ public class market2 extends AppCompatActivity
     private Button btnIncrease;
     private Button back_2_market;
     private Button add_to_cart;
-
+    private ImageButton market_cart_base;
     //找到UI工人的經紀人，這樣才能派遣工作  (找到顯示畫面的UI Thread上的Handler)
     private Handler mUI_Handler = new Handler();
     //宣告特約工人的經紀人
@@ -41,13 +37,14 @@ public class market2 extends AppCompatActivity
     //宣告特約工人
     private HandlerThread mThread;
     GlobalVariable market_item;
-    private String good_name,line="";
+    private String good_name,line="can't not found";
 
     //商品資訊
     private TextView Product_name1,Product_name2,Price,Product_dimension,Origin,Characteristic;
     String img_result; //圖片字串
     ImageView Product_img;
 
+    String product_cart_info=""; //抓商品相關資料給購物車
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -67,10 +64,14 @@ public class market2 extends AppCompatActivity
         Origin = (TextView)findViewById(R.id.origin);
         Characteristic = (TextView)findViewById(R.id.characteristic);
         Product_img = (ImageView)findViewById(R.id.product_img);
-
-
-
-
+        market_cart_base = (ImageButton)findViewById(R.id.market_cart_base);
+        market_cart_base.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(market2.this,market_p4.class);
+                startActivity(i);
+            }
+        });
 
 
 
@@ -119,7 +120,7 @@ public class market2 extends AppCompatActivity
             }
         });
 
-
+        //回MARKET
         back_2_market = (Button) findViewById(R.id.back_2_market);
         back_2_market.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,7 +130,7 @@ public class market2 extends AppCompatActivity
             }
         });
 
-
+        //按下加入購物車
         add_to_cart = (Button) findViewById(R.id.add_to_cart);
         add_to_cart.setOnClickListener(new View.OnClickListener()
         {
@@ -140,7 +141,11 @@ public class market2 extends AppCompatActivity
                 if (i == R.id.add_to_cart)
                 {
                     count_product_num_in_cart=count_product_num_in_cart+amount;
-                    product_num_in_cart.setText(count_product_num_in_cart+ "");
+//                    product_num_in_cart.setText(count_product_num_in_cart+ "");
+                    product_cart_info = line +"切"+amount;
+                    Log.v("test",product_cart_info);
+                    //請經紀人指派工作名稱 r，給工人做
+                    mThreadHandler.post(r1);
                 }
 
             }
@@ -156,10 +161,14 @@ public class market2 extends AppCompatActivity
 
         public void run() {
 
-            if(!good_name.equals("無")) {
+            if(!good_name.equals("無") && product_cart_info.equals("")) {
                 line = webservice.GoodInfo_WS(good_name);
             }
 
+            if(!product_cart_info.equals(""))
+            {
+                product_cart_info = webservice.Good_in_cart(product_cart_info);
+            }
             //請經紀人指派工作名稱 r，給工人做
             mUI_Handler.post(r2);
 
@@ -174,11 +183,11 @@ public class market2 extends AppCompatActivity
         public void run() {
 
             String can = "無";
-            if (!line.equals("無"))
+            if (!line.equals("can't not found")&& product_cart_info.equals(""))
             {
                 String[] split_line = line.split("切");
                 Log.v("test","line的內容:   "+line);
-                Log.v("test","Split line 的內容是: "+split_line[0]+"   和   "+split_line[1]+"   和   "+split_line[2]);
+//                Log.v("test","Split line 的內容是: "+split_line[0]+"   和   "+split_line[1]+"   和   "+split_line[2]);
                 Product_name1.setText(good_name);
                 Product_name2.setText(good_name);
                 Price.setText("$ "+split_line[0]);
@@ -187,10 +196,12 @@ public class market2 extends AppCompatActivity
                 Characteristic.setText(split_line[3]);
                 img_result = split_line[5];     //split_line[4]是商品數量
                 Log.v("test","img的字串: "+img_result);
+
+                line = good_name+"切"+split_line[0]+"切"+good_name;
  //               商品數量.setText(split_line[4]);
 
             }
-            else if (line.equals(can))
+            else if(line.equals("can't not found") && product_cart_info.equals(""))
             {
                 Product_name1.setText(good_name);
                 Product_name2.setText(good_name);
@@ -200,20 +211,28 @@ public class market2 extends AppCompatActivity
                 Characteristic.setText(can);
                 //               商品數量.setText(split_line[4]);
             }
+            if(product_cart_info.equals("")) {
+                //下載照片
+                try {
 
-            //下載照片
-            try {
-
-                Bitmap bitmap=null;
-                byte[] decode = Base64.decode(img_result,Base64.NO_CLOSE);
-                bitmap = BitmapFactory.decodeByteArray(decode, 0, decode.length);
-                Log.v("test","bitmap: "+decode.toString());
-                Product_img.setImageBitmap(bitmap);
+                    Bitmap bitmap = null;
+                    byte[] decode = Base64.decode(img_result, Base64.NO_CLOSE);
+                    bitmap = BitmapFactory.decodeByteArray(decode, 0, decode.length);
+                    Log.v("test", "bitmap: " + decode.toString());
+                    Product_img.setImageBitmap(bitmap);
 
 
-            } catch (Exception e) {
-                e.printStackTrace();
-                Log.v("test","圖片錯誤: "+e.toString());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Log.v("test", "圖片錯誤: " + e.toString());
+                }
+            }
+
+            if(!product_cart_info.equals(""))
+            {
+                Toast.makeText(market2.this,
+                        product_cart_info,Toast.LENGTH_SHORT).show();
+
             }
         }
 
@@ -234,15 +253,5 @@ public class market2 extends AppCompatActivity
     }
 
 
-
-
-
-
-
-    public void click(View view)
-    {
-        Intent a = new Intent(market2.this,market.class);
-        startActivity(a);
-    }
 
 }
