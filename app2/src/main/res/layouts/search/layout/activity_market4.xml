@@ -37,7 +37,7 @@
 
     <ScrollView
        android:layout_width="match_parent"
-       android:layout_height="370dp"
+       android:layout_height="410dp"
        android:layout_marginTop="50dp">
 
        <android.support.v7.widget.RecyclerView
@@ -50,8 +50,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginTop="420dp">
+        android:layout_height="75dp"
+        android:layout_marginTop="460dp">
 
         <ImageView
             android:layout_width="match_parent"
@@ -68,7 +68,7 @@
             <Spinner
                 android:id="@+id/shopping_cart_deliver_spinner"
                 android:layout_width="260dp"
-                android:layout_height="35dp"
+                android:layout_height="25dp"
                 android:layout_centerInParent="true"/>
 
         </RelativeLayout>
@@ -76,12 +76,12 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="55dp">
+            android:layout_marginTop="40dp">
 
             <Spinner
                 android:id="@+id/shopping_cart_pay_spinner"
                 android:layout_width="260dp"
-                android:layout_height="35dp"
+                android:layout_height="25dp"
                 android:layout_centerInParent="true"/>
 
         </RelativeLayout>
@@ -90,12 +90,12 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="65dp"
-        android:layout_marginTop="520dp">
+        android:layout_height="75dp"
+        android:layout_marginTop="535dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="20dp">
+            android:layout_height="23.5dp">
 
             <TextView
                 android:id="@+id/product_amount_sum"
@@ -112,8 +112,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_marginTop="20dp">
+            android:layout_height="23.5dp"
+            android:layout_marginTop="23.5dp">
 
             <TextView
                 android:id="@+id/product_price_sum"
@@ -131,8 +131,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_marginTop="40dp">
+            android:layout_height="23dp"
+            android:layout_marginTop="47dp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -158,8 +158,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="585dp">
+        android:layout_height="35dp"
+        android:layout_marginTop="610dp">
 
         <TextView
             android:id="@+id/product_all_price"
@@ -178,13 +178,13 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:layout_marginTop="625dp">
+        android:layout_marginTop="645dp">
         
         <Button
             android:layout_width="180dp"
             android:layout_height="50dp"
             android:background="@drawable/market_p4_bt1"
-            android:layout_marginTop="0dp"
+            android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
             android:text="下一步"
             android:textSize="20dp"

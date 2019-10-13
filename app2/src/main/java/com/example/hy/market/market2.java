@@ -29,7 +29,7 @@ public class market2 extends AppCompatActivity
     private Button btnIncrease;
     private Button back_2_market;
     private Button add_to_cart;
-    private ImageButton market_cart_base;
+    private Button market_cart;
     //找到UI工人的經紀人，這樣才能派遣工作  (找到顯示畫面的UI Thread上的Handler)
     private Handler mUI_Handler = new Handler();
     //宣告特約工人的經紀人
@@ -64,8 +64,8 @@ public class market2 extends AppCompatActivity
         Origin = (TextView)findViewById(R.id.origin);
         Characteristic = (TextView)findViewById(R.id.characteristic);
         Product_img = (ImageView)findViewById(R.id.product_img);
-        market_cart_base = (ImageButton)findViewById(R.id.market_cart_base);
-        market_cart_base.setOnClickListener(new View.OnClickListener() {
+        market_cart = (Button)findViewById(R.id.market_cart);
+        market_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(market2.this,market_p4.class);

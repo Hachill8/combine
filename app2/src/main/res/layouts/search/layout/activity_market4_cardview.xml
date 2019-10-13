@@ -6,32 +6,39 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="240dp"
+        android:layout_height="170dp"
         android:layout_gravity="center"
         card_view:cardCornerRadius="0dp"
         android:background="#fff">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="190dp">
+            android:layout_height="140dp">
 
             <ImageView
                 android:id="@+id/goto_product_detail_1"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-
+                android:layout_width="120dp"
+                android:layout_height="120dp"
                 android:layout_marginLeft="15dp"
-                android:layout_marginTop="15dp">
+                android:layout_marginTop="10dp">
             </ImageView>
+
+            <Button
+                android:id="@+id/remove_product_in_cart"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_marginLeft="150dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/market_p4_remove_product"/>
 
             <TextView
                 android:id="@+id/product_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="白鐵移植鏝"
-                android:textSize="20dp"
+                android:textSize="16dp"
                 android:layout_marginLeft="200dp"
-                android:layout_marginTop="30dp">
+                android:layout_marginTop="20dp">
             </TextView>
 
             <TextView
@@ -39,46 +46,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="單價：NT$ 85"
-                android:textSize="20dp"
-                android:layout_marginTop="70dp"
+                android:textSize="16dp"
+                android:layout_marginTop="45dp"
                 android:layout_marginLeft="200dp">
             </TextView>
-            <!--
-            <Button
-                android:id="@+id/btnDecrease"
-                android:layout_width="25dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="200dp"
-                android:layout_marginTop="117dp"
-                android:background="#00000000"/>
 
-            <Button
-                android:id="@+id/btnIncrease"
-                android:layout_width="25dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="245dp"
-                android:layout_marginTop="117dp"
-                android:background="#00000000" />
-
-
-            <ImageView
-                android:layout_width="70dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="200dp"
-                android:layout_marginTop="110dp"
-                android:background="@drawable/market_product_number" />
-            -->
             <TextView
                 android:id="@+id/etAmount"
                 android:layout_width="wrap_content"
-                android:layout_height="25dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="200dp"
-                android:layout_marginTop="119dp"
+                android:layout_marginTop="100dp"
                 android:background="#fff"
                 android:gravity="center"
                 android:text="數量: 1"
                 android:textColor="#000000"
-                android:textSize="17dp"
+                android:textSize="16dp"
                 android:textStyle="bold" />
 
             <ImageView
@@ -91,15 +74,15 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="190dp">
+            android:layout_height="30dp"
+            android:layout_marginTop="140dp">
 
             <TextView
                 android:id="@+id/sum1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="#808080"
-                android:textSize="18dp"
+                android:textSize="16dp"
                 android:text="小計：NT$ 85"
                 android:gravity="right"
                 android:layout_marginRight="35dp"
