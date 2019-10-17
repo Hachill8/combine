@@ -27,7 +27,7 @@ public class market2 extends AppCompatActivity
     public TextView etAmount,product_num_in_cart;
     private Button btnDecrease;
     private Button btnIncrease;
-    private Button back_2_market;
+    private Button back_market;
     private Button add_to_cart;
     private Button market_cart;
     //找到UI工人的經紀人，這樣才能派遣工作  (找到顯示畫面的UI Thread上的Handler)
@@ -121,8 +121,8 @@ public class market2 extends AppCompatActivity
         });
 
         //回MARKET
-        back_2_market = (Button) findViewById(R.id.back_2_market);
-        back_2_market.setOnClickListener(new View.OnClickListener() {
+        back_market = (Button) findViewById(R.id.back_market);
+        back_market.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent a = new Intent(market2.this, market.class);
@@ -143,7 +143,7 @@ public class market2 extends AppCompatActivity
                     count_product_num_in_cart=count_product_num_in_cart+amount;
 //                    product_num_in_cart.setText(count_product_num_in_cart+ "");
                     product_cart_info = line +"切"+amount;
-                    Log.v("test",product_cart_info);
+                    Log.v("test","product_cart_info: "+product_cart_info);
                     //請經紀人指派工作名稱 r，給工人做
                     mThreadHandler.post(r1);
                 }
@@ -169,6 +169,7 @@ public class market2 extends AppCompatActivity
             {
                 product_cart_info = webservice.Good_in_cart(product_cart_info);
             }
+            Log.v("test","line的內容:3   "+line);
             //請經紀人指派工作名稱 r，給工人做
             mUI_Handler.post(r2);
 
@@ -183,8 +184,9 @@ public class market2 extends AppCompatActivity
         public void run() {
 
             String can = "無";
-            if (!line.equals("can't not found")&& product_cart_info.equals(""))
+            if (!line.equals("can't not found") && product_cart_info.equals("") )
             {
+                Log.v("test","line的內容:2   "+line);
                 String[] split_line = line.split("切");
                 Log.v("test","line的內容:   "+line);
 //                Log.v("test","Split line 的內容是: "+split_line[0]+"   和   "+split_line[1]+"   和   "+split_line[2]);
@@ -195,7 +197,23 @@ public class market2 extends AppCompatActivity
                 Origin.setText(split_line[2]);
                 Characteristic.setText(split_line[3]);
                 img_result = split_line[5];     //split_line[4]是商品數量
-                Log.v("test","img的字串: "+img_result);
+                product_num_in_cart.setText(split_line[6]);
+                //下載照片
+                try {
+
+                    Bitmap bitmap = null;
+                    byte[] decode = Base64.decode(img_result, Base64.NO_CLOSE);
+                    bitmap = BitmapFactory.decodeByteArray(decode, 0, decode.length);
+                    Log.v("test", "bitmap: " + decode.toString());
+                    Product_img.setImageBitmap(bitmap);
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Log.v("test", "圖片錯誤: " + e.toString());
+                }
+
+                Log.v("test","product_num_in_cart: "+img_result);
 
                 line = good_name+"切"+split_line[0]+"切"+good_name;
  //               商品數量.setText(split_line[4]);
@@ -211,28 +229,21 @@ public class market2 extends AppCompatActivity
                 Characteristic.setText(can);
                 //               商品數量.setText(split_line[4]);
             }
-            if(product_cart_info.equals("")) {
-                //下載照片
-                try {
-
-                    Bitmap bitmap = null;
-                    byte[] decode = Base64.decode(img_result, Base64.NO_CLOSE);
-                    bitmap = BitmapFactory.decodeByteArray(decode, 0, decode.length);
-                    Log.v("test", "bitmap: " + decode.toString());
-                    Product_img.setImageBitmap(bitmap);
-
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Log.v("test", "圖片錯誤: " + e.toString());
-                }
-            }
-
             if(!product_cart_info.equals(""))
             {
-                Toast.makeText(market2.this,
-                        product_cart_info,Toast.LENGTH_SHORT).show();
-
+                String[] split_info;
+                if(product_cart_info.contains("切"))
+                {
+                    split_info = product_cart_info.split("切");
+                    product_num_in_cart.setText(split_info[1]);
+                    Toast.makeText(market2.this,
+                            split_info[0],Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    Toast.makeText(market2.this,
+                            product_cart_info,Toast.LENGTH_SHORT).show();
+                }
             }
         }
 

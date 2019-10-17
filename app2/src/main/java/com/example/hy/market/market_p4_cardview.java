@@ -19,6 +19,7 @@ public class market_p4_cardview
         this.price = price;
         this.sum = sum;
         this.amount = amount;
+        this.id = id;
     }
 
     public String getAmount(){

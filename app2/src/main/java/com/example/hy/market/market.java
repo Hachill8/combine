@@ -27,6 +27,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.hy.GlobalVariable;
 import com.example.hy.R;
@@ -63,16 +64,41 @@ public class market extends AppCompatActivity
         super.onCreate(savedInstanceState);
         getWindow().setFlags( WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_market2);
-
-        //聘請一個特約工人，有其經紀人派遣其工人做事 (另起一個有Handler的Thread)
-        mThread = new HandlerThread("");
-        //讓Worker待命，等待其工作 (開啟Thread)
-        mThread.start();
-        //找到特約工人的經紀人，這樣才能派遣工作 (找到Thread上的Handler)
-        mThreadHandler=new Handler(mThread.getLooper());
-        mThreadHandler.post(r1);
-
         market_item  = (GlobalVariable)getApplicationContext();
+        Button market_to_cart = (Button)findViewById(R.id.market_to_cart);
+        market_to_cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(market.this,market_p4.class);
+                startActivity(i);
+            }
+        });
+
+        Button search_market_bar_to_productinfo = (Button)findViewById(R.id.search_market_bar_to_productinfo);
+        search_market_bar_to_productinfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.v("test","TextView:"+Search_bar.getText());
+                for(int i =0;i<split_line.length;i++)
+                {
+                    if(Search_bar.getText().toString().equals(split_line[i]))
+                    {
+                        market_item.setMarket_item(Search_bar.getText().toString());
+                        Intent x=new Intent(market.this, market2.class);
+                        startActivity(x);
+                    }
+                    else if(i+1==split_line.length)
+                    {
+                        Toast.makeText(market.this,"查無資料!",Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+
+
+
+            }
+        });
+
         Search_bar = (AutoCompleteTextView) findViewById(R.id.search_market_bar);
         Search_bar.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             //點擊後抓searchview的文字並跳轉到作物資訊
@@ -85,6 +111,13 @@ public class market extends AppCompatActivity
             }
         });
 
+        //聘請一個特約工人，有其經紀人派遣其工人做事 (另起一個有Handler的Thread)
+        mThread = new HandlerThread("");
+        //讓Worker待命，等待其工作 (開啟Thread)
+        mThread.start();
+        //找到特約工人的經紀人，這樣才能派遣工作 (找到Thread上的Handler)
+        mThreadHandler=new Handler(mThread.getLooper());
+        mThreadHandler.post(r1);
 
         //cardview1 建立
         List<market_cardview> cardviewList = new ArrayList<>();

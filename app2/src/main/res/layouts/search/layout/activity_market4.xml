@@ -11,11 +11,12 @@
         android:background="#779880">
 
         <TextView
+            android:id="@+id/cart_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerInParent="true"
-            android:text="購物車()"
+            android:text="購物車(0)"
             android:textColor="#fff"
             android:textSize="24dp"/>
 
@@ -103,7 +104,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="35dp"
                 android:gravity="right"
-                android:text="共計 2 件商品"
+                android:text="共計 0 件商品"
                 android:textColor="#808080"
                 android:textSize="16dp" />
 
@@ -121,7 +122,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="16dp"
                 android:textColor="#808080"
-                android:text="商品總計：NT$ 284"
+                android:text="商品總計：NT$ 0"
                 android:gravity="right"
                 android:layout_marginRight="35dp"
                 android:layout_centerVertical="true"/>
@@ -135,11 +136,12 @@
             android:layout_marginTop="47dp">
 
             <TextView
+                android:id="@+id/fare"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16dp"
                 android:textColor="#808080"
-                android:text="運費：NT$80"
+                android:text="運費：NT$ 0"
                 android:gravity="right"
                 android:layout_marginRight="35dp"
                 android:layout_centerVertical="true"/>
@@ -168,7 +170,7 @@
             android:layout_marginTop="5dp"
             android:textSize="20dp"
             android:textColor="#D10000"
-            android:text="應付金額：NT$ 364"
+            android:text="應付金額：NT$ 0"
             android:gravity="right"
             android:layout_marginRight="35dp"
             android:layout_centerVertical="true"/>

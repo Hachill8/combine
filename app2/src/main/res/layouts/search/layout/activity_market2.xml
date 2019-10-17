@@ -38,6 +38,7 @@
             </Button>
 
             <Button
+                android:id="@+id/market_to_cart"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_marginTop="15dp"
@@ -56,7 +57,7 @@
 
             </TextView>
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
                 android:layout_centerHorizontal="true"
@@ -66,20 +67,28 @@
                 android:id="@+id/search_market_bar"
                 android:layout_width="220dp"
                 android:layout_height="35dp"
-                android:layout_alignRight="@+id/search_bar"
-                android:layout_centerHorizontal="true"
                 android:background="@drawable/market_search_bar"
                 android:completionThreshold="1"
+                android:hint="搜尋商品"
                 card_view:ignore="LabelFor" />
+
+                <Button
+                    android:id="@+id/search_market_bar_to_productinfo"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/gender"
+                    android:layout_marginLeft="185dp">
+                </Button>
 
             <Button
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:background="@drawable/market_filter"
+                    android:layout_toRightOf="@+id/search_market_bar"
                     android:layout_marginLeft="10dp">
             </Button>
 
-        </LinearLayout>
+        </RelativeLayout>
 
         </RelativeLayout>
         

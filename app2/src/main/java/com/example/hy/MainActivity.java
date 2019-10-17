@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
+import com.example.hy.home.home2;
 import com.example.hy.market.market;
 import com.example.hy.market.market2;
 import com.example.hy.market.market_p4;
@@ -58,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent a = new Intent( MainActivity.this, market.class);
+                Intent a = new Intent( MainActivity.this, home2.class);
                 startActivity(a);
 
             }

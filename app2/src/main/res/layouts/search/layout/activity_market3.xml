@@ -68,7 +68,7 @@
                         android:background="@drawable/market_cart_back" />
 
                     <Button
-                        android:id="@+id/back_2_market"
+                        android:id="@+id/back_market"
                         android:layout_width="25dp"
                         android:layout_height="15dp"
                         android:background="@drawable/market_back2search_product"
