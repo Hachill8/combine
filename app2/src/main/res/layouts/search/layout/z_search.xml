@@ -82,6 +82,13 @@
                 android:textColor="#402C2B"
                 android:textSize="24dp" />
 
+            <ImageButton
+                android:id="@+id/home"
+                android:layout_width="30dp"
+                android:layout_marginStart="150dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/home" />
+
         </LinearLayout>
 
         <android.support.v7.widget.RecyclerView

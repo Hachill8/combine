@@ -1,0 +1,639 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".custom_vegeinfo"
+    android:orientation="vertical"
+    android:background="#E6EAE7">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:background="@color/secondary_color"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/custom_vege"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
+            android:text="自訂作物"
+            android:textColor="#ffffff"
+            android:textSize="30dp" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="610dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical" />
+            </HorizontalScrollView>
+
+            <ImageView
+                android:id="@+id/imageView10"
+                android:layout_width="match_parent"
+                android:layout_height="291dp"
+                android:background="@drawable/select_vege_picture3" />
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/vege_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="作物名稱 :"
+                    android:textColor="#402C2B"
+                    android:textSize="30dp" />
+
+                <EditText
+                    android:id="@+id/editText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:textSize="30dp"
+                    android:textColor="#402C2B"
+                    android:layout_marginLeft="8dp"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="330dp"
+                android:layout_height="1.3dp"
+                android:layout_gravity="center"
+                android:background="#D2D5D3"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="小撇步 :"
+                android:textSize="22sp"
+                android:textColor="#FC9D33"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="15dp"/>
+
+            <EditText
+                android:id="@+id/edit_step"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textSize="18sp"
+                android:lineSpacingExtra="7dp"
+                android:textColor="#796868"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"/>
+
+            <View
+                android:layout_width="330dp"
+                android:layout_height="1.3dp"
+                android:layout_gravity="center"
+                android:background="#D2D5D3"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="管理重點"
+                android:textSize="22sp"
+                android:textColor="#FC9D33"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="15dp"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:lineSpacingExtra="7dp"
+                        android:text="容器 :"
+                        android:textColor="#402C2B"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/edit_container"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:textSize="18sp"
+                        android:lineSpacingExtra="7dp"
+                        android:textColor="#796868"
+                        android:layout_marginLeft="60dp"/>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:lineSpacingExtra="7dp"
+                        android:text="土壤 :"
+                        android:textColor="#402C2B"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/edit_soil"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="60dp"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:lineSpacingExtra="7dp"
+                        android:textColor="#796868"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:text="放置場所 :"
+                        android:textColor="#402C2B"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/edit_place"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:lineSpacingExtra="7dp"
+                        android:textColor="#796868"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:text="澆水 :"
+                        android:textColor="#402C2B"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/edit_water"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="60dp"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:lineSpacingExtra="7dp"
+                        android:textColor="#796868"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:text="肥料(追肥) :"
+                        android:textColor="#402C2B"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/edit_fertilizer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:lineSpacingExtra="7dp"
+                        android:textColor="#796868"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:text="病蟲害 :"
+                        android:textColor="#402C2B"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/edit_bug"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="45dp"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:lineSpacingExtra="7dp"
+                        android:textColor="#796868"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="收成標準 :"
+                        android:textSize="18sp"
+                        android:textColor="#402C2B"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"/>
+
+                    <EditText
+                        android:id="@+id/edit_harvest"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:lineSpacingExtra="7dp"
+                        android:textColor="#796868"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="330dp"
+                android:layout_height="1.3dp"
+                android:layout_gravity="center"
+                android:background="#D2D5D3"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:text="需要準備哪些材料?"
+                android:textColor="#FC9D33"
+                android:textSize="20dp" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:layout_marginBottom="10dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="15dp">
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="120dp"
+                        android:layout_height="180dp"
+                        app:cardBackgroundColor="#E6EAE7"
+                        android:layout_marginRight="5dp"
+                        app:cardElevation="0dp">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="150dp"
+                                android:layout_marginTop="3dp"
+                                android:src="@drawable/select_tool_picture" />
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="left"
+                                    android:layout_marginTop="-5dp"
+                                    android:text="名稱 :"
+                                    android:textColor="#796868"
+                                    android:textSize="18sp" />
+
+                                <EditText
+                                    android:id="@+id/editText2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:ems="10"
+                                    android:inputType="textPersonName" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="120dp"
+                        android:layout_height="180dp"
+                        app:cardBackgroundColor="#E6EAE7"
+                        android:layout_marginRight="5dp"
+                        app:cardElevation="0dp">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="150dp"
+                                android:src="@drawable/select_tool_picture"
+                                android:layout_marginTop="3dp"/>
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="left"
+                                    android:text="名稱 :"
+                                    android:textColor="#796868"
+                                    android:textSize="18sp" />
+
+                                <EditText
+                                    android:id="@+id/editText3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:ems="10"
+                                    android:inputType="textPersonName" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="120dp"
+                        android:layout_height="180dp"
+                        app:cardBackgroundColor="#E6EAE7"
+                        android:layout_marginRight="5dp"
+                        app:cardElevation="0dp">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="150dp"
+                                android:src="@drawable/select_tool_picture"
+                                android:layout_marginTop="3dp"/>
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="left"
+                                    android:text="名稱 :"
+                                    android:textColor="#796868"
+                                    android:textSize="18sp" />
+
+                                <EditText
+                                    android:id="@+id/editText4"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:ems="10"
+                                    android:inputType="textPersonName" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="120dp"
+                        android:layout_height="180dp"
+                        app:cardBackgroundColor="#E6EAE7"
+                        android:layout_marginRight="5dp"
+                        app:cardElevation="0dp">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="150dp"
+                                android:src="@drawable/select_tool_picture"
+                                android:layout_marginTop="3dp"/>
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="left"
+                                    android:text="名稱 :"
+                                    android:textColor="#796868"
+                                    android:textSize="18sp" />
+
+                                <EditText
+                                    android:id="@+id/editText5"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:ems="10"
+                                    android:inputType="textPersonName" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+
+                </LinearLayout>
+
+
+            </HorizontalScrollView>
+
+
+
+
+
+
+
+
+
+        </LinearLayout>
+
+
+
+
+    </ScrollView>
+
+
+
+
+
+
+    <android.support.design.widget.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#E6EAE7">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+
+            <Button
+                android:id="@+id/choose_calendar"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="195dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:text="取 消"
+                android:textColor="#89B094"
+                android:textSize="20dp"
+                tools:targetApi="lollipop" />
+
+            <View
+                android:layout_width="1.3dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:background="#D2D5D3"/>
+
+            <Button
+                android:id="@+id/confirm"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:text="確 認"
+                android:textColor="#89B094"
+                android:textSize="20dp"
+                tools:targetApi="lollipop" />
+
+
+        </LinearLayout>
+
+
+
+
+
+
+    </android.support.design.widget.BottomNavigationView>
+
+
+
+
+
+
+
+
+
+
+
+
+</LinearLayout>

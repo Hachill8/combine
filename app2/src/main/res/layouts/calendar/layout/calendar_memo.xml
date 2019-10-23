@@ -1,62 +1,160 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".calendar.calendar_memo">
 
-    <EditText
-        android:id="@+id/edit_message1"
-        android:layout_width="0dp"
-        android:layout_height="407dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="24dp"
-        android:gravity="start"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <View
-        android:id="@+id/view3"
-        android:layout_width="0dp"
-        android:layout_height="409dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/text_view_border"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.307"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:onClick="sendMessage"
-        android:text="儲存"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/edit_message1"
-        app:layout_constraintTop_toBottomOf="@+id/edit_message1"
-        app:layout_constraintVertical_bias="0.113" />
-
     <TextView
-        android:id="@+id/textView19"
-        android:layout_width="wrap_content"
+        android:id="@+id/date_tv"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:text="今天發生了哪些有趣的事呢?"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toTopOf="@+id/edit_message1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        android:text="日期"
+        android:textSize="25sp"/>
 
-</android.support.constraint.ConstraintLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="502dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="選擇所從事的活動 : "
+                android:textSize="25sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/cb5"
+                    android:layout_width="95dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="施肥"
+                    android:textSize="20sp" />
+
+                <CheckBox
+                    android:id="@+id/cb6"
+                    android:layout_width="95dp"
+                    android:layout_height="wrap_content"
+                    android:text="鋤草"
+                    android:textSize="20sp" />
+
+                <CheckBox
+                    android:id="@+id/cb7"
+                    android:layout_width="95dp"
+                    android:layout_height="wrap_content"
+                    android:text="除病蟲"
+                    android:textSize="20sp" />
+
+                <CheckBox
+                    android:id="@+id/cb8"
+                    android:layout_width="95dp"
+                    android:layout_height="wrap_content"
+                    android:text="收成"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/cb1"
+                    android:layout_width="95dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="播種"
+                    android:textSize="20sp" />
+
+                <CheckBox
+                    android:id="@+id/cb2"
+                    android:layout_width="95dp"
+                    android:layout_height="wrap_content"
+                    android:text="育苗"
+                    android:textSize="20sp" />
+
+                <CheckBox
+                    android:id="@+id/cb3"
+                    android:layout_width="95dp"
+                    android:layout_height="wrap_content"
+                    android:text="定植"
+                    android:textSize="20sp" />
+
+                <CheckBox
+                    android:id="@+id/cb4"
+                    android:layout_width="95dp"
+                    android:layout_height="wrap_content"
+                    android:text="澆水"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView19"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="15dp"
+                android:text="發生什麼有趣的事呢?"
+                android:textSize="25sp" />
+
+            <EditText
+                android:id="@+id/edit_message1"
+                android:layout_width="356dp"
+                android:layout_height="250dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/textview_border"
+                android:gravity="start"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="上傳作物照片 : "
+                android:textSize="25sp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="取消" />
+
+        <Button
+            android:id="@+id/confirm"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:onClick="sendMessage"
+            android:text="儲存" />
+    </LinearLayout>
+
+
+</LinearLayout>

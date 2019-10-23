@@ -40,6 +40,7 @@ import android.widget.Toast;
 
 import com.example.hy.GlobalVariable;
 import com.example.hy.R;
+import com.example.hy.custom_vegeinfo;
 import com.example.hy.home.home2;
 import com.example.hy.record.record;
 import com.example.hy.record.record_Cardview;
@@ -52,7 +53,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class search extends AppCompatActivity  {
-    ImageButton bt_filter;
+    ImageButton bt_filter,plus_vege,home;
     GlobalVariable vege_name,vege_item;
     String insert_vege_item="";
     String[] split_line={}; //搜尋的listview
@@ -203,7 +204,25 @@ public class search extends AppCompatActivity  {
         });
         listview(v);
 
+        //編輯自訂作物
+        plus_vege= (ImageButton) findViewById(R.id.BT_plus);
+        plus_vege.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(search.this, custom_vegeinfo.class);
+                startActivity(intent);
+            }
+        });
 
+        //進入首頁
+        home= (ImageButton) findViewById(R.id.home);
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(search.this, home2.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
