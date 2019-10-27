@@ -1,21 +1,30 @@
 package com.example.hy.home;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.media.Image;
 import android.os.Bundle;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Display;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 
 import com.example.hy.GlobalVariable;
 import com.example.hy.R;
@@ -33,15 +42,64 @@ public class home2 extends AppCompatActivity{
 
     GlobalVariable vege_home; //首頁作物照片(暫時)
     ImageView Vege_image_home;
+    Button taipei_life,taipei_land_lease,taipei_farmers;
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate( savedInstanceState );
         getWindow().setFlags( WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView( R.layout.activity_home2 );
 
         banboo_hat_level=new Dialog(this);
+
+        taipei_life=(Button) findViewById(R.id.taipei_life);
+        taipei_life.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                AlertDialog.Builder mBuilder = new AlertDialog.Builder(home2.this);
+                View mView = getLayoutInflater().inflate(R.layout.choose_taipei_life_info, null);
+                //Dialog的標題
+                mBuilder.setTitle("");
+
+
+                taipei_land_lease=(Button)mView.findViewById(R.id.taipei_land_lease);
+                taipei_land_lease.setOnClickListener( new View.OnClickListener()
+                {
+                    @Override
+                    public void onClick(View v)
+                    {
+                        Intent a = new Intent(home2.this,taipei_life_info_land_lease.class);
+                        startActivity(a);
+                    }
+                } );
+
+                taipei_farmers=(Button)mView.findViewById(R.id.taipei_farmers);
+                taipei_farmers.setOnClickListener( new View.OnClickListener()
+                {
+                    @Override
+                    public void onClick(View v)
+                    {
+                        Intent a = new Intent(home2.this,taipei_life_info_farmers.class);
+                        startActivity(a);
+                    }
+                } );
+
+                mBuilder.setView(mView);
+                final AlertDialog dialog = mBuilder.create();
+                dialog.show();
+
+                //感應關閉後的事件
+                dialog.setOnDismissListener(new DialogInterface.OnDismissListener()
+                {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) { }
+                });
+            }
+        } );
 
 
         edit_pot=(ImageButton) findViewById(R.id.edit_pot);

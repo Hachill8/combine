@@ -14,8 +14,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp">
 
-
-
         <Button
             android:layout_width="150dp"
             android:layout_height="25dp"
@@ -35,13 +33,7 @@
             android:layout_marginLeft="10dp"
             android:background="@drawable/hat"/>
 
-
-
-
     </RelativeLayout>
-
-    
-
 
     <RelativeLayout
         android:layout_width="1000dp"
@@ -52,12 +44,18 @@
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_marginTop="200dp"
-            android:layout_marginStart="80dp"
-            />
+            android:layout_marginStart="80dp" />
 
     </RelativeLayout>
 
 
+    <Button
+        android:id="@+id/taipei_life"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/home2_taipei_life"
+        android:layout_marginTop="500dp"
+        android:layout_marginLeft="280dp"/>
 
     <com.getbase.floatingactionbutton.FloatingActionButton
         android:id="@+id/open_bottom_sheet"

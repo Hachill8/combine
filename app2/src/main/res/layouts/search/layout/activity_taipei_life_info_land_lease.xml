@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E6EAE7">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="680dp"
+        android:background="#E6EAE7">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="臺北市市民農園承租"
+                android:textSize="30dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp" />
+
+            <ImageButton
+                android:layout_width="250dp"
+                android:layout_height="60dp"
+                android:background="@drawable/taipei_life_land_dropdown"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="80dp"/>
+
+            <Button
+                android:id="@+id/land1"
+                android:layout_width="250dp"
+                android:layout_height="60dp"
+                android:background="@drawable/taipei_life_land_list_bkg"
+                android:layout_centerHorizontal="true"
+                android:text="日月滿市民農園"
+                android:textSize="22dp"
+                android:layout_marginTop="180dp"/>
+
+            <Button
+                android:layout_width="250dp"
+                android:layout_height="60dp"
+                android:background="@drawable/taipei_life_land_list_bkg"
+                android:layout_centerHorizontal="true"
+                android:text="至善明哲園市民農園"
+                android:textSize="22dp"
+                android:layout_marginTop="260dp"/>
+
+            <Button
+                android:layout_width="250dp"
+                android:layout_height="60dp"
+                android:background="@drawable/taipei_life_land_list_bkg"
+                android:layout_centerHorizontal="true"
+                android:text="清涼地有機市民農園"
+                android:textSize="22dp"
+                android:layout_marginTop="340dp"/>
+
+            <Button
+                android:layout_width="250dp"
+                android:layout_height="60dp"
+                android:background="@drawable/taipei_life_land_list_bkg"
+                android:layout_centerHorizontal="true"
+                android:text="梅居市民農園"
+                android:textSize="22dp"
+                android:layout_marginTop="420dp"/>
+
+            <Button
+                android:layout_width="250dp"
+                android:layout_height="60dp"
+                android:background="@drawable/taipei_life_land_list_bkg"
+                android:layout_centerHorizontal="true"
+                android:text="永福健康市民農園"
+                android:textSize="22dp"
+                android:layout_marginTop="500dp"/>
+
+            <Button
+                android:layout_width="250dp"
+                android:layout_height="60dp"
+                android:background="@drawable/taipei_life_land_list_bkg"
+                android:layout_centerHorizontal="true"
+                android:text="草山農莊市民農園"
+                android:textSize="22dp"
+                android:layout_marginTop="580dp"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:background="#E6EAE7"
+                android:layout_marginTop="660dp"/>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

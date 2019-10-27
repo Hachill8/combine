@@ -149,7 +149,8 @@ public class search extends AppCompatActivity  {
                     public void onClick(View v) {
                         select_month=mSpinner2.getSelectedItem().toString();
                         Log.v("test", "ssssssss  " + select_month);
-                        if(!select_month.equals("月份…")) {
+                        if(!select_month.equals("月份…"))
+                        {
                             select_month = select_month.replace("月", "");
                             Log.v("test", "111111111111  " + select_month);
                             //請經紀人指派工作名稱 r，給工人做
@@ -159,7 +160,8 @@ public class search extends AppCompatActivity  {
                     }
                 });
                 //感應關閉後的事件
-                dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                dialog.setOnDismissListener(new DialogInterface.OnDismissListener()
+                {
                     @Override
                     public void onDismiss(DialogInterface dialog) {
 

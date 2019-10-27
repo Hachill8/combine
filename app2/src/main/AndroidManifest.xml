@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".choose_calendar"></activity>
+        <activity android:name=".choose_calendar"/>
         <activity android:name=".calendar.calendar" />
         <activity android:name=".calendar.fake_plant_suggestion" />
         <activity android:name=".record.record" />
@@ -30,6 +30,11 @@
         <activity android:name=".forum.forum_post2"/>
         <activity android:name=".forum.postpage" />
         <activity android:name=".record.record_Information2" />
+        <activity android:name=".home.taipei_life_info_land_lease" />
+        <activity android:name=".home.taipei_life_info_farmers" />
+        <activity android:name=".home.taipei_life_farmers_infop2" />
+        <activity android:name=".home.taipei_life_land_infop2" />
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

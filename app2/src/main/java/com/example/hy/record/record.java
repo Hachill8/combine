@@ -29,7 +29,8 @@ import com.example.hy.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class record extends AppCompatActivity {
+public class record extends AppCompatActivity
+{
     boolean fg = false;
     int num = 0,id=2;
     Button showDialog;
