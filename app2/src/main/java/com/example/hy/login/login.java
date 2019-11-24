@@ -1,6 +1,11 @@
 package com.example.hy.login;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Handler;
+import android.os.HandlerThread;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -17,6 +22,7 @@ import android.widget.Toast;
 
 import com.example.hy.R;
 import com.example.hy.select_model;
+import com.example.hy.webservice;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
@@ -31,10 +37,18 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class login extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks,GoogleApiClient.OnConnectionFailedListener, View.OnClickListener
 {
+    /***web service相關***/
+    //找到UI工人的經紀人，這樣才能派遣工作  (找到顯示畫面的UI Thread上的Handler)
+    private Handler mUI_Handler = new Handler();
+    //宣告特約工人的經紀人
+    private  Handler mThreadHandler;
+    //宣告特約工人
+    private HandlerThread mThread;
+
 
     TextView loginsub;
     Animation smalltobig, stb2;
-    String name,email;
+    String name,email="",line;
 
     //
     SignInButton SignIn;
@@ -45,13 +59,23 @@ public class login extends AppCompatActivity implements GoogleApiClient.Connecti
     private RelativeLayout Prof_Section;
     public FirebaseAnalytics mFirebaseAnalytics;//try
     public FirebaseAuth mAuth;//try
+
     //
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         getWindow().setFlags( WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_login);
+
+        /*** web service相關 ***/
+        //聘請一個特約工人，有其經紀人派遣其工人做事 (另起一個有Handler的Thread)
+        mThread = new HandlerThread("");
+        //讓Worker待命，等待其工作 (開啟Thread)
+        mThread.start();
+        //找到特約工人的經紀人，這樣才能派遣工作 (找到Thread上的Handler)
+        mThreadHandler=new Handler(mThread.getLooper());
 
         Log.v("test", "start");
 
@@ -60,14 +84,11 @@ public class login extends AppCompatActivity implements GoogleApiClient.Connecti
 
         loginsub = (TextView) findViewById(R.id.loginsub);
 
-        //
 //        Prof_Section=(RelativeLayout)findViewById(R.id.prof_section);
 //        Email=(TextView)findViewById(R.id.email);
 //        SignOut=(Button)findViewById(R.id.bn_logout);
 //        Name=(TextView)findViewById(R.id.name);
         SignIn=(SignInButton)findViewById(R.id.bn_login);
-
-
         SignIn.setOnClickListener(this);
         //SignOut.setOnClickListener(this);
         //Prof_Section.setVisibility(View.GONE);
@@ -89,14 +110,40 @@ public class login extends AppCompatActivity implements GoogleApiClient.Connecti
 
         SignIn.animate().translationY(0).alpha(1).setDuration(800).setStartDelay(500).start();
         loginsub.animate().translationY(0).alpha(1).setDuration(800).setStartDelay(700).start();
-
-//        SignIn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent b = new Intent(login.this,login2.class);
-//                startActivity(b);
-//            }   });
     }
+
+    /***web srevice***/
+    //工作名稱 r1 的工作內容
+    private Runnable r1=new Runnable ()
+    {
+        public void run()
+        {
+            line = webservice.Login_Getgmail(email);//傳回執行完的結果
+            //請經紀人指派工作名稱 r，給工人做
+            mUI_Handler.post(r2);
+        }
+    };
+
+    /***web srevice***/
+    //工作名稱 r2 的工作內容
+
+    private Runnable r2=new Runnable ()
+    {
+        public void run()
+        {
+
+            if (!line.equals("OK!"))
+            {
+                Log.v("test","錯誤");
+            }
+            else
+            {
+                Log.v("test","gmail成功傳到資料庫");
+            }
+        }
+    };
+
+
     //
     @Override
     public void onClick(View v)
@@ -117,17 +164,13 @@ public class login extends AppCompatActivity implements GoogleApiClient.Connecti
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) { }
 
-//    public void test()
-//    {
-//        Intent b = new Intent(login.this, login2.class);
-//        startActivity(b);
-//    }
 
     public void signIn()
     {
         //signInButton 按下時，啟動登入頁面
         Intent googleSignInIntent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
         startActivityForResult(googleSignInIntent,GoogleSignInRequestCode);
+
     }
 
 //    public void signOut()
@@ -145,11 +188,17 @@ public class login extends AppCompatActivity implements GoogleApiClient.Connecti
         {
             GoogleSignInAccount account = result.getSignInAccount();
             //取得使用者並試登入
-//                firebaseAuthWithGoogle(account);//try
+//            firebaseAuthWithGoogle(account);//try
 //            name = account.getDisplayName();
-//            email = account.getEmail();
 //            Name.setText(name);
 //            Email.setText(email);
+
+
+            email = account.getEmail();//你要用的email在這裡啦
+            Log.v("test",""+email);
+            if(!email.equals("")){mThreadHandler.post(r1);Log.v("test", "email有抓到值");}
+            else {Log.v("test", "email沒有值");}
+
             updateUI(true);
             Log.v("test", "true");
         }

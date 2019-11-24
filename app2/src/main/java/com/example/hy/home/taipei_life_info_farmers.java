@@ -30,5 +30,4 @@ public class taipei_life_info_farmers extends AppCompatActivity
         } );
     }
 
-
 }
