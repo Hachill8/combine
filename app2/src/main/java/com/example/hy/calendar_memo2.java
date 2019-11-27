@@ -1,10 +1,9 @@
-package com.example.hy.calendar;
+package com.example.hy;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
-import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -12,18 +11,13 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.hy.GlobalVariable;
-import com.example.hy.R;
-import com.example.hy.webservice;
+import com.example.hy.calendar.calendar;
 
-public class calendar_memo extends AppCompatActivity {
-
+public class calendar_memo2 extends AppCompatActivity {
     EditText memo;
     TextView date_tv;
     String date;
-    GlobalVariable action_item_value,action_item_value2;
     Button cancel;
     CheckBox cb1,cb2,cb3,cb4,cb5,cb6,cb7,cb8;
     String message;
@@ -35,12 +29,13 @@ public class calendar_memo extends AppCompatActivity {
     private Handler mThreadHandler;
     //宣告特約工人
     private HandlerThread mThread;
+
     String line;
     Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.calendar_memo);
+        setContentView(R.layout.activity_calendar_memo2);
 
         //聘請一個特約工人，有其經紀人派遣其工人做事 (另起一個有Handler的Thread)
         mThread = new HandlerThread("");
@@ -63,10 +58,6 @@ public class calendar_memo extends AppCompatActivity {
         cb6=findViewById(R.id.cb6);
         cb7=findViewById(R.id.cb7);
         cb8=findViewById(R.id.cb8);
-
-        action_item_value= (GlobalVariable)getApplicationContext();
-        action_item_value2= (GlobalVariable)getApplicationContext();
-        action_item_value2.setAction_item(action_item_value.getAction_item());
 
         //cb1到cb8是活動被勾選時會有顏色變化
         cb1.setOnClickListener(new View.OnClickListener(){
@@ -150,34 +141,28 @@ public class calendar_memo extends AppCompatActivity {
             }
         });
 
-
-        Intent intent2 = getIntent();
-        //把傳送進來的String型別的date的值賦給新的變數
-        date = intent2.getStringExtra("EXTRA_DATE");
-        decide_action = intent2.getStringExtra("decide_edit");
+        Intent intent = getIntent();
+        date = intent.getStringExtra("EXTRA_DATE");
         //在最上面textview中顯示出日期
         date_tv.setText(date);
 
-
-        Log.v("test",action_item_value.getAction_item());
-        Intent intent = getIntent();
         //把傳送進來的String型別的Message的值賦給新的變數message
         String message = intent.getStringExtra("EXTRA_MESSAGE");
-        decide_action2 = intent.getStringExtra("decide_update");
         //在textview中顯示出來message
         memo.setText(message);
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(calendar_memo.this,calendar.class);
+                Intent intent = new Intent(calendar_memo2.this, calendar.class);
                 startActivity(intent);
             }
         });
     }
-    public void sendMessage(View view)
+
+    //按下儲存按鈕的動作
+    public void sendMessage2(View view)
     {
-        //String s="";
         if(cb1.isChecked()){
             s += "播種  ";
         }
@@ -202,7 +187,7 @@ public class calendar_memo extends AppCompatActivity {
         if(cb8.isChecked()){
             s += "收成  ";
         }
-        intent = new Intent(calendar_memo.this,calendar.class);
+        intent = new Intent(calendar_memo2.this, calendar.class);
         //宣告一個編輯框和佈局檔案中id為edit_message的編輯框連結起來。
         //把編輯框獲取的文字賦值給String型別的message
         //String message = ed.getText().toString();
@@ -210,8 +195,8 @@ public class calendar_memo extends AppCompatActivity {
         message = memo.getText().toString();
 
         //請經紀人指派工作名稱 r，給工人做
-        mThreadHandler.post(r1);
 
+        mThreadHandler.post(r1);
         //dbUtil.insert(date,s,ed.getText().toString());
 
 
@@ -223,9 +208,7 @@ public class calendar_memo extends AppCompatActivity {
 
         public void run() {
 
-
-            line = webservice.Insert_calendar(date,s,message);
-
+            webservice.Update(date,s,message);
             //請經紀人指派工作名稱 r，給工人做
             mUI_Handler.post(r2);
 
@@ -239,7 +222,6 @@ public class calendar_memo extends AppCompatActivity {
 
         public void run() {
 
-            //給message起一個名字，並傳給另一個activity
             intent.putExtra("EXTRA_MESSAGE",message);
             intent.putExtra("EXTRA_MESSAGE2",s);
             //啟動意圖
@@ -248,6 +230,8 @@ public class calendar_memo extends AppCompatActivity {
         }
 
     };
+
+
 
     @Override
     protected void onDestroy() {
@@ -262,5 +246,4 @@ public class calendar_memo extends AppCompatActivity {
             mThread.quit();
         }
     }
-
 }

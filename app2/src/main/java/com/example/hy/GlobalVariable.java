@@ -12,6 +12,12 @@ public class GlobalVariable extends Application
     private String Select_month="無";
     private String Forum_content="錯誤",Forum_title="錯誤";
     private String Market_item="無";
+    private String User_name="WHY";
+    private String User_phone="WHY";
+    private String User_addr="WHY";
+    private String User_age="WHY!!!!!!!!!!!";
+    private String User_gender="WHY";
+    private String User_expri="WHY";
 
     //修改 變數字串
     public void setWord(String word){
@@ -44,4 +50,23 @@ public class GlobalVariable extends Application
 
     public void setSelect_month(String select_month){this.Select_month = select_month;  Log.v("test","gl的select: "+select_month);}
     public  String getSelect_month(){ Log.v("test","search的select: "+Select_month); return Select_month;}
+
+    public void setUser_name(String user_name){this.User_name = user_name;}
+    public String getUser_name(){ return User_name;}
+
+    public void setUser_phone(String user_phone){this.User_phone = user_phone;}
+    public String getUser_phone(){ return User_phone;}
+
+    public void setUser_addr(String user_addr){this.User_addr = user_addr;}
+    public String getUser_addr(){ return User_addr;}
+
+    public void setUser_age(String user_age){this.User_age = user_age;}
+    public String getUser_age(){ return User_age;}
+
+    public void setUser_gender(String user_gender){this.User_gender = user_gender;}
+    public String getUser_gender(){ return User_gender;}
+
+    public void setUser_expri(String user_expri){this.User_expri = user_expri;}
+    public String getUser_expri(){ return User_expri;}
+
 }

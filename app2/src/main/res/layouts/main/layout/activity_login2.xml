@@ -20,182 +20,207 @@
         android:gravity="center"
         android:layout_margin="30dp"/>
 
-        <ScrollView
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="320dp"
+                android:layout_height="56dp"
+                android:paddingLeft="47dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:textColor="#518D62"
+                android:background="@drawable/edit_pencil2"
+                android:hint="輸入姓名"
+                android:textColorHint="#518D62"/>
+
+            <EditText
+                android:id="@+id/phone"
+                android:layout_width="320dp"
+                android:layout_height="56dp"
+                android:hint="輸入電話"
+                android:textColorHint="#518D62"
+                android:layout_gravity="center"
+                android:textColor="#518D62"
+                android:layout_marginTop="30dp"
+                android:paddingLeft="47dp"
+                android:inputType="phone"
+                android:background="@drawable/edit_pencil2"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+
+                />
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent" />
+
+                <Spinner
+                    android:id="@+id/type"
+                    android:layout_width="144dp"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:spinnerMode="dialog"/>
 
-                    <EditText
-                        android:id="@+id/text_field_boxes"
-                        android:layout_width="320dp"
-                        android:layout_height="56dp"
-                        android:paddingLeft="47dp"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="30dp"
-                        android:textColor="#518D62"
-                        android:background="@drawable/edit_pencil2"
-                        android:text="輸入姓名" />
+                <TextView
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent" />
 
-                    <EditText
-                        android:id="@+id/text_field_boxes2"
-                        android:layout_width="320dp"
-                        android:layout_height="56dp"
-                        android:text="輸入電話"
-                        android:layout_gravity="center"
-                        android:textColor="#518D62"
-                        android:layout_marginTop="30dp"
-                        android:paddingLeft="47dp"
-                        android:inputType="phone"
-                        android:background="@drawable/edit_pencil2"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="30dp"
-
-                        />
-
-                    <LinearLayout
-
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:orientation="horizontal">
-
-                        <TextView
-                        android:layout_width="50dp"
-                        android:layout_height="match_parent" />
-
-                        <Spinner
-                        android:id="@+id/county"
-                        android:layout_width="120dp"
-                        android:layout_height="match_parent"
-                            />
-
-                        <TextView
-                            android:layout_width="20dp"
-                            android:layout_height="match_parent" />
-
-                        <Spinner
-                            android:id="@+id/age"
-                            android:layout_width="180dp"
-                            android:layout_height="match_parent"
-                             />
+                <Spinner
+                    android:id="@+id/type2"
+                    android:layout_width="152dp"
+                    android:layout_height="match_parent"
+                    android:spinnerMode="dialog"/>
 
 
+            </LinearLayout>
 
-                    </LinearLayout>
-                        <TextView
-                            android:layout_width="320dp"
-                            android:layout_height="wrap_content"
-                            android:text="選擇性別"
-                            android:textColor="#89B094"
-                            android:textSize="30sp"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="30dp"
-                            />
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="match_parent"
 
-                    <LinearLayout
-                        android:id="@+id/man_woman"
-                        android:layout_width="320dp"
-                        android:layout_height="60dp"
-                        android:layout_gravity="center"
-                        android:orientation="horizontal"
-                        >
+                android:layout_height="30dp"
+                android:layout_weight="1" />
 
-                        <Button
-                            android:id="@+id/man"
-                            android:layout_width="wrap_content"
-                            android:layout_height="60dp"
-                            android:layout_weight="2"
-                            android:text="男"
-                            android:textColor="#89B094"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:orientation="horizontal">
 
-                            android:background="@drawable/gender"
-                            android:textSize="35dp" />
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="51dp"
+                    android:layout_height="match_parent" />
 
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/gender_space"
-                            android:layout_weight="1"
-                            />
+                <Spinner
+                    android:id="@+id/age"
+                    android:layout_width="195dp"
+                    android:layout_height="match_parent"
+                    android:spinnerMode="dialog"/>
 
-                        <Button
-                            android:id="@+id/woman"
-                            android:layout_width="wrap_content"
-                            android:layout_height="60dp"
-                            android:layout_weight="2"
-                            android:text="女"
-                            android:background="@drawable/gender"
-                            android:textColor="#89B094"
+            </LinearLayout>
 
-                            android:textSize="35dp" />
-                    </LinearLayout>
+            <TextView
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:text="選擇性別"
+                android:textColor="#89B094"
+                android:textSize="30sp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                />
 
-                        <TextView
-                            android:id="@+id/tvShowNumbers"
-                            android:layout_width="320dp"
-                            android:layout_height="wrap_content"
-                            android:text="種植經驗"
-                            android:textColor="#89B094"
-                            android:textSize="30sp"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="30dp"
-                            />
+            <LinearLayout
+                android:id="@+id/man_woman"
+                android:layout_width="320dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+                >
 
-                    <LinearLayout
-                        android:layout_width="320dp"
-                        android:layout_height="60dp"
-                        android:layout_gravity="center"
-                        android:orientation="horizontal"
-                        >
-                        <ImageView
-                            android:layout_width="10dp"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/gender"
-                            />
+                <Button
+                    android:id="@+id/man"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_weight="2"
+                    android:text="男"
+                    android:textColor="#89B094"
+                    android:background="@drawable/gender"
+                    android:textSize="35dp" />
 
-                        <Button
-                            android:id="@+id/one_year"
-                            android:layout_width="100dp"
-                            android:layout_height="60dp"
-                            android:background="@drawable/gender"
-                            android:text="1年以下"
-                            android:textSize="20dp"
-                            android:textColor="#89B094"
-                            />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gender_space"
+                    android:layout_weight="1"
+                    />
 
-                        <Button
-                            android:id="@+id/two_year"
-                            android:layout_width="100dp"
-                            android:layout_height="60dp"
-                            android:background="@drawable/gender"
-                            android:text="2~3年"
-                            android:textSize="20dp"
-                            android:textColor="#89B094"
-                            />
-                        <Button
-                            android:id="@+id/three_year"
-                            android:layout_width="100dp"
-                            android:layout_height="60dp"
-                            android:background="@drawable/gender"
-                            android:text="3年以上"
-                            android:textSize="20dp"
-                            android:textColor="#89B094"
-                            />
-                    </LinearLayout>
-                        <Button
-                            android:id="@+id/btntomodel"
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
-                            android:layout_gravity="center"
-                            android:background="@drawable/getstart"
-                            android:layout_marginTop="30dp"/>
-                </LinearLayout>
+                <Button
+                    android:id="@+id/woman"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_weight="2"
+                    android:text="女"
+                    android:background="@drawable/gender"
+                    android:textColor="#89B094"
+                    android:textSize="35dp" />
+            </LinearLayout>
 
-        </ScrollView>
+            <TextView
+                android:id="@+id/tvShowNumbers"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:text="種植經驗"
+                android:textColor="#89B094"
+                android:textSize="30sp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                />
+
+            <LinearLayout
+                android:layout_width="320dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+                >
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gender"
+                    />
+
+                <Button
+                    android:id="@+id/one_year"
+                    android:layout_width="100dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/gender"
+                    android:text="1年以下"
+                    android:textSize="20dp"
+                    android:textColor="#89B094"
+                    />
+
+                <Button
+                    android:id="@+id/two_year"
+                    android:layout_width="100dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/gender"
+                    android:text="2~3年"
+                    android:textSize="20dp"
+                    android:textColor="#89B094"
+                    />
+                <Button
+                    android:id="@+id/three_year"
+                    android:layout_width="100dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/gender"
+                    android:text="3年以上"
+                    android:textSize="20dp"
+                    android:textColor="#89B094"
+                    />
+            </LinearLayout>
+            <Button
+                android:id="@+id/user_info_confirm"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:background="@drawable/getstart"
+                android:layout_marginTop="30dp"/>
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>

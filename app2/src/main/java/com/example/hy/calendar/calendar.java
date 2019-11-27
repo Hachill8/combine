@@ -3,6 +3,8 @@ package com.example.hy.calendar;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.HandlerThread;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -23,10 +25,16 @@ import android.widget.Toast;
 
 import com.example.hy.GlobalVariable;
 import com.example.hy.R;
+import com.example.hy.calendar_memo2;
+import com.example.hy.webservice;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 
 public class calendar extends AppCompatActivity {
@@ -35,12 +43,18 @@ public class calendar extends AppCompatActivity {
     String[] listItems;
     boolean[] checkedItems;
     ArrayList<Integer> mUserItems = new ArrayList<>();
-    Button edit,mBtn;
+    Button edit,update,cancel;
     Spinner spi;
     Switch swi;
     private static  final  int REQUEST_CODE=1;
     GlobalVariable action_item_value,action_item_value2;
-    String date;
+    String date,decide_edit="edit",line="";
+    //找到UI工人的經紀人，這樣才能派遣工作  (找到顯示畫面的UI Thread上的Handler)
+    private Handler mUI_Handler = new Handler();
+    //宣告特約工人的經紀人
+    private Handler mThreadHandler;
+    //宣告特約工人
+    private HandlerThread mThread;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,16 +62,29 @@ public class calendar extends AppCompatActivity {
         getWindow().setFlags( WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_calendar);
 
+        //聘請一個特約工人，有其經紀人派遣其工人做事 (另起一個有Handler的Thread)
+        mThread = new HandlerThread("");
+
+        //讓Worker待命，等待其工作 (開啟Thread)
+        mThread.start();
+
+        //找到特約工人的經紀人，這樣才能派遣工作 (找到Thread上的Handler)
+        mThreadHandler=new Handler(mThread.getLooper());
+
         edit =(Button)findViewById(R.id.edit);
+        update = (Button)findViewById(R.id.update);
+        cancel = (Button)findViewById(R.id.cancel);
         cv1 = (CalendarView)findViewById(R.id.CV01);
         tv1 = (TextView)findViewById(R.id.TV01);
         tv2 = (TextView)findViewById(R.id.TV02);
-        mBtn = (Button)findViewById(R.id.bt01);
         act_tv = (TextView)findViewById(R.id.act_tv);
         action_item_value= (GlobalVariable)getApplicationContext();
         action_item_value2= (GlobalVariable)getApplicationContext();
         spi = (Spinner)findViewById(R.id.spinner);
         swi = (Switch) findViewById(R.id.switch1);
+        Calendar calendar= Calendar.getInstance();
+        date = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault()).format(new Date());
+        tv1.setText(date);
 
         swi.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -169,6 +196,7 @@ public class calendar extends AppCompatActivity {
             public void onSelectedDayChange(@NonNull CalendarView view, int y, int m, int dm) {
                 date = y+"/"+(m+1)+"/"+dm;
                 tv1.setText(date);
+                mThreadHandler.post(r3);
             }
         });
 
@@ -178,7 +206,39 @@ public class calendar extends AppCompatActivity {
                 Intent intent2 = new Intent(calendar.this,calendar_memo.class);
                 //給message起一個名字，並傳給另一個activity
                 intent2.putExtra("EXTRA_DATE",date);
+                intent2.putExtra("decide_edit",decide_edit);
                 startActivity(intent2);
+            }
+        });
+        update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(calendar.this, calendar_memo2.class);
+                intent.putExtra("EXTRA_DATE",date);
+                startActivity(intent);
+            }
+        });
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(calendar.this);
+                builder.setTitle("注意!");
+                builder.setMessage("確定要刪除"+date+"的內容嗎?");
+                builder.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mThreadHandler.post(r1);
+                    }
+                });
+                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+
             }
         });
 
@@ -205,5 +265,78 @@ public class calendar extends AppCompatActivity {
         intent.putExtra("EXTRA_MESSAGE",message);
         //啟動意圖
         startActivity(intent);
+    }
+    //工作名稱 r1 的工作內容
+
+    private Runnable r1=new Runnable () {
+
+        public void run() {
+            webservice.Delete(date);
+            //請經紀人指派工作名稱 r，給工人做
+            mUI_Handler.post(r2);
+
+        }
+
+    };
+
+    //工作名稱 r2 的工作內容
+
+    private Runnable r2=new Runnable () {
+
+        public void run() {
+            tv2.setText("");
+            act_tv.setText("");
+
+        }
+
+    };
+    private Runnable r3=new Runnable () {
+
+        public void run() {
+
+            line = webservice.select_cal(date);
+
+            //請經紀人指派工作名稱 r，給工人做
+            mUI_Handler.post(r4);
+
+        }
+
+    };
+    //工作名稱 r1 的工作內容
+
+    private Runnable r4=new Runnable () {
+
+        public void run() {
+
+            if(line!="")
+            {
+                String[] sl = line.split("%");
+                act_tv.setText(sl[0]);
+                tv2.setText(sl[1]);
+            }
+            else
+            {
+                tv2.setText("");
+                act_tv.setText("");
+                Toast.makeText(calendar.this, "OK", Toast.LENGTH_SHORT).show();
+
+            }
+        }
+
+    };
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        //移除工人上的工作
+        if (mThreadHandler != null) {
+            mThreadHandler.removeCallbacks(r1);
+            mThreadHandler.removeCallbacks(r3);
+        }
+        //解聘工人 (關閉Thread)
+        if (mThread != null) {
+            mThread.quit();
+        }
     }
 }
