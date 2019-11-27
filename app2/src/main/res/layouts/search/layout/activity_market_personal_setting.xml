@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#779880"
+        android:id="@+id/pay_RL">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
+            android:text="個人設定"
+            android:textColor="#fff"
+            android:textSize="24dp"/>
+        <Button
+            android:id="@+id/pay_to_market"
+            android:layout_width="25dp"
+            android:layout_height="15dp"
+            android:background="@drawable/market_back2search_product"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"/>
+    </RelativeLayout>
+
+
+
+    <LinearLayout
+        android:layout_below="@+id/pay_RL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="購物清單"
+            android:textSize="20dp"/>
+
+        <View
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#779880"/>
+
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/pre_transport"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="13dp"
+                android:layout_marginBottom="5dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@drawable/pre_transport"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="待出貨"
+                android:textSize="12dp"
+                android:layout_marginStart="30dp"
+                android:layout_below="@+id/pre_transport"/>
+
+            <ImageButton
+                android:id="@+id/receive_transport"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="13dp"
+                android:layout_toRightOf="@+id/pre_transport"
+                android:layout_marginBottom="5dp"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:background="@drawable/receive_transport"/>
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="待收貨"
+                android:textSize="12dp"
+                android:layout_toRightOf="@+id/pre_transport"
+                android:layout_marginStart="35dp"
+                android:layout_below="@+id/receive_transport"/>
+
+            <ImageButton
+                android:id="@+id/finished_order"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="23dp"
+                android:layout_marginBottom="5dp"
+                android:layout_toRightOf="@+id/receive_transport"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/finished_order"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="已完成"
+                android:textSize="12dp"
+                android:layout_marginStart="35dp"
+                android:layout_toRightOf="@+id/receive_transport"
+                android:layout_below="@+id/pre_transport"/>
+
+            <ImageButton
+                android:id="@+id/cancel_order"
+                android:layout_marginTop="13dp"
+                android:layout_marginLeft="18dp"
+                android:layout_toRightOf="@+id/finished_order"
+                android:layout_marginBottom="5dp"
+                android:layout_width="70dp"
+                android:layout_height="65dp"
+                android:background="@drawable/cancel_order"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="已取消"
+                android:textSize="12dp"
+                android:layout_toRightOf="@+id/finished_order"
+                android:layout_marginStart="30dp"
+                android:layout_below="@+id/pre_transport"/>
+
+
+
+        </RelativeLayout>
+        </HorizontalScrollView>
+
+        <View
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#779880"/>
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="我的帳戶"
+            android:textSize="20dp"/>
+
+        <View
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#779880"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="收藏商品"
+            android:textSize="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/gender"
+            />
+
+
+
+        <View
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            />
+
+    </LinearLayout>
+
+</RelativeLayout>

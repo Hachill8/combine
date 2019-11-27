@@ -89,9 +89,7 @@ public class login extends AppCompatActivity implements GoogleApiClient.Connecti
 //        SignOut=(Button)findViewById(R.id.bn_logout);
 //        Name=(TextView)findViewById(R.id.name);
         SignIn=findViewById(R.id.bn_login);
-
-
-        SignIn=(SignInButton)findViewById(R.id.bn_login);
+        
         SignIn.setOnClickListener(this);
         //SignOut.setOnClickListener(this);
         //Prof_Section.setVisibility(View.GONE);

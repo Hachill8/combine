@@ -64,7 +64,6 @@ public class calendar_memo extends AppCompatActivity {
     CheckBox cb1,cb2,cb3,cb4,cb5,cb6,cb7,cb8;
     String message;
     String s="",decide_action,decide_action2;
-    String s="";
     ImageButton calendar_picture_select;
     ImageView calendar_picture_view;
     ProgressDialog mLoadingDialog;

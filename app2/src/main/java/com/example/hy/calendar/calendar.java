@@ -68,16 +68,6 @@ public class calendar extends AppCompatActivity {
     Bitmap myBitmap;
     URL url;
 
-    //找到UI工人的經紀人，這樣才能派遣工作  (找到顯示畫面的UI Thread上的Handler)
-    private Handler mUI_Handler = new Handler();
-    //宣告特約工人的經紀人
-    private Handler mThreadHandler;
-    //宣告特約工人
-    private HandlerThread mThread;
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -275,7 +265,7 @@ public class calendar extends AppCompatActivity {
             url = new URL(intent.getStringExtra("EXTRA_URL"));
             if(url.toString().contains("http"))
             {
-                mThreadHandler.post(r3);
+                mThreadHandler.post(r5);
             }
 
         } catch (MalformedURLException e) {
@@ -361,23 +351,10 @@ public class calendar extends AppCompatActivity {
 
     };
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-        //移除工人上的工作
-        if (mThreadHandler != null) {
-            mThreadHandler.removeCallbacks(r1);
-            mThreadHandler.removeCallbacks(r3);
-        }
-        //解聘工人 (關閉Thread)
-        if (mThread != null) {
-            mThread.quit();
-        }
-    }
 
 
-    private Runnable r3=new Runnable () {
+
+    private Runnable r5=new Runnable () {
 
         public void run() {
             HttpURLConnection connection = null;
@@ -391,13 +368,13 @@ public class calendar extends AppCompatActivity {
                 e.printStackTrace();
             }
             //請經紀人指派工作名稱 r，給工人做
-            mUI_Handler.post(r4);
+            mUI_Handler.post(r6);
 
         }
 
     };
 
-    private Runnable r4=new Runnable () {
+    private Runnable r6=new Runnable () {
 
         public void run() {
 
@@ -412,7 +389,9 @@ public class calendar extends AppCompatActivity {
 
         //移除工人上的工作
         if (mThreadHandler != null) {
+            mThreadHandler.removeCallbacks(r1);
             mThreadHandler.removeCallbacks(r3);
+            mThreadHandler.removeCallbacks(r5);
         }
         //解聘工人 (關閉Thread)
         if (mThread != null) {
