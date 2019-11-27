@@ -35,7 +35,7 @@ public class calendar_memo extends AppCompatActivity {
     private Handler mThreadHandler;
     //宣告特約工人
     private HandlerThread mThread;
-    String line;
+    String line,bbb;
     Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
