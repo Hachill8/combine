@@ -2,6 +2,8 @@ package com.example.hy.calendar;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -18,6 +20,7 @@ import android.widget.CalendarView;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -28,6 +31,11 @@ import com.example.hy.R;
 import com.example.hy.calendar_memo2;
 import com.example.hy.webservice;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -56,6 +64,20 @@ public class calendar extends AppCompatActivity {
     //宣告特約工人
     private HandlerThread mThread;
 
+    ImageView calendar_picture;
+    Bitmap myBitmap;
+    URL url;
+
+    //找到UI工人的經紀人，這樣才能派遣工作  (找到顯示畫面的UI Thread上的Handler)
+    private Handler mUI_Handler = new Handler();
+    //宣告特約工人的經紀人
+    private Handler mThreadHandler;
+    //宣告特約工人
+    private HandlerThread mThread;
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,12 +86,14 @@ public class calendar extends AppCompatActivity {
 
         //聘請一個特約工人，有其經紀人派遣其工人做事 (另起一個有Handler的Thread)
         mThread = new HandlerThread("");
-
         //讓Worker待命，等待其工作 (開啟Thread)
         mThread.start();
-
         //找到特約工人的經紀人，這樣才能派遣工作 (找到Thread上的Handler)
         mThreadHandler=new Handler(mThread.getLooper());
+
+        calendar_picture = findViewById(R.id.calendar_picture);
+
+
 
         edit =(Button)findViewById(R.id.edit);
         update = (Button)findViewById(R.id.update);
@@ -196,7 +220,6 @@ public class calendar extends AppCompatActivity {
             public void onSelectedDayChange(@NonNull CalendarView view, int y, int m, int dm) {
                 date = y+"/"+(m+1)+"/"+dm;
                 tv1.setText(date);
-                mThreadHandler.post(r3);
             }
         });
 
@@ -246,7 +269,18 @@ public class calendar extends AppCompatActivity {
         //把傳送進來的String型別的Message的值賦給新的變數message
         String message = intent.getStringExtra("EXTRA_MESSAGE");
         //所勾選的活動
-        String s = intent.getStringExtra("EXTRA_MESSAGE2");
+        String s = intent.getStringExtra("EXTRA_Activity");
+        try
+        {
+            url = new URL(intent.getStringExtra("EXTRA_URL"));
+            if(url.toString().contains("http"))
+            {
+                mThreadHandler.post(r3);
+            }
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
         //把佈局檔案中的文字框和textview連結起來
         //在textview中顯示出來message
         tv2.setText(message);
@@ -255,6 +289,8 @@ public class calendar extends AppCompatActivity {
             Toast.makeText(calendar.this, "OK", Toast.LENGTH_SHORT).show();
         }
     }
+
+
     public void sendMessage(View v)
     {
         Intent intent = new Intent(calendar.this,calendar_memo.class);
@@ -332,6 +368,50 @@ public class calendar extends AppCompatActivity {
         //移除工人上的工作
         if (mThreadHandler != null) {
             mThreadHandler.removeCallbacks(r1);
+            mThreadHandler.removeCallbacks(r3);
+        }
+        //解聘工人 (關閉Thread)
+        if (mThread != null) {
+            mThread.quit();
+        }
+    }
+
+
+    private Runnable r3=new Runnable () {
+
+        public void run() {
+            HttpURLConnection connection = null;
+            try {
+                connection = (HttpURLConnection) url.openConnection();
+                connection.setDoInput(true);
+                connection.connect();
+                InputStream input = connection.getInputStream();
+                myBitmap = BitmapFactory.decodeStream(input);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            //請經紀人指派工作名稱 r，給工人做
+            mUI_Handler.post(r4);
+
+        }
+
+    };
+
+    private Runnable r4=new Runnable () {
+
+        public void run() {
+
+            calendar_picture.setImageBitmap(myBitmap);
+        }
+
+    };
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        //移除工人上的工作
+        if (mThreadHandler != null) {
             mThreadHandler.removeCallbacks(r3);
         }
         //解聘工人 (關閉Thread)

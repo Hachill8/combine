@@ -12,7 +12,8 @@
         android:id="@+id/loginsub"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="136dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="140dp"
         android:layout_marginLeft="136dp"
         android:layout_marginTop="154dp"
         android:text="請登入"
@@ -21,29 +22,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <RelativeLayout
-        android:id="@+id/login_layout"
-        android:layout_width="276dp"
-        android:layout_height="74dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="54dp"
-        android:layout_marginTop="266dp">
+    <Button
+        android:id="@+id/bn_login"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="3dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/btn_google_signin"
+        tools:ignore="OnClick"/>
 
-        <com.google.android.gms.common.SignInButton
-            android:id="@+id/bn_login"
-            android:layout_width="263dp"
-            android:layout_height="70dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="4dp"
-            android:background="@drawable/btn_google_signin"
-            tools:ignore="OnClick">
-
-        </com.google.android.gms.common.SignInButton>
-
-    </RelativeLayout>
 
     <!---
     <RelativeLayout

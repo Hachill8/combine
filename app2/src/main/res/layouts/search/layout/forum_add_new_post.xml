@@ -136,6 +136,7 @@
             android:layout_marginStart="15dp"
             android:layout_gravity="top"
             android:id="@+id/upload_img"
+            android:background="@drawable/camera_picture"
             />
 
         <TextView
@@ -144,6 +145,7 @@
             android:text="圖片"
             android:textSize="25dp"
             android:gravity="center"
+            android:layout_marginLeft="5dp"
             android:layout_gravity="top"/>
 
     </LinearLayout>

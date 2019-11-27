@@ -10,6 +10,8 @@ import android.graphics.drawable.BitmapDrawable;
 import android.media.Image;
 import android.os.Handler;
 import android.os.HandlerThread;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -50,7 +52,10 @@ import com.getbase.floatingactionbutton.FloatingActionButton;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 public class search extends AppCompatActivity  {
     ImageButton bt_filter,plus_vege,home;
@@ -78,7 +83,9 @@ public class search extends AppCompatActivity  {
 
     String[] split_line1    //切割篩選菜名
             ,split_line2    //圖片
-            ,split_line3;   //分開作物名稱和圖片
+            ,split_line3    //分開作物名稱和圖片
+            ,split_line4    //hashtag1
+            ,split_line5;   //hashtag2
     List<vege_cardview> cardviewList;
 
 
@@ -94,11 +101,11 @@ public class search extends AppCompatActivity  {
         cardviewList = new ArrayList<>();
         cardviewList.add(new vege_cardview(0,"小白菜",bitmap,"#03~04、07~11月","#約30天可採收"));
         bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.record_vege_3);
-        cardviewList.add(new vege_cardview(1,"空心菜",bitmap,"#04~08月","約30天可採收"));
+        cardviewList.add(new vege_cardview(1,"空心菜",bitmap,"#04~08月","#約30天可採收"));
         bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.vege_ciu);
         cardviewList.add(new vege_cardview(2,"秋葵",bitmap,"#04~06月","#3~4個月可以採收"));
         bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.vege_carrot);
-        cardviewList.add(new vege_cardview(3,"紅蘿蔔",bitmap,"#08~02月","3~4個月可採收"));
+        cardviewList.add(new vege_cardview(3,"紅蘿蔔",bitmap,"#08~02月","#3~4個月可採收"));
         RecyclerView search_recyclerView = (RecyclerView) findViewById(R.id.search_recyclerView);
         search_recyclerView.setLayoutManager(new StaggeredGridLayoutManager(4, StaggeredGridLayoutManager.HORIZONTAL));
         search_recyclerView.setAdapter(new search.CardAdapter(this, cardviewList));
@@ -248,27 +255,45 @@ public class search extends AppCompatActivity  {
                 split_line3 = getSelect_month.split("切"); //切割作物名和圖片編碼
                 split_line1 = split_line3[0].split("%");   //切割各作物
                 split_line2 = split_line3[1].split("圖");  //切割各圖片編碼
-                for(int num = 0; num < split_line1.length;num++)
+                split_line4 = split_line3[2].split("%");   //hashtag1
+                split_line5 = split_line3[3].split("%");   //hashtag2
+
+                for(int i = 0; i < split_line4.length;i++)
                 {
-                    for(int i = 0; i < split_line1[num].length();i++)
+                    String[] split_line6 = split_line4[i].split("、");
+                    List<Integer> index = new ArrayList<Integer>();
+                    for(int j = 0; j < split_line6.length;j++)
                     {
-                        if(split_line1[num].substring(i,i+1).equals(" "))
+                        if(split_line6[j].contains("0") && !split_line6[j].contains("10"))
                         {
-                            split_line1[num]=split_line1[num].substring(0,i);
-                            Log.v("test","切割後的字串:"+split_line1[num]);
-                            break;
+                            index.add(Integer.valueOf(split_line6[j].substring(1,2)));
+                        }
+                        else
+                        {
+                            index.add(Integer.valueOf(split_line6[j]));
                         }
                     }
-                    for(int i = 0; i < split_line2[num].length();i++)
+                    int middle = 0;
+                    split_line4[i] ="";
+                    index.add(100); //給最大值避免比較時出錯
+                    for(int k = 0; k < split_line6.length;k++)
                     {
-                        if(split_line2[num].substring(i,i+1).equals(" "))
+                        if(index.get(k)+1 != index.get(k+1) && index.get(k)-11 != index.get(k+1))
                         {
-                            split_line2[num]=split_line2[num].substring(0,i);
-                            Log.v("test","切割後的字串:"+split_line2[num]);
-                            break;
+                            if(split_line4[i].equals(""))
+                            {
+                                split_line4[i] = split_line6[0] +"~"+split_line6[k]+"月";
+                                middle = k;
+                            }
+                            else if (!split_line4[i].equals(""))
+                            {
+                                split_line4[i] = split_line4[i] + "、" + split_line6[middle+1] +"~"+split_line6[k]+"月";
+                            }
+
                         }
                     }
                 }
+
             }
 
             int size1 = cardviewList.size();
@@ -283,7 +308,7 @@ public class search extends AppCompatActivity  {
                 Bitmap bitmap=null;
                 byte[] decode = Base64.decode(split_line2[num],Base64.NO_CLOSE);
                 bitmap = BitmapFactory.decodeByteArray(decode, 0, decode.length);
-                cardviewList.add(new vege_cardview(num,split_line1[num], bitmap,"#03~04、07~11月","#1~3個月可以採收"));
+                cardviewList.add(new vege_cardview(num,split_line1[num], bitmap,"#"+split_line4[num],"#"+split_line5[num]));
             }
 
             RecyclerView search_recyclerView = (RecyclerView) findViewById(R.id.search_recyclerView);

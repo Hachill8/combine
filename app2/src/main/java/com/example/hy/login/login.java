@@ -51,7 +51,7 @@ public class login extends AppCompatActivity implements GoogleApiClient.Connecti
     String name,email="",line;
 
     //
-    SignInButton SignIn;
+    Button SignIn;
     Button SignOut;
     public GoogleApiClient googleApiClient;
     public static final int GoogleSignInRequestCode=9001;
@@ -88,6 +88,9 @@ public class login extends AppCompatActivity implements GoogleApiClient.Connecti
 //        Email=(TextView)findViewById(R.id.email);
 //        SignOut=(Button)findViewById(R.id.bn_logout);
 //        Name=(TextView)findViewById(R.id.name);
+        SignIn=findViewById(R.id.bn_login);
+
+
         SignIn=(SignInButton)findViewById(R.id.bn_login);
         SignIn.setOnClickListener(this);
         //SignOut.setOnClickListener(this);

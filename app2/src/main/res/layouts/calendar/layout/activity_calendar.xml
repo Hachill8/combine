@@ -167,7 +167,7 @@
 
                                 <TextView
                                     android:id="@+id/act_tv"
-                                    android:layout_width="378dp"
+                                    android:layout_width="330dp"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
                                     android:textSize="20dp" />
@@ -189,6 +189,8 @@
                                     android:layout_height="42dp"
                                     android:layout_alignParentStart="true"
                                     android:layout_alignParentTop="true"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginBottom="0dp"
                                     android:layout_weight="1"
                                     android:background="@color/Green1" />
 
@@ -218,7 +220,7 @@
 
                                 <TextView
                                     android:id="@+id/TV02"
-                                    android:layout_width="378dp"
+                                    android:layout_width="330dp"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
                                     android:onClick="sendMessage"
@@ -251,6 +253,12 @@
                                     android:textColor="#518D62"
                                     android:textSize="24sp"/>
                         </RelativeLayout>
+
+                        <ImageView
+                            android:id="@+id/calendar_picture"
+                            android:layout_width="320dp"
+                            android:layout_marginStart="20dp"
+                            android:layout_height="wrap_content"/>
 
                 </LinearLayout>
         </ScrollView>

@@ -87,7 +87,7 @@
                 android:layout_width="30dp"
                 android:layout_marginStart="150dp"
                 android:layout_height="match_parent"
-                android:background="@drawable/home" />
+                android:background="@drawable/gender" />
 
         </LinearLayout>
 

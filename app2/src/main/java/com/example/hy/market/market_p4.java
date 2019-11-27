@@ -60,6 +60,7 @@ public class market_p4 extends AppCompatActivity
 
     int remove_cardview_id=0; //從購物車刪除
     String remove_ans=""; //刪除的狀況
+    Button to_pay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -69,7 +70,14 @@ public class market_p4 extends AppCompatActivity
         setContentView(R.layout.activity_market4);
 
         recyclerView = (RecyclerView) findViewById(R.id.market4_shopping_cart_recyclerView);
-
+        to_pay = findViewById(R.id.to_pay);
+        to_pay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(market_p4.this,market_to_pay.class);
+                startActivity(i);
+            }
+        });
         product_amount_sum = (TextView) findViewById(R.id.product_amount_sum);
         product_price_sum = (TextView) findViewById(R.id.product_price_sum);
         product_all_price = (TextView) findViewById(R.id.product_all_price);

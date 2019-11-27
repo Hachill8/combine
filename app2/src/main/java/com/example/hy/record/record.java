@@ -44,8 +44,8 @@ public class record extends AppCompatActivity
         //cardview 建立
 
         List<record_Cardview> cardviewList = new ArrayList<>();
-        cardviewList.add(new record_Cardview(0,"紅蘿蔔 19/08/06",R.drawable.carrot));
-        cardviewList.add(new record_Cardview(1,"空心菜 19/08/06",R.drawable.record_vege_4));
+        cardviewList.add(new record_Cardview(0,"小白菜 19/10/06",R.drawable.little_white));
+        cardviewList.add(new record_Cardview(1,"空心菜 19/10/07",R.drawable.record_vege_4));
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
         recyclerView.setAdapter(new record.CardAdapter(this, cardviewList));
@@ -157,7 +157,7 @@ public class record extends AppCompatActivity
             final record_Cardview cardview = cardviewList.get(i);
             viewHolder.tx1.setText(String.valueOf(cardview.getName()));
             viewHolder.plantId.setImageResource(cardview.getImage());
-            viewHolder.tx2.setText("19/08/06");
+            viewHolder.tx2.setText("19/10/06");
 
             viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

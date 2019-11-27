@@ -38,7 +38,7 @@ public class record_Information2 extends AppCompatActivity{
             cv1 = (CalendarView)findViewById(R.id.CV01);
             tv1 = (TextView)findViewById(R.id.TV01);
             tv2 = (TextView)findViewById(R.id.TV02);
-            mTv = (TextView)findViewById(R.id.tv01);
+            //mTv = (TextView)findViewById(R.id.tv01);
 
             listItems = getResources().getStringArray(R.array.action_item);
             checkedItems = new boolean[listItems.length];

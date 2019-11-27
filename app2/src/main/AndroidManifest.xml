@@ -60,6 +60,7 @@
         <activity android:name=".login.login2" />
         <activity android:name=".login.login" />
         <activity android:name=".home.home2" />
+        <activity android:name=".market.market_to_pay"/>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
