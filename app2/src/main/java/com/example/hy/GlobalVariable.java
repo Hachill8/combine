@@ -18,6 +18,7 @@ public class GlobalVariable extends Application
     private String User_age="WHY!!!!!!!!!!!";
     private String User_gender="WHY";
     private String User_expri="WHY";
+    private String Search_forum_string="無";
 
     //修改 變數字串
     public void setWord(String word){
@@ -27,6 +28,9 @@ public class GlobalVariable extends Application
     public String getWord() {
         return Word;
     }
+
+    public void setSearch_forum_string(String search_forum_string){this.Search_forum_string = search_forum_string;}
+    public String getSearch_forum_string(){ return Search_forum_string;}
 
     public void setVege_item(String vege_item){this.Vege_item = vege_item;}
     public String getVege_item(){ return Vege_item;}

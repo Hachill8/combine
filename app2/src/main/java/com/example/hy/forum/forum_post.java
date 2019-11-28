@@ -2,16 +2,16 @@ package com.example.hy.forum;
 
 public class forum_post {
     private int id;
-    private String title,shortdesc,time,heartnum,commentnum;
-    private int image,userimg;
+    private String title,shortdesc,time,heartnum,commentnum,image_string;
+    private int userimg;
 
     public forum_post(int id, String title, String shortdesc,String time,
-                      String heartnum,String commentnum,int image,int userimg){
+                      String heartnum,String commentnum,String image_string,int userimg){
         this.id=id;
         this.title=title;
         this.shortdesc=shortdesc;
         this.time=time;
-        this.image=image;
+        this.image_string=image_string;
         this.heartnum=heartnum;
         this.commentnum=commentnum;
         this.userimg=userimg;
@@ -38,7 +38,7 @@ public class forum_post {
 
     public int getUserimg() { return userimg; }
 
-    public int getImage() {
-        return image;
+    public String getImage_string() {
+        return image_string;
     }
 }

@@ -162,8 +162,7 @@ public class forum_post2 extends AppCompatActivity {
 
     }
 
-
-    //    //查看ImageGetter接口
+//    //查看ImageGetter接口
 //    //public static interface ImageGetter {
 //    //    public Drawable getDrawable(String source);
 //    //}

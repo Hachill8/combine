@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".personal_info_edit"></activity>
+        <activity android:name=".personal_info_edit"/>
         <activity android:name=".personal_help" />
         <activity android:name=".personal_info" />
         <activity android:name=".like_post" />
@@ -57,7 +57,6 @@
         <activity android:name=".secondcard" />
         <activity android:name=".firstcard" />
         <activity android:name=".select_model" />
-        <activity android:name=".login.login2" />
         <activity android:name=".login.login" />
         <activity android:name=".home.home2" />
         <activity android:name=".market.market_to_pay"/>
