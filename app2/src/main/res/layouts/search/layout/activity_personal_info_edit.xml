@@ -42,129 +42,243 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/textView9"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="30dp"
-                android:layout_weight="1"
-                android:text="姓名*"
-                android:textSize="20sp"
-                android:textColor="@color/colorPrimary1"/>
 
             <EditText
                 android:id="@+id/edit_name"
-                android:layout_width="326dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="textPersonName" />
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="15dp"
-                android:layout_weight="1"
-                android:text="電話*"
-                android:textSize="20sp"
-                android:textColor="@color/colorPrimary1" />
+                android:layout_width="320dp"
+                android:layout_height="56dp"
+                android:paddingLeft="47dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:textColor="#518D62"
+                android:background="@drawable/edit_pencil2"
+                android:hint="輸入姓名"
+                android:textColorHint="#518D62"/>
 
             <EditText
                 android:id="@+id/edit_phone"
-                android:layout_width="326dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="textPersonName" />
-
-            <TextView
-                android:id="@+id/textView13"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="15dp"
-                android:layout_weight="1"
-                android:text="所在地*"
-                android:textSize="20sp"
-                android:textColor="@color/colorPrimary1" />
+                android:layout_width="320dp"
+                android:layout_height="56dp"
+                android:hint="輸入電話"
+                android:textColorHint="#518D62"
+                android:layout_gravity="center"
+                android:textColor="#518D62"
+                android:layout_marginTop="30dp"
+                android:paddingLeft="47dp"
+                android:inputType="phone"
+                android:background="@drawable/edit_pencil2"/>
 
             <EditText
-                android:id="@+id/edit_address"
-                android:layout_width="326dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="textPersonName" />
-
+                android:id="@+id/edit_email"
+                android:layout_width="320dp"
+                android:layout_height="56dp"
+                android:hint="輸入電子郵件"
+                android:textColorHint="#518D62"
+                android:layout_gravity="center"
+                android:textColor="#518D62"
+                android:layout_marginTop="30dp"
+                android:paddingLeft="47dp"
+                android:background="@drawable/edit_pencil2"/>
 
             <TextView
-                android:id="@+id/textView11"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="15dp"
-                android:layout_weight="1"
-                android:text="年紀*"
-                android:textSize="20sp"
-                android:textColor="@color/colorPrimary1" />
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+
+                />
+
+            <EditText
+                android:id="@+id/edit_addr"
+                android:layout_width="320dp"
+                android:layout_height="56dp"
+                android:hint="輸入所在地"
+                android:textColorHint="#518D62"
+                android:layout_gravity="center"
+                android:textColor="#518D62"
+                android:paddingLeft="47dp"
+                android:background="@drawable/edit_pencil2"/>
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent" />
+
+                <Spinner
+                    android:id="@+id/type"
+                    android:layout_width="144dp"
+                    android:layout_height="match_parent"
+                    android:spinnerMode="dialog"/>
+
+                <TextView
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent" />
+
+                <Spinner
+                    android:id="@+id/type2"
+                    android:layout_width="152dp"
+                    android:layout_height="match_parent"
+                    android:spinnerMode="dialog"/>
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="match_parent"
+
+                android:layout_height="30dp"
+                android:layout_weight="1" />
 
             <EditText
                 android:id="@+id/edit_age"
-                android:layout_width="326dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="textPersonName" />
+                android:layout_width="320dp"
+                android:layout_height="56dp"
+                android:hint="輸入年紀"
+                android:textColorHint="#518D62"
+                android:layout_gravity="center"
+                android:textColor="#518D62"
+                android:paddingLeft="47dp"
+                android:background="@drawable/edit_pencil2"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="51dp"
+                    android:layout_height="match_parent" />
+
+                <Spinner
+                    android:id="@+id/select_age"
+                    android:layout_width="190dp"
+                    android:layout_height="56dp"
+                    android:spinnerMode="dialog" />
+
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
+                android:layout_width="320dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="15dp"
-                android:layout_weight="1"
-                android:text="性別*"
-                android:textSize="20sp"
-                android:textColor="@color/colorPrimary1" />
+                android:text="選擇性別"
+                android:textColor="#89B094"
+                android:textSize="30sp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                />
 
-            <EditText
-                android:id="@+id/edit_gender"
-                android:layout_width="326dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="textPersonName" />
+            <LinearLayout
+                android:id="@+id/man_woman"
+                android:layout_width="320dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+                >
+
+                <Button
+                    android:id="@+id/man"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_weight="2"
+                    android:text="男"
+                    android:textColor="#89B094"
+                    android:background="@drawable/gender"
+                    android:textSize="35dp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gender_space"
+                    android:layout_weight="1"
+                    />
+
+                <Button
+                    android:id="@+id/woman"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_weight="2"
+                    android:text="女"
+                    android:background="@drawable/gender"
+                    android:textColor="#89B094"
+                    android:textSize="35dp" />
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/textView15"
-                android:layout_width="wrap_content"
+                android:id="@+id/tvShowNumbers"
+                android:layout_width="320dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="15dp"
-                android:layout_weight="1"
-                android:text="種植經驗*"
-                android:textSize="20sp"
-                android:textColor="@color/colorPrimary1" />
+                android:text="種植經驗"
+                android:textColor="#89B094"
+                android:textSize="30sp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                />
 
-            <EditText
-                android:id="@+id/edit_expri"
-                android:layout_width="326dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="textPersonName" />
+            <LinearLayout
+                android:layout_width="320dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+                >
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gender"
+                    />
+
+                <Button
+                    android:id="@+id/one_year"
+                    android:layout_width="100dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/gender"
+                    android:text="1年以下"
+                    android:textSize="20dp"
+                    android:textColor="#89B094"
+                    />
+
+                <Button
+                    android:id="@+id/two_year"
+                    android:layout_width="100dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/gender"
+                    android:text="2~3年"
+                    android:textSize="20dp"
+                    android:textColor="#89B094"
+                    />
+                <Button
+                    android:id="@+id/three_year"
+                    android:layout_width="100dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/gender"
+                    android:text="3年以上"
+                    android:textSize="20dp"
+                    android:textColor="#89B094"
+                    />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="320dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:id="@+id/textView16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -196,7 +310,7 @@
                 android:layout_width="1.3dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center_vertical"
-                android:background="#D2D5D3"/>
+                android:background="#D2D5D3" />
 
             <Button
                 android:id="@+id/user_info_confirm"

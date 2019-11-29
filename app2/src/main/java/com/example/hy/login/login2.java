@@ -20,10 +20,13 @@ import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.hy.GlobalVariable;
 import com.example.hy.R;
+import com.example.hy.forum.forum_add_new_post;
 import com.example.hy.personal_info;
+import com.example.hy.personal_info_edit;
 import com.example.hy.search.search;
 import com.example.hy.select_model;
 import com.example.hy.webservice;
@@ -39,7 +42,7 @@ public class login2 extends AppCompatActivity  {
     //宣告特約工人
     private HandlerThread mThread;
 
-    EditText name,phone;
+    EditText name,phone,email;
     Button user_info_confrim,Man,Woman,One_year,Two_year,Three_year;
     int gender=0, //判斷目前選到哪個性別
             experience=0; //判斷目前種植經驗多久
@@ -123,20 +126,25 @@ public class login2 extends AppCompatActivity  {
 
         name=findViewById(R.id.name);
         phone=findViewById(R.id.phone);
+        email=findViewById(R.id.email);
         user_info_confrim  = (Button) findViewById(R.id.user_info_confirm);
         user_info_confrim.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.v("test","onClick");
                 Intent a = new Intent(login2.this, select_model.class);
-                startActivity(a);
-                gl.setUser_name(name.getText().toString());
-                gl.setUser_phone(phone.getText().toString());
-                gl.setUser_addr(addr);
-                gl.setUser_age(select_age);
-                gl.setUser_gender(select_gender);
-                gl.setUser_expri(select_expri);
-                mThreadHandler.post(r1);
+                if(name.getText().toString().equals("") || phone.getText().toString().equals("")||email.getText().toString().equals("")||
+                        addr.equals("")||select_age.equals("")||select_gender.equals("")||select_expri.equals(""))
+                {
+                    Toast.makeText(login2.this,"資料未輸入完整 !",Toast.LENGTH_SHORT).show();
+                }
+                else
+                    {
+                    mThreadHandler.post(r1);
+                    gl.setUser_name(name.getText().toString());
+                    gl.setUser_email(email.getText().toString());
+                    startActivity(a);
+                }
             }
         });
 
@@ -236,7 +244,6 @@ public class login2 extends AppCompatActivity  {
         });
 
 
-        County = (Spinner) findViewById(R.id.type);
         Age = (Spinner) findViewById(R.id.age);
 
 //        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(login2.this,
@@ -317,7 +324,7 @@ public class login2 extends AppCompatActivity  {
     private Runnable r1=new Runnable () {
 
         public void run() {
-            webservice.insert_user_info(name.getText().toString(),phone.getText().toString(),addr,select_age,select_gender,select_expri);
+            webservice.Update_user_info(email.getText().toString(),name.getText().toString(),phone.getText().toString(),addr,select_age,select_gender,select_expri);
 
         }
 

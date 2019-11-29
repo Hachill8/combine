@@ -42,16 +42,28 @@
                 android:textColorHint="#518D62"/>
 
             <EditText
-                android:id="@+id/phone"
+            android:id="@+id/phone"
+            android:layout_width="320dp"
+            android:layout_height="56dp"
+            android:hint="輸入電話"
+            android:textColorHint="#518D62"
+            android:layout_gravity="center"
+            android:textColor="#518D62"
+            android:layout_marginTop="30dp"
+            android:paddingLeft="47dp"
+            android:inputType="phone"
+            android:background="@drawable/edit_pencil2"/>
+
+            <EditText
+                android:id="@+id/email"
                 android:layout_width="320dp"
                 android:layout_height="56dp"
-                android:hint="輸入電話"
+                android:hint="輸入電子郵件"
                 android:textColorHint="#518D62"
                 android:layout_gravity="center"
                 android:textColor="#518D62"
                 android:layout_marginTop="30dp"
                 android:paddingLeft="47dp"
-                android:inputType="phone"
                 android:background="@drawable/edit_pencil2"/>
 
             <TextView

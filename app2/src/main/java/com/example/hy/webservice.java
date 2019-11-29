@@ -475,7 +475,7 @@ public class webservice
         }
     }
 
-    public static String insert_user_info(String name,String phone,String addr,String select_age,String select_gender,String select_expri)
+    public static String insert_user_info(String name,String phone,String email,String addr,String select_age,String select_gender,String select_expri)
     {
         String SOAP_ACTION = "http://tempuri.org/insert_user_info";          //命名空間+要用的函數名稱
         String METHOD_NAME = "insert_user_info";   //函數名稱
@@ -486,6 +486,7 @@ public class webservice
 
             request.addProperty("name",name);
             request.addProperty("phone",phone);
+            request.addProperty("email",email);
             request.addProperty("addr",addr);
             request.addProperty("age",select_age);
             request.addProperty("gender",select_gender);
@@ -511,21 +512,51 @@ public class webservice
         }
     }
 
-    public static String update_user_info(String name,String phone,String addr,String age,String gender,String expri)
+    public static String Update_user_info(String email,String name,String phone,String addr,String age,String gender,String expri)
     {
-        String SOAP_ACTION = "http://tempuri.org/insert_user_info";          //命名空間+要用的函數名稱
-        String METHOD_NAME = "insert_user_info";   //函數名稱
+        String SOAP_ACTION = "http://tempuri.org/Update_user_info";          //命名空間+要用的函數名稱
+        String METHOD_NAME = "Update_user_info";   //函數名稱
 
         //必須用try catch包著
         try {
             SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
+            request.addProperty("UPmail",email);
+            request.addProperty("UPname",name);
+            request.addProperty("UPphone",phone);
+            request.addProperty("UPaddr",addr);
+            request.addProperty("UPage",age);
+            request.addProperty("UPgender",gender);
+            request.addProperty("UPexpri",expri);
 
-            request.addProperty("name",name);
-            request.addProperty("phone",phone);
-            request.addProperty("addr",addr);
-            request.addProperty("age",age);
-            request.addProperty("gender",gender);
-            request.addProperty("expri",expri);
+            SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+            envelope.bodyOut = request;
+            envelope.dotNet = true;//若WS有輸入參數必須要加這一行否則WS沒反應
+            envelope.setOutputSoapObject(request);
+            envelope.encodingStyle = "utf-8";
+            HttpTransportSE ht = new HttpTransportSE(URL);
+            ht.call(SOAP_ACTION, envelope);
+            Log.v("test","有進WS");
+            // 獲取回傳數據
+            SoapObject object = (SoapObject) envelope.bodyIn;
+            // 獲取返回的結果
+            String result = object.getProperty(0).toString();
+
+            Log.v("test1","ws的result: "+result);
+            return result;
+        } catch (Exception e) {
+            return e.toString();
+        }
+    }
+
+    public static String Select_user_info(String user_email)
+    {
+        String SOAP_ACTION = "http://tempuri.org/Select_user_info";          //命名空間+要用的函數名稱
+        String METHOD_NAME = "Select_user_info";   //函數名稱
+
+        //必須用try catch包著
+        try {
+            SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
+            request.addProperty("UPmail",user_email);
 
             SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
             envelope.bodyOut = request;

@@ -25,12 +25,13 @@
                 android:id="@+id/user_info_edit"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:layout_marginEnd="40dp"
+                android:layout_marginEnd="16dp"
                 android:background="#ffffff"
                 android:scaleType="centerInside"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.468"
                 app:srcCompat="@drawable/pencil" />
 
             <TextView
@@ -42,8 +43,9 @@
                 android:textColor="@color/black"
                 android:textSize="28dp"
                 app:layout_constraintEnd_toStartOf="@+id/user_info_edit"
-                app:layout_constraintHorizontal_bias="0.569"
-                app:layout_constraintStart_toEndOf="@+id/back_user"
+
+                app:layout_constraintHorizontal_bias="0.603"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
@@ -61,11 +63,11 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="550dp">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <TextView
@@ -75,9 +77,9 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="30dp"
                 android:layout_weight="1"
-                android:text="姓名*"
+                android:text="姓名"
                 android:textSize="20sp"
-                android:textColor="@color/colorPrimary1"/>
+                android:textColor="@color/gray"/>
 
             <TextView
                 android:id="@+id/name_tv"
@@ -95,12 +97,31 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="15dp"
                 android:layout_weight="1"
-                android:text="電話*"
+                android:text="電話"
                 android:textSize="20sp"
-                android:textColor="@color/colorPrimary1"/>
+                android:textColor="@color/gray"/>
 
             <TextView
                 android:id="@+id/phone_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="1"
+                android:textSize="25dp"/>
+
+            <TextView
+                android:id="@+id/textV2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_weight="1"
+                android:text="電子郵件"
+                android:textSize="20sp"
+                android:textColor="@color/gray"/>
+
+            <TextView
+                android:id="@+id/email_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -114,13 +135,13 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="15dp"
                 android:layout_weight="1"
-                android:text="所在地*"
+                android:text="所在地"
                 android:textSize="20sp"
-                android:textColor="@color/colorPrimary1"/>
+                android:textColor="@color/gray"/>
 
             <TextView
                 android:id="@+id/addr_tv"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:textSize="25dp" />
@@ -132,9 +153,9 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="15dp"
                 android:layout_weight="1"
-                android:text="年紀*"
+                android:text="年紀"
                 android:textSize="20sp"
-                android:textColor="@color/colorPrimary1" />
+                android:textColor="@color/gray" />
 
             <TextView
                 android:id="@+id/age_tv"
@@ -151,9 +172,9 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="15dp"
                 android:layout_weight="1"
-                android:text="性別*"
+                android:text="性別"
                 android:textSize="20sp"
-                android:textColor="@color/colorPrimary1" />
+                android:textColor="@color/gray" />
 
             <TextView
                 android:id="@+id/gender_tv"
@@ -170,9 +191,9 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="15dp"
                 android:layout_weight="1"
-                android:text="種植經驗*"
+                android:text="種植經驗"
                 android:textSize="20sp"
-                android:textColor="@color/colorPrimary1" />
+                android:textColor="@color/gray" />
 
             <TextView
                 android:id="@+id/expri_tv"
