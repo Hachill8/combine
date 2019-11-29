@@ -13,7 +13,7 @@ public class GlobalVariable extends Application
     private String Forum_content="錯誤",Forum_title="錯誤";
     private String Market_item="無";
     private String User_email="123456";
-    private String User_name="GO";
+    private String User_name="GOK";
 
     //修改 變數字串
     public void setWord(String word){
