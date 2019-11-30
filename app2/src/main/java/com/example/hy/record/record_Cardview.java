@@ -6,18 +6,27 @@ import android.graphics.Bitmap;
 public class record_Cardview
 {
     private int id;
-    private String name;
+    private String name,time;
     private Bitmap image;
 
     public record_Cardview(){
         super();
     }
 
-    public record_Cardview(int id,String name,Bitmap image)
+    public record_Cardview(int id,String name,String time,Bitmap image)
     {
         super();
         this.name = name;
         this.image = image;
+        this.time = time;
+    }
+
+    public String getTime(){
+        return time;
+    }
+
+    public void setTime(){
+        this.time = time;
     }
 
     public String getName(){

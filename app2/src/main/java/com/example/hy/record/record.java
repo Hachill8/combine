@@ -30,7 +30,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.hy.GlobalVariable;
 import com.example.hy.R;
 import com.example.hy.webservice;
 
@@ -57,13 +59,14 @@ public class record extends AppCompatActivity
 
     List<record_Cardview> cardviewList;
     Spinner mSpinner2;
+    GlobalVariable record_name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags( WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_record);
 
-
+        record_name = (GlobalVariable) getApplicationContext();
         //聘請一個特約工人，有其經紀人派遣其工人做事 (另起一個有Handler的Thread)
         mThread = new HandlerThread("");
         //讓Worker待命，等待其工作 (開啟Thread)
@@ -199,18 +202,49 @@ public class record extends AppCompatActivity
         public void run() {
             record_search_string = webservice.Record_list();
             mThreadHandler.post(record_search_r2);
+
         }
     };
+
     Runnable record_search_r2 = new Runnable() {
         @Override
         public void run() {
             new Handler(Looper.getMainLooper()).post(new Runnable(){
                 @Override
                 public void run() {
-                    String[] split_line = record_search_string.split("%");
-                    Log.v("test","record的紀錄: "+ split_line[1]);
-                    record_search.setAdapter(new ArrayAdapter<>(record.this,
-                            android.R.layout.simple_list_item_1, split_line));
+                    String[] all ,split_record_search,split_record_search_date,split_record_search_img;
+
+                    if (!record_search_string.equals("can't not found"))
+                    {
+                        all = record_search_string.split("切");
+                        split_record_search = all[0].split("%");
+                        split_record_search_date = all[1].split("%");   //時間
+                        split_record_search_img = all[2].split("圖");  //切割各圖片編碼
+
+                        //搜尋bar list view
+                        Log.v("test","record的紀錄: "+ split_record_search[1]);
+                        record_search.setAdapter(new ArrayAdapter<>(record.this,
+                                android.R.layout.simple_list_item_1, split_record_search));
+
+                    int size1 = cardviewList.size();
+                    for(int i=0;i < size1;i++)
+                    {
+                        Log.v("test","cardviewList.size(): "+cardviewList.size());
+                        cardviewList.remove(0);
+                    }
+
+                    for(int num = 0; num < split_record_search.length;num++)
+                    {
+                        Bitmap bitmap=null;
+                        byte[] decode = Base64.decode(split_record_search_img[num],Base64.NO_CLOSE);
+                        bitmap = BitmapFactory.decodeByteArray(decode, 0, decode.length);
+                        cardviewList.add(new record_Cardview(num,split_record_search[num],split_record_search_date[num], bitmap));
+                    }
+
+                    RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+                    recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+                    recyclerView.setAdapter(new record.CardAdapter(record.this, cardviewList));
+                    }
                 }
             });
         }
@@ -238,7 +272,7 @@ public class record extends AppCompatActivity
                         split_record_vege = split_line3[0].split("%");   //切割各作物
                         split_record_date = split_line3[1].split("%");   //時間
                         split_record_img = split_line3[2].split("圖");  //切割各圖片編碼
-                    }
+
 
                     int size1 = cardviewList.size();
                     for(int i=0;i < size1;i++)
@@ -252,13 +286,17 @@ public class record extends AppCompatActivity
                         Bitmap bitmap=null;
                         byte[] decode = Base64.decode(split_record_img[num],Base64.NO_CLOSE);
                         bitmap = BitmapFactory.decodeByteArray(decode, 0, decode.length);
-                        cardviewList.add(new record_Cardview(num,split_record_vege[num], bitmap));
+                        cardviewList.add(new record_Cardview(num,split_record_vege[num],split_record_date[num], bitmap));
                     }
 
                     RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
                     recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
                     recyclerView.setAdapter(new record.CardAdapter(record.this, cardviewList));
-
+                    }
+                    else
+                    {
+                        Toast.makeText(record.this,"查無資料!",Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
 
@@ -303,12 +341,14 @@ public class record extends AppCompatActivity
             final record_Cardview cardview = cardviewList.get(i);
             viewHolder.tx1.setText(String.valueOf(cardview.getName()));
             viewHolder.plantId.setImageBitmap(cardview.getImage());
-            viewHolder.tx2.setText("19/10 /06");
+            viewHolder.tx2.setText(String.valueOf((cardview.getTime())));
 
             viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     addItem(cardviewList.size());
+                    record_name.setRecord_vege_name(cardview.getName());
                     Intent intent = new Intent(record.this, record_Information2.class);
                     startActivity(intent);
                 }

@@ -351,7 +351,7 @@ public class webservice
         }
     }
 
-    public static String select_cal(String date)
+    public static String select_cal(String vege_neme,String date)
     {
         String SOAP_ACTION = "http://tempuri.org/select_cal";          //命名空間+要用的函數名稱
         String METHOD_NAME = "select_cal";   //函數名稱
@@ -359,7 +359,9 @@ public class webservice
         //必須用try catch包著
         try {
             SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
-            request.addProperty("day",date);
+            request.addProperty("vege_name",vege_neme);
+            request.addProperty("vege_time",date);
+
 
             SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
             envelope.bodyOut = request;

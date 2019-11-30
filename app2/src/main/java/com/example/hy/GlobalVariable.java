@@ -16,7 +16,7 @@ public class GlobalVariable extends Application
     private String User_name="GOK";
     private String Search_forum_string="無";
     private String User_email="";
-
+    private String Record_vege_name="";
 
 
     //修改 變數字串
@@ -28,8 +28,8 @@ public class GlobalVariable extends Application
         return Word;
     }
 
-    public void setVege_item(String vege_item){this.Vege_item = vege_item;}
-    public String getVege_item(){ return Vege_item;}
+    public void setRecord_vege_name(String record_vege_name){this.Record_vege_name = record_vege_name;}
+    public String getRecord_vege_name(){ return Record_vege_name;}
 
     public void setAction_item(String action_item){this.Action_item = action_item;}
     public String getAction_item(){ return Action_item;}

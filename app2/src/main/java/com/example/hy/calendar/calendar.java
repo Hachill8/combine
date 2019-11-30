@@ -320,7 +320,7 @@ public class calendar extends AppCompatActivity {
 
         public void run() {
 
-            cal_data = webservice.select_cal(date);
+            //cal_data = webservice.select_cal(vege_name,date);
             Log.v("test","cal_data: "+cal_data);
             //請經紀人指派工作名稱 r，給工人做
             mUI_Handler.post(r4);
