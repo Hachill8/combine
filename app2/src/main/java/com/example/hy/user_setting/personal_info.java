@@ -41,7 +41,7 @@ public class personal_info extends AppCompatActivity {
         mThreadHandler=new Handler(mThread.getLooper());
 
         gl = (GlobalVariable)getApplicationContext();
-        user_email=gl.getUser_email();
+        user_email=gl.getUser_gmail();
         Log.v("test","user_email: "+user_email);
 
         user_info_edit=findViewById(R.id.user_info_edit);

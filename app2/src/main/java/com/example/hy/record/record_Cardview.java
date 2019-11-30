@@ -1,16 +1,19 @@
 package com.example.hy.record;
 
 
+import android.graphics.Bitmap;
+
 public class record_Cardview
 {
-    private int image,id;
+    private int id;
     private String name;
+    private Bitmap image;
 
     public record_Cardview(){
         super();
     }
 
-    public record_Cardview(int id,String name,int image)
+    public record_Cardview(int id,String name,Bitmap image)
     {
         super();
         this.name = name;
@@ -25,7 +28,7 @@ public class record_Cardview
         this.name = name;
     }
 
-    public int getImage(){
+    public Bitmap getImage(){
         return image;
     }
 

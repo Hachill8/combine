@@ -311,7 +311,7 @@ public class personal_info_edit extends AppCompatActivity {
 
         public void run() {
 
-            GOemail=gl.getUser_email();
+            GOemail=gl.getUser_gmail();
             user_data = webservice.Select_user_info(GOemail);
             //請經紀人指派工作名稱 r，給工人做
             mUI_Handler.post(r2);

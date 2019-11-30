@@ -4,13 +4,18 @@ package com.example.hy.record;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Handler;
 import android.os.HandlerThread;
+import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Base64;
+import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -18,13 +23,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.hy.R;
+import com.example.hy.webservice;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,22 +41,53 @@ public class record extends AppCompatActivity
 {
     boolean fg = false;
     int num = 0,id=2;
-    Button showDialog;
+    Button showDialog , select_item ;
+    //找到UI工人的經紀人，這樣才能派遣工作  (找到顯示畫面的UI Thread上的Handler)
+    private Handler mUI_Handler = new Handler();
+    //宣告特約工人的經紀人
+    private Handler mThreadHandler;
+    //宣告特約工人
+    private HandlerThread mThread;
+    AutoCompleteTextView record_search;
+    String record_search_string="",record_month_select_string="",record_month_select_info="can't not found";
+    String[] split_record_vege    //切割篩選菜名
+            ,split_record_img    //圖片
+            ,split_line3    //分開作物名稱和圖片
+            ,split_record_date;    //時間
 
+    List<record_Cardview> cardviewList;
+    Spinner mSpinner2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags( WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_record);
 
+
+        //聘請一個特約工人，有其經紀人派遣其工人做事 (另起一個有Handler的Thread)
+        mThread = new HandlerThread("");
+        //讓Worker待命，等待其工作 (開啟Thread)
+        mThread.start();
+        //找到特約工人的經紀人，這樣才能派遣工作 (找到Thread上的Handler)
+        mThreadHandler=new Handler(mThread.getLooper());
+        mThreadHandler.post(record_search_r1);
+
+        record_search = findViewById(R.id.search_record);
+        record_search.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            //點擊後抓searchview的文字並跳轉到作物資訊
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.v("test","record TextView:"+record_search.getText());
+
+                Intent x=new Intent(record.this,record_Information2.class);
+                startActivity(x);
+            }
+        });
+
         //cardview 建立
 
-        List<record_Cardview> cardviewList = new ArrayList<>();
-        cardviewList.add(new record_Cardview(0,"小白菜 19/10/06",R.drawable.little_white));
-        cardviewList.add(new record_Cardview(1,"空心菜 19/10/07",R.drawable.record_vege_4));
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
-        recyclerView.setAdapter(new record.CardAdapter(this, cardviewList));
+        cardviewList = new ArrayList<>();
+
 
 
         //Dialog 建立
@@ -66,7 +105,7 @@ public class record extends AppCompatActivity
                 mBuilder.setTitle("");
 
                 final Spinner mSpinner1 = (Spinner) mView.findViewById(R.id.spinner1);
-                Spinner mSpinner2 = (Spinner) mView.findViewById(R.id.spinner2);
+                mSpinner2 = (Spinner) mView.findViewById(R.id.spinner2);
 
                 //給予對應item的資料
                 ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(record.this,
@@ -111,11 +150,30 @@ public class record extends AppCompatActivity
 //                    }
 //                });
 
+                //篩選
+                select_item = (Button) mView.findViewById(R.id.record_select_item);
+
                 mBuilder.setView(mView);
-                AlertDialog dialog = mBuilder.create();
-
-
+                final AlertDialog dialog = mBuilder.create();
                 dialog.show();
+
+                select_item.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        record_month_select_string = mSpinner2.getSelectedItem().toString();
+
+                        if(!record_month_select_string.equals("月份…"))
+                        {
+                            record_month_select_string = record_month_select_string.replace("月", "");
+                            Log.v("test", "record month:  " + record_month_select_string);
+                            //請經紀人指派工作名稱 r，給工人做
+                            mThreadHandler.post(record_month_select_r1);
+                        }
+                        dialog.dismiss();
+                    }
+                });
+
+
 
                 // 調整Dialog從哪開始
                 Window dialogWindow = dialog.getWindow();
@@ -135,6 +193,94 @@ public class record extends AppCompatActivity
             }
         });
     }
+
+    Runnable record_search_r1 = new Runnable() {
+        @Override
+        public void run() {
+            record_search_string = webservice.Record_list();
+            mThreadHandler.post(record_search_r2);
+        }
+    };
+    Runnable record_search_r2 = new Runnable() {
+        @Override
+        public void run() {
+            new Handler(Looper.getMainLooper()).post(new Runnable(){
+                @Override
+                public void run() {
+                    String[] split_line = record_search_string.split("%");
+                    Log.v("test","record的紀錄: "+ split_line[1]);
+                    record_search.setAdapter(new ArrayAdapter<>(record.this,
+                            android.R.layout.simple_list_item_1, split_line));
+                }
+            });
+        }
+    };
+
+
+    Runnable  record_month_select_r1 = new Runnable() {
+        @Override
+        public void run() {
+            record_month_select_info = webservice.Record_Select_month(record_month_select_string);
+            mThreadHandler.post(record_month_select_r2);
+        }
+    };
+
+    Runnable  record_month_select_r2 = new Runnable() {
+        @Override
+        public void run() {
+            new Handler(Looper.getMainLooper()).post(new Runnable(){
+                @Override
+                public void run() {
+                    if (!record_month_select_info.equals("can't not found"))
+                    {
+
+                        split_line3 = record_month_select_info.split("切"); //切割作物名和圖片編碼
+                        split_record_vege = split_line3[0].split("%");   //切割各作物
+                        split_record_date = split_line3[1].split("%");   //時間
+                        split_record_img = split_line3[2].split("圖");  //切割各圖片編碼
+                    }
+
+                    int size1 = cardviewList.size();
+                    for(int i=0;i < size1;i++)
+                    {
+                        Log.v("test","cardviewList.size(): "+cardviewList.size());
+                        cardviewList.remove(0);
+                    }
+
+                    for(int num = 0; num < split_record_vege.length;num++)
+                    {
+                        Bitmap bitmap=null;
+                        byte[] decode = Base64.decode(split_record_img[num],Base64.NO_CLOSE);
+                        bitmap = BitmapFactory.decodeByteArray(decode, 0, decode.length);
+                        cardviewList.add(new record_Cardview(num,split_record_vege[num], bitmap));
+                    }
+
+                    RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+                    recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+                    recyclerView.setAdapter(new record.CardAdapter(record.this, cardviewList));
+
+                }
+            });
+
+        }
+    };
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //移除工人上的工作
+        if (mThreadHandler != null) {
+            mThreadHandler.removeCallbacks(record_search_r1 );
+            mThreadHandler.removeCallbacks(record_month_select_r1 );
+
+        }
+        //解聘工人 (關閉Thread)
+        if (mThread != null) {
+            mThread.quit();
+        }
+    }
+
 
     private class CardAdapter extends  RecyclerView.Adapter<CardAdapter.ViewHolder>
     {
@@ -156,8 +302,8 @@ public class record extends AppCompatActivity
         public void onBindViewHolder(CardAdapter.ViewHolder viewHolder, int i) {
             final record_Cardview cardview = cardviewList.get(i);
             viewHolder.tx1.setText(String.valueOf(cardview.getName()));
-            viewHolder.plantId.setImageResource(cardview.getImage());
-            viewHolder.tx2.setText("19/10/06");
+            viewHolder.plantId.setImageBitmap(cardview.getImage());
+            viewHolder.tx2.setText("19/10 /06");
 
             viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

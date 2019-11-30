@@ -10,6 +10,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.media.Image;
 import android.os.Handler;
 import android.os.HandlerThread;
+import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -59,11 +60,10 @@ import java.util.ListIterator;
 
 public class search extends AppCompatActivity  {
     ImageButton bt_filter,plus_vege,home;
-    GlobalVariable vege_name,vege_item;
+    GlobalVariable vege_name;
     String insert_vege_item="";
-    String[] split_line={}; //搜尋的listview
+
     AutoCompleteTextView searchview;
-    View v;
     Spinner mSpinner2;
     String select_month,getSelect_month="can't not found";
     //篩選
@@ -119,6 +119,7 @@ public class search extends AppCompatActivity  {
         //找到特約工人的經紀人，這樣才能派遣工作 (找到Thread上的Handler)
         mThreadHandler=new Handler(mThread.getLooper());
 
+        mThreadHandler.post(search_namelist_r1);
 
 
         //篩選
@@ -195,10 +196,6 @@ public class search extends AppCompatActivity  {
 
 
         vege_name  = (GlobalVariable)getApplicationContext();
-        vege_item  = (GlobalVariable)getApplicationContext();
-        insert_vege_item = vege_item.getVege_item();
-
-
 
         searchview = (AutoCompleteTextView) findViewById(R.id.search_view);
         searchview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -211,7 +208,6 @@ public class search extends AppCompatActivity  {
                 startActivity(x);
             }
         });
-        listview(v);
 
         //編輯自訂作物
         plus_vege= (ImageButton) findViewById(R.id.BT_plus);
@@ -235,7 +231,28 @@ public class search extends AppCompatActivity  {
 
     }
 
+    Runnable search_namelist_r1 = new Runnable() {
+        @Override
+        public void run() {
+            insert_vege_item = webservice.Vegename_list();
+            mThreadHandler.post(search_namelist_r2);
+        }
+    };
+    Runnable search_namelist_r2 = new Runnable() {
+        @Override
+        public void run() {
+            new Handler(Looper.getMainLooper()).post(new Runnable(){
+                @Override
+                public void run() {
+                    String[] split_line = insert_vege_item.split("%");
+                    Log.v("test","search的蔡: "+ split_line[2]);
+                    searchview.setAdapter(new ArrayAdapter<>(search.this,
+                            android.R.layout.simple_list_item_1, split_line));
+                }
+            });
 
+        }
+    };
 
     Runnable r1=new Runnable () {
         public void run() {
@@ -312,7 +329,7 @@ public class search extends AppCompatActivity  {
             }
 
             RecyclerView search_recyclerView = (RecyclerView) findViewById(R.id.search_recyclerView);
-            search_recyclerView.setLayoutManager(new StaggeredGridLayoutManager(split_line1.length, StaggeredGridLayoutManager.HORIZONTAL));
+            search_recyclerView.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));
             search_recyclerView.setAdapter(new search.CardAdapter(search.this, cardviewList));
         }
     };
@@ -331,29 +348,6 @@ public class search extends AppCompatActivity  {
 
 
 
-
-    //searchview的列表
-    public void listview(View view)
-    {
-
-        if (!insert_vege_item.equals("")) {
-            split_line = insert_vege_item.split("%");
-            for(int num = 0; num < split_line.length;num++)
-            {
-                for(int i = 0; i < split_line[num].length();i++)
-                {
-                    if(split_line[num].substring(i,i+1).equals(" "))
-                    {
-                        split_line[num]=split_line[num].substring(0,i);
-                        Log.v("test","切割後的字串:"+split_line[num]);
-                        break;
-                    }
-                }
-            }
-        }
-        searchview.setAdapter(new ArrayAdapter<>(search.this,
-                android.R.layout.simple_list_item_1, split_line));
-    }
 
 
     private class CardAdapter extends  RecyclerView.Adapter<search.CardAdapter.ViewHolder>{

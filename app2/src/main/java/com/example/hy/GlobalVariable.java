@@ -12,9 +12,11 @@ public class GlobalVariable extends Application
     private String Select_month="無";
     private String Forum_content="錯誤",Forum_title="錯誤";
     private String Market_item="無";
+    private String User_gmail="無";
+    private String User_name="GOK";
     private String Search_forum_string="無";
     private String User_email="";
-    private String User_name="GOK";
+
 
 
     //修改 變數字串
@@ -58,5 +60,9 @@ public class GlobalVariable extends Application
     public void setUser_name(String user_name){this.User_name = user_name;}
     public String getUser_name(){ return User_name;}
 
+
+
+    public void setUser_gmail(String user_gmail){this.User_gmail = user_gmail;}
+    public String getUser_gmail(){ return User_gmail;}
 
 }

@@ -132,7 +132,7 @@ public class login2 extends AppCompatActivity  {
                     {
                     mThreadHandler.post(r1);
                     gl.setUser_name(name.getText().toString());
-                    gl.setUser_email(email.getText().toString());
+                //    gl.setUser_gmail(email.getText().toString());
                     startActivity(a);
                 }
             }
@@ -285,16 +285,6 @@ public class login2 extends AppCompatActivity  {
 
     }
 
-
-    public void insert_vege_item() {
-        Thread thread = new Thread() {
-            public void run() {
-                insert_vege_item = webservice.Vegename_list("s");
-            }
-        };
-        thread.start();
-        Log.v("test","1."+insert_vege_item+"2");
-    }
 
     //第一個下拉類別的監看式
     private AdapterView.OnItemSelectedListener selectListener = new AdapterView.OnItemSelectedListener(){
