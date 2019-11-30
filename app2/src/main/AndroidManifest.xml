@@ -13,12 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".personal_info_edit"/>
-        <activity android:name=".personal_help" />
-        <activity android:name=".personal_info" />
-        <activity android:name=".like_post" />
-        <activity android:name=".like_vege" />
-        <activity android:name=".my_post" />
+        <activity android:name=".user_setting.personal_info_edit"/>
+        <activity android:name=".user_setting.personal_help" />
+        <activity android:name=".user_setting.personal_info" />
+        <activity android:name=".user_setting.like_post" />
+        <activity android:name=".user_setting.like_vege" />
+        <activity android:name=".user_setting.my_post" />
         <activity android:name=".login.login2" />
         <activity android:name=".choose_calendar"/>
         <activity android:name=".calendar.calendar" />
@@ -27,6 +27,7 @@
         <activity android:name=".edit_pot" />
         <activity android:name=".search.search" />
         <activity android:name=".calendar.calendar_memo" />
+        <activity android:name=".calendar_memo2" />
         <activity android:name=".forum.forum" />
         <activity android:name=".market.market" />
         <activity android:name=".market.market2" />

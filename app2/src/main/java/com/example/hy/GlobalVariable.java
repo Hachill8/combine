@@ -12,9 +12,10 @@ public class GlobalVariable extends Application
     private String Select_month="無";
     private String Forum_content="錯誤",Forum_title="錯誤";
     private String Market_item="無";
-    private String User_email="123456";
-    private String User_name="GOK";
     private String Search_forum_string="無";
+    private String User_email="";
+    private String User_name="GOK";
+
 
     //修改 變數字串
     public void setWord(String word){
@@ -43,7 +44,8 @@ public class GlobalVariable extends Application
     public void setMarket_item(String market_item){this.Market_item = market_item;}
     public String getMarket_item(){ return Market_item;}
 
-
+    public void setSearch_forum_string(String search_forum_string){this.Market_item = search_forum_string;}
+    public String getSearch_forum_string(){ return Search_forum_string;}
 
     public void setSelect_month(String select_month){this.Select_month = select_month;  Log.v("test","gl的select: "+select_month);}
     public  String getSelect_month(){ Log.v("test","search的select: "+Select_month); return Select_month;}
@@ -56,7 +58,5 @@ public class GlobalVariable extends Application
     public void setUser_name(String user_name){this.User_name = user_name;}
     public String getUser_name(){ return User_name;}
 
-    public void setSearch_forum_string(String search_forum_string){this.Search_forum_string = search_forum_string;}
-    public String getSearch_forum_string(){ return Search_forum_string;}
 
 }

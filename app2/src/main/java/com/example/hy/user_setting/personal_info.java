@@ -1,7 +1,6 @@
-package com.example.hy;
+package com.example.hy.user_setting;
 
 import android.content.Intent;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -11,11 +10,9 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.example.hy.user_setting.user_setting;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
+import com.example.hy.GlobalVariable;
+import com.example.hy.R;
+import com.example.hy.webservice;
 
 public class personal_info extends AppCompatActivity {
 
@@ -81,7 +78,7 @@ public class personal_info extends AppCompatActivity {
     private Runnable r1=new Runnable () {
 
         public void run() {
-            user_data=webservice.Select_user_info(user_email);
+            user_data= webservice.Select_user_info(user_email);
             Log.v("test","user: "+user_data);
             //請經紀人指派工作名稱 r，給工人做
             mUI_Handler.post(r2);

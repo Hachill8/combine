@@ -1,40 +1,38 @@
-package com.example.hy;
+package com.example.hy.user_setting;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-import com.example.hy.forum.forum_add_new_post;
-import com.example.hy.user_setting.user_setting;
+import com.example.hy.R;
+import com.example.hy.search.search;
 
-public class my_post extends AppCompatActivity {
+public class like_vege extends AppCompatActivity {
     ImageButton back_user;
-    Button post;
+    Button go_search;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setFlags( WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_my_post);
+        setContentView(R.layout.activity_like_vege);
 
         back_user=findViewById(R.id.back_user);
-        post=findViewById(R.id.post);
+        go_search=findViewById(R.id.go_search);
 
         back_user.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(my_post.this, user_setting.class);
+                Intent intent = new Intent(like_vege.this, user_setting.class);
                 startActivity(intent);
             }
         });
-        post.setOnClickListener(new View.OnClickListener() {
+        go_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent x=new Intent(my_post.this, forum_add_new_post.class);
+                Intent x=new Intent(like_vege.this, search.class);
                 startActivity(x);
             }
         });

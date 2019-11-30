@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".personal_info_edit">
+    tools:context=".user_setting.personal_info_edit">
 
     <RelativeLayout
         android:layout_width="match_parent"

@@ -107,7 +107,6 @@ public class calendar_memo extends AppCompatActivity {
         mLoadingDialog = new ProgressDialog(calendar_memo.this);
         calendar_picture_view = findViewById(R.id.calendar_picture_view);
 
-
         calendar_picture_select = findViewById(R.id.calendar_picture_select);
         calendar_picture_select.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -287,7 +286,7 @@ public class calendar_memo extends AppCompatActivity {
         startActivity(intent);
 
         //請經紀人指派工作名稱 r，給工人做
-        //mThreadHandler.post(r1);
+        mThreadHandler.post(r1);
 
         //dbUtil.insert(date,s,ed.getText().toString());
 
@@ -299,7 +298,7 @@ public class calendar_memo extends AppCompatActivity {
     private Runnable r1=new Runnable () {
 
         public void run() {
-            line = webservice.Insert_calendar(date,s,message);
+            line = webservice.insert(date,s,message,url.toString());
             //請經紀人指派工作名稱 r，給工人做
             mUI_Handler.post(r2);
 

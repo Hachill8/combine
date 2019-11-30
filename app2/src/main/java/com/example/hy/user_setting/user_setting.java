@@ -6,18 +6,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.hy.GlobalVariable;
 import com.example.hy.R;
-import com.example.hy.like_post;
-import com.example.hy.like_vege;
 import com.example.hy.login.login;
-import com.example.hy.my_post;
-import com.example.hy.personal_help;
-import com.example.hy.personal_info;
 
 public class user_setting extends AppCompatActivity
 {

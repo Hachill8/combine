@@ -48,15 +48,16 @@ import java.util.Locale;
 public class calendar extends AppCompatActivity {
     CalendarView cv1;
     TextView tv1,tv2,act_tv;
-    String[] listItems;
+    String[] listItems,everyvege,sl;
     boolean[] checkedItems;
     ArrayList<Integer> mUserItems = new ArrayList<>();
     Button edit,update,cancel;
     Spinner spi;
     Switch swi;
+    Intent intent;
     private static  final  int REQUEST_CODE=1;
     GlobalVariable action_item_value,action_item_value2;
-    String date,decide_edit="edit",line="";
+    String date,decide_edit="edit",cal_data,Allvege="",setdate,pictureurl;
     //找到UI工人的經紀人，這樣才能派遣工作  (找到顯示畫面的UI Thread上的Handler)
     private Handler mUI_Handler = new Handler();
     //宣告特約工人的經紀人
@@ -65,7 +66,7 @@ public class calendar extends AppCompatActivity {
     private HandlerThread mThread;
 
     ImageView calendar_picture;
-    Bitmap myBitmap;
+    Bitmap myBitmap,nopicture;
     URL url;
 
     @Override
@@ -97,8 +98,8 @@ public class calendar extends AppCompatActivity {
         spi = (Spinner)findViewById(R.id.spinner);
         swi = (Switch) findViewById(R.id.switch1);
         Calendar calendar= Calendar.getInstance();
-        date = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault()).format(new Date());
-        tv1.setText(date);
+        setdate = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault()).format(new Date());
+        tv1.setText(setdate);
 
         swi.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -111,16 +112,14 @@ public class calendar extends AppCompatActivity {
                 }
             }
         });
-        final String[] lunch = {"A101 小白菜","B102 秋葵", "B103 空心菜", "C104 九層塔", "C105 迷迭香"};
-        ArrayAdapter<String> lunchList = new ArrayAdapter<>(calendar.this,
-                R.layout.zzz,
-                lunch);
 
-        spi.setAdapter(lunchList);
+        mThreadHandler.post(r7);
         spi.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 //                Toast.makeText(calendar.this, "你選的是" + lunch[position], Toast.LENGTH_SHORT).show();
+
+
             }
 
             @Override
@@ -210,6 +209,18 @@ public class calendar extends AppCompatActivity {
             public void onSelectedDayChange(@NonNull CalendarView view, int y, int m, int dm) {
                 date = y+"/"+(m+1)+"/"+dm;
                 tv1.setText(date);
+                mThreadHandler.post(r3);
+                try
+                {
+                    url = new URL(pictureurl);
+                    if(url.toString().contains("http"))
+                    {
+                        mThreadHandler.post(r5);
+                    }
+
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -255,22 +266,11 @@ public class calendar extends AppCompatActivity {
             }
         });
 
-        Intent intent = getIntent();
+        intent = getIntent();
         //把傳送進來的String型別的Message的值賦給新的變數message
         String message = intent.getStringExtra("EXTRA_MESSAGE");
         //所勾選的活動
         String s = intent.getStringExtra("EXTRA_Activity");
-        try
-        {
-            url = new URL(intent.getStringExtra("EXTRA_URL"));
-            if(url.toString().contains("http"))
-            {
-                mThreadHandler.post(r5);
-            }
-
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
         //把佈局檔案中的文字框和textview連結起來
         //在textview中顯示出來message
         tv2.setText(message);
@@ -312,7 +312,7 @@ public class calendar extends AppCompatActivity {
         public void run() {
             tv2.setText("");
             act_tv.setText("");
-
+            calendar_picture.setImageBitmap(nopicture);
         }
 
     };
@@ -320,8 +320,8 @@ public class calendar extends AppCompatActivity {
 
         public void run() {
 
-            line = webservice.select_cal(date);
-
+            cal_data = webservice.select_cal(date);
+            Log.v("test","cal_data: "+cal_data);
             //請經紀人指派工作名稱 r，給工人做
             mUI_Handler.post(r4);
 
@@ -334,17 +334,19 @@ public class calendar extends AppCompatActivity {
 
         public void run() {
 
-            if(line!="")
+            if(!cal_data.equals("還未新增資料"))
             {
-                String[] sl = line.split("%");
+                sl = cal_data.split("%");
                 act_tv.setText(sl[0]);
                 tv2.setText(sl[1]);
+                pictureurl=sl[2];
             }
             else
             {
                 tv2.setText("");
                 act_tv.setText("");
-                Toast.makeText(calendar.this, "OK", Toast.LENGTH_SHORT).show();
+                calendar_picture.setImageBitmap(nopicture);
+                Toast.makeText(calendar.this, "未新增資料", Toast.LENGTH_SHORT).show();
 
             }
         }
@@ -383,6 +385,32 @@ public class calendar extends AppCompatActivity {
 
     };
 
+    private Runnable r7=new Runnable () {
+
+        public void run() {
+
+            String email=action_item_value.getUser_email();
+            Allvege=webservice.Select_user_vege(email);
+            mUI_Handler.post(r8);
+        }
+
+    };
+
+    private Runnable r8=new Runnable () {
+
+        public void run() {
+
+            everyvege=Allvege.split("%");
+            final String[] lunch = everyvege;
+            ArrayAdapter<String> lunchList = new ArrayAdapter<>(calendar.this,
+                    R.layout.login2_select_dropdown_item,
+                    lunch);
+
+            spi.setAdapter(lunchList);
+        }
+
+    };
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -392,6 +420,7 @@ public class calendar extends AppCompatActivity {
             mThreadHandler.removeCallbacks(r1);
             mThreadHandler.removeCallbacks(r3);
             mThreadHandler.removeCallbacks(r5);
+            mThreadHandler.removeCallbacks(r7);
         }
         //解聘工人 (關閉Thread)
         if (mThread != null) {

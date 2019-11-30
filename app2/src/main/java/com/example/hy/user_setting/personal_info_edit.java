@@ -1,4 +1,4 @@
-package com.example.hy;
+package com.example.hy.user_setting;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,7 +14,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.hy.login.login2;
+import com.example.hy.GlobalVariable;
+import com.example.hy.R;
+import com.example.hy.webservice;
 
 import static com.example.hy.R.drawable.login2_button_action;
 

@@ -2,8 +2,6 @@ package com.example.hy.login;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -15,19 +13,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.NumberPicker;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.hy.GlobalVariable;
 import com.example.hy.R;
-import com.example.hy.forum.forum_add_new_post;
-import com.example.hy.personal_info;
-import com.example.hy.personal_info_edit;
-import com.example.hy.search.search;
 import com.example.hy.select_model;
 import com.example.hy.webservice;
 
@@ -122,7 +112,7 @@ public class login2 extends AppCompatActivity  {
 
         Log.v("test","進入login2.xml");
         context = this;
-        gl = (GlobalVariable)getApplicationContext();
+        gl= (GlobalVariable)getApplicationContext();
 
         name=findViewById(R.id.name);
         phone=findViewById(R.id.phone);
@@ -147,6 +137,10 @@ public class login2 extends AppCompatActivity  {
                 }
             }
         });
+
+        Intent intent= getIntent();
+        String getemail=intent.getStringExtra("giveemail");
+        email.setText(getemail);
 
         Man = (Button) findViewById(R.id.man);
         Woman = (Button) findViewById(R.id.woman);
@@ -288,6 +282,7 @@ public class login2 extends AppCompatActivity  {
         });
 
 
+
     }
 
 
@@ -329,6 +324,7 @@ public class login2 extends AppCompatActivity  {
         }
 
     };
+
 
 
 

@@ -316,10 +316,10 @@ public class webservice
     }
 
     ////務農族的資料還未改和VS還未加
-    public static String Insert_calendar(String date,String s,String message)
+    public static String insert(String date,String s,String message,String url)
     {
-        String SOAP_ACTION = "http://tempuri.org/insertcalendar";          //命名空間+要用的函數名稱
-        String METHOD_NAME = "insertcalendar";   //函數名稱
+        String SOAP_ACTION = "http://tempuri.org/insert";          //命名空間+要用的函數名稱
+        String METHOD_NAME = "insert";   //函數名稱
 
         //必須用try catch包著
         try {
@@ -328,6 +328,7 @@ public class webservice
             request.addProperty("time",date);
             request.addProperty("action",s);
             request.addProperty("note",message);
+            request.addProperty("picture",url);
 
 
             SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
@@ -352,6 +353,9 @@ public class webservice
 
     public static String select_cal(String date)
     {
+        String SOAP_ACTION = "http://tempuri.org/select_cal";          //命名空間+要用的函數名稱
+        String METHOD_NAME = "select_cal";   //函數名稱
+
         //必須用try catch包著
         try {
             SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
@@ -374,42 +378,8 @@ public class webservice
             return e.toString();
         }
     }
-    ////務農族的資料還未改和VS還未加
-    public static String insert(String date,String s,String message)
-    {
-        String SOAP_ACTION = "http://tempuri.org/insert";          //命名空間+要用的函數名稱
-        String METHOD_NAME = "insert";   //函數名稱
 
-        //必須用try catch包著
-        try {
-            SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
-
-            request.addProperty("time",date);
-            request.addProperty("action",s);
-            request.addProperty("note",message);
-
-
-            SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
-            envelope.bodyOut = request;
-            envelope.dotNet = true;//若WS有輸入參數必須要加這一行否則WS沒反應
-            envelope.setOutputSoapObject(request);
-            envelope.encodingStyle = "utf-8";
-            HttpTransportSE ht = new HttpTransportSE(URL);
-            ht.call(SOAP_ACTION, envelope);
-            Log.v("test","有進WS");
-            // 獲取回傳數據
-            SoapObject object = (SoapObject) envelope.bodyIn;
-            // 獲取返回的結果
-            String result = object.getProperty(0).toString();
-
-            Log.v("test1","ws的result: "+result);
-            return result;
-        } catch (Exception e) {
-            return e.toString();
-        }
-    }
-
-    public static String Update(String date,String s,String message)
+    public static String Update(String date,String s,String message,String url)
     {
         String SOAP_ACTION = "http://tempuri.org/Update";          //命名空間+要用的函數名稱
         String METHOD_NAME = "Update";   //函數名稱
@@ -421,6 +391,7 @@ public class webservice
             request.addProperty("time",date);
             request.addProperty("action",s);
             request.addProperty("note",message);
+            request.addProperty("picture",url);
 
 
             SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
@@ -631,6 +602,36 @@ public class webservice
             String result = object.getProperty(0).toString();
 
             Log.v("test","ws的result: "+result);
+            return result;
+        } catch (Exception e) {
+            return e.toString();
+        }
+    }
+
+    public static String Select_user_vege(String user_email)
+    {
+        String SOAP_ACTION = "http://tempuri.org/Select_user_vege";          //命名空間+要用的函數名稱
+        String METHOD_NAME = "Select_user_vege";   //函數名稱
+
+        //必須用try catch包著
+        try {
+            SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
+            request.addProperty("email",user_email);
+
+            SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+            envelope.bodyOut = request;
+            envelope.dotNet = true;//若WS有輸入參數必須要加這一行否則WS沒反應
+            envelope.setOutputSoapObject(request);
+            envelope.encodingStyle = "utf-8";
+            HttpTransportSE ht = new HttpTransportSE(URL);
+            ht.call(SOAP_ACTION, envelope);
+            Log.v("test","有進WS");
+            // 獲取回傳數據
+            SoapObject object = (SoapObject) envelope.bodyIn;
+            // 獲取返回的結果
+            String result = object.getProperty(0).toString();
+
+            Log.v("test1","ws的result: "+result);
             return result;
         } catch (Exception e) {
             return e.toString();

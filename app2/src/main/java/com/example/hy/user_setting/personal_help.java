@@ -1,4 +1,4 @@
-package com.example.hy;
+package com.example.hy.user_setting;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
 
-import com.example.hy.user_setting.user_setting;
+import com.example.hy.R;
 
 public class personal_help extends AppCompatActivity {
 

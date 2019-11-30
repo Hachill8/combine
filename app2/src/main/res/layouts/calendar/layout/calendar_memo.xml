@@ -18,7 +18,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="602dp">
+        android:layout_height="500dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -185,7 +185,7 @@
             <Button
                 android:id="@+id/cancel"
                 android:layout_width="130dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:text="取消"
                 android:layout_toLeftOf="@+id/center_bt"
                 android:layout_alignParentBottom="true"
@@ -201,7 +201,7 @@
             <Button
                 android:id="@+id/confirm"
                 android:layout_width="130dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_toRightOf="@+id/center_bt"
                 android:layout_alignParentBottom="true"
                 android:onClick="sendMessage"

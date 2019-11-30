@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".personal_help">
+    tools:context=".user_setting.personal_help">
 
     <View
         android:id="@+id/view"
