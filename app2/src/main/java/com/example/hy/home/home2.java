@@ -129,6 +129,7 @@ public class home2 extends AppCompatActivity{
 
 
         vege_home = (GlobalVariable)getApplicationContext();
+        //15601651561651;
         Vege_image_home = (ImageView) findViewById(R.id.vege_image_home);
         if(!vege_home.getVege_image_home().equals("無"))
         {
