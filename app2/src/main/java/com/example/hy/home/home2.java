@@ -148,7 +148,22 @@ public class home2 extends AppCompatActivity{
             {
                 Vege_image_home.setImageDrawable(getResources().getDrawable( R.drawable.vege_small_pot));
             }
-
+            else if (vege_home.getVege_image_home().equals("大白菜"))
+            {
+                Vege_image_home.setImageDrawable(getResources().getDrawable( R.drawable.vege_chinese_cabbage_pot));
+            }
+            else if (vege_home.getVege_image_home().equals("青花菜"))
+            {
+                Vege_image_home.setImageDrawable(getResources().getDrawable( R.drawable.vege_broccoli_pot));
+            }
+            else if (vege_home.getVege_image_home().equals("茄子"))
+            {
+                Vege_image_home.setImageDrawable(getResources().getDrawable( R.drawable.vege_eggplant_pot));
+            }
+            else if (vege_home.getVege_image_home().equals("高麗菜"))
+            {
+                Vege_image_home.setImageDrawable(getResources().getDrawable( R.drawable.vege_cabbage_pot));
+            }
         }
 
     }
