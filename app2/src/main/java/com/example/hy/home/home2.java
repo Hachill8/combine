@@ -54,52 +54,52 @@ public class home2 extends AppCompatActivity{
 
         banboo_hat_level=new Dialog(this);
 
-        taipei_life=(Button) findViewById(R.id.taipei_life);
-        taipei_life.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                AlertDialog.Builder mBuilder = new AlertDialog.Builder(home2.this);
-                View mView = getLayoutInflater().inflate(R.layout.choose_taipei_life_info, null);
-                //Dialog的標題
-                mBuilder.setTitle("");
-
-
-                taipei_land_lease=(Button)mView.findViewById(R.id.taipei_land_lease);
-                taipei_land_lease.setOnClickListener( new View.OnClickListener()
-                {
-                    @Override
-                    public void onClick(View v)
-                    {
-                        Intent a = new Intent(home2.this,taipei_life_info_land_lease.class);
-                        startActivity(a);
-                    }
-                } );
-
-                taipei_farmers=(Button)mView.findViewById(R.id.taipei_farmers);
-                taipei_farmers.setOnClickListener( new View.OnClickListener()
-                {
-                    @Override
-                    public void onClick(View v)
-                    {
-                        Intent a = new Intent(home2.this,taipei_life_info_farmers.class);
-                        startActivity(a);
-                    }
-                } );
-
-                mBuilder.setView(mView);
-                final AlertDialog dialog = mBuilder.create();
-                dialog.show();
-
-                //感應關閉後的事件
-                dialog.setOnDismissListener(new DialogInterface.OnDismissListener()
-                {
-                    @Override
-                    public void onDismiss(DialogInterface dialog) { }
-                });
-            }
-        } );
+//        taipei_life=(Button) findViewById(R.id.taipei_life);
+//        taipei_life.setOnClickListener(new View.OnClickListener()
+//        {
+//            @Override
+//            public void onClick(View v)
+//            {
+//                AlertDialog.Builder mBuilder = new AlertDialog.Builder(home2.this);
+//                View mView = getLayoutInflater().inflate(R.layout.choose_taipei_life_info, null);
+//                //Dialog的標題
+//                mBuilder.setTitle("");
+//
+//
+//                taipei_land_lease=(Button)mView.findViewById(R.id.taipei_land_lease);
+//                taipei_land_lease.setOnClickListener( new View.OnClickListener()
+//                {
+//                    @Override
+//                    public void onClick(View v)
+//                    {
+//                        Intent a = new Intent(home2.this,taipei_life_info_land_lease.class);
+//                        startActivity(a);
+//                    }
+//                } );
+//
+//                taipei_farmers=(Button)mView.findViewById(R.id.taipei_farmers);
+//                taipei_farmers.setOnClickListener( new View.OnClickListener()
+//                {
+//                    @Override
+//                    public void onClick(View v)
+//                    {
+//                        Intent a = new Intent(home2.this,taipei_life_info_farmers.class);
+//                        startActivity(a);
+//                    }
+//                } );
+//
+//                mBuilder.setView(mView);
+//                final AlertDialog dialog = mBuilder.create();
+//                dialog.show();
+//
+//                //感應關閉後的事件
+//                dialog.setOnDismissListener(new DialogInterface.OnDismissListener()
+//                {
+//                    @Override
+//                    public void onDismiss(DialogInterface dialog) { }
+//                });
+//            }
+//        } );
 
 
         edit_pot=(ImageButton) findViewById(R.id.edit_pot);

@@ -61,16 +61,6 @@
         android:layout_alignParentBottom="true"
         android:layout_margin="10dp"/>
 
-    <Button
-        android:id="@+id/taipei_life"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:background="@drawable/home2_taipei_life"
-        android:layout_marginLeft="7dp"
-        android:layout_alignLeft="@+id/open_bottom_sheet"
-        android:layout_above="@+id/open_bottom_sheet"
-        />
-
     <ImageButton
         android:id="@+id/edit_pot"
         android:layout_width="40dp"

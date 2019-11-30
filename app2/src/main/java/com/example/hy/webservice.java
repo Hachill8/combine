@@ -106,7 +106,6 @@ public class webservice
         }
     }
 
-
     public static String downImage(String imagebyte)
     {
         String SOAP_ACTION = "http://tempuri.org/imagedown";          //命名空間+要用的函數名稱

@@ -45,22 +45,17 @@ public class login extends AppCompatActivity implements GoogleApiClient.Connecti
     //宣告特約工人
     private HandlerThread mThread;
 
-
     TextView loginsub;
     Animation smalltobig, stb2;
-    String name,email="",line;
+    String name,email="",line,img_url;
 
     //
     Button SignIn;
     Button SignOut;
     public GoogleApiClient googleApiClient;
     public static final int GoogleSignInRequestCode=9001;
-    public TextView Name,Email;
-    private RelativeLayout Prof_Section;
     public FirebaseAnalytics mFirebaseAnalytics;//try
     public FirebaseAuth mAuth;//try
-
-    //
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -84,7 +79,6 @@ public class login extends AppCompatActivity implements GoogleApiClient.Connecti
 
         loginsub = (TextView) findViewById(R.id.loginsub);
 
-//        Prof_Section=(RelativeLayout)findViewById(R.id.prof_section);
 //        Email=(TextView)findViewById(R.id.email);
 //        SignOut=(Button)findViewById(R.id.bn_logout);
 //        Name=(TextView)findViewById(R.id.name);
@@ -92,7 +86,6 @@ public class login extends AppCompatActivity implements GoogleApiClient.Connecti
         
         SignIn.setOnClickListener(this);
         //SignOut.setOnClickListener(this);
-        //Prof_Section.setVisibility(View.GONE);
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);//try
         // 設定 FirebaseAuth 介面
         mAuth = FirebaseAuth.getInstance();//try
@@ -125,9 +118,7 @@ public class login extends AppCompatActivity implements GoogleApiClient.Connecti
         }
     };
 
-    /***web srevice***/
-    //工作名稱 r2 的工作內容
-
+    //工作名稱 r2 的工作內容(r1指派的)
     private Runnable r2=new Runnable ()
     {
         public void run()
@@ -144,8 +135,39 @@ public class login extends AppCompatActivity implements GoogleApiClient.Connecti
         }
     };
 
+//
+//    /***web srevice***/
+//    //工作名稱 r11 的工作內容
+//    private Runnable r11=new Runnable ()
+//    {
+//        public void run()
+//        {
+//            line = webservice.Login_Getphoto(img_url);//傳回執行完的結果給webservice.java中之對應
+//            //請經紀人指派工作名稱 r，給工人做
+//            mUI_Handler.post(r12);
+//        }
+//    };
+//
+//    //工作名稱 r12 的工作內容(r11指派的)
+//    private Runnable r12=new Runnable ()
+//    {
+//        public void run()
+//        {
+//
+//            if (!line.equals("OK!"))
+//            {
+//                Log.v("test","錯誤");
+//            }
+//            else
+//            {
+//                Log.v("test","Google照片成功傳到資料庫");
+//            }
+//        }
+//    };
 
-    //
+
+
+
     @Override
     public void onClick(View v)
     {
@@ -188,17 +210,15 @@ public class login extends AppCompatActivity implements GoogleApiClient.Connecti
         if (result.isSuccess())
         {
             GoogleSignInAccount account = result.getSignInAccount();
-            //取得使用者並試登入
-//            firebaseAuthWithGoogle(account);//try
-//            name = account.getDisplayName();
-//            Name.setText(name);
-//            Email.setText(email);
 
-
-            email = account.getEmail();//你要用的email在這裡啦
+            email = account.getEmail();//取得使用者gmail
+//            img_url=account.getPhotoUrl().toString();//取得使用者照片
             Log.v("test",""+email);
             if(!email.equals("")){mThreadHandler.post(r1);Log.v("test", "email有抓到值");}
             else {Log.v("test", "email沒有值");}
+
+//            if(!img_url.equals("")){mThreadHandler.post(r11);Log.v("test", "照片有抓到值");}
+//            else {Log.v("test", "照片欄沒有值");}
 
             updateUI(true);
             Log.v("test", "true");

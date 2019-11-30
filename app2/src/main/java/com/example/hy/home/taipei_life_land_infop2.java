@@ -6,11 +6,11 @@ import com.example.hy.R;
 
 public class taipei_life_land_infop2 extends AppCompatActivity
 {
-    @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.taipei_life_land_infop2);
-    }
-
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState)
+//    {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.taipei_life_land_infop2);
+//    }
+//
 }

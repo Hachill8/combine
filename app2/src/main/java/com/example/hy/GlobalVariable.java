@@ -14,6 +14,7 @@ public class GlobalVariable extends Application
     private String Market_item="無";
     private String User_email="123456";
     private String User_name="GOK";
+    private String Search_forum_string="無";
 
     //修改 變數字串
     public void setWord(String word){
@@ -54,5 +55,8 @@ public class GlobalVariable extends Application
     //個人資訊填寫完後須將姓名傳到個人設定主頁
     public void setUser_name(String user_name){this.User_name = user_name;}
     public String getUser_name(){ return User_name;}
+
+    public void setSearch_forum_string(String search_forum_string){this.Search_forum_string = search_forum_string;}
+    public String getSearch_forum_string(){ return Search_forum_string;}
 
 }
