@@ -46,7 +46,7 @@ import java.util.Locale;
 
 
 public class calendar extends AppCompatActivity {
-    CalendarView cv1;
+    CalendarView cv1,QQ;
     TextView tv1,tv2,act_tv;
     String[] listItems,everyvege,sl;
     boolean[] checkedItems;
