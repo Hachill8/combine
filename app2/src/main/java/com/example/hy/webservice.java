@@ -637,4 +637,65 @@ public class webservice
             return e.toString();
         }
     }
+
+    public static String Add_post_test(String title, String content)
+    {
+        String SOAP_ACTION = "http://tempuri.org/Add_post_test";  //命名空間+要用的函數名稱
+        String METHOD_NAME = "Add_post_test";   //函數名稱
+        try {
+            SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
+            request.addProperty("post_title",title);
+            request.addProperty("post_content",content);
+
+            SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+            envelope.bodyOut = request;
+            envelope.dotNet = true;//若WS有輸入參數必須要加這一行否則WS沒反應
+            envelope.setOutputSoapObject(request);
+            envelope.encodingStyle = "utf-8";
+            HttpTransportSE ht = new HttpTransportSE(URL);
+            ht.call(SOAP_ACTION, envelope);
+
+            // 獲取回傳數據
+            SoapObject object = (SoapObject) envelope.bodyIn;
+            Log.v("test","object: "+object);
+            // 獲取返回的結果
+            String result = object.getProperty(0).toString();
+            Log.v("test","result: "+result);
+            return result;
+        }
+        catch (Exception e) {
+            Log.v("test","e.toString(): "+e.toString());
+            return e.toString();
+        }
+    }
+
+    public static String Add_message(String m_content)
+    {
+        String SOAP_ACTION = "http://tempuri.org/Add_message";  //命名空間+要用的函數名稱
+        String METHOD_NAME = "Add_message";   //函數名稱
+        try {
+            SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
+            request.addProperty("add_message",m_content);
+
+            SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+            envelope.bodyOut = request;
+            envelope.dotNet = true;//若WS有輸入參數必須要加這一行否則WS沒反應
+            envelope.setOutputSoapObject(request);
+            envelope.encodingStyle = "utf-8";
+            HttpTransportSE ht = new HttpTransportSE(URL);
+            ht.call(SOAP_ACTION, envelope);
+
+            // 獲取回傳數據
+            SoapObject object = (SoapObject) envelope.bodyIn;
+            Log.v("test","object: "+object);
+            // 獲取返回的結果
+            String result = object.getProperty(0).toString();
+            Log.v("test","result: "+result);
+            return result;
+        }
+        catch (Exception e) {
+            Log.v("test","e.toString(): "+e.toString());
+            return e.toString();
+        }
+    }
 }

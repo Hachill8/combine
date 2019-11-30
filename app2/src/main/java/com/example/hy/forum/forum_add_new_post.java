@@ -13,6 +13,8 @@ import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.HandlerThread;
 import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
@@ -35,6 +37,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestBuilder;
 import com.example.hy.GlobalVariable;
 import com.example.hy.R;
+import com.example.hy.webservice;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -63,6 +66,13 @@ public class forum_add_new_post extends AppCompatActivity
     ImageButton upload_img,add_new;
     GlobalVariable gl;
 
+    //找到UI工人的經紀人，這樣才能派遣工作  (找到顯示畫面的UI Thread上的Handler)
+    private Handler mUI_Handler = new Handler();
+    //宣告特約工人的經紀人
+    private Handler mThreadHandler;
+    //宣告特約工人
+    private HandlerThread mThread;
+    String line;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -78,7 +88,12 @@ public class forum_add_new_post extends AppCompatActivity
 
         gl = (GlobalVariable)getApplicationContext();
 
-
+        //聘請一個特約工人，有其經紀人派遣其工人做事 (另起一個有Handler的Thread)
+        mThread = new HandlerThread("");
+        //讓Worker待命，等待其工作 (開啟Thread)
+        mThread.start();
+        //找到特約工人的經紀人，這樣才能派遣工作 (找到Thread上的Handler)
+        mThreadHandler=new Handler(mThread.getLooper());
 
         upload_img.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,26 +106,62 @@ public class forum_add_new_post extends AppCompatActivity
         add_new.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent a = new Intent(forum_add_new_post.this,forum_post2.class);
-                gl.setForum_content(post_content.getText().toString());
-                gl.setForum_title(post_title.getText().toString());
-                if(post_title.getText().toString().equals("") || post_content.getText().toString().equals(""))
-                {
-                    Toast.makeText(forum_add_new_post.this,"請輸入標題和內容 !",Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
-                    startActivity(a);
-                }
-
+                //請經紀人指派工作名稱 r，給工人做
+                mThreadHandler.post(r1);
             }
         });
 
     }
 
+    //工作名稱 r1 的工作內容
 
+    private Runnable r1=new Runnable () {
 
+        public void run() {
 
+            if(!post_content.equals("無") && !post_title.equals("")) {
+                // string user, string post_title, string post_content,string post_time
+                line = webservice.Add_post_test(post_title.getText().toString(), post_content.getText().toString());
+            }
+            //請經紀人指派工作名稱 r，給工人做
+            mUI_Handler.post(r2);
+        }
+
+    };
+
+    //工作名稱 r2 的工作內容
+
+    private Runnable r2=new Runnable () {
+
+        public void run() {
+
+            Intent a = new Intent(forum_add_new_post.this,forum_post2.class);
+            gl.setForum_content(post_content.getText().toString());
+            gl.setForum_title(post_title.getText().toString());
+            if(post_title.getText().toString().equals("") || post_content.getText().toString().equals(""))
+            {
+                Toast.makeText(forum_add_new_post.this,"請輸入標題和內容 !",Toast.LENGTH_SHORT).show();
+            }
+            else
+            {
+                startActivity(a);
+            }
+        }
+
+    };
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        //移除工人上的工作
+        if (mThreadHandler != null) {
+            mThreadHandler.removeCallbacks(r1);
+        }
+        //解聘工人 (關閉Thread)
+        if (mThread != null) {
+            mThread.quit();
+        }
+    }
 
     private void textInsertImage(){
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);

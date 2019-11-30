@@ -9,6 +9,8 @@ import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.HandlerThread;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -31,6 +33,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.SimpleTarget;
@@ -38,6 +41,7 @@ import com.bumptech.glide.request.transition.Transition;
 import com.example.hy.GlobalVariable;
 import com.example.hy.R;
 import com.example.hy.record.record;
+import com.example.hy.webservice;
 
 
 import java.util.ArrayList;
@@ -54,7 +58,6 @@ public class forum_post2 extends AppCompatActivity {
     EditText add_message;
     Button postTV_to_forum;
 
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -64,14 +67,15 @@ public class forum_post2 extends AppCompatActivity {
         post_title_tv = (TextView) findViewById(R.id.post_title_txv);
         post_message = (FloatingActionButton) findViewById(R.id.post_message);
         post_time = (TextView) findViewById(R.id.post_time);
-        postTV_to_forum = (Button)findViewById(R.id.postTV_to_forum);
+        postTV_to_forum = (Button) findViewById(R.id.postTV_to_forum);
         postTV_to_forum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(forum_post2.this,forum.class);
+                Intent i = new Intent(forum_post2.this, forum.class);
                 startActivity(i);
             }
         });
+
 
 
         //文章內容
@@ -96,7 +100,7 @@ public class forum_post2 extends AppCompatActivity {
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.message_recyclerView);
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL));
-        recyclerView.setAdapter(new forum_post2.CardAdapter(this, cardviewList));
+        recyclerView.setAdapter(new CardAdapter(this, cardviewList));
 
 
         //留言的Dialog
@@ -111,27 +115,22 @@ public class forum_post2 extends AppCompatActivity {
                 add_message = (EditText) mView.findViewById(R.id.insert_post_message);
 
                 //內建可用Button的方式
-                mBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener()
-                {
+                mBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i)
-                    {
-
-                        String add_message_str=add_message.getText().toString();
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        String add_message_str = add_message.getText().toString();
                         int j = cardviewList.size();
                         Calendar mCal = Calendar.getInstance();
                         CharSequence s = DateFormat.format("yyyy-MM-dd kk:mm:ss", mCal.getTime());    // kk:24小時制, hh:12小時制
                         String date = s.toString();
-                        cardviewList.add(new forum_post_message_cardview(j, "猴嗨森", R.drawable.user10, date, add_message_str, "B"+(j+1)));
+                        cardviewList.add(new forum_post_message_cardview(j, "猴嗨森", R.drawable.user10, date, add_message_str, "B" + (j + 1)));
                     }
                 });
 
                 //內建可用Button的方式
-                mBuilder.setNegativeButton("取消", new DialogInterface.OnClickListener()
-                {
+                mBuilder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i)
-                    {
+                    public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();
                     }
                 });
@@ -145,8 +144,8 @@ public class forum_post2 extends AppCompatActivity {
                 Window dialogWindow = dialog.getWindow();
                 dialogWindow.setGravity(Gravity.CENTER);
 
-//                // 去除四角黑色背景
-//                dialogWindow.setBackgroundDrawable(new BitmapDrawable());
+//              // 去除四角黑色背景
+//              dialogWindow.setBackgroundDrawable(new BitmapDrawable());
 
                 /* 將Dialog用螢幕大小百分比方式設置 */
                 WindowManager m = getWindowManager();
@@ -155,12 +154,12 @@ public class forum_post2 extends AppCompatActivity {
                 p.height = (int) (d.getHeight() * 0.2); // 高度設為螢幕的0.8
                 p.width = (int) (d.getWidth() * 0.85);  // 寬度設為螢幕的0.75
                 dialogWindow.setAttributes(p);
-
-
             }
+
         });
 
     }
+
 
 //    //查看ImageGetter接口
 //    //public static interface ImageGetter {

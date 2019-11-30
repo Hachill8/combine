@@ -18,7 +18,7 @@ import com.example.hy.market.market;
 import com.example.hy.market.market2;
 import com.example.hy.market.market_p4;
 
-public class MainActivity extends AppCompatActivity {
+public class   MainActivity extends AppCompatActivity {
 
     TextView logo,tx2,tx3;
     Button btn;
