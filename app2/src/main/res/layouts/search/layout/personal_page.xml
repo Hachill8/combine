@@ -28,7 +28,8 @@
             </ImageView>
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:scaleType="fitXY"
+                android:id="@+id/user_img"
                 android:layout_width="90dp"
                 android:layout_height="90dp"
                 android:layout_marginTop="148dp"
@@ -39,7 +40,7 @@
                 app:layout_constraintTop_toTopOf="@+id/imageView4"></ImageView>
 
             <TextView
-                android:id="@+id/user_name"
+                android:id="@+id/personal_user_name"
                 android:layout_width="100dp"
                 android:layout_height="35dp"
                 android:layout_marginTop="40dp"

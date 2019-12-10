@@ -11,6 +11,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
+import android.os.Looper;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -51,12 +52,21 @@ import java.util.List;
 
 public class forum_post2 extends AppCompatActivity {
 
-    TextView post_content_tv,post_title_tv,post_time;
+    TextView post_content_tv,post_title_tv,post_time,post_name;
     GlobalVariable gl;
     String content_post;
     FloatingActionButton post_message;
     EditText add_message;
     Button postTV_to_forum;
+    String post_all="";
+
+
+    //找到UI工人的經紀人，這樣才能派遣工作  (找到顯示畫面的UI Thread上的Handler)
+    private android.os.Handler mUI_Handler = new android.os.Handler();
+    //宣告特約工人的經紀人
+    private Handler mThreadHandler;
+    //宣告特約工人
+    private HandlerThread mThread;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +75,7 @@ public class forum_post2 extends AppCompatActivity {
 
         post_content_tv = (TextView) findViewById(R.id.post_content_txv);
         post_title_tv = (TextView) findViewById(R.id.post_title_txv);
+        post_name = findViewById(R.id.user_name);
         post_message = (FloatingActionButton) findViewById(R.id.post_message);
         post_time = (TextView) findViewById(R.id.post_time);
         postTV_to_forum = (Button) findViewById(R.id.postTV_to_forum);
@@ -76,23 +87,43 @@ public class forum_post2 extends AppCompatActivity {
             }
         });
 
+        //聘請一個特約工人，有其經紀人派遣其工人做事 (另起一個有Handler的Thread)
+        mThread = new HandlerThread("");
+        //讓Worker待命，等待其工作 (開啟Thread)
+        mThread.start();
+        //找到特約工人的經紀人，這樣才能派遣工作 (找到Thread上的Handler)
+        mThreadHandler=new Handler(mThread.getLooper());
+
 
 
         //文章內容
         gl = (GlobalVariable) getApplicationContext();
-        content_post = gl.getForum_content();
-        post_title_tv.setText(gl.getForum_title());
-        Log.v("test", "content_post::::: " + content_post);
-        content_post = content_post.replace("\n", "<br/>");
 
-        //文章圖片
-        MyImageGetter myImageGetter = new MyImageGetter();
-        post_content_tv.setText(Html.fromHtml(content_post, myImageGetter, null));
+        if(!gl.getForum_title_click().equals(""))
+        {
+            post_title_tv.setText(gl.getForum_title_click());
+            gl.setForum_title_click("");
+            mThreadHandler.post(r1);
+        }
+        else
+        {
+            content_post = gl.getForum_content();
+            post_title_tv.setText(gl.getForum_title());
+            //文章時間
+            Calendar mT = Calendar.getInstance();
+            CharSequence sT = DateFormat.format("yyyy-MM-dd kk:mm:ss", mT.getTime());    // kk:24小時制, hh:12小時制
+            post_time.setText(sT.toString());
+            Log.v("test", "content_post::::: " + content_post);
+            content_post = content_post.replace("\n", "<br/>");
 
-        //文章時間
-        Calendar mT = Calendar.getInstance();
-        CharSequence sT = DateFormat.format("yyyy-MM-dd kk:mm:ss", mT.getTime());    // kk:24小時制, hh:12小時制
-        post_time.setText(sT.toString());
+            //文章圖片
+            MyImageGetter myImageGetter = new MyImageGetter();
+            post_content_tv.setText(Html.fromHtml(content_post, myImageGetter, null));
+        }
+
+
+
+
 
         //cardview 建立
         //public forum_post_message_cardview(int id,String name,int image,String time,String message,int B_num)
@@ -160,6 +191,38 @@ public class forum_post2 extends AppCompatActivity {
 
     }
 
+    Runnable r1 = new Runnable() {
+        @Override
+        public void run() {
+            post_all = webservice.forum_post_view(post_title_tv.getText().toString());
+            mThreadHandler.post(r2);
+        }
+    };
+
+    Runnable r2 = new Runnable() {
+        @Override
+        public void run() {
+            new Handler(Looper.getMainLooper()).post(new Runnable() {
+                @Override
+                public void run() {
+                    //title ,content,time,name
+                    Log.v("test","post_all"+post_all);
+                    String[] split = post_all.split("%");
+
+                    post_time.setText(split[2].toString());
+                    Log.v("test", "content_post::::: " + content_post);
+                    content_post = split[1];
+                    content_post = content_post.replace("\n", "<br/>");
+                    content_post = content_post.substring(0,content_post.indexOf("https")-1)+"<img src=\""+content_post.substring(content_post.indexOf("https"),content_post.indexOf(".jpg")+4) + "\">";
+                    post_name.setText(split[3]);
+                    //文章圖片
+                    MyImageGetter myImageGetter = new MyImageGetter();
+                    post_content_tv.setText(Html.fromHtml(content_post, myImageGetter, null));
+
+                }
+            });
+        }
+    };
 
 //    //查看ImageGetter接口
 //    //public static interface ImageGetter {

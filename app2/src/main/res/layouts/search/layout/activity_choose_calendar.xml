@@ -52,7 +52,7 @@
 
                     <ImageButton
                         android:layout_width="274dp"
-                        android:layout_height="391dp"
+                        android:layout_height="370dp"
                         android:background="@drawable/calendar_one" />
 
                     <LinearLayout
@@ -110,7 +110,7 @@
 
                     <ImageButton
                         android:layout_width="274dp"
-                        android:layout_height="391dp"
+                        android:layout_height="370dp"
                         android:background="@drawable/calendar_three" />
 
                     <LinearLayout
@@ -168,7 +168,7 @@
 
                     <ImageButton
                         android:layout_width="274dp"
-                        android:layout_height="391dp"
+                        android:layout_height="370dp"
                         android:background="@drawable/calendar_two" />
 
                     <LinearLayout

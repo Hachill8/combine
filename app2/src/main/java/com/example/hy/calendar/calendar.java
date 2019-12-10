@@ -18,8 +18,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.CompoundButton;
-import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Switch;
@@ -28,7 +26,6 @@ import android.widget.Toast;
 
 import com.example.hy.GlobalVariable;
 import com.example.hy.R;
-import com.example.hy.calendar_memo2;
 import com.example.hy.webservice;
 
 import java.io.IOException;
@@ -38,10 +35,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
 
@@ -57,7 +52,7 @@ public class calendar extends AppCompatActivity {
     Intent intent;
     private static  final  int REQUEST_CODE=1;
     GlobalVariable action_item_value,action_item_value2;
-    String date,decide_edit="edit",cal_data,Allvege="",setdate,pictureurl;
+    String date,decide_edit="edit",cal_data,Allvege="",setdate,pictureurl,Select_vege_name,gmail;
     //找到UI工人的經紀人，這樣才能派遣工作  (找到顯示畫面的UI Thread上的Handler)
     private Handler mUI_Handler = new Handler();
     //宣告特約工人的經紀人
@@ -98,28 +93,44 @@ public class calendar extends AppCompatActivity {
         spi = (Spinner)findViewById(R.id.spinner);
         swi = (Switch) findViewById(R.id.switch1);
         Calendar calendar= Calendar.getInstance();
-        setdate = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault()).format(new Date());
-        tv1.setText(setdate);
+        date = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault()).format(new Date());
+        tv1.setText(date);
 
         swi.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    Intent intent = new Intent(calendar.this, fake_plant_suggestion.class);
-                    startActivity(intent);
+                    android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(calendar.this);
+                    builder.setTitle("提示功能☆即將推出，敬請期待!");
+                    builder.setMessage("查看引用的栽培日曆，參考種植該作物第幾天時該做什麼事!");
+                    builder.setPositiveButton("好", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+                    android.app.AlertDialog dialog=builder.create();
+                    dialog.show();
                 } else {
 
                 }
             }
         });
 
-        mThreadHandler.post(r7);
+
+//        final String[] lunch = {"玉米","芭樂","番茄","小白菜"};
+//        ArrayAdapter<String> lunchList = new ArrayAdapter<>(calendar.this,
+//                R.layout.login2_select_dropdown_item,
+//                lunch);
+//
+//        spi.setAdapter(lunchList);
         spi.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 //                Toast.makeText(calendar.this, "你選的是" + lunch[position], Toast.LENGTH_SHORT).show();
-
-
+                Select_vege_name=spi.getSelectedItem().toString();
+                action_item_value.setSelect_vege_name(Select_vege_name);
+                mThreadHandler.post(r3);
             }
 
             @Override
@@ -130,97 +141,12 @@ public class calendar extends AppCompatActivity {
         listItems = getResources().getStringArray(R.array.action_item);
         checkedItems = new boolean[listItems.length];
 
-//        mBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                AlertDialog.Builder builder = new AlertDialog.Builder(calendar.this);
-//                //String array for alert dialog multichoice items
-//                final String[] actionsArray = new String[]{"育苗","播種","澆水","施肥","鋤草","防蟲","除病","收成"};
-//                //Boolean array for initial selected items
-//                final boolean[] checkedActionsArray = new boolean[]{
-//                        false,
-//                        false,
-//                        false,
-//                        false,
-//                        false,
-//                        false,
-//                        false,
-//                        false,
-//
-//                };
-//                //convert the acts array to list
-//                final List<String> actionsList = Arrays.asList(actionsArray);
-//                //set AlertDialog title
-//                builder.setTitle("選擇活動");
-//                //set icon(optional)
-//                builder.setIcon(R.drawable.ico);
-//                //set multichoice
-//                builder.setMultiChoiceItems(actionsArray, checkedActionsArray, new DialogInterface.OnMultiChoiceClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which, boolean isChecked) {
-//                        //update current focused item's checked status
-//                        checkedActionsArray[which] = isChecked;
-//                        //get the current focused item
-//                        String currentItem = actionsList.get(which);
-//                        //notify the current action
-//                        Toast.makeText(calendar.this, "很棒喔! 有"+currentItem, Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-//
-//
-//
-//
-//                //set positive/yes button click listener
-//                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        mTv.setText("");
-//                        String action="";
-//                        for (int i=0; i<checkedActionsArray.length; i++){
-//                            boolean checked = checkedActionsArray[i];
-//                            if (checked){
-//                                action = mTv.getText()+ actionsList.get(i) + " / ";
-//                                mTv.setText(action);
-//                            }
-//                        }
-//                        action_item_value.setAction_item(action);
-//                    }
-//                });
-//
-//
-//
-//                //set neutral/cancel button click listener
-//                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        //do something here
-//                    }
-//                });
-//
-//                AlertDialog dialog = builder.create();
-//                //show alert dialog
-//                dialog.show();
-//            }
-//        });
-
-
         cv1.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int y, int m, int dm) {
                 date = y+"/"+(m+1)+"/"+dm;
                 tv1.setText(date);
                 mThreadHandler.post(r3);
-                try
-                {
-                    url = new URL(pictureurl);
-                    if(url.toString().contains("http"))
-                    {
-                        mThreadHandler.post(r5);
-                    }
-
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                }
             }
         });
 
@@ -280,18 +206,6 @@ public class calendar extends AppCompatActivity {
         }
     }
 
-
-    public void sendMessage(View v)
-    {
-        Intent intent = new Intent(calendar.this,calendar_memo.class);
-        //宣告一個編輯框和佈局檔案中id為edit_message的編輯框連結起來。
-        //把編輯框獲取的文字賦值給String型別的message
-        String message = tv2.getText().toString();
-        //給message起一個名字，並傳給另一個activity
-        intent.putExtra("EXTRA_MESSAGE",message);
-        //啟動意圖
-        startActivity(intent);
-    }
     //工作名稱 r1 的工作內容
 
     private Runnable r1=new Runnable () {
@@ -320,7 +234,8 @@ public class calendar extends AppCompatActivity {
 
         public void run() {
 
-            //cal_data = webservice.select_cal(vege_name,date);
+            gmail=action_item_value.getUser_gmail();
+            cal_data = webservice.select_cal(gmail,Select_vege_name,date);
             Log.v("test","cal_data: "+cal_data);
             //請經紀人指派工作名稱 r，給工人做
             mUI_Handler.post(r4);
@@ -337,9 +252,42 @@ public class calendar extends AppCompatActivity {
             if(!cal_data.equals("還未新增資料"))
             {
                 sl = cal_data.split("%");
-                act_tv.setText(sl[0]);
-                tv2.setText(sl[1]);
-                pictureurl=sl[2];
+                if(sl[0].equals(""))
+                {
+                    act_tv.setText("");
+                }
+                else
+                {
+                    act_tv.setText(sl[0]);
+                }
+                if(sl[1].equals(""))
+                {
+                    tv2.setText("");
+                }
+                else
+                {
+                    tv2.setText(sl[1]);
+                }
+                if(sl[2].equals(""))
+                {
+                    calendar_picture.setImageBitmap(nopicture);
+                }
+                else
+                {
+                    pictureurl=sl[2];
+                    try
+                    {
+                        url = new URL(pictureurl);
+                        if(url.toString().contains("http"))
+                        {
+                            mThreadHandler.post(r5);
+                        }
+
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    }
+                }
+
             }
             else
             {
@@ -400,15 +348,25 @@ public class calendar extends AppCompatActivity {
 
         public void run() {
 
-            everyvege=Allvege.split("%");
-            final String[] lunch = everyvege;
-            ArrayAdapter<String> lunchList = new ArrayAdapter<>(calendar.this,
-                    R.layout.login2_select_dropdown_item,
-                    lunch);
+            everyvege = Allvege.split("%");
+            if (everyvege.equals("")) {
+                String[] novege = {"未新增作物"};
+                final String[] lunch = novege;
+                ArrayAdapter<String> lunchList = new ArrayAdapter<>(calendar.this,
+                        R.layout.login2_select_dropdown_item,
+                        lunch);
 
-            spi.setAdapter(lunchList);
+                spi.setAdapter(lunchList);
+            } else {
+                final String[] lunch = everyvege;
+                ArrayAdapter<String> lunchList = new ArrayAdapter<>(calendar.this,
+                        R.layout.login2_select_dropdown_item,
+                        lunch);
+
+                spi.setAdapter(lunchList);
+            }
+
         }
-
     };
 
     @Override

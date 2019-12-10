@@ -17,7 +17,8 @@ public class GlobalVariable extends Application
     private String Search_forum_string="無";
     private String User_email="";
     private String Record_vege_name="";
-
+    private String Forum_title_click="";
+    private String Select_vege_name="";
 
     //修改 變數字串
     public void setWord(String word){
@@ -43,6 +44,9 @@ public class GlobalVariable extends Application
     public void setForum_title(String forum_title){this.Forum_title = forum_title;}
     public String getForum_title(){ return Forum_title;}
 
+    public void setForum_title_click(String forum_title_click){this.Forum_title_click = forum_title_click;}
+    public String getForum_title_click(){ return Forum_title_click;}
+
     public void setMarket_item(String market_item){this.Market_item = market_item;}
     public String getMarket_item(){ return Market_item;}
 
@@ -64,5 +68,8 @@ public class GlobalVariable extends Application
 
     public void setUser_gmail(String user_gmail){this.User_gmail = user_gmail;}
     public String getUser_gmail(){ return User_gmail;}
+
+    public void setSelect_vege_name(String select_vege_name){this.Select_vege_name = select_vege_name;}
+    public String getSelect_vege_name(){ return Select_vege_name;}
 
 }

@@ -319,7 +319,6 @@ public class record extends AppCompatActivity
         }
     }
 
-
     private class CardAdapter extends  RecyclerView.Adapter<CardAdapter.ViewHolder>
     {
         private Context context;
@@ -380,4 +379,5 @@ public class record extends AppCompatActivity
 //            notifyItemInserted(i);
         }
     }
+
 }

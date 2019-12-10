@@ -1,35 +1,22 @@
 package com.example.hy.record;
 
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
 import android.view.WindowManager;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.CalendarView;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.hy.GlobalVariable;
 import com.example.hy.R;
-import com.example.hy.calendar.calendar;
-import com.example.hy.calendar.calendar_memo;
-import com.example.hy.calendar.fake_plant_suggestion;
-import com.example.hy.calendar_memo2;
 import com.example.hy.webservice;
 
 import java.io.IOException;
@@ -38,11 +25,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
 public class record_Information2 extends AppCompatActivity{
@@ -54,7 +38,7 @@ public class record_Information2 extends AppCompatActivity{
 
     private static  final  int REQUEST_CODE=1;
     GlobalVariable action_item_value,action_item_value2;
-    String date,decide_edit="edit",cal_data,Allvege="",setdate,pictureurl;
+    String date,decide_edit="edit",cal_data,Allvege="",setdate,pictureurl,gmail;
     //找到UI工人的經紀人，這樣才能派遣工作  (找到顯示畫面的UI Thread上的Handler)
     private Handler mUI_Handler = new Handler();
     //宣告特約工人的經紀人
@@ -113,7 +97,8 @@ public class record_Information2 extends AppCompatActivity{
 
         public void run() {
 
-            cal_data = webservice.select_cal(action_item_value.getRecord_vege_name(),date);
+            gmail=action_item_value.getUser_email();
+            cal_data = webservice.select_cal(gmail,action_item_value.getRecord_vege_name(),date);
             Log.v("test","cal_data: "+cal_data);
             //請經紀人指派工作名稱 r，給工人做
             mUI_Handler.post(r4);

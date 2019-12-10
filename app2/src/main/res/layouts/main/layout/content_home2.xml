@@ -39,12 +39,20 @@
         android:layout_width="1000dp"
         android:layout_height="600dp">
 
-        <ImageView
-            android:id="@+id/vege_image_home"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_marginTop="200dp"
-            android:layout_marginStart="80dp" />
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/vege_image_home"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginBottom="164dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent" />
+        </android.support.constraint.ConstraintLayout>
 
     </RelativeLayout>
 

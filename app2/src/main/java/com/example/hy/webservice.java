@@ -136,7 +136,6 @@ public class webservice
         }
     }
 
-
     public static String Search_select(String s)
     {
         String SOAP_ACTION = "http://tempuri.org/search_select";          //命名空間+要用的函數名稱
@@ -165,7 +164,6 @@ public class webservice
             return e.toString();
         }
     }
-
 
     public static String Goodname_list(String s)
     {
@@ -197,7 +195,6 @@ public class webservice
         }
     }
 
-
     public static String GoodInfo_WS(String s)
     {
         String SOAP_ACTION = "http://tempuri.org/GoodInfo_WS";          //命名空間+要用的函數名稱
@@ -226,7 +223,6 @@ public class webservice
             return e.toString();
         }
     }
-
 
     public static String Good_in_cart(String s)
     {
@@ -315,8 +311,39 @@ public class webservice
         }
     }
 
-    ////務農族的資料還未改和VS還未加
-    public static String insert(String date,String s,String message,String url)
+    public static String Insert_vege(String vege,String gmail)
+    {
+        String SOAP_ACTION = "http://tempuri.org/Insert_vege";          //命名空間+要用的函數名稱
+        String METHOD_NAME = "Insert_vege";   //函數名稱
+
+        //必須用try catch包著
+        try {
+            SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
+
+            request.addProperty("vege",vege);
+            request.addProperty("gmail",gmail);
+
+            SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+            envelope.bodyOut = request;
+            envelope.dotNet = true;//若WS有輸入參數必須要加這一行否則WS沒反應
+            envelope.setOutputSoapObject(request);
+            envelope.encodingStyle = "utf-8";
+            HttpTransportSE ht = new HttpTransportSE(URL);
+            ht.call(SOAP_ACTION, envelope);
+            Log.v("test","有進WS");
+            // 獲取回傳數據
+            SoapObject object = (SoapObject) envelope.bodyIn;
+            // 獲取返回的結果
+            String result = object.getProperty(0).toString();
+
+            Log.v("test1","ws的result: "+result);
+            return result;
+        } catch (Exception e) {
+            return e.toString();
+        }
+    }
+
+    public static String insert(String vege,String date,String s,String message,String url,String gmail)
     {
         String SOAP_ACTION = "http://tempuri.org/insert";          //命名空間+要用的函數名稱
         String METHOD_NAME = "insert";   //函數名稱
@@ -324,11 +351,12 @@ public class webservice
         //必須用try catch包著
         try {
             SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
-
-            request.addProperty("time",date);
+            request.addProperty("vege",vege);
+            request.addProperty("day",date);
             request.addProperty("action",s);
             request.addProperty("note",message);
             request.addProperty("picture",url);
+            request.addProperty("gmail",gmail);
 
 
             SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
@@ -351,7 +379,7 @@ public class webservice
         }
     }
 
-    public static String select_cal(String vege_neme,String date)
+    public static String select_cal(String gmail,String vege_name,String date)
     {
         String SOAP_ACTION = "http://tempuri.org/select_cal";          //命名空間+要用的函數名稱
         String METHOD_NAME = "select_cal";   //函數名稱
@@ -359,7 +387,8 @@ public class webservice
         //必須用try catch包著
         try {
             SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
-            request.addProperty("vege_name",vege_neme);
+            request.addProperty("gmail",gmail);
+            request.addProperty("vege_name",vege_name);
             request.addProperty("vege_time",date);
 
 
@@ -381,7 +410,7 @@ public class webservice
         }
     }
 
-    public static String Update(String date,String s,String message,String url)
+    public static String Update(String vege,String date,String s,String message,String url,String gmail)
     {
         String SOAP_ACTION = "http://tempuri.org/Update";          //命名空間+要用的函數名稱
         String METHOD_NAME = "Update";   //函數名稱
@@ -389,11 +418,12 @@ public class webservice
         //必須用try catch包著
         try {
             SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
-
+            request.addProperty("vege",vege);
             request.addProperty("time",date);
             request.addProperty("action",s);
             request.addProperty("note",message);
             request.addProperty("picture",url);
+            request.addProperty("gmail",gmail);
 
 
             SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
@@ -618,7 +648,7 @@ public class webservice
         //必須用try catch包著
         try {
             SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
-            request.addProperty("email",user_email);
+            request.addProperty("gmail",user_email);
 
             SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
             envelope.bodyOut = request;
@@ -820,4 +850,35 @@ public class webservice
             return e.toString();
         }
     }
+
+    public static String forum_post_view(String title)
+    {
+        String SOAP_ACTION = "http://tempuri.org/forum_post_view";          //命名空間+要用的函數名稱
+        String METHOD_NAME = "forum_post_view";   //函數名稱
+        try {
+            SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
+            request.addProperty("title",title);
+
+
+            SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+            envelope.bodyOut = request;
+            envelope.dotNet = true;//若WS有輸入參數必須要加這一行否則WS沒反應
+            envelope.setOutputSoapObject(request);
+            envelope.encodingStyle = "utf-8";
+            HttpTransportSE ht = new HttpTransportSE(URL);
+            ht.call(SOAP_ACTION, envelope);
+
+            // 獲取回傳數據
+            SoapObject object = (SoapObject) envelope.bodyIn;
+            Log.v("test","object: "+object);
+            // 獲取返回的結果
+            String result = object.getProperty(0).toString();
+            Log.v("test","result: "+result);
+            return result;
+        } catch (Exception e) {
+            Log.v("test","e.toString(): "+e.toString());
+            return e.toString();
+        }
+    }
+
 }

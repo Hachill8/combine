@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.example.hy.home.home2;
 import com.example.hy.login.login;
+import com.example.hy.login.login2;
 import com.example.hy.market.market;
 import com.example.hy.market.market2;
 import com.example.hy.market.market_p4;

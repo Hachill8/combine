@@ -1,6 +1,8 @@
 package com.example.hy.search;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -24,15 +26,20 @@ import com.example.hy.GlobalVariable;
 import com.example.hy.R;
 import com.example.hy.choose_calendar;
 import com.example.hy.home.home2;
+import com.example.hy.user_setting.user_setting;
 import com.example.hy.webservice;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class VegeInfo extends AppCompatActivity {
 
     GlobalVariable vege
-            ,vege_home;     //首頁作物照片(暫時)
+            ,vege_home,gl;     //首頁作物照片(暫時)
     Button start_plant,choose_calendar;
     Dialog variety_info;
-    String line="can't not found", vegeinfo_name;
+    String line="can't not found", vegeinfo_name,setdate,gmail;
     TextView step/**  小撇步  **/,
             container/**  容器 **/,
             soil/**  土壤 **/,
@@ -86,7 +93,9 @@ public class VegeInfo extends AppCompatActivity {
         bug = (TextView) findViewById(R.id.bug);
         harvest = (TextView) findViewById(R.id.harvest);
         vege_name = (TextView) findViewById(R.id.vege_name);
-
+        setdate = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault()).format(new Date());
+        gl= (GlobalVariable)getApplicationContext();
+        gmail=gl.getUser_email();
 
         //globalvariable變數
         vege = (GlobalVariable)getApplicationContext();
@@ -113,8 +122,10 @@ public class VegeInfo extends AppCompatActivity {
             {
                 vege_home.setVege_image_home(vege_name.getText().toString());
               //  Intent b = new Intent(VegeInfo.this, home_add_vege.class);
+                mThreadHandler.post(r3);
                 Intent b = new Intent(VegeInfo.this, home2.class);
                 startActivity(b);
+
             }
         } );
 
@@ -123,10 +134,17 @@ public class VegeInfo extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                vege_home.setVege_image_home(vege_name.getText().toString());
-                //  Intent b = new Intent(VegeInfo.this, home_add_vege.class);
-                Intent b = new Intent(VegeInfo.this, com.example.hy.choose_calendar.class);
-                startActivity(b);
+                AlertDialog.Builder builder = new AlertDialog.Builder(VegeInfo.this);
+                builder.setTitle("栽培日曆☆即將推出，敬請期待!");
+                builder.setMessage("可參考相近地區使用者的栽培日曆，查看該作物的栽種事項");
+                builder.setPositiveButton("好", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                AlertDialog dialog=builder.create();
+                dialog.show();
             }
         } );
 
@@ -202,6 +220,16 @@ public class VegeInfo extends AppCompatActivity {
 
     };
 
+    private Runnable r3=new Runnable () {
+
+        public void run() {
+
+            webservice.Insert_vege(vegeinfo_name,gmail);
+
+        }
+
+    };
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -209,6 +237,7 @@ public class VegeInfo extends AppCompatActivity {
         //移除工人上的工作
         if (mThreadHandler != null) {
             mThreadHandler.removeCallbacks(r1);
+            mThreadHandler.removeCallbacks(r3);
         }
         //解聘工人 (關閉Thread)
         if (mThread != null) {

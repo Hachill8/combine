@@ -100,7 +100,7 @@ public class user_setting extends AppCompatActivity
 
         level=findViewById(R.id.level);
         model=findViewById(R.id.model);
-        user_name=findViewById(R.id.personal_username);
+        user_name=findViewById(R.id.personal_user_name);
         personal_user_info=findViewById(R.id.personal_user_info);
         personal_article=findViewById(R.id.personal_article);
         personal_collect=findViewById(R.id.personal_collect);
@@ -114,8 +114,8 @@ public class user_setting extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(user_setting.this);
-                builder.setTitle("等級功能☆即將推出，敬請期待!");
-                builder.setMessage("透過操作APP中的各功能來提升經驗值，除了增加使用者的樂趣，也能換取商品的優惠!");
+                builder.setTitle("模式功能☆即將推出，敬請期待!");
+                builder.setMessage("針對各模式推薦使用者適合的作物，首頁也能切換不同模式的模型!");
                 builder.setPositiveButton("好", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -130,8 +130,8 @@ public class user_setting extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(user_setting.this);
-                builder.setTitle("模式功能☆即將推出，敬請期待!");
-                builder.setMessage("針對各模式推薦使用者適合的作物，首頁也能切換不同模式的模型!");
+                builder.setTitle("等級功能☆即將推出，敬請期待!");
+                builder.setMessage("透過操作APP中的各功能來提升經驗值，除了增加使用者的樂趣，也能換取商品的優惠!");
                 builder.setPositiveButton("好", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

@@ -85,6 +85,14 @@ public class forum_add_new_post extends AppCompatActivity
         post_content = (EditText) findViewById(R.id.post_content);
         mLoadingDialog = new ProgressDialog(forum_add_new_post.this);
         upload_img = (ImageButton) findViewById(R.id.upload_img);
+        ImageButton back_to_forum = findViewById(R.id.back_to_forum);
+        back_to_forum.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                Intent i = new Intent(forum_add_new_post.this, forum.class);
+                startActivity(i);
+            }
+        });
 
         gl = (GlobalVariable)getApplicationContext();
 

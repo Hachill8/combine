@@ -50,7 +50,7 @@ public class login extends AppCompatActivity implements GoogleApiClient.Connecti
     GlobalVariable gl;
     TextView loginsub;
     Animation smalltobig, stb2;
-    String name,email="",line;
+    String name,email,line;
 
     //
     Button SignIn;
@@ -124,7 +124,6 @@ public class login extends AppCompatActivity implements GoogleApiClient.Connecti
         public void run()
         {
             line = webservice.Login_Getgmail(email);//傳回執行完的結果
-            user.setUser_gmail(email);
             //請經紀人指派工作名稱 r，給工人做
             mUI_Handler.post(r2);
         }
@@ -138,16 +137,14 @@ public class login extends AppCompatActivity implements GoogleApiClient.Connecti
         public void run()
         {
 
-            if (!line.equals(email))
+            if (!line.equals(""))
             {
-                Log.v("test","錯誤");
+                Log.v("test","gmail成功傳到資料庫");
+
             }
             else
             {
-                Intent go= new Intent(login.this,login2.class);
-                go.putExtra("giveemail",email);
-                startActivity(go);
-                Log.v("test","gmail成功傳到資料庫");
+                Log.v("test","錯誤");
             }
         }
     };
@@ -199,13 +196,13 @@ public class login extends AppCompatActivity implements GoogleApiClient.Connecti
 
 
             email = account.getEmail();//你要用的email在這裡啦
+            user.setUser_gmail(email);
             Log.v("test",""+email);
             if(!email.equals("")){mThreadHandler.post(r1);Log.v("test", "email有抓到值");}
             else {Log.v("test", "email沒有值");}
 
 //            if(!img_url.equals("")){mThreadHandler.post(r11);Log.v("test", "照片有抓到值");}
 //            else {Log.v("test", "照片欄沒有值");}
-
             updateUI(true);
             Log.v("test", "true");
         }
@@ -241,6 +238,7 @@ public class login extends AppCompatActivity implements GoogleApiClient.Connecti
             Toast.makeText(login.this, "帳號連結成功", Toast.LENGTH_SHORT).show();
 
             Intent a = new Intent( login.this,login2.class);
+            a.putExtra("giveemail",email);
             startActivity(a);
             Log.v("test", "成功");
         }

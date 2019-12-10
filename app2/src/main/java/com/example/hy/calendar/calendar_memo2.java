@@ -1,25 +1,18 @@
-package com.example.hy;
+package com.example.hy.calendar;
 
-import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
 import android.graphics.Matrix;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
-import android.provider.Settings;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Html;
 import android.util.Base64;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -28,15 +21,9 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.target.SimpleTarget;
-import com.bumptech.glide.request.transition.Transition;
 import com.example.hy.GlobalVariable;
 import com.example.hy.R;
-import com.example.hy.calendar.calendar;
-import com.example.hy.forum.forum_post2;
 import com.example.hy.webservice;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -50,7 +37,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import java.net.URI;
 import java.net.URL;
 
 import cz.msebera.android.httpclient.Header;
@@ -70,7 +56,7 @@ public class calendar_memo2 extends AppCompatActivity {
     ProgressDialog mLoadingDialog;
     private final int REQUEST_PICK_IMAGE = 1;
     URL url;
-    String url_String="";
+    String url_String="",vege,gmail;
     Bitmap myBitmap;
 
     //找到UI工人的經紀人，這樣才能派遣工作  (找到顯示畫面的UI Thread上的Handler)
@@ -105,7 +91,7 @@ public class calendar_memo2 extends AppCompatActivity {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        mLoadingDialog = new ProgressDialog(com.example.hy.calendar_memo2.this);
+        mLoadingDialog = new ProgressDialog(calendar_memo2.this);
         calendar_picture_view = findViewById(R.id.calendar_picture_view);
 
         calendar_picture_select = findViewById(R.id.calendar_picture_select);
@@ -130,6 +116,8 @@ public class calendar_memo2 extends AppCompatActivity {
         action_item_value= (GlobalVariable)getApplicationContext();
         action_item_value2= (GlobalVariable)getApplicationContext();
         action_item_value2.setAction_item(action_item_value.getAction_item());
+        vege=action_item_value.getSelect_vege_name();
+        gmail=action_item_value.getUser_gmail();
 
         //cb1到cb8是活動被勾選時會有顏色變化
         cb1.setOnClickListener(new View.OnClickListener(){
@@ -233,7 +221,7 @@ public class calendar_memo2 extends AppCompatActivity {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(com.example.hy.calendar_memo2.this, calendar.class);
+                Intent intent = new Intent(calendar_memo2.this, calendar.class);
                 startActivity(intent);
             }
         });
@@ -265,7 +253,7 @@ public class calendar_memo2 extends AppCompatActivity {
         if(cb8.isChecked()){
             s += "收成  ";
         }
-        intent = new Intent(com.example.hy.calendar_memo2.this,calendar.class);
+        intent = new Intent(calendar_memo2.this,calendar.class);
         //宣告一個編輯框和佈局檔案中id為edit_message的編輯框連結起來。
         //把編輯框獲取的文字賦值給String型別的message
         //String message = ed.getText().toString();
@@ -299,7 +287,7 @@ public class calendar_memo2 extends AppCompatActivity {
     private Runnable r1=new Runnable () {
 
         public void run() {
-            line = webservice.Update(date,s,message,url.toString());
+            line = webservice.Update(vege,date,s,message,url.toString(),gmail);
             //請經紀人指派工作名稱 r，給工人做
             mUI_Handler.post(r2);
 
@@ -496,7 +484,7 @@ public class calendar_memo2 extends AppCompatActivity {
                 Log.v("test", "Error response: "+error.toString());
                 if (error.has("data")) {
                     JSONObject data = error.optJSONObject("data");
-                    AlertDialog dialog = new AlertDialog.Builder(com.example.hy.calendar_memo2.this)
+                    AlertDialog dialog = new AlertDialog.Builder(calendar_memo2.this)
                             .setTitle("Error: " + statusCode + " " + e.getMessage())
                             .setMessage(data.optString("error",""))
                             .setPositiveButton("確定", null)

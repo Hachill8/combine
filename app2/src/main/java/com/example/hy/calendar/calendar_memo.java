@@ -69,7 +69,7 @@ public class calendar_memo extends AppCompatActivity {
     ProgressDialog mLoadingDialog;
     private final int REQUEST_PICK_IMAGE = 1;
     URL url;
-    String url_String="";
+    String url_String="",vege,gmail;
     Bitmap myBitmap;
 
     //找到UI工人的經紀人，這樣才能派遣工作  (找到顯示畫面的UI Thread上的Handler)
@@ -129,6 +129,8 @@ public class calendar_memo extends AppCompatActivity {
         action_item_value= (GlobalVariable)getApplicationContext();
         action_item_value2= (GlobalVariable)getApplicationContext();
         action_item_value2.setAction_item(action_item_value.getAction_item());
+        vege=action_item_value.getSelect_vege_name();
+        gmail=action_item_value.getUser_gmail();
 
         //cb1到cb8是活動被勾選時會有顏色變化
         cb1.setOnClickListener(new View.OnClickListener(){
@@ -298,7 +300,7 @@ public class calendar_memo extends AppCompatActivity {
     private Runnable r1=new Runnable () {
 
         public void run() {
-            line = webservice.insert(date,s,message,url.toString());
+            line = webservice.insert(vege,date,s,message,url_String,gmail);
             //請經紀人指派工作名稱 r，給工人做
             mUI_Handler.post(r2);
 

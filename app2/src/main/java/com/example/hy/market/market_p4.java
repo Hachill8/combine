@@ -35,7 +35,7 @@ import java.util.List;
 
 public class market_p4 extends AppCompatActivity
 {
-    Spinner deliver_spinner,pay_spinner;
+    //Spinner deliver_spinner,pay_spinner;
     //找到UI工人的經紀人，這樣才能派遣工作  (找到顯示畫面的UI Thread上的Handler)
     private Handler mUI_Handler = new Handler();
     //宣告特約工人的經紀人
@@ -92,21 +92,21 @@ public class market_p4 extends AppCompatActivity
             }
         });
 
-        //spinner建立
-        deliver_spinner = (Spinner) findViewById(R.id.shopping_cart_deliver_spinner);
-        pay_spinner = (Spinner) findViewById(R.id.shopping_cart_pay_spinner);
+//        //spinner建立
+//        deliver_spinner = (Spinner) findViewById(R.id.shopping_cart_deliver_spinner);
+//        pay_spinner = (Spinner) findViewById(R.id.shopping_cart_pay_spinner);
 
-        //給予對應item的資料
-        ArrayAdapter <String> adapter1 = new ArrayAdapter<String>(market_p4.this,
-                R.layout.market4_select_dropdown_item,                            //選項資料內容
-                getResources().getStringArray(R.array.運送方式));   //自訂getView()介面格式(Spinner介面未展開時的View)
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(market_p4.this,
-                R.layout.market4_select_dropdown_item,
-                getResources().getStringArray(R.array.付款方式));
+//        //給予對應item的資料
+//        ArrayAdapter <String> adapter1 = new ArrayAdapter<String>(market_p4.this,
+//                R.layout.market4_select_dropdown_item,                            //選項資料內容
+//                getResources().getStringArray(R.array.運送方式));   //自訂getView()介面格式(Spinner介面未展開時的View)
+//        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(market_p4.this,
+//                R.layout.market4_select_dropdown_item,
+//                getResources().getStringArray(R.array.付款方式));
 
-        //匯入item資料
-        deliver_spinner.setAdapter(adapter1);
-        pay_spinner.setAdapter(adapter2);
+//        //匯入item資料
+//        deliver_spinner.setAdapter(adapter1);
+//        pay_spinner.setAdapter(adapter2);
 
         //聘請一個特約工人，有其經紀人派遣其工人做事 (另起一個有Handler的Thread)
         mThread = new HandlerThread("");

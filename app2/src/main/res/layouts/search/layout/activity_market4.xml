@@ -66,11 +66,7 @@
             android:layout_marginTop="10dp">
 
 
-            <Spinner
-                android:id="@+id/shopping_cart_deliver_spinner"
-                android:layout_width="260dp"
-                android:layout_height="25dp"
-                android:layout_centerInParent="true"/>
+
 
         </RelativeLayout>
 
@@ -79,11 +75,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp">
 
-            <Spinner
-                android:id="@+id/shopping_cart_pay_spinner"
-                android:layout_width="260dp"
-                android:layout_height="25dp"
-                android:layout_centerInParent="true"/>
 
         </RelativeLayout>
 

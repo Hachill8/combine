@@ -108,8 +108,17 @@ public class home2 extends AppCompatActivity{
             @Override
             public void onClick(View v)
             {
-                Intent a = new Intent(home2.this, com.example.hy.edit_pot.class);
-                startActivity(a);
+                AlertDialog.Builder builder = new AlertDialog.Builder(home2.this);
+                builder.setTitle("編輯盆栽☆即將推出，敬請期待!");
+                builder.setMessage("查看所有盆栽，點擊可更改盆栽編號");
+                builder.setPositiveButton("好", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                AlertDialog dialog=builder.create();
+                dialog.show();
             }
         } );
 
@@ -131,9 +140,12 @@ public class home2 extends AppCompatActivity{
         vege_home = (GlobalVariable)getApplicationContext();
         //15601651561651;
         Vege_image_home = (ImageView) findViewById(R.id.vege_image_home);
-        if(!vege_home.getVege_image_home().equals("無"))
+
+        if (vege_home.getVege_image_home().equals("無"))
         {
-            if (vege_home.getVege_image_home().equals("紅蘿蔔"))
+            Vege_image_home.setImageDrawable(getResources().getDrawable( R.drawable.home_picture ));
+        }
+            else if (vege_home.getVege_image_home().equals("紅蘿蔔"))
             {
                 Vege_image_home.setImageDrawable(getResources().getDrawable( R.drawable.vege_carrot_pot ));
             }
@@ -165,6 +177,9 @@ public class home2 extends AppCompatActivity{
             {
                 Vege_image_home.setImageDrawable(getResources().getDrawable( R.drawable.vege_cabbage_pot));
             }
+        else
+        {
+            Vege_image_home.setImageDrawable(getResources().getDrawable( R.drawable.no_vege_picture));
         }
 
     }

@@ -48,6 +48,7 @@ import com.example.hy.home.home2;
 import com.example.hy.record.record;
 import com.example.hy.record.record_Cardview;
 import com.example.hy.record.record_Information2;
+import com.example.hy.user_setting.user_setting;
 import com.example.hy.webservice;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 
@@ -69,9 +70,6 @@ public class search extends AppCompatActivity  {
     //篩選
     Button select_item;
     boolean fg1=false; //確認點過select_item
-
-
-
 
     //找到UI工人的經紀人，這樣才能派遣工作  (找到顯示畫面的UI Thread上的Handler)
     private Handler mUI_Handler = new Handler();
@@ -217,8 +215,16 @@ public class search extends AppCompatActivity  {
         plus_vege.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(search.this, custom_vegeinfo.class);
-                startActivity(intent);
+                AlertDialog.Builder builder = new AlertDialog.Builder(search.this);
+                builder.setTitle("自訂作物☆即將推出，敬請期待!");
+                builder.setPositiveButton("好", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                AlertDialog dialog=builder.create();
+                dialog.show();
             }
         });
 

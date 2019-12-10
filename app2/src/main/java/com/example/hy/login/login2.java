@@ -118,6 +118,9 @@ public class login2 extends AppCompatActivity  {
         phone=findViewById(R.id.phone);
         email=findViewById(R.id.email);
         user_info_confrim  = (Button) findViewById(R.id.user_info_confirm);
+
+
+        //使用者按下確認後
         user_info_confrim.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -132,7 +135,7 @@ public class login2 extends AppCompatActivity  {
                     {
                     mThreadHandler.post(r1);
                     gl.setUser_name(name.getText().toString());
-                //    gl.setUser_gmail(email.getText().toString());
+                    gl.setUser_gmail(email.getText().toString());
                     startActivity(a);
                 }
             }
