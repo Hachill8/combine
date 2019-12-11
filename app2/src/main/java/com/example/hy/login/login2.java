@@ -137,6 +137,7 @@ public class login2 extends AppCompatActivity  {
                     gl.setUser_name(name.getText().toString());
                     gl.setUser_gmail(email.getText().toString());
                     startActivity(a);
+                    login2.this.finish();
                 }
             }
         });

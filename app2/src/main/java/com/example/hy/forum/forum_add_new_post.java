@@ -91,6 +91,8 @@ public class forum_add_new_post extends AppCompatActivity
             public void onClick(View v){
                 Intent i = new Intent(forum_add_new_post.this, forum.class);
                 startActivity(i);
+                forum_add_new_post.this.finish();
+                //System.exit(0);
             }
         });
 
@@ -153,6 +155,8 @@ public class forum_add_new_post extends AppCompatActivity
             else
             {
                 startActivity(a);
+                //關閉activity
+                forum_add_new_post.this.finish();
             }
         }
 

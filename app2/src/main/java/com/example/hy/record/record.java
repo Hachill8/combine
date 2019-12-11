@@ -317,6 +317,7 @@ public class record extends AppCompatActivity
         if (mThread != null) {
             mThread.quit();
         }
+
     }
 
     private class CardAdapter extends  RecyclerView.Adapter<CardAdapter.ViewHolder>

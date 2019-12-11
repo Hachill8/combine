@@ -241,6 +241,7 @@ public class login extends AppCompatActivity implements GoogleApiClient.Connecti
             a.putExtra("giveemail",email);
             startActivity(a);
             Log.v("test", "成功");
+            login.this.finish();
         }
         else
         {

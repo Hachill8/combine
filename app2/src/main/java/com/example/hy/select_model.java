@@ -126,8 +126,9 @@ public class select_model extends AppCompatActivity {
                 @Override
                 public void onClick(View v)
                 {
-                    Intent a = new Intent(select_model.this, search.class);
+                    Intent a = new Intent(select_model.this, home2.class);
                     startActivity(a);
+                    select_model.this.finish();
                 }
             });
 

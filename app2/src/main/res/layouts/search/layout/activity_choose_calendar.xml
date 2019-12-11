@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".choose_calendar"
+    tools:context=".calendar.choose_calendar"
     android:orientation="vertical"
     android:background="#E6EAE7">
 

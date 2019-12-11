@@ -3,12 +3,15 @@ package com.example.hy;
 import android.app.Application;
 import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GlobalVariable extends Application
 {
     private String Word="No_message";     //要傳送的作物名稱
     private String Vege_item="";
     private String Action_item="";
-    private String Vege_image_home="無";
+    private List<String> Vege_image_home=new ArrayList<>();
     private String Select_month="無";
     private String Forum_content="錯誤",Forum_title="錯誤";
     private String Market_item="無";
@@ -35,8 +38,9 @@ public class GlobalVariable extends Application
     public void setAction_item(String action_item){this.Action_item = action_item;}
     public String getAction_item(){ return Action_item;}
 
-    public void setVege_image_home(String vege_image_home){this.Vege_image_home = vege_image_home;}
-    public String getVege_image_home(){ return Vege_image_home;}
+    //首頁作物圖片
+    public void setVege_image_home(String vege_image_home){this.Vege_image_home.add(vege_image_home);}
+    public List<String> getVege_image_home(){ return Vege_image_home;}
 
     public void setForum_content(String forum_content){this.Forum_content = forum_content;}
     public String getForum_content(){ return Forum_content;}

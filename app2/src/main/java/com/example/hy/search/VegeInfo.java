@@ -6,27 +6,22 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.hy.AutoSplitTextView;
 import com.example.hy.GlobalVariable;
 import com.example.hy.R;
-import com.example.hy.choose_calendar;
 import com.example.hy.home.home2;
-import com.example.hy.user_setting.user_setting;
 import com.example.hy.webservice;
 
 import java.text.SimpleDateFormat;
@@ -40,7 +35,7 @@ public class VegeInfo extends AppCompatActivity {
     Button start_plant,choose_calendar;
     Dialog variety_info;
     String line="can't not found", vegeinfo_name,setdate,gmail;
-    TextView step/**  小撇步  **/,
+    AutoSplitTextView step/**  小撇步  **/,
             container/**  容器 **/,
             soil/**  土壤 **/,
             place/**  放置場所**/,
@@ -49,6 +44,8 @@ public class VegeInfo extends AppCompatActivity {
             bug/**  病蟲害 **/,
             harvest/**  收穫標準 **/,
             vege_name /**  菜名 **/;
+
+
 
 
 
@@ -84,15 +81,15 @@ public class VegeInfo extends AppCompatActivity {
 
         // 各欄位宣告
 
-        step = (TextView) findViewById(R.id.step);
-        container = (TextView) findViewById(R.id.container);
-        soil = (TextView) findViewById(R.id.soil);
-        place = (TextView) findViewById(R.id.place);
-        water = (TextView) findViewById(R.id.water);
-        fertilizer = (TextView) findViewById(R.id.fertilizer);
-        bug = (TextView) findViewById(R.id.bug);
-        harvest = (TextView) findViewById(R.id.harvest);
-        vege_name = (TextView) findViewById(R.id.vege_name);
+        step =  findViewById(R.id.step);
+        container =  findViewById(R.id.container);
+        soil =  findViewById(R.id.soil);
+        place =  findViewById(R.id.place);
+        water =  findViewById(R.id.water);
+        fertilizer =  findViewById(R.id.fertilizer);
+        bug =  findViewById(R.id.bug);
+        harvest =  findViewById(R.id.harvest);
+        vege_name =  findViewById(R.id.vege_name);
         setdate = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault()).format(new Date());
         gl= (GlobalVariable)getApplicationContext();
         gmail=gl.getUser_email();

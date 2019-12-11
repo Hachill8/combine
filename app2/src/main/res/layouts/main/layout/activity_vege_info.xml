@@ -23,7 +23,7 @@
                 android:id="@+id/vege_img"
                 android:scaleType="fitXY" />
 
-            <TextView
+            <com.example.hy.AutoSplitTextView
                 android:id="@+id/vege_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
 
 
 
-            <TextView
+            <com.example.hy.AutoSplitTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="小撇步"
@@ -52,7 +52,7 @@
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="15dp"/>
 
-            <TextView
+            <com.example.hy.AutoSplitTextView
                 android:id="@+id/step"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -101,7 +101,7 @@
                         android:textColor="#402C2B"
                         android:layout_marginLeft="15dp"
                         android:layout_marginRight="15dp"/>
-                    <TextView
+                    <com.example.hy.AutoSplitTextView
                         android:id="@+id/container"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -130,7 +130,7 @@
                         android:textColor="#402C2B"
                         android:layout_marginLeft="15dp"
                         android:layout_marginRight="15dp"/>
-                    <TextView
+                    <com.example.hy.AutoSplitTextView
                         android:id="@+id/soil"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -157,7 +157,7 @@
                         android:textColor="#402C2B"
                         android:layout_marginLeft="15dp"
                         android:layout_marginRight="15dp"/>
-                    <TextView
+                    <com.example.hy.AutoSplitTextView
                         android:id="@+id/place"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -183,7 +183,7 @@
                         android:textColor="#402C2B"
                         android:layout_marginLeft="15dp"
                         android:layout_marginRight="15dp"/>
-                    <TextView
+                    <com.example.hy.AutoSplitTextView
                         android:id="@+id/water"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -202,7 +202,7 @@
                     android:orientation="horizontal"
                     android:layout_marginBottom="10dp">
 
-                    <TextView
+                    <com.example.hy.AutoSplitTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="肥料(追肥)"
@@ -210,7 +210,7 @@
                         android:textColor="#402C2B"
                         android:layout_marginLeft="15dp"
                         android:layout_marginRight="15dp"/>
-                    <TextView
+                    <com.example.hy.AutoSplitTextView
                         android:id="@+id/fertilizer"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -236,7 +236,7 @@
                         android:textColor="#402C2B"
                         android:layout_marginLeft="15dp"
                         android:layout_marginRight="15dp"/>
-                    <TextView
+                    <com.example.hy.AutoSplitTextView
                         android:id="@+id/bug"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -263,7 +263,7 @@
                         android:layout_marginLeft="15dp"
                         android:layout_marginRight="15dp"/>
 
-                    <TextView
+                    <com.example.hy.AutoSplitTextView
                         android:id="@+id/harvest"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
