@@ -50,7 +50,7 @@ public class home2 extends AppCompatActivity{
 
     GlobalVariable vege_home; //首頁作物照片(暫時)
     ImageView Vege_image_home;
-    Button taipei_life,taipei_land_lease,taipei_farmers;
+    Button taipei_life,taipei_land_lease,taipei_farmers,search_bt;
 
     List<home2_plant_img_cardview> cardviewList;
 
@@ -144,11 +144,14 @@ public class home2 extends AppCompatActivity{
 
         createBottomSheetDialog();
 
+        search_bt=(Button) findViewById(R.id.search_bt);
+        search_bt.setVisibility(View.VISIBLE);
 
 
         //首頁植物list
         vege_home = (GlobalVariable)getApplicationContext();
         //15601651561651;
+//        Vege_image_home = (ImageView) findViewById(R.id.vege_image_home);
 
         cardviewList = new ArrayList<>();
 
@@ -159,11 +162,16 @@ public class home2 extends AppCompatActivity{
             cardviewList.add(new home2_plant_img_cardview(0,"",R.drawable.gender));
             cardviewList.add(new home2_plant_img_cardview(1,"",R.drawable.home_picture));
         }
-        else
-        {
-            recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
-            cardviewList.clear();
-        }
+ //           Vege_image_home.setImageDrawable(getResources().getDrawable( R.drawable.home_pic ));
+            search_bt.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent=new Intent(home2.this,search.class);
+                    startActivity(intent);
+                }
+            });
+
+
 
         //首頁植物圖片判斷
        for(int i = 0;i < vege_home.getVege_image_home().size();i++)
@@ -285,6 +293,8 @@ public class home2 extends AppCompatActivity{
         }
 
     }
+
+
 
 
     public void showDialog(View view)

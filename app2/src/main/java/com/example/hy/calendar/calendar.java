@@ -337,7 +337,7 @@ public class calendar extends AppCompatActivity {
 
         public void run() {
 
-            String email=action_item_value.getUser_email();
+            String email=action_item_value.getUser_gmail();
             Allvege=webservice.Select_user_vege(email);
             mUI_Handler.post(r8);
         }

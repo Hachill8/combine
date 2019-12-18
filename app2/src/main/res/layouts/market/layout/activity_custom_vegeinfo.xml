@@ -8,22 +8,42 @@
     android:orientation="vertical"
     android:background="#E6EAE7">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="54dp"
-        android:background="@color/secondary_color"
-        android:orientation="vertical">
+        android:layout_height="65dp">
 
-        <TextView
-            android:id="@+id/custom_vege"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="5dp"
-            android:text="自訂作物"
-            android:textColor="#ffffff"
-            android:textSize="30dp" />
-    </LinearLayout>
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:background="@color/white" />
+
+        <ImageButton
+            android:id="@+id/back_user"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/back2" />
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="自訂作物"
+                android:textColor="@color/black"
+                android:textSize="28dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </android.support.constraint.ConstraintLayout>
+    </RelativeLayout>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -34,18 +54,9 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical" />
-            </HorizontalScrollView>
 
             <ImageView
-                android:id="@+id/imageView10"
+                android:id="@+id/add_img"
                 android:layout_width="match_parent"
                 android:layout_height="291dp"
                 android:background="@drawable/select_vege_picture3" />
@@ -58,16 +69,16 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/vege_name"
+                    android:id="@+id/vege_name_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
-                    android:text="作物名稱 :"
+                    android:text="作物名稱* :"
                     android:textColor="#402C2B"
                     android:textSize="30dp" />
 
                 <EditText
-                    android:id="@+id/editText"
+                    android:id="@+id/vege_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -375,6 +386,7 @@
                             android:orientation="vertical">
 
                             <ImageView
+                                android:id="@+id/tool_pic1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="150dp"
                                 android:layout_marginTop="3dp"
@@ -396,10 +408,11 @@
                                     android:textSize="18sp" />
 
                                 <EditText
-                                    android:id="@+id/editText2"
+                                    android:id="@+id/tool_name1"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:ems="10"
+                                    android:textSize="18sp"
                                     android:inputType="textPersonName" />
 
                             </LinearLayout>
@@ -423,6 +436,7 @@
                             android:orientation="vertical">
 
                             <ImageView
+                                android:id="@+id/tool_pic2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="150dp"
                                 android:src="@drawable/select_tool_picture"
@@ -443,11 +457,12 @@
                                     android:textSize="18sp" />
 
                                 <EditText
-                                    android:id="@+id/editText3"
+                                    android:id="@+id/tool_name2"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:ems="10"
+                                    android:textSize="18sp"
                                     android:inputType="textPersonName" />
                             </LinearLayout>
 
@@ -470,6 +485,7 @@
                             android:orientation="vertical">
 
                             <ImageView
+                                android:id="@+id/tool_pic3"
                                 android:layout_width="wrap_content"
                                 android:layout_height="150dp"
                                 android:src="@drawable/select_tool_picture"
@@ -490,11 +506,12 @@
                                     android:textSize="18sp" />
 
                                 <EditText
-                                    android:id="@+id/editText4"
+                                    android:id="@+id/tool_name3"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:ems="10"
+                                    android:textSize="18sp"
                                     android:inputType="textPersonName" />
                             </LinearLayout>
 
@@ -516,6 +533,7 @@
                             android:orientation="vertical">
 
                             <ImageView
+                                android:id="@+id/tool_pic4"
                                 android:layout_width="wrap_content"
                                 android:layout_height="150dp"
                                 android:src="@drawable/select_tool_picture"
@@ -536,11 +554,12 @@
                                     android:textSize="18sp" />
 
                                 <EditText
-                                    android:id="@+id/editText5"
+                                    android:id="@+id/tool_name4"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:ems="10"
+                                    android:textSize="18sp"
                                     android:inputType="textPersonName" />
                             </LinearLayout>
 
@@ -586,7 +605,7 @@
 
 
             <Button
-                android:id="@+id/choose_calendar"
+                android:id="@+id/cancel"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="195dp"
                 android:layout_height="match_parent"

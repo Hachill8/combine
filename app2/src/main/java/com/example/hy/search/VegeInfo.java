@@ -6,13 +6,17 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -23,7 +27,9 @@ import com.example.hy.GlobalVariable;
 import com.example.hy.R;
 import com.example.hy.calendar.choose_calendar;
 import com.example.hy.home.home2;
+import com.example.hy.user_setting.user_setting;
 import com.example.hy.webservice;
+import com.varunest.sparkbutton.SparkEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -34,8 +40,9 @@ public class VegeInfo extends AppCompatActivity {
     GlobalVariable vege
             ,vege_home,gl;     //首頁作物照片(暫時)
     Button start_plant,choose_calendar;
+    com.varunest.sparkbutton.SparkButton like_vege;
     Dialog variety_info;
-    String line="can't not found", vegeinfo_name,setdate,gmail;
+    String line="can't not found", vegeinfo_name,setdate,gmail,likeornot;
     AutoSplitTextView step/**  小撇步  **/,
             container/**  容器 **/,
             soil/**  土壤 **/,
@@ -48,10 +55,9 @@ public class VegeInfo extends AppCompatActivity {
 
 
 
-
-
      ImageView imageview;
      String img_result; //圖片字串
+     boolean fg=true;
 
 //     ImageAdapter imgadapter;
 //     //加入圖片用
@@ -84,16 +90,17 @@ public class VegeInfo extends AppCompatActivity {
 
         step =  findViewById(R.id.step);
         container =  findViewById(R.id.container);
-        soil =  findViewById(R.id.soil);
+        soil =findViewById(R.id.soil);
         place =  findViewById(R.id.place);
-        water =  findViewById(R.id.water);
+        water = findViewById(R.id.water);
         fertilizer =  findViewById(R.id.fertilizer);
         bug =  findViewById(R.id.bug);
         harvest =  findViewById(R.id.harvest);
         vege_name =  findViewById(R.id.vege_name);
+        like_vege = findViewById(R.id.spark_button);
         setdate = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault()).format(new Date());
         gl= (GlobalVariable)getApplicationContext();
-        gmail=gl.getUser_email();
+        gmail=gl.getUser_gmail();
 
         //globalvariable變數
         vege = (GlobalVariable)getApplicationContext();
@@ -147,6 +154,39 @@ public class VegeInfo extends AppCompatActivity {
 //                dialog.show();
             }
         } );
+        mThreadHandler.post(r7);
+        like_vege.setEventListener(new SparkEventListener(){
+            @Override
+            public void onEvent(ImageView button, boolean buttonState) {
+                if (buttonState) {
+                    // 此判斷為第一次使用者點擊時
+                    if(likeornot.equals("未查詢到資料")) {
+                        if (fg == true) {
+                            fg = false;likeornot="on";
+                            mThreadHandler.post(r5);
+                        }
+                    }
+                } else {
+                    if(likeornot.substring(0,2).equals("on"))
+                    {
+                        if (fg == false) {
+                            fg = true;likeornot="未查詢到資料";
+                            mThreadHandler.post(r9);
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onEventAnimationEnd(ImageView button, boolean buttonState) {
+            }
+
+            @Override
+            public void onEventAnimationStart(ImageView button, boolean buttonState) {
+
+            }
+
+        });
 
     }
 
@@ -228,6 +268,36 @@ public class VegeInfo extends AppCompatActivity {
 
         }
 
+    };
+    private Runnable r5 = new Runnable() {
+        @Override
+        public void run() {
+            webservice.Insert_like_vege(vegeinfo_name,likeornot,gmail);
+        }
+    };
+    private Runnable r7 = new Runnable() {
+        @Override
+        public void run() {
+            //post_name、post_title、gmail進去WS查出這個使用者是否有收藏這個作物
+            likeornot=webservice.Select_like_vege(vegeinfo_name,gmail);
+            Log.v("test123456", "QQQQ:::" +likeornot+gmail);
+            mUI_Handler.post(r8);
+        }
+    };
+    private Runnable r8 = new Runnable() {
+        @Override
+        public void run() {
+            if(likeornot.substring(0,2).equals("on"))
+            {fg=false;like_vege.setChecked(true);}
+            else if(likeornot.equals("未查詢到資料"))
+            {fg=true;like_vege.setChecked(false);}
+        }
+    };
+    private Runnable r9 = new Runnable() {
+        @Override
+        public void run() {
+            webservice.Delete_like_vege(vegeinfo_name,gmail);
+        }
     };
 
     @Override

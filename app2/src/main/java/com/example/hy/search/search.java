@@ -60,7 +60,7 @@ import java.util.List;
 import java.util.ListIterator;
 
 public class search extends AppCompatActivity  {
-    ImageButton bt_filter,plus_vege,home;
+    ImageButton bt_filter,plus_vege;
     GlobalVariable vege_name;
     String insert_vege_item="";
 
@@ -228,15 +228,6 @@ public class search extends AppCompatActivity  {
             }
         });
 
-        //進入首頁
-        home= (ImageButton) findViewById(R.id.home);
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(search.this, home2.class);
-                startActivity(intent);
-            }
-        });
 
     }
 

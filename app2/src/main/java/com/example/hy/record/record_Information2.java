@@ -30,7 +30,7 @@ import java.util.Date;
 import java.util.Locale;
 
 public class record_Information2 extends AppCompatActivity{
-    CalendarView cv1,QQ;
+    CalendarView cv1;
     TextView tv1,tv2,act_tv;
     String[] listItems,everyvege,sl;
     boolean[] checkedItems;

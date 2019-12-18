@@ -163,6 +163,7 @@
                 android:id="@+id/spark_button"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:onClick="like_num_bt"
                 app:sparkbutton_activeImage="@drawable/like_fill"
                 app:sparkbutton_inActiveImage="@drawable/like_empty"
                 app:sparkbutton_iconSize="20dp"
@@ -172,6 +173,7 @@
                 app:sparkbutton_secondaryColor="@color/secondary_color" />
 
             <TextView
+                android:id="@+id/like_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"

@@ -14,6 +14,7 @@ import android.os.HandlerThread;
 import android.os.Looper;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -43,6 +44,7 @@ import com.example.hy.GlobalVariable;
 import com.example.hy.R;
 import com.example.hy.record.record;
 import com.example.hy.webservice;
+import com.varunest.sparkbutton.SparkEventListener;
 
 
 import java.util.ArrayList;
@@ -52,17 +54,19 @@ import java.util.List;
 
 public class forum_post2 extends AppCompatActivity {
 
-    TextView post_content_tv,post_title_tv,post_time,post_name;
+    TextView post_content_tv,post_title_tv,post_time,post_name,post_like_tv;
     GlobalVariable gl;
-    String content_post;
+    String content_post,post_title,post_like_value;
     FloatingActionButton post_message;
     EditText add_message;
     Button postTV_to_forum;
-    String post_all="";
-
-
+    com.varunest.sparkbutton.SparkButton post_like;
+    String[] split;
+    String post_all="",OKOK,likeornot,gmail;
+    int likenum;
+    boolean fg=true;
     //找到UI工人的經紀人，這樣才能派遣工作  (找到顯示畫面的UI Thread上的Handler)
-    private android.os.Handler mUI_Handler = new android.os.Handler();
+    private Handler mUI_Handler = new Handler();
     //宣告特約工人的經紀人
     private Handler mThreadHandler;
     //宣告特約工人
@@ -79,6 +83,8 @@ public class forum_post2 extends AppCompatActivity {
         post_message = (FloatingActionButton) findViewById(R.id.post_message);
         post_time = (TextView) findViewById(R.id.post_time);
         postTV_to_forum = (Button) findViewById(R.id.postTV_to_forum);
+        post_like = findViewById(R.id.spark_button);
+        post_like_tv = findViewById(R.id.like_tv);
         postTV_to_forum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,8 +100,6 @@ public class forum_post2 extends AppCompatActivity {
         //找到特約工人的經紀人，這樣才能派遣工作 (找到Thread上的Handler)
         mThreadHandler=new Handler(mThread.getLooper());
 
-
-
         //文章內容
         gl = (GlobalVariable) getApplicationContext();
 
@@ -103,6 +107,7 @@ public class forum_post2 extends AppCompatActivity {
         {
             post_title_tv.setText(gl.getForum_title_click());
             gl.setForum_title_click("");
+            gmail=gl.getUser_gmail();
             mThreadHandler.post(r1);
         }
         else
@@ -120,7 +125,6 @@ public class forum_post2 extends AppCompatActivity {
             MyImageGetter myImageGetter = new MyImageGetter();
             post_content_tv.setText(Html.fromHtml(content_post, myImageGetter, null));
         }
-
 
 
 
@@ -189,17 +193,55 @@ public class forum_post2 extends AppCompatActivity {
 
         });
 
+        post_like.setEventListener(new SparkEventListener(){
+            @Override
+            public void onEvent(ImageView button, boolean buttonState) {
+                if (buttonState) {
+                    // 此判斷為第一次使用者點擊時
+                    if(likeornot.equals("未查詢到資料")) {
+                        if (fg == true) {
+                            likenum = likenum + 1;
+                            fg = false;likeornot="on";
+                            mThreadHandler.post(r3);
+                            mThreadHandler.post(r5);
+                        }
+                    }
+                } else {
+                    if(likeornot.substring(0,2).equals("on"))
+                    {
+                        if (fg == false) {
+                            likenum = likenum - 1;
+                            fg = true;likeornot="未查詢到資料";
+                            mThreadHandler.post(r3);
+                            mThreadHandler.post(r9);
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onEventAnimationEnd(ImageView button, boolean buttonState) {
+            }
+
+            @Override
+            public void onEventAnimationStart(ImageView button, boolean buttonState) {
+
+            }
+
+        });
+
     }
 
-    Runnable r1 = new Runnable() {
+
+    private Runnable r1 = new Runnable() {
         @Override
         public void run() {
             post_all = webservice.forum_post_view(post_title_tv.getText().toString());
-            mThreadHandler.post(r2);
+            mUI_Handler.post(r2);
         }
     };
 
-    Runnable r2 = new Runnable() {
+    private Runnable r2 = new Runnable() {
         @Override
         public void run() {
             new Handler(Looper.getMainLooper()).post(new Runnable() {
@@ -207,7 +249,7 @@ public class forum_post2 extends AppCompatActivity {
                 public void run() {
                     //title ,content,time,name
                     Log.v("test","post_all"+post_all);
-                    String[] split = post_all.split("%");
+                    split = post_all.split("%");
 
                     post_time.setText(split[2].toString());
                     Log.v("test", "content_post::::: " + content_post);
@@ -219,10 +261,63 @@ public class forum_post2 extends AppCompatActivity {
                     MyImageGetter myImageGetter = new MyImageGetter();
                     post_content_tv.setText(Html.fromHtml(content_post, myImageGetter, null));
 
+                    post_like_tv.setText(split[4].substring(0,1));
+                    likenum=Integer.valueOf(split[4].substring(0,1));
+                    Log.v("test123456", "LIKE" +split[4].substring(0,1)+"結束");
+                    mThreadHandler.post(r7);
+
                 }
             });
         }
     };
+    private Runnable r3 = new Runnable() {
+        @Override
+        public void run() {
+            OKOK=Integer.toString(likenum);
+            //針對某篇文章進行收藏，WS改的是這篇文章發布者的收藏數
+            webservice.Update_post_like(split[3],split[0],OKOK);
+            Log.v("test123456", "aLL" +split[3]+split[0]+OKOK);
+            mUI_Handler.post(r4);
+        }
+    };
+    private Runnable r4 = new Runnable() {
+        @Override
+        public void run() {
+            post_like_tv.setText(OKOK);
+            Log.v("test123456", "aLL" +OKOK);
+        }
+    };
+    private Runnable r5 = new Runnable() {
+        @Override
+        public void run() {
+            webservice.Insert_like_post(split[3],split[0],likeornot,gmail);
+        }
+    };
+    private Runnable r7 = new Runnable() {
+        @Override
+        public void run() {
+            //post_name、post_title、gmail進去WS查出這個使用者是否有收藏這篇文章
+            likeornot=webservice.Select_like_post(split[3],split[0],gmail);
+            Log.v("test123456", "QQQQ:::" +likeornot+gmail);
+            mUI_Handler.post(r8);
+        }
+    };
+    private Runnable r8 = new Runnable() {
+        @Override
+        public void run() {
+            if(likeornot.substring(0,2).equals("on"))
+            {fg=false;post_like.setChecked(true);}
+            else if(likeornot.equals("未查詢到資料"))
+            {fg=true;post_like.setChecked(false);}
+        }
+    };
+    private Runnable r9 = new Runnable() {
+        @Override
+        public void run() {
+            webservice.Delete_like_post(split[3],split[0],gmail);
+        }
+    };
+
 
 //    //查看ImageGetter接口
 //    //public static interface ImageGetter {
@@ -299,7 +394,23 @@ public class forum_post2 extends AppCompatActivity {
             post_content_tv.invalidate();
         }
     }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
 
+        //移除工人上的工作
+        if (mThreadHandler != null) {
+            mThreadHandler.removeCallbacks(r1);
+            mThreadHandler.removeCallbacks(r3);
+            mThreadHandler.removeCallbacks(r5);
+            mThreadHandler.removeCallbacks(r7);
+            mThreadHandler.removeCallbacks(r9);
+        }
+        //解聘工人 (關閉Thread)
+        if (mThread != null) {
+            mThread.quit();
+        }
+    }
 
 
     //留言的cardview

@@ -55,10 +55,13 @@ public class forum extends AppCompatActivity {
     RecyclerView recyclerView;
     forum_postadaper adapter;
     ImageButton add_new_post; //新增文章
+    ImageView post_heart;
     AutoCompleteTextView search_forum;
     GlobalVariable  Search_forum_string_item;
     List<forum_post> postList;
-    String Search_forum_string_list,forum_cardview="";
+    String Search_forum_string_list,forum_cardview="",gmail,all_like;
+    String[] split_cardview_info,split_all_like;
+    int k;
 
     //找到UI工人的經紀人，這樣才能派遣工作  (找到顯示畫面的UI Thread上的Handler)
     private android.os.Handler mUI_Handler = new android.os.Handler();
@@ -88,6 +91,7 @@ public class forum extends AppCompatActivity {
         mThreadHandler.post(r1);
 
         Search_forum_string_item = (GlobalVariable) getApplicationContext();
+        gmail=Search_forum_string_item.getUser_gmail();
 
         search_forum = findViewById(R.id.search_forum);
         search_forum.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -146,6 +150,7 @@ public class forum extends AppCompatActivity {
  //       recyclerView.setHasFixedSize(true);
         adapter=new forum_postadaper(this,postList);
 
+
     }
 
     Runnable r1 = new Runnable() {
@@ -153,7 +158,8 @@ public class forum extends AppCompatActivity {
         public void run() {
             Search_forum_string_list = webservice.Search_forum_list();
             forum_cardview = webservice.forum_cardview();
-            mThreadHandler.post(r2);
+            all_like=webservice.Select_all_like_post(gmail);
+            mUI_Handler.post(r2);
         }
     };
 
@@ -166,29 +172,52 @@ public class forum extends AppCompatActivity {
                     String[] split=Search_forum_string_list.split("我是切割線");
                     search_forum.setAdapter(new ArrayAdapter<>(forum.this,android.R.layout.simple_list_item_1,split));
 
+
                     String[] split_cardview = forum_cardview.split("ALL切");
-                    for(int i = 0 ; i < split_cardview.length ; i++)
-                    {
-                        String[] split_cardview_info  = split_cardview[i].split("WS切");
-                        //user + "WS切" + title + "WS切" + time + "WS切" + heartnum + "WS切" + commentnum + "WS切" + post_img
-                        postList.add(
-                                new forum_post(
-                                        i,
-                                        split_cardview_info[0],
-                                        split_cardview_info[1],
-                                        split_cardview_info[2],
-                                        split_cardview_info[3],
-                                        split_cardview_info[4],
-                                        split_cardview_info[5],
-                                        R.drawable.user10));
+                    split_all_like = all_like.split("%");
+                    for(int i = 0 ; i < split_cardview.length ; i++) {
+                        split_cardview_info = split_cardview[i].split("WS切");
+                        k = all_like.indexOf(split_cardview_info[1]);
+                        Log.v("test123456","all:::::"+split_cardview_info[1]+k+all_like);
+                            //user + "WS切" + title + "WS切" + time + "WS切" + heartnum + "WS切" + commentnum + "WS切" + post_img
+                            if (k>=0) {
+                                postList.add(
+                                        new forum_post(
+                                                i,
+                                                split_cardview_info[0],
+                                                split_cardview_info[1],
+                                                split_cardview_info[2],
+                                                R.drawable.like_fill,
+                                                split_cardview_info[3].substring(0, 1),
+                                                split_cardview_info[4],
+                                                split_cardview_info[5],
+                                                R.drawable.user10));
+
+                            } else {
+                                postList.add(
+                                        new forum_post(
+                                                i,
+                                                split_cardview_info[0],
+                                                split_cardview_info[1],
+                                                split_cardview_info[2],
+                                                R.drawable.post_heart,
+                                                split_cardview_info[3].substring(0, 1),
+                                                split_cardview_info[4],
+                                                split_cardview_info[5],
+                                                R.drawable.user10));
+
+                            }
+                            recyclerView.setAdapter(adapter);
                     }
-                    recyclerView.setAdapter(adapter);
                 }
             });
 
 
         }
     };
+
+
+
 
 
     public void Intent_to_post(String title_click)
@@ -242,6 +271,7 @@ public class forum extends AppCompatActivity {
             holder.textViewtitle.setText(post.getTitle());
             holder.textViewdesc.setText(post.getShortdesc());
             holder.time.setText(post.getTime());
+            holder.heart_img.setImageDrawable(mctx.getResources().getDrawable(post.getHeart_img()));
             holder.commentnum.setText(post.getCommentnumnum());
             holder.heartnum.setText(post.getHeartnum());
             holder.userimg.setImageDrawable(mctx.getResources().getDrawable(post.getUserimg()));
@@ -266,7 +296,7 @@ public class forum extends AppCompatActivity {
 
         class postviewholder extends RecyclerView.ViewHolder {
 
-            ImageView userimg;
+            ImageView userimg,heart_img;
             TextView textViewtitle,textViewdesc,time,heartnum,commentnum;
             DownloadImageTask downloadImageTask ;
 
@@ -278,6 +308,7 @@ public class forum extends AppCompatActivity {
                 textViewdesc=itemView.findViewById(R.id.post);
                 userimg=itemView.findViewById((R.id.user_img));
                 time=itemView.findViewById(R.id.post_time);
+                heart_img=itemView.findViewById(R.id.post_heart);
                 heartnum=itemView.findViewById(R.id.post_heart_num);
                 commentnum=itemView.findViewById(R.id.post_chat_num);
                 downloadImageTask = new DownloadImageTask((ImageView)itemView.findViewById(R.id.plant));
