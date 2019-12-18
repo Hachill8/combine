@@ -5,51 +5,145 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.HandlerThread;
+import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.hy.AutoSplitTextView;
+import com.example.hy.DownloadImageTask;
+import com.example.hy.GlobalVariable;
 import com.example.hy.R;
+import com.example.hy.webservice;
+import com.varunest.sparkbutton.helpers.Utils;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class choose_calendar_info extends AppCompatActivity {
 
     List<choose_calendar_cardview> cardviewList;
+    //找到UI工人的經紀人，這樣才能派遣工作  (找到顯示畫面的UI Thread上的Handler)
+    private Handler mUI_Handler = new Handler();
+    //宣告特約工人的經紀人
+    private Handler mThreadHandler;
+    //宣告特約工人
+    private HandlerThread mThread;
+    GlobalVariable choose_calendar_info;
+    String choose_calendar_string;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_choose_calendar_info );
 
+        choose_calendar_info = (GlobalVariable) getApplicationContext() ;
+
+        //聘請一個特約工人，有其經紀人派遣其工人做事 (另起一個有Handler的Thread)
+        mThread = new HandlerThread("");
+        //讓Worker待命，等待其工作 (開啟Thread)
+        mThread.start();
+        //找到特約工人的經紀人，這樣才能派遣工作 (找到Thread上的Handler)
+        mThreadHandler=new Handler(mThread.getLooper());
+        mThreadHandler.post(r1);
+
+
         cardviewList = new ArrayList<>();
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(),
                 R.drawable.vege_info);
-
-        RecyclerView recyclerView = findViewById(R.id.choose_calendar_info_recyclerview);
-        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));
-        cardviewList.add(new choose_calendar_cardview(0,"1","2019-12-11 02:05","青菜底家啦!AAAAAAAAAAAAAAAAAAAAAAAAAAAAA",bitmap));
-        cardviewList.add(new choose_calendar_cardview(0,"2","2019-12-11 02:05","青菜底家啦!",bitmap));
-        cardviewList.add(new choose_calendar_cardview(0,"3","2019-12-11 02:05","青菜底家啦!",bitmap));
-        cardviewList.add(new choose_calendar_cardview(0,"4","2019-12-11 02:05","青菜底家啦!",bitmap));
-        cardviewList.add(new choose_calendar_cardview(0,"5","2019-12-11 02:05","青菜底家啦!",bitmap));
-        cardviewList.add(new choose_calendar_cardview(0,"6","2019-12-11 02:05","青菜底家啦!",bitmap));
-        cardviewList.add(new choose_calendar_cardview(0,"7","2019-12-11 02:05","青菜底家啦!",bitmap));
-        recyclerView.setAdapter(new choose_calendar_info.CardAdapter(choose_calendar_info.this, cardviewList));
     }
+
+    Runnable r1 = new Runnable() {
+        @Override
+        public void run() {
+            String[] split=choose_calendar_info.getChoose_calendar_info().split("%");
+            Log.v("test","split for ALL: " + choose_calendar_info.getChoose_calendar_info());
+            Log.v("test","split for everyone: " + split[0]+"           "+split[1]+"           "+split[2]);
+            choose_calendar_string = webservice.choose_calendar_info_cardview(split[0],split[1],split[2]);
+            mThreadHandler.post(r2);
+
+        }
+    };
+
+    Runnable r2 = new Runnable() {
+        @Override
+        public void run() {
+            new Handler(Looper.getMainLooper()).post(new Runnable(){
+                @Override
+                public void run() {
+                    String[] all,split,start_date;
+                    if (!choose_calendar_string.equals(""))
+                    {
+                        all = choose_calendar_string.split("切");
+                        start_date = all[0].split("%");
+                        for(int num = 0; num < all.length ;num ++)
+                        {
+                            split = all[num].split("%");
+
+                            Log.v("test","split:"+split[0]+"         "+split[1]+"         "+split[2]);
+                            //算天數
+                            long temp = 0;
+                            try{
+                                SimpleDateFormat sim = new SimpleDateFormat("yyyy/MM/dd");//定義日期時間格式，一定要進行ParseException的例外處理
+                                Date start = sim.parse(start_date[0]);
+                                long startTime = start.getTime();//取得時間的unix時間
+                                Date end = sim.parse(split[0]);//取得目前即時的時間
+                                long endTime = end.getTime();//取得時間的unix時間
+                                temp = (endTime-startTime)/(1000*60*60*24)+1;
+                                Log.v("test","天數: "+temp);
+                            }catch(Exception e){
+                                Log.v("test","天數錯誤: "+e);
+                            }
+
+                            //cardviewList.add(new choose_calendar_cardview(0,"2","2019-12-06","快長",bitmap));
+                            cardviewList.add(new choose_calendar_cardview(num,String.valueOf(temp),split[0],split[1],split[2]));
+                        }
+
+                        RecyclerView recyclerView = findViewById(R.id.choose_calendar_info_recyclerview);
+                        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));
+                        recyclerView.setAdapter(new choose_calendar_info.CardAdapter(choose_calendar_info.this, cardviewList));
+                    }
+                }
+            });
+        }
+    };
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        //移除工人上的工作
+        if (mThreadHandler != null) {
+            mThreadHandler.removeCallbacks(r1);
+        }
+        //解聘工人 (關閉Thread)
+        if (mThread != null) {
+            mThread.quit();
+        }
+    }
+
 
 
     private class CardAdapter extends  RecyclerView.Adapter<CardAdapter.ViewHolder>
     {
         private Context context;
-        public List<choose_calendar_cardview> cardviewList;
+        List<choose_calendar_cardview> cardviewList;
 
         CardAdapter(Context context, List<choose_calendar_cardview> cardviewList) {
             this.context = context;
@@ -66,7 +160,16 @@ public class choose_calendar_info extends AppCompatActivity {
         public void onBindViewHolder(CardAdapter.ViewHolder viewHolder, int i) {
             final choose_calendar_cardview cardview = cardviewList.get(i);
             viewHolder.day.setText(String.valueOf(cardview.getDay()));
-            viewHolder.img.setImageBitmap(cardview.getImage());
+            if(!cardview.getImage().equals("無圖片"))
+            {
+                //viewHolder.downloadImageTask.execute(cardview.getImage());
+                Glide.with(choose_calendar_info.this).load(cardview.getImage()).into(viewHolder.img);
+            }
+            else
+            {
+                Glide.with(choose_calendar_info.this).load(R.drawable.gender).into(viewHolder.img);
+            }
+
             viewHolder.time.setText(String.valueOf((cardview.getTime())));
             viewHolder.message.setText(String.valueOf((cardview.getMessage())));
             viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -87,13 +190,15 @@ public class choose_calendar_info extends AppCompatActivity {
         }
 
         class ViewHolder extends RecyclerView.ViewHolder{
+            DownloadImageTask downloadImageTask;
             ImageView img;
             TextView day,time;
             AutoSplitTextView message;
 
             ViewHolder(View itemView){
                 super(itemView);
-                img =  itemView.findViewById(R.id.choose_calendar_img);
+                //downloadImageTask = new DownloadImageTask((ImageView)itemView.findViewById(R.id.choose_calendar_img));
+                img = itemView.findViewById(R.id.choose_calendar_img);
                 day =  itemView.findViewById(R.id.choose_calendar_day);
                 time =  itemView.findViewById(R.id.choose_calendar_time);
                 message =  itemView.findViewById(R.id.choose_calendar_message);

@@ -32,6 +32,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.hy.GlobalVariable;
 import com.example.hy.R;
 import com.example.hy.webservice;
@@ -55,7 +56,8 @@ public class record extends AppCompatActivity
     String[] split_record_vege    //切割篩選菜名
             ,split_record_img    //圖片
             ,split_line3    //分開作物名稱和圖片
-            ,split_record_date;    //時間
+            ,split_record_date
+            ,split_record_id_string;    //時間
 
     List<record_Cardview> cardviewList;
     Spinner mSpinner2;
@@ -212,17 +214,27 @@ public class record extends AppCompatActivity
             new Handler(Looper.getMainLooper()).post(new Runnable(){
                 @Override
                 public void run() {
-                    String[] all ,split_record_search,split_record_search_date,split_record_search_img;
-
+                    String[] all ,split,split_record_search_img;
+                    List<String> split_record_search = new ArrayList<>();
+                    List<String> split_record_search_date = new ArrayList<>();
+                    List<String> split_record_search_id = new ArrayList<>();
                     if (!record_search_string.equals("can't not found"))
                     {
-                        all = record_search_string.split("切");
-                        split_record_search = all[0].split("%");
-                        split_record_search_date = all[1].split("%");   //時間
-                        split_record_search_img = all[2].split("圖");  //切割各圖片編碼
+                        all = record_search_string.split("分開");
+                        split = all[0].split("%");
+                        split_record_search_img = all[1].split("切");
+                        int index=0;
+                        for(int i = 0;i < split.length/3;i++)
+                        {
+                            split_record_search_date.add(split[index]);
+                            split_record_search.add(split[index+1]);
+                            split_record_search_id.add(split[index+2]);
+                            index = index + 3;
+                        }
+
 
                         //搜尋bar list view
-                        Log.v("test","record的紀錄: "+ split_record_search[1]);
+                        Log.v("test","record的紀錄: "+ split_record_search.get(0));
                         record_search.setAdapter(new ArrayAdapter<>(record.this,
                                 android.R.layout.simple_list_item_1, split_record_search));
 
@@ -233,12 +245,9 @@ public class record extends AppCompatActivity
                         cardviewList.remove(0);
                     }
 
-                    for(int num = 0; num < split_record_search.length;num++)
+                    for(int num = 0; num < split_record_search.size();num++)
                     {
-                        Bitmap bitmap=null;
-                        byte[] decode = Base64.decode(split_record_search_img[num],Base64.NO_CLOSE);
-                        bitmap = BitmapFactory.decodeByteArray(decode, 0, decode.length);
-                        cardviewList.add(new record_Cardview(num,split_record_search[num],split_record_search_date[num], bitmap));
+                        cardviewList.add(new record_Cardview(split_record_search_id.get(num),split_record_search.get(num),split_record_search_date.get(num), split_record_search_img[num]));
                     }
 
                     RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
@@ -272,22 +281,21 @@ public class record extends AppCompatActivity
                         split_record_vege = split_line3[0].split("%");   //切割各作物
                         split_record_date = split_line3[1].split("%");   //時間
                         split_record_img = split_line3[2].split("圖");  //切割各圖片編碼
+                        split_record_id_string = split_line3[3].split("%");
 
 
-                    int size1 = cardviewList.size();
-                    for(int i=0;i < size1;i++)
-                    {
-                        Log.v("test","cardviewList.size(): "+cardviewList.size());
-                        cardviewList.remove(0);
-                    }
 
-                    for(int num = 0; num < split_record_vege.length;num++)
-                    {
-                        Bitmap bitmap=null;
-                        byte[] decode = Base64.decode(split_record_img[num],Base64.NO_CLOSE);
-                        bitmap = BitmapFactory.decodeByteArray(decode, 0, decode.length);
-                        cardviewList.add(new record_Cardview(num,split_record_vege[num],split_record_date[num], bitmap));
-                    }
+                        int size1 = cardviewList.size();
+                        for(int i=0;i < size1;i++)
+                        {
+                            Log.v("test","cardviewList.size(): "+cardviewList.size());
+                            cardviewList.remove(0);
+                        }
+
+                        for(int num = 0; num < split_record_vege.length;num++)
+                        {
+                            cardviewList.add(new record_Cardview(split_record_id_string[num],split_record_vege[num],split_record_date[num], split_record_img[num]));
+                        }
 
                     RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
                     recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
@@ -340,14 +348,14 @@ public class record extends AppCompatActivity
         public void onBindViewHolder(CardAdapter.ViewHolder viewHolder, int i) {
             final record_Cardview cardview = cardviewList.get(i);
             viewHolder.tx1.setText(String.valueOf(cardview.getName()));
-            viewHolder.plantId.setImageBitmap(cardview.getImage());
+            Glide.with(record.this).load(cardview.getImage()).into(viewHolder.plantId);
             viewHolder.tx2.setText(String.valueOf((cardview.getTime())));
 
             viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
-                    addItem(cardviewList.size());
+ //                   addItem(cardviewList.size());
                     record_name.setRecord_vege_name(cardview.getName());
                     Intent intent = new Intent(record.this, record_Information2.class);
                     startActivity(intent);

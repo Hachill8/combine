@@ -89,6 +89,7 @@ public class market_p4 extends AppCompatActivity
             public void onClick(View v) {
                 Intent i = new Intent(market_p4.this,market.class);
                 startActivity(i);
+                market_p4.this.finish();
             }
         });
 

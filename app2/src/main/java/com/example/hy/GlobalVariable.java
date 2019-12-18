@@ -22,6 +22,15 @@ public class GlobalVariable extends Application
     private String Record_vege_name="";
     private String Forum_title_click="";
     private String Select_vege_name="";
+    private String Choose_calendar_gmail="無",Choose_calendar_vege="無",Choose_calendar_id_string="無";
+
+    public void setChoose_calendar_info(String choose_calendar_id_string,String choose_calendar_gmail,String choose_calendar_vege)
+    {
+        this.Choose_calendar_gmail = choose_calendar_gmail;
+        this.Choose_calendar_id_string = choose_calendar_id_string;
+        this.Choose_calendar_vege = choose_calendar_vege;
+    }
+    public String getChoose_calendar_info(){ return Choose_calendar_gmail+"%"+Choose_calendar_id_string+"%"+Choose_calendar_vege;}
 
     //修改 變數字串
     public void setWord(String word){

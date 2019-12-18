@@ -21,6 +21,7 @@ import android.widget.TextView;
 import com.example.hy.AutoSplitTextView;
 import com.example.hy.GlobalVariable;
 import com.example.hy.R;
+import com.example.hy.calendar.choose_calendar;
 import com.example.hy.home.home2;
 import com.example.hy.webservice;
 
@@ -129,19 +130,21 @@ public class VegeInfo extends AppCompatActivity {
         choose_calendar=(Button)findViewById(R.id.choose_calendar);
         choose_calendar.setOnClickListener( new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
-                AlertDialog.Builder builder = new AlertDialog.Builder(VegeInfo.this);
-                builder.setTitle("栽培日曆☆即將推出，敬請期待!");
-                builder.setMessage("可參考相近地區使用者的栽培日曆，查看該作物的栽種事項");
-                builder.setPositiveButton("好", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
+            public void onClick(View v) {
+                Intent i = new Intent(VegeInfo.this, choose_calendar.class);
+                startActivity(i);
 
-                    }
-                });
-                AlertDialog dialog=builder.create();
-                dialog.show();
+//                AlertDialog.Builder builder = new AlertDialog.Builder(VegeInfo.this);
+//                builder.setTitle("栽培日曆☆即將推出，敬請期待!");
+//                builder.setMessage("可參考相近地區使用者的栽培日曆，查看該作物的栽種事項");
+//                builder.setPositiveButton("好", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//
+//                    }
+//                });
+//                AlertDialog dialog=builder.create();
+//                dialog.show();
             }
         } );
 

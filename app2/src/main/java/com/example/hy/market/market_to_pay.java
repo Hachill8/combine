@@ -24,6 +24,7 @@ public class market_to_pay extends AppCompatActivity
             public void onClick(View v) {
                 Intent i = new Intent(market_to_pay.this,market.class);
                 startActivity(i);
+                market_to_pay.this.finish();
             }
         });
         WebView web_view = (WebView) findViewById(R.id.webview);

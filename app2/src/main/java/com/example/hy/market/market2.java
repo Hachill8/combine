@@ -127,6 +127,7 @@ public class market2 extends AppCompatActivity
             public void onClick(View v) {
                 Intent a = new Intent(market2.this, market.class);
                 startActivity(a);
+                market2.this.finish();
             }
         });
 

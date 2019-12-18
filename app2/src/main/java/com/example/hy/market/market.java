@@ -2,6 +2,7 @@ package com.example.hy.market;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -71,6 +72,7 @@ public class market extends AppCompatActivity
             public void onClick(View v) {
                 Intent i = new Intent(market.this,market_p4.class);
                 startActivity(i);
+                market.this.finish();
             }
         });
 
@@ -86,6 +88,7 @@ public class market extends AppCompatActivity
                         market_item.setMarket_item(Search_bar.getText().toString());
                         Intent x=new Intent(market.this, market2.class);
                         startActivity(x);
+                        market.this.finish();
                     }
                     else if(i+1==split_line.length)
                     {
@@ -108,6 +111,7 @@ public class market extends AppCompatActivity
                 market_item.setMarket_item(Search_bar.getText().toString());
                 Intent x=new Intent(market.this, market2.class);
                 startActivity(x);
+                market.this.finish();
             }
         });
 
@@ -218,6 +222,7 @@ public class market extends AppCompatActivity
                     market_item.setMarket_item(String.valueOf(cardview.getName()));
                     Intent intent = new Intent(market.this, market2.class);
                     startActivity(intent);
+                    market.this.finish();
                 }
             });
         }

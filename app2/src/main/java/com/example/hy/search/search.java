@@ -254,7 +254,7 @@ public class search extends AppCompatActivity  {
                 @Override
                 public void run() {
                     String[] split_line = insert_vege_item.split("%");
-                    Log.v("test","search的蔡: "+ split_line[2]);
+                    //Log.v("test","search的蔡: "+ split_line[2]);
                     searchview.setAdapter(new ArrayAdapter<>(search.this,
                             android.R.layout.simple_list_item_1, split_line));
                 }
