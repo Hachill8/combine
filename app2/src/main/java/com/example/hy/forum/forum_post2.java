@@ -84,12 +84,13 @@ public class forum_post2 extends AppCompatActivity {
         post_time = (TextView) findViewById(R.id.post_time);
         postTV_to_forum = (Button) findViewById(R.id.postTV_to_forum);
         post_like = findViewById(R.id.spark_button);
-        post_like_tv = findViewById(R.id.like_tv);
+        post_like_tv =  findViewById(R.id.like_tv);
         postTV_to_forum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(forum_post2.this, forum.class);
                 startActivity(i);
+                forum_post2.this.finish();
             }
         });
 
@@ -103,27 +104,25 @@ public class forum_post2 extends AppCompatActivity {
         //文章內容
         gl = (GlobalVariable) getApplicationContext();
 
-        if(!gl.getForum_title_click().equals(""))
+        if(gl.getForum_title_click() > -1)
         {
-            post_title_tv.setText(gl.getForum_title_click());
-            gl.setForum_title_click("");
-            gmail=gl.getUser_gmail();
             mThreadHandler.post(r1);
         }
         else
         {
             content_post = gl.getForum_content();
             post_title_tv.setText(gl.getForum_title());
-            //文章時間
-            Calendar mT = Calendar.getInstance();
-            CharSequence sT = DateFormat.format("yyyy-MM-dd kk:mm:ss", mT.getTime());    // kk:24小時制, hh:12小時制
-            post_time.setText(sT.toString());
-            Log.v("test", "content_post::::: " + content_post);
-            content_post = content_post.replace("\n", "<br/>");
-
-            //文章圖片
-            MyImageGetter myImageGetter = new MyImageGetter();
-            post_content_tv.setText(Html.fromHtml(content_post, myImageGetter, null));
+            mThreadHandler.post(r1);
+//            //文章時間
+//            Calendar mT = Calendar.getInstance();
+//            CharSequence sT = DateFormat.format("yyyy-MM-dd kk:mm:ss", mT.getTime());    // kk:24小時制, hh:12小時制
+//            post_time.setText(sT.toString());
+//            Log.v("test", "content_post::::: " + content_post);
+//            content_post = content_post.replace("\n", "<br/>");
+//
+//            //文章圖片
+//            MyImageGetter myImageGetter = new MyImageGetter();
+//            post_content_tv.setText(Html.fromHtml(content_post, myImageGetter, null));
         }
 
 
@@ -236,7 +235,7 @@ public class forum_post2 extends AppCompatActivity {
     private Runnable r1 = new Runnable() {
         @Override
         public void run() {
-            post_all = webservice.forum_post_view(post_title_tv.getText().toString());
+            post_all = webservice.forum_post_view(gl.getForum_title_click());
             mUI_Handler.post(r2);
         }
     };
@@ -250,12 +249,16 @@ public class forum_post2 extends AppCompatActivity {
                     //title ,content,time,name
                     Log.v("test","post_all"+post_all);
                     split = post_all.split("%");
-
-                    post_time.setText(split[2].toString());
+                    post_title_tv.setText(split[0]);
+                    post_time.setText(split[2]);
                     Log.v("test", "content_post::::: " + content_post);
                     content_post = split[1];
                     content_post = content_post.replace("\n", "<br/>");
-                    content_post = content_post.substring(0,content_post.indexOf("https")-1)+"<img src=\""+content_post.substring(content_post.indexOf("https"),content_post.indexOf(".jpg")+4) + "\">";
+                    if(content_post.contains("https"))
+                    {
+                        content_post = content_post.substring(0,content_post.indexOf("https")-1)+"<img src=\""+content_post.substring(content_post.indexOf("https"),content_post.indexOf(".jpg")+4) + "\">";
+                    }
+
                     post_name.setText(split[3]);
                     //文章圖片
                     MyImageGetter myImageGetter = new MyImageGetter();

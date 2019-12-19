@@ -209,7 +209,7 @@ public class my_post extends AppCompatActivity {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    gl.setForum_title_click(post.getShortdesc());
+                    gl.setForum_title_click(post.getId());
                     Intent i = new Intent(my_post.this, forum_post2.class);
                     startActivity(i);
                 }

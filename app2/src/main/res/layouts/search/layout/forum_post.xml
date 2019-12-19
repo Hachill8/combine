@@ -89,12 +89,12 @@
             <TextView
                 android:id="@+id/user_name"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="25dp"
                 android:layout_marginTop="15dp"
                 android:text="狠愛種"
                 android:gravity="center"
                 android:textColor="#141313"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:layout_toRightOf="@+id/user_img"
                 android:layout_marginLeft="8dp"
                 />
@@ -165,7 +165,7 @@
                 android:layout_height="50dp"
                 android:onClick="like_num_bt"
                 app:sparkbutton_activeImage="@drawable/like_fill"
-                app:sparkbutton_inActiveImage="@drawable/like_empty"
+                app:sparkbutton_inActiveImage="@drawable/forum_post_like"
                 app:sparkbutton_iconSize="20dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dp"
@@ -186,7 +186,7 @@
                 android:layout_height="20dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="30dp"
-                android:background="@drawable/post_chat" />
+                android:background="@drawable/forum_post_message" />
 
             <TextView
                 android:layout_width="wrap_content"

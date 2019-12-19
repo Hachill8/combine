@@ -709,7 +709,7 @@ public class webservice
         }
     }
 
-    public static String forum_cardview()
+    public static String forum_cardview(boolean sort)
     {
         String SOAP_ACTION = "http://tempuri.org/post_cardview";          //命名空間+要用的函數名稱
         String METHOD_NAME = "post_cardview";   //函數名稱
@@ -717,7 +717,7 @@ public class webservice
         //必須用try catch包著
         try {
             SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
-            request.addProperty("all","");
+            request.addProperty("sort",sort);
 
             SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
             envelope.bodyOut = request;
@@ -889,7 +889,7 @@ public class webservice
         }
     }
 
-    public static String Add_post_test(String title, String content)
+    public static String Add_post_test(String title, String content,String user)
     {
         String SOAP_ACTION = "http://tempuri.org/Add_post_test";  //命名空間+要用的函數名稱
         String METHOD_NAME = "Add_post_test";   //函數名稱
@@ -897,6 +897,7 @@ public class webservice
             SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
             request.addProperty("post_title",title);
             request.addProperty("post_content",content);
+            request.addProperty("user",user);
 
             SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
             envelope.bodyOut = request;
@@ -1070,13 +1071,13 @@ public class webservice
         }
     }
 
-    public static String forum_post_view(String title)
+    public static String forum_post_view(int id)
     {
         String SOAP_ACTION = "http://tempuri.org/forum_post_view";          //命名空間+要用的函數名稱
         String METHOD_NAME = "forum_post_view";   //函數名稱
         try {
             SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
-            request.addProperty("title",title);
+            request.addProperty("id",id);
 
 
             SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);

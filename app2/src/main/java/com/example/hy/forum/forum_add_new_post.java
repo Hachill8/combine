@@ -131,7 +131,7 @@ public class forum_add_new_post extends AppCompatActivity
 
             if(!post_content.equals("無") && !post_title.equals("")) {
                 // string user, string post_title, string post_content,string post_time
-                line = webservice.Add_post_test(post_title.getText().toString(), post_content.getText().toString());
+                line = webservice.Add_post_test(post_title.getText().toString(), post_content.getText().toString(),gl.getUser_gmail());
             }
             //請經紀人指派工作名稱 r，給工人做
             mUI_Handler.post(r2);
@@ -144,7 +144,6 @@ public class forum_add_new_post extends AppCompatActivity
     private Runnable r2=new Runnable () {
 
         public void run() {
-
             Intent a = new Intent(forum_add_new_post.this,forum_post2.class);
             gl.setForum_content(post_content.getText().toString());
             gl.setForum_title(post_title.getText().toString());
@@ -152,8 +151,13 @@ public class forum_add_new_post extends AppCompatActivity
             {
                 Toast.makeText(forum_add_new_post.this,"請輸入標題和內容 !",Toast.LENGTH_SHORT).show();
             }
+            else if(line.equals("新增失敗"))
+            {
+                Toast.makeText(forum_add_new_post.this,"新增失敗 ! ",Toast.LENGTH_SHORT).show();
+            }
             else
             {
+                gl.setForum_title_click(Integer.valueOf(line));
                 startActivity(a);
                 //關閉activity
                 forum_add_new_post.this.finish();

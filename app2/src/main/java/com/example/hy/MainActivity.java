@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 
 import com.example.hy.calendar.choose_calendar_info;
+import com.example.hy.forum.forum;
 import com.example.hy.home.home2;
 import com.example.hy.login.login;
 import com.example.hy.login.login2;
@@ -62,7 +63,7 @@ public class   MainActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent a = new Intent( MainActivity.this,login.class);
+                Intent a = new Intent( MainActivity.this, login.class);
                 startActivity(a);
                 MainActivity.this.finish();
 
