@@ -274,7 +274,7 @@ public class search extends AppCompatActivity  {
                 split_line2 = split_line3[1].split("圖");  //切割各圖片編碼
                 split_line4 = split_line3[2].split("%");   //hashtag1
                 split_line5 = split_line3[3].split("%");   //hashtag2
-
+                Log.v("test","sp1:  "+split_line1.length+"   sp2:  "+split_line2.length+"   sp4:  "+split_line4.length+"   sp5:  "+split_line5.length);
                 for(int i = 0; i < split_line4.length;i++)
                 {
                     String[] split_line6 = split_line4[i].split("、");

@@ -10,6 +10,9 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.media.Image;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.HandlerThread;
+import android.os.Looper;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -48,12 +51,20 @@ public class home2 extends AppCompatActivity{
     ImageButton record,calendar,discuss,store,setting,user,hat,edit_pot;
     Dialog banboo_hat_level;
 
-    GlobalVariable vege_home; //首頁作物照片(暫時)
-    ImageView Vege_image_home;
+    GlobalVariable GV; //首頁作物照片(暫時)
+
     Button taipei_life,taipei_land_lease,taipei_farmers,search_bt;
 
     List<home2_plant_img_cardview> cardviewList;
+    //找到UI工人的經紀人，這樣才能派遣工作  (找到顯示畫面的UI Thread上的Handler)
+    private android.os.Handler mUI_Handler = new android.os.Handler();
+    //宣告特約工人的經紀人
+    private Handler mThreadHandler;
+    //宣告特約工人
+    private HandlerThread mThread;
 
+    String user_vege,gmail;
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -64,6 +75,9 @@ public class home2 extends AppCompatActivity{
 
         banboo_hat_level=new Dialog(this);
 
+        cardviewList = new ArrayList<>();
+
+        recyclerView = findViewById(R.id.home2_recyclerview);
 //        taipei_life=(Button) findViewById(R.id.taipei_life);
 //        taipei_life.setOnClickListener(new View.OnClickListener()
 //        {
@@ -110,7 +124,17 @@ public class home2 extends AppCompatActivity{
 //                });
 //            }
 //        } );
+        //聘請一個特約工人，有其經紀人派遣其工人做事 (另起一個有Handler的Thread)
+        mThread = new HandlerThread("");
 
+
+        GV = (GlobalVariable) getApplicationContext();
+        gmail = GV.getUser_gmail();
+        //讓Worker待命，等待其工作 (開啟Thread)
+        mThread.start();
+        //找到特約工人的經紀人，這樣才能派遣工作 (找到Thread上的Handler)
+        mThreadHandler=new Handler(mThread.getLooper());
+        mThreadHandler.post(home2_cardview_r1);
 
         edit_pot=(ImageButton) findViewById(R.id.edit_pot);
         edit_pot.setOnClickListener( new View.OnClickListener()
@@ -148,21 +172,10 @@ public class home2 extends AppCompatActivity{
         search_bt.setVisibility(View.VISIBLE);
 
 
-        //首頁植物list
-        vege_home = (GlobalVariable)getApplicationContext();
-        //15601651561651;
-//        Vege_image_home = (ImageView) findViewById(R.id.vege_image_home);
 
-        cardviewList = new ArrayList<>();
 
-        RecyclerView recyclerView = findViewById(R.id.home2_recyclerview);
-        if(vege_home.getVege_image_home().size()==0)
-        {
-            recyclerView.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));
-            cardviewList.add(new home2_plant_img_cardview(0,"",R.drawable.gender));
-            cardviewList.add(new home2_plant_img_cardview(1,"",R.drawable.home_picture));
-        }
- //           Vege_image_home.setImageDrawable(getResources().getDrawable( R.drawable.home_pic ));
+
+
             search_bt.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -172,48 +185,86 @@ public class home2 extends AppCompatActivity{
             });
 
 
-
-        //首頁植物圖片判斷
-       for(int i = 0;i < vege_home.getVege_image_home().size();i++)
-       {
-
-           switch (vege_home.getVege_image_home().get(i)) {
-               case "紅蘿蔔":
-                   cardviewList.add(new home2_plant_img_cardview(i, vege_home.getVege_image_home().get(i), R.drawable.vege_carrot_pot));
-                   break;
-               case "空心菜":
-                   cardviewList.add(new home2_plant_img_cardview(i, vege_home.getVege_image_home().get(i), R.drawable.vege_kon_pot));
-                   break;
-               case "秋葵":
-                   cardviewList.add(new home2_plant_img_cardview(i, vege_home.getVege_image_home().get(i), R.drawable.vege_ciu_pot));
-                   break;
-               case "小白菜":
-                   cardviewList.add(new home2_plant_img_cardview(i, vege_home.getVege_image_home().get(i), R.drawable.vege_small_pot));
-                   break;
-               case "大白菜":
-                   cardviewList.add(new home2_plant_img_cardview(i, vege_home.getVege_image_home().get(i), R.drawable.vege_chinese_cabbage_pot));
-                   break;
-               case "青花菜":
-                   cardviewList.add(new home2_plant_img_cardview(i, vege_home.getVege_image_home().get(i), R.drawable.vege_broccoli_pot));
-                   break;
-               case "茄子":
-                   cardviewList.add(new home2_plant_img_cardview(i, vege_home.getVege_image_home().get(i), R.drawable.vege_eggplant_pot));
-                   break;
-               case "高麗菜":
-                   cardviewList.add(new home2_plant_img_cardview(i, vege_home.getVege_image_home().get(i), R.drawable.vege_cabbage_pot));
-                   break;
-               default:
-                   cardviewList.add(new home2_plant_img_cardview(i, vege_home.getVege_image_home().get(i), R.drawable.no_vege_picture));
-                   break;
-           }
-
-       }
-
-       recyclerView.setAdapter(new home2.CardAdapter(home2.this, cardviewList));
-
-
-
     }
+
+    Runnable  home2_cardview_r1 = new Runnable() {
+        @Override
+        public void run() {
+            user_vege = webservice.Select_user_vege(gmail);
+
+            mThreadHandler.post(home2_cardview_r2);
+
+
+        }
+    };
+
+    Runnable  home2_cardview_r2 = new Runnable() {
+        @Override
+        public void run() {
+            new Handler(Looper.getMainLooper()).post(new Runnable(){
+                @Override
+                public void run() {
+
+                    Log.v("test","user_vege: "+user_vege);
+                    if(user_vege.equals("can't not found"))
+                    {
+                        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));
+                        cardviewList.add(new home2_plant_img_cardview(0,"",R.drawable.gender));
+                        cardviewList.add(new home2_plant_img_cardview(1,"",R.drawable.home_picture));
+                    }
+                    else
+                    {
+                        search_bt.setVisibility(View.GONE);
+                        String[] split=user_vege.split("%");
+                        Log.v("test","user vege split length: "+split.length);
+                        //首頁植物圖片判斷
+                        for(int i = 0;i < split.length;i++)
+                        {
+
+                            switch (split[i]) {
+                                case "紅蘿蔔":
+                                    cardviewList.add(new home2_plant_img_cardview(i, split[i], R.drawable.vege_carrot_pot));
+                                    break;
+                                case "空心菜":
+                                    cardviewList.add(new home2_plant_img_cardview(i, split[i], R.drawable.vege_kon_pot));
+                                    break;
+                                case "秋葵":
+                                    cardviewList.add(new home2_plant_img_cardview(i, split[i], R.drawable.vege_ciu_pot));
+                                    break;
+                                case "小白菜":
+                                    cardviewList.add(new home2_plant_img_cardview(i, split[i], R.drawable.vege_small_pot));
+                                    break;
+                                case "大白菜":
+                                    cardviewList.add(new home2_plant_img_cardview(i, split[i], R.drawable.vege_chinese_cabbage_pot));
+                                    break;
+                                case "青花菜":
+                                    cardviewList.add(new home2_plant_img_cardview(i, split[i], R.drawable.vege_broccoli_pot));
+                                    break;
+                                case "茄子":
+                                    cardviewList.add(new home2_plant_img_cardview(i, split[i], R.drawable.vege_eggplant_pot));
+                                    break;
+                                case "高麗菜":
+                                    cardviewList.add(new home2_plant_img_cardview(i, split[i], R.drawable.vege_cabbage_pot));
+                                    break;
+                                default:
+                                    cardviewList.add(new home2_plant_img_cardview(i, split[i], R.drawable.no_vege_picture));
+                                    break;
+                            }
+                            Log.v("test","for 的 i : "+i);
+                        }
+                        Log.v("test","cardviewList的長度是: "+ cardviewList.size());
+                        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+                        recyclerView.setAdapter(new home2.CardAdapter(home2.this, cardviewList));
+                    }
+
+
+                }
+            });
+
+        }
+    };
+
+
 
     private void ShowPopUp_level()
     {
