@@ -71,6 +71,7 @@ public class forum_post2 extends AppCompatActivity {
     private Handler mThreadHandler;
     //宣告特約工人
     private HandlerThread mThread;
+    String line;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,6 +101,7 @@ public class forum_post2 extends AppCompatActivity {
         mThread.start();
         //找到特約工人的經紀人，這樣才能派遣工作 (找到Thread上的Handler)
         mThreadHandler=new Handler(mThread.getLooper());
+
 
         //文章內容
         gl = (GlobalVariable) getApplicationContext();
@@ -152,6 +154,7 @@ public class forum_post2 extends AppCompatActivity {
                 mBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        mThreadHandler.post(r10);
                         String add_message_str = add_message.getText().toString();
                         int j = cardviewList.size();
                         Calendar mCal = Calendar.getInstance();
@@ -230,6 +233,13 @@ public class forum_post2 extends AppCompatActivity {
         });
 
     }
+
+    private Runnable r10 = new Runnable() {
+        @Override
+        public void run() {
+            line = webservice.Add_message(add_message.getText().toString());
+}
+    };
 
 
     private Runnable r1 = new Runnable() {
@@ -320,6 +330,8 @@ public class forum_post2 extends AppCompatActivity {
             webservice.Delete_like_post(split[3],split[0],gmail);
         }
     };
+
+
 
 
 //    //查看ImageGetter接口

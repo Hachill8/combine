@@ -38,7 +38,8 @@
                     android:layout_marginLeft="20dp"
                     android:background="@null"
                     android:completionThreshold="0"
-                    android:textSize="20dp" />
+                    android:textSize="20dp"
+                    android:hint="搜尋"/>
 
 
             </RelativeLayout>
@@ -58,10 +59,10 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginLeft="10dp"
                 android:layout_marginBottom="2dp"
-                android:src="@drawable/search_choose"
                 android:layout_gravity="center"
                 android:elevation="4dp"
-                android:background="@drawable/search_choose_bg"/>
+                android:background="@drawable/search_choose_bg"
+                android:src="@drawable/search_choose" />
 
 
 
