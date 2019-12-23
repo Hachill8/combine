@@ -211,6 +211,7 @@ public class VegeInfo extends AppCompatActivity {
                 img_result = webservice.downImage(vegeinfo_name);
             }
             vegeinfo_goods_info = webservice.VegeInfo_Goods(vegeinfo_name);
+            Log.v("test","vegeinfo goods info : "+vegeinfo_goods_info);
 
             //請經紀人指派工作名稱 r，給工人做
             mUI_Handler.post(r2);
@@ -266,31 +267,34 @@ public class VegeInfo extends AppCompatActivity {
                 e.printStackTrace();
                 Log.v("test","錯誤: "+e.toString());
             }
-
-            String[] goods_all,goods_name,goods_price,goods_img;
-            goods_all = vegeinfo_goods_info.split("分開");
-            goods_name = goods_all[0].split("%");
-            goods_price = goods_all[1].split("%");
-            goods_img = goods_all[2].split("圖");
-            for(int i = 0 ; i < goods_name.length;i++)
+            if(!vegeinfo_goods_info.equals("can't not found"))
             {
-                Bitmap bitmap=null;
-                try {
-                    byte[] decode = Base64.decode(goods_img[i],Base64.NO_CLOSE);
-                    bitmap = BitmapFactory.decodeByteArray(decode, 0, decode.length);
+                String[] goods_all,goods_name,goods_price,goods_img;
+                goods_all = vegeinfo_goods_info.split("分開");
+                goods_name = goods_all[0].split("%");
+                goods_price = goods_all[1].split("%");
+                goods_img = goods_all[2].split("圖");
+                for(int i = 0 ; i < goods_name.length;i++)
+                {
+                    Bitmap bitmap=null;
+                    try {
+                        byte[] decode = Base64.decode(goods_img[i],Base64.NO_CLOSE);
+                        bitmap = BitmapFactory.decodeByteArray(decode, 0, decode.length);
 
 
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Log.v("test","錯誤: "+e.toString());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        Log.v("test","錯誤: "+e.toString());
+                    }
+
+
+                    cardviewList.add(new market_cardview(i, bitmap,goods_name[i],goods_price[i]));
                 }
-
-
-                cardviewList.add(new market_cardview(i, bitmap,goods_name[i],goods_price[i]));
+                RecyclerView recyclerView = (RecyclerView) findViewById(R.id.market2_recyclerview1);
+                recyclerView.setLayoutManager(new StaggeredGridLayoutManager(goods_name.length, StaggeredGridLayoutManager.VERTICAL));
+                recyclerView.setAdapter(new VegeInfo.CardAdapter(VegeInfo.this, cardviewList));
             }
-            RecyclerView recyclerView = (RecyclerView) findViewById(R.id.market2_recyclerview1);
-            recyclerView.setLayoutManager(new StaggeredGridLayoutManager(goods_name.length, StaggeredGridLayoutManager.VERTICAL));
-            recyclerView.setAdapter(new VegeInfo.CardAdapter(VegeInfo.this, cardviewList));
+
 
 
         }
