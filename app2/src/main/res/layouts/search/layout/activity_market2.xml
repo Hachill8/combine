@@ -91,10 +91,10 @@
         </RelativeLayout>
 
         </RelativeLayout>
-        
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="260dp"
+            android:layout_height="280dp"
             android:layout_marginTop="250dp"
             android:background="#89B094">
 
@@ -110,7 +110,7 @@
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:scrollbars="none"
                 android:layout_marginTop="45dp">
 
@@ -123,15 +123,13 @@
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/market2_recyclerview1"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        />
+                        android:layout_height="match_parent" />
 
                     <ImageView
                         android:layout_width="15dp"
-                        android:layout_height="match_parent"
-                        />
+                        android:layout_height="match_parent" />
 
-            </LinearLayout>
+                </LinearLayout>
 
             </HorizontalScrollView>
 
@@ -139,8 +137,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="260dp"
-            android:layout_marginTop="510dp"
+            android:layout_height="280dp"
+            android:layout_marginTop="530dp"
             android:background="#89B094">
 
             <TextView

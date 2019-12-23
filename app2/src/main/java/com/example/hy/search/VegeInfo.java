@@ -2,6 +2,7 @@ package com.example.hy.search;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -13,8 +14,11 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Base64;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -27,18 +31,23 @@ import com.example.hy.GlobalVariable;
 import com.example.hy.R;
 import com.example.hy.calendar.choose_calendar;
 import com.example.hy.home.home2;
+import com.example.hy.market.market2;
+import com.example.hy.market.market_cardview;
 import com.example.hy.user_setting.user_setting;
 import com.example.hy.webservice;
 import com.varunest.sparkbutton.SparkEventListener;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class VegeInfo extends AppCompatActivity {
 
     GlobalVariable vege
             ,vege_home,gl;     //首頁作物照片(暫時)
+    GlobalVariable market_item; //傳遞商品名稱
     Button start_plant,choose_calendar;
     com.varunest.sparkbutton.SparkButton like_vege;
     Dialog variety_info;
@@ -53,11 +62,11 @@ public class VegeInfo extends AppCompatActivity {
             harvest/**  收穫標準 **/,
             vege_name /**  菜名 **/;
 
-
-
-     ImageView imageview;
-     String img_result; //圖片字串
-     boolean fg=true;
+    String vegeinfo_goods_info="";
+    List<market_cardview> cardviewList;
+    ImageView imageview;
+    String img_result; //圖片字串
+    boolean fg=true;
 
 //     ImageAdapter imgadapter;
 //     //加入圖片用
@@ -79,10 +88,8 @@ public class VegeInfo extends AppCompatActivity {
         getWindow().setFlags( WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView( R.layout.activity_vege_info );
 
-//        viewPager=findViewById( R.id.viewpager );
-//        imgadapter=new ImageAdapter( this);
-//        //設定圖片的位置
-//        viewPager.setAdapter( imgadapter );
+        //cardview1 建立
+        cardviewList = new ArrayList <>();
 
         imageview = (ImageView)findViewById (R.id.vege_img);
 
@@ -105,6 +112,8 @@ public class VegeInfo extends AppCompatActivity {
         //globalvariable變數
         vege = (GlobalVariable)getApplicationContext();
         vegeinfo_name=vege.getWord();
+
+        market_item = (GlobalVariable) getApplicationContext();
 
         Log.v("test","vege name: "+vegeinfo_name);
 
@@ -201,6 +210,7 @@ public class VegeInfo extends AppCompatActivity {
 
                 img_result = webservice.downImage(vegeinfo_name);
             }
+            vegeinfo_goods_info = webservice.VegeInfo_Goods(vegeinfo_name);
 
             //請經紀人指派工作名稱 r，給工人做
             mUI_Handler.post(r2);
@@ -256,6 +266,33 @@ public class VegeInfo extends AppCompatActivity {
                 e.printStackTrace();
                 Log.v("test","錯誤: "+e.toString());
             }
+
+            String[] goods_all,goods_name,goods_price,goods_img;
+            goods_all = vegeinfo_goods_info.split("分開");
+            goods_name = goods_all[0].split("%");
+            goods_price = goods_all[1].split("%");
+            goods_img = goods_all[2].split("圖");
+            for(int i = 0 ; i < goods_name.length;i++)
+            {
+                Bitmap bitmap=null;
+                try {
+                    byte[] decode = Base64.decode(goods_img[i],Base64.NO_CLOSE);
+                    bitmap = BitmapFactory.decodeByteArray(decode, 0, decode.length);
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Log.v("test","錯誤: "+e.toString());
+                }
+
+
+                cardviewList.add(new market_cardview(i, bitmap,goods_name[i],goods_price[i]));
+            }
+            RecyclerView recyclerView = (RecyclerView) findViewById(R.id.market2_recyclerview1);
+            recyclerView.setLayoutManager(new StaggeredGridLayoutManager(goods_name.length, StaggeredGridLayoutManager.VERTICAL));
+            recyclerView.setAdapter(new VegeInfo.CardAdapter(VegeInfo.this, cardviewList));
+
+
         }
 
     };
@@ -312,6 +349,70 @@ public class VegeInfo extends AppCompatActivity {
         //解聘工人 (關閉Thread)
         if (mThread != null) {
             mThread.quit();
+        }
+    }
+
+
+    private class CardAdapter extends  RecyclerView.Adapter<VegeInfo.CardAdapter.ViewHolder>
+    {
+        private Context context;
+        public List <market_cardview> cardviewList;
+
+        CardAdapter(Context context, List<market_cardview> cardviewList) {
+            this.context = context;
+            this.cardviewList = cardviewList;
+        }
+
+        @Override
+        public VegeInfo.CardAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+            View view = LayoutInflater.from(context).inflate(R.layout.activity_market2_cardview,viewGroup,false);
+            return new VegeInfo.CardAdapter.ViewHolder(view);
+        }
+
+        @Override
+        public void onBindViewHolder(final VegeInfo.CardAdapter.ViewHolder viewHolder, int i) {
+            final market_cardview cardview = cardviewList.get(i);
+            viewHolder.name.setText(String.valueOf(cardview.getName()));
+            viewHolder.product_img.setImageBitmap(cardview.getImage());
+            viewHolder.price.setText("NT$ "+cardview.getPrice());
+
+            viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //              addItem(cardviewList.size());
+                    Log.v("test","cardview.getName:"+cardview.getName());
+                    market_item.setMarket_item(cardview.getName());
+                    Intent intent = new Intent(VegeInfo.this, market2.class);
+                    startActivity(intent);
+                }
+            });
+        }
+
+        @Override
+        public int getItemCount()
+        { return cardviewList.size(); }
+
+        class ViewHolder extends RecyclerView.ViewHolder
+        {
+            ImageView product_img;
+            TextView name,price;
+            ViewHolder(View itemView)
+            {
+                super(itemView);
+                product_img = (ImageView) itemView.findViewById(R.id.goto_product_detail);
+                name = (TextView) itemView.findViewById(R.id.product_name);
+                price = (TextView) itemView.findViewById(R.id.product_price);
+            }
+        }
+
+        public  void addItem(int i)
+        {
+//            fg = true;
+//            num = cardviewList.size()-1;
+//            //add(位置,資料)
+//            cardviewList.add(i, new record_Cardview(id,"小白菜", R.drawable.icon201));
+//            id=id+1;
+//            notifyItemInserted(i);
         }
     }
 }

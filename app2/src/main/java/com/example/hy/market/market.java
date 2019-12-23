@@ -83,7 +83,7 @@ public class market extends AppCompatActivity
                 Log.v("test","TextView:"+Search_bar.getText());
                 for(int i =0;i<split_line.length;i++)
                 {
-                    if(Search_bar.getText().toString().equals(split_line[i]))
+                    if(Search_bar.getText().toString().equals(split_line[i]) && (!Search_bar.getText().toString().equals("")))
                     {
                         market_item.setMarket_item(Search_bar.getText().toString());
                         Intent x=new Intent(market.this, market2.class);
@@ -212,7 +212,7 @@ public class market extends AppCompatActivity
         public void onBindViewHolder(market.CardAdapter.ViewHolder viewHolder, int i) {
             final market_cardview cardview = cardviewList.get(i);
             viewHolder.name.setText(String.valueOf(cardview.getName()));
-            viewHolder.product_img.setImageResource(cardview.getImage());
+            viewHolder.product_img.setImageResource(cardview.getImg());
             viewHolder.price.setText("NT$ "+cardview.getPrice());
 
             viewHolder.itemView.setOnClickListener(new View.OnClickListener() {

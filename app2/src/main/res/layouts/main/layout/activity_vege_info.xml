@@ -23,15 +23,38 @@
                 android:id="@+id/vege_img"
                 android:scaleType="fitXY" />
 
-            <com.example.hy.AutoSplitTextView
-                android:id="@+id/vege_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="高麗菜"
-                android:textSize="30dp"
-                android:textColor="#402C2B"
-                android:layout_marginLeft="15dp"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <com.example.hy.AutoSplitTextView
+                    android:id="@+id/vege_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="載入中"
+                    android:textSize="25dp"
+                    android:textColor="#402C2B"
+                    android:layout_marginStart="15dp"
+                    />
+
+                <com.example.hy.AutoSplitTextView
+                    android:id="@+id/vege_provider"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="5dp"
+                    android:text="zx85hy6538"
+                    android:textSize="25dp"
+                    android:textColor="#402C2B"
+
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="15dp"
+
+                    />
+
+            </RelativeLayout>
 
             <View
                 android:layout_width="330dp"
@@ -297,147 +320,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none"
-                android:layout_marginBottom="10dp">
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal"
                     android:layout_marginLeft="15dp">
 
-                    <android.support.v7.widget.CardView
-                        android:layout_width="120dp"
-                        android:layout_height="180dp"
-                        app:cardBackgroundColor="#E6EAE7"
-                        android:layout_marginRight="5dp"
-                        app:cardElevation="0dp">
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/market2_recyclerview1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
 
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/seek" />
-
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="小白菜種子"
-                                android:textSize="18sp"
-                                android:textColor="#796868"
-                                android:layout_gravity="left"
-                                android:layout_marginTop="-5dp"/>
-
-                        </LinearLayout>
-
-
-                    </android.support.v7.widget.CardView>
-
-                    <android.support.v7.widget.CardView
-                        android:layout_width="120dp"
-                        android:layout_height="180dp"
-                        app:cardBackgroundColor="#E6EAE7"
-                        android:layout_marginRight="5dp"
-                        app:cardElevation="0dp">
-
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="150dp"
-                                android:src="@drawable/vege_info_water"
-                                android:layout_marginTop="3dp"/>
-
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="澆水器"
-                                android:textSize="18sp"
-                                android:textColor="#796868"
-                                android:layout_gravity="left" />
-
-                        </LinearLayout>
-
-
-                    </android.support.v7.widget.CardView>
-
-                    <android.support.v7.widget.CardView
-                        android:layout_width="120dp"
-                        android:layout_height="180dp"
-                        app:cardBackgroundColor="#E6EAE7"
-                        android:layout_marginRight="5dp"
-                        app:cardElevation="0dp">
-
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="150dp"
-                                android:src="@drawable/vege_info_shovel"
-                                android:layout_marginTop="3dp"/>
-
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="鏟子"
-                                android:textSize="18sp"
-                                android:textColor="#796868"
-                                android:layout_gravity="left" />
-
-                        </LinearLayout>
-
-                    </android.support.v7.widget.CardView>
-
-                    <android.support.v7.widget.CardView
-                        android:layout_width="120dp"
-                        android:layout_height="180dp"
-                        app:cardBackgroundColor="#E6EAE7"
-                        android:layout_marginRight="5dp"
-                        app:cardElevation="0dp">
-
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="150dp"
-                                android:src="@drawable/vege_info_fertilizer"
-                                android:layout_marginTop="3dp"/>
-
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="肥料"
-                                android:textSize="18sp"
-                                android:textColor="#796868"
-                                android:layout_gravity="left"
-                               />
-
-                        </LinearLayout>
-
-                    </android.support.v7.widget.CardView>
-
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="match_parent" />
 
                 </LinearLayout>
-
 
             </HorizontalScrollView>
 

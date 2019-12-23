@@ -46,6 +46,35 @@ public class webservice
         }
     }
 
+    public static String VegeInfo_Goods(String s)
+    {
+        String SOAP_ACTION = "http://tempuri.org/VegeInfo_goods";          //命名空間+要用的函數名稱
+        String METHOD_NAME = "VegeInfo_goods";   //函數名稱
+        try {
+            SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
+            request.addProperty("vege",s);
+
+            SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+            envelope.bodyOut = request;
+            envelope.dotNet = true;//若WS有輸入參數必須要加這一行否則WS沒反應
+            envelope.setOutputSoapObject(request);
+            envelope.encodingStyle = "utf-8";
+            HttpTransportSE ht = new HttpTransportSE(URL);
+            ht.call(SOAP_ACTION, envelope);
+
+            // 獲取回傳數據
+            SoapObject object = (SoapObject) envelope.bodyIn;
+            Log.v("test","object: "+object);
+            // 獲取返回的結果
+            String result = object.getProperty(0).toString();
+            Log.v("test","result: "+result);
+            return result;
+        } catch (Exception e) {
+            Log.v("test","e.toString(): "+e.toString());
+            return e.toString();
+        }
+    }
+
     public static String Vegename_list()
     {
         String SOAP_ACTION = "http://tempuri.org/vegename";          //命名空間+要用的函數名稱
