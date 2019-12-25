@@ -2,6 +2,7 @@ package com.example.hy.home;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -38,6 +39,7 @@ import com.example.hy.GlobalVariable;
 import com.example.hy.R;
 import com.example.hy.forum.forum;
 import com.example.hy.market.market;
+import com.example.hy.search.VegeInfo;
 import com.example.hy.search.search;
 import com.example.hy.user_setting.user_setting;
 import com.example.hy.webservice;
@@ -65,7 +67,7 @@ public class home2 extends AppCompatActivity{
 
     String user_vege,gmail;
     RecyclerView recyclerView;
-
+    ProgressDialog mLoadingDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -135,6 +137,8 @@ public class home2 extends AppCompatActivity{
         //找到特約工人的經紀人，這樣才能派遣工作 (找到Thread上的Handler)
         mThreadHandler=new Handler(mThread.getLooper());
         mThreadHandler.post(home2_cardview_r1);
+        mLoadingDialog = new ProgressDialog(home2.this);
+        showLoadingDialog("載入中...");
 
         edit_pot=(ImageButton) findViewById(R.id.edit_pot);
         edit_pot.setOnClickListener( new View.OnClickListener()
@@ -256,6 +260,7 @@ public class home2 extends AppCompatActivity{
                         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
                         recyclerView.setAdapter(new home2.CardAdapter(home2.this, cardviewList));
                     }
+                    dismissLoadingDialog();
 
 
                 }
@@ -414,6 +419,21 @@ public class home2 extends AppCompatActivity{
 //            cardviewList.add(i, new record_Cardview(id,"小白菜", R.drawable.icon201));
 //            id=id+1;
 //            notifyItemInserted(i);
+        }
+    }
+    private void showLoadingDialog(String message){
+        message = "載入中...";
+        mLoadingDialog.setMessage(message);
+        if(mLoadingDialog==null){
+            mLoadingDialog = new ProgressDialog(this);
+            mLoadingDialog.setMessage(message);
+        }
+        mLoadingDialog.show();
+    }
+
+    private void dismissLoadingDialog() {
+        if (mLoadingDialog != null) {
+            mLoadingDialog.dismiss();
         }
     }
 

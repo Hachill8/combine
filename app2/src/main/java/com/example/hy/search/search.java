@@ -215,16 +215,8 @@ public class search extends AppCompatActivity  {
         plus_vege.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(search.this);
-                builder.setTitle("自訂作物☆即將推出，敬請期待!");
-                builder.setPositiveButton("好", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                });
-                AlertDialog dialog=builder.create();
-                dialog.show();
+                Intent intent=new Intent(search.this,custom_vegeinfo.class);
+                startActivity(intent);
             }
         });
 

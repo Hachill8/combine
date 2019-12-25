@@ -2,6 +2,7 @@ package com.example.hy.search;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -68,6 +69,9 @@ public class VegeInfo extends AppCompatActivity {
     String img_result; //圖片字串
     boolean fg=true;
 
+     ProgressDialog mLoadingDialog;
+
+
 //     ImageAdapter imgadapter;
 //     //加入圖片用
 //
@@ -128,6 +132,8 @@ public class VegeInfo extends AppCompatActivity {
         //首頁作物照片(暫時)
         vege_home = (GlobalVariable)getApplicationContext();
 
+        mLoadingDialog = new ProgressDialog(VegeInfo.this);
+        showLoadingDialog("載入中...");
         variety_info=new Dialog(this);
         start_plant=(Button)findViewById(R.id.start_plant);
         start_plant.setOnClickListener( new View.OnClickListener() {
@@ -417,6 +423,21 @@ public class VegeInfo extends AppCompatActivity {
 //            cardviewList.add(i, new record_Cardview(id,"小白菜", R.drawable.icon201));
 //            id=id+1;
 //            notifyItemInserted(i);
+        }
+    }
+    private void showLoadingDialog(String message){
+        message = "載入中...";
+        mLoadingDialog.setMessage(message);
+        if(mLoadingDialog==null){
+            mLoadingDialog = new ProgressDialog(this);
+            mLoadingDialog.setMessage(message);
+        }
+        mLoadingDialog.show();
+    }
+
+    private void dismissLoadingDialog() {
+        if (mLoadingDialog != null) {
+            mLoadingDialog.dismiss();
         }
     }
 }

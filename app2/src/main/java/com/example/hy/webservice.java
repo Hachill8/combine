@@ -372,10 +372,10 @@ public class webservice
         }
     }
 
-    public static String insert(String vege,String date,String s,String message,String url,String gmail)
+    public static String insert_cal_vege(String vege,String date,String s,String message,String url,String gmail)
     {
-        String SOAP_ACTION = "http://tempuri.org/insert";          //命名空間+要用的函數名稱
-        String METHOD_NAME = "insert";   //函數名稱
+        String SOAP_ACTION = "http://tempuri.org/insert_cal_vege";          //命名空間+要用的函數名稱
+        String METHOD_NAME = "insert_cal_vege";   //函數名稱
 
         //必須用try catch包著
         try {
@@ -505,19 +505,19 @@ public class webservice
     }
 }
 
-    public static String Update(String vege,String date,String s,String message,String url,String gmail)
+    public static String Update_cal_vege(String vege,String date,String s,String message,String url,String gmail)
     {
-        String SOAP_ACTION = "http://tempuri.org/Update";          //命名空間+要用的函數名稱
-        String METHOD_NAME = "Update";   //函數名稱
+        String SOAP_ACTION = "http://tempuri.org/Update_cal_vege";          //命名空間+要用的函數名稱
+        String METHOD_NAME = "Update_cal_vege";   //函數名稱
 
         //必須用try catch包著
         try {
             SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
             request.addProperty("vege",vege);
-            request.addProperty("time",date);
+            request.addProperty("day",date);
             request.addProperty("action",s);
-            request.addProperty("note",message);
             request.addProperty("picture",url);
+            request.addProperty("note",message);
             request.addProperty("gmail",gmail);
 
 
@@ -541,16 +541,18 @@ public class webservice
         }
     }
 
-    public static String Delete(String date)
+    public static String Delete_cal_vege(String date,String vege,String gmail)
     {
-        String SOAP_ACTION = "http://tempuri.org/Delete";          //命名空間+要用的函數名稱
-        String METHOD_NAME = "Delete";   //函數名稱
+        String SOAP_ACTION = "http://tempuri.org/Delete_cal_vege";          //命名空間+要用的函數名稱
+        String METHOD_NAME = "Delete_cal_vege";   //函數名稱
 
         //必須用try catch包著
         try {
             SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
 
             request.addProperty("time",date);
+            request.addProperty("vege",vege);
+            request.addProperty("gmail",gmail);
 
             SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
             envelope.bodyOut = request;
@@ -1163,32 +1165,25 @@ public class webservice
 
 
     ///對應資料庫的變數未寫好
-    public static String Insert_custom_vegeinfo(String add_img,String vege_name,String edit_step,String edit_container,String edit_soil,String edit_place,
-                                                String edit_water,String edit_fertilizer,String edit_bug,String edit_harvest,String tool_pic1,
-                                                String tool_pic2,String tool_pic3,String tool_pic4,String tool_name1,String tool_name2,String tool_name3,String tool_name4)
+    public static String Insert_custom_vege(String vegeornot,String url,String vege_name,String edit_step,String edit_container,String edit_soil,String edit_place,
+                                                String edit_water,String edit_fertilizer,String edit_bug,String edit_harvest,String gmail)
     {
         String SOAP_ACTION = "http://tempuri.org/Insert_custom_vegeinfo";          //命名空間+要用的函數名稱
         String METHOD_NAME = "Insert_custom_vegeinfo";   //函數名稱
         try {
             SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
-            request.addProperty("post_name",add_img);
-            request.addProperty("post_title",vege_name);
-            request.addProperty("post_like",edit_step);
-            request.addProperty("post_name",edit_container);
-            request.addProperty("post_title",edit_soil);
-            request.addProperty("post_like",edit_place);
-            request.addProperty("post_name",edit_water);
-            request.addProperty("post_title",edit_fertilizer);
-            request.addProperty("post_like",edit_bug);
-            request.addProperty("post_name",edit_harvest);
-            request.addProperty("post_title",tool_pic1);
-            request.addProperty("post_title",tool_pic2);
-            request.addProperty("post_title",tool_pic3);
-            request.addProperty("post_title",tool_pic4);
-            request.addProperty("post_title",tool_name1);
-            request.addProperty("post_title",tool_name2);
-            request.addProperty("post_title",tool_name3);
-            request.addProperty("post_title",tool_name4);
+            request.addProperty("vegeornotvege",vegeornot);
+            request.addProperty("url",url);
+            request.addProperty("vege_name",vege_name);
+            request.addProperty("edit_step",edit_step);
+            request.addProperty("edit_container",edit_container);
+            request.addProperty("edit_soil",edit_soil);
+            request.addProperty("edit_place",edit_place);
+            request.addProperty("edit_water",edit_water);
+            request.addProperty("edit_fertilizer",edit_fertilizer);
+            request.addProperty("edit_bug",edit_bug);
+            request.addProperty("edit_harvest",edit_harvest);
+            request.addProperty("gmail",gmail);
 
             SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
             envelope.bodyOut = request;

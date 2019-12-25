@@ -1,5 +1,6 @@
 package com.example.hy.user_setting;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ import com.example.hy.R;
 import com.example.hy.forum.forum;
 import com.example.hy.forum.forum_post;
 import com.example.hy.forum.forum_post2;
+import com.example.hy.search.VegeInfo;
 import com.example.hy.webservice;
 
 import java.util.ArrayList;
@@ -44,6 +46,7 @@ public class like_post extends AppCompatActivity {
     String[] split_cardview_info,split_all_like;
     String gmail,forum_cardview="",all_like_post;
     int k;
+    ProgressDialog mLoadingDialog;
 
     //找到UI工人的經紀人，這樣才能派遣工作  (找到顯示畫面的UI Thread上的Handler)
     private Handler mUI_Handler = new Handler();
@@ -57,6 +60,9 @@ public class like_post extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags( WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_like_post);
+
+        mLoadingDialog = new ProgressDialog(like_post.this);
+        showLoadingDialog("載入中...");
 
         //聘請一個特約工人，有其經紀人派遣其工人做事 (另起一個有Handler的Thread)
         mThread = new HandlerThread("");
@@ -78,6 +84,7 @@ public class like_post extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(like_post.this, user_setting.class);
                 startActivity(intent);
+                like_post.this.finish();
             }
         });
         go_forum.setOnClickListener(new View.OnClickListener() {
@@ -85,6 +92,7 @@ public class like_post extends AppCompatActivity {
             public void onClick(View v) {
                 Intent x=new Intent(like_post.this, forum.class);
                 startActivity(x);
+                like_post.this.finish();
             }
         });
 
@@ -162,6 +170,7 @@ public class like_post extends AppCompatActivity {
                         recyclerView.setAdapter(adapter);
                         }
                         else{nopost_img.setVisibility(View.VISIBLE);nopost_tv.setVisibility(View.VISIBLE);go_forum.setVisibility(View.VISIBLE);}
+                        dismissLoadingDialog();
                     }
                 }
             });
@@ -256,5 +265,20 @@ public class like_post extends AppCompatActivity {
 
         }
 
+    }
+    private void showLoadingDialog(String message){
+        message = "載入中...";
+        mLoadingDialog.setMessage(message);
+        if(mLoadingDialog==null){
+            mLoadingDialog = new ProgressDialog(this);
+            mLoadingDialog.setMessage(message);
+        }
+        mLoadingDialog.show();
+    }
+
+    private void dismissLoadingDialog() {
+        if (mLoadingDialog != null) {
+            mLoadingDialog.dismiss();
+        }
     }
 }

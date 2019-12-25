@@ -1,5 +1,6 @@
 package com.example.hy.market;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 
 import com.example.hy.GlobalVariable;
 import com.example.hy.R;
+import com.example.hy.search.VegeInfo;
 import com.example.hy.webservice;
 
 public class market2 extends AppCompatActivity
@@ -45,7 +47,7 @@ public class market2 extends AppCompatActivity
     ImageView Product_img;
 
     String product_cart_info=""; //抓商品相關資料給購物車
-
+    ProgressDialog mLoadingDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -73,7 +75,8 @@ public class market2 extends AppCompatActivity
             }
         });
 
-
+        mLoadingDialog = new ProgressDialog(market2.this);
+        showLoadingDialog("載入中...");
 
         market_item = (GlobalVariable)getApplicationContext();
         good_name=market_item.getMarket_item();
@@ -246,6 +249,7 @@ public class market2 extends AppCompatActivity
                             product_cart_info,Toast.LENGTH_SHORT).show();
                 }
             }
+            dismissLoadingDialog();
         }
 
     };
@@ -263,7 +267,21 @@ public class market2 extends AppCompatActivity
             mThread.quit();
         }
     }
+    private void showLoadingDialog(String message){
+        message = "載入中...";
+        mLoadingDialog.setMessage(message);
+        if(mLoadingDialog==null){
+            mLoadingDialog = new ProgressDialog(this);
+            mLoadingDialog.setMessage(message);
+        }
+        mLoadingDialog.show();
+    }
 
+    private void dismissLoadingDialog() {
+        if (mLoadingDialog != null) {
+            mLoadingDialog.dismiss();
+        }
+    }
 
 
 }

@@ -2,20 +2,12 @@ package com.example.hy.market;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,25 +17,16 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.hy.GlobalVariable;
 import com.example.hy.R;
-import com.example.hy.home.home2;
-import com.example.hy.record.record;
-import com.example.hy.record.record_Cardview;
-import com.example.hy.record.record_Information2;
-import com.example.hy.search.VegeInfo;
-import com.example.hy.search.search;
-import com.example.hy.search.vege_cardview;
 import com.example.hy.webservice;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class market extends AppCompatActivity
 {
@@ -65,6 +48,8 @@ public class market extends AppCompatActivity
         super.onCreate(savedInstanceState);
         getWindow().setFlags( WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_market2);
+
+
         market_item  = (GlobalVariable)getApplicationContext();
         Button market_to_cart = (Button)findViewById(R.id.market_to_cart);
         market_to_cart.setOnClickListener(new View.OnClickListener() {
@@ -174,6 +159,7 @@ public class market extends AppCompatActivity
                 }
                 Search_bar.setAdapter(new ArrayAdapter<>(market.this,
                         android.R.layout.simple_list_item_1, split_line));
+
             }
         }
     };

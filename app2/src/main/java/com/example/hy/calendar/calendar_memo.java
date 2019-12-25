@@ -269,15 +269,10 @@ public class calendar_memo extends AppCompatActivity {
             s += "收成  ";
         }
         intent = new Intent(calendar_memo.this,calendar.class);
-        //宣告一個編輯框和佈局檔案中id為edit_message的編輯框連結起來。
-        //把編輯框獲取的文字賦值給String型別的message
-        //String message = ed.getText().toString();
+
 
         message = memo.getText().toString();
 
-        //給message起一個名字，並傳給另一個activity
-        intent.putExtra("EXTRA_Activity",s);
-        intent.putExtra("EXTRA_MESSAGE",message);
         if(url_String.equals(""))
         {
             intent.putExtra("EXTRA_URL","");
@@ -287,13 +282,9 @@ public class calendar_memo extends AppCompatActivity {
             intent.putExtra("EXTRA_URL",url_String);
             Log.v("test","url.toString: "+url_String);
         }
-        startActivity(intent);
 
         //請經紀人指派工作名稱 r，給工人做
         mThreadHandler.post(r1);
-
-        //dbUtil.insert(date,s,ed.getText().toString());
-
 
     }
 
@@ -302,7 +293,7 @@ public class calendar_memo extends AppCompatActivity {
     private Runnable r1=new Runnable () {
 
         public void run() {
-            line = webservice.insert(vege,date,s,message,url_String,gmail);
+            line = webservice.insert_cal_vege(vege,date,s,message,url_String,gmail);
             //請經紀人指派工作名稱 r，給工人做
             mUI_Handler.post(r2);
 

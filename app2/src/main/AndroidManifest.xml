@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.hy">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".GlobalVariable"
         android:allowBackup="true"
@@ -13,15 +15,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".user_setting.personal_info_edit"/>
+        <activity android:name=".user_setting.personal_info_edit" />
         <activity android:name=".user_setting.personal_help" />
         <activity android:name=".user_setting.personal_info" />
         <activity android:name=".user_setting.like_post" />
         <activity android:name=".user_setting.like_vege" />
         <activity android:name=".user_setting.my_post" />
         <activity android:name=".login.login2" />
-        <activity android:name=".calendar.choose_calendar"/>
-        <activity android:name=".calendar.choose_calendar_info"/>
+        <activity android:name=".custom_vegeinfo" />
+        <activity android:name=".calendar.choose_calendar" />
+        <activity android:name=".calendar.choose_calendar_info" />
         <activity android:name=".calendar.calendar" />
         <activity android:name=".record.record" />
         <activity android:name=".edit_pot" />
@@ -29,22 +32,21 @@
         <activity android:name=".calendar.calendar_memo" />
         <activity android:name=".calendar.calendar_memo2" />
         <activity android:name=".forum.forum" />
-        <activity android:name=".market.market"
-            android:configChanges="orientation|keyboardHidden">
-        </activity>
+        <activity
+            android:name=".market.market"
+            android:configChanges="orientation|keyboardHidden"></activity>
         <activity android:name=".market.market2" />
         <activity android:name=".market.market_p4" />
         <activity android:name=".user_setting.user_setting" />
         <activity android:name=".record.record_Information" />
-        <activity android:name=".forum.forum_add_new_post"/>
-        <activity android:name=".forum.forum_post2"/>
+        <activity android:name=".forum.forum_add_new_post" />
+        <activity android:name=".forum.forum_post2" />
         <activity android:name=".forum.postpage" />
         <activity android:name=".record.record_Information2" />
         <activity android:name=".home.taipei_life_info_land_lease" />
         <activity android:name=".home.taipei_life_info_farmers" />
         <activity android:name=".home.taipei_life_farmers_infop2" />
         <activity android:name=".home.taipei_life_land_infop2" />
-
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -62,9 +64,7 @@
         <activity android:name=".select_model" />
         <activity android:name=".login.login" />
         <activity android:name=".home.home2" />
-        <activity android:name=".market.market_to_pay"/>
+        <activity android:name=".market.market_to_pay" />
     </application>
-
-    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

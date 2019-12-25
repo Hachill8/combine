@@ -78,9 +78,6 @@ public class calendar extends AppCompatActivity {
         mThreadHandler=new Handler(mThread.getLooper());
 
         calendar_picture = findViewById(R.id.calendar_picture);
-
-
-
         edit =(Button)findViewById(R.id.edit);
         update = (Button)findViewById(R.id.update);
         cancel = (Button)findViewById(R.id.cancel);
@@ -92,7 +89,7 @@ public class calendar extends AppCompatActivity {
         action_item_value2= (GlobalVariable)getApplicationContext();
         spi = (Spinner)findViewById(R.id.spinner);
         swi = (Switch) findViewById(R.id.switch1);
-        Calendar calendar= Calendar.getInstance();
+        final Calendar calendar= Calendar.getInstance();
         date = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault()).format(new Date());
         tv1.setText(date);
 
@@ -118,16 +115,9 @@ public class calendar extends AppCompatActivity {
         });
 
 
-//        final String[] lunch = {"玉米","芭樂","番茄","小白菜"};
-//        ArrayAdapter<String> lunchList = new ArrayAdapter<>(calendar.this,
-//                R.layout.login2_select_dropdown_item,
-//                lunch);
-//
-//        spi.setAdapter(lunchList);
         spi.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                Toast.makeText(calendar.this, "你選的是" + lunch[position], Toast.LENGTH_SHORT).show();
                 Select_vege_name=spi.getSelectedItem().toString();
                 action_item_value.setSelect_vege_name(Select_vege_name);
                 mThreadHandler.post(r3);
@@ -140,6 +130,8 @@ public class calendar extends AppCompatActivity {
         });
         listItems = getResources().getStringArray(R.array.action_item);
         checkedItems = new boolean[listItems.length];
+
+        mThreadHandler.post(r7);
 
         cv1.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
@@ -158,6 +150,7 @@ public class calendar extends AppCompatActivity {
                 intent2.putExtra("EXTRA_DATE",date);
                 intent2.putExtra("decide_edit",decide_edit);
                 startActivity(intent2);
+                calendar.this.finish();
             }
         });
         update.setOnClickListener(new View.OnClickListener() {
@@ -166,6 +159,7 @@ public class calendar extends AppCompatActivity {
                 Intent intent = new Intent(calendar.this, calendar_memo2.class);
                 intent.putExtra("EXTRA_DATE",date);
                 startActivity(intent);
+                calendar.this.finish();
             }
         });
         cancel.setOnClickListener(new View.OnClickListener() {
@@ -173,7 +167,7 @@ public class calendar extends AppCompatActivity {
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(calendar.this);
                 builder.setTitle("注意!");
-                builder.setMessage("確定要刪除"+date+"的內容嗎?");
+                builder.setMessage("確定要刪除"+date+Select_vege_name+"的內容嗎?");
                 builder.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -202,24 +196,20 @@ public class calendar extends AppCompatActivity {
         tv2.setText(message);
         if((!tv2.getText().equals("")) || tv2.getText().equals("")) {
             act_tv.setText(s);
-            Toast.makeText(calendar.this, "OK", Toast.LENGTH_SHORT).show();
         }
     }
 
-    //工作名稱 r1 的工作內容
-
+    ///刪除某個日期的某個作物
     private Runnable r1=new Runnable () {
 
         public void run() {
-            webservice.Delete(date);
+            webservice.Delete_cal_vege(date,Select_vege_name,gmail);
             //請經紀人指派工作名稱 r，給工人做
             mUI_Handler.post(r2);
 
         }
 
     };
-
-    //工作名稱 r2 的工作內容
 
     private Runnable r2=new Runnable () {
 
@@ -230,6 +220,8 @@ public class calendar extends AppCompatActivity {
         }
 
     };
+
+    ///點擊某個日期查看某個作物
     private Runnable r3=new Runnable () {
 
         public void run() {
@@ -243,7 +235,7 @@ public class calendar extends AppCompatActivity {
         }
 
     };
-    //工作名稱 r1 的工作內容
+
 
     private Runnable r4=new Runnable () {
 
@@ -268,9 +260,9 @@ public class calendar extends AppCompatActivity {
                 {
                     tv2.setText(sl[1]);
                 }
-                if(sl[2].equals(""))
+                if(sl[2].equals("nopicture"))
                 {
-                    calendar_picture.setImageBitmap(nopicture);
+                    calendar_picture.setImageResource(R.drawable.notapic);
                 }
                 else
                 {
@@ -333,12 +325,14 @@ public class calendar extends AppCompatActivity {
 
     };
 
+    ///顯示使用者種過的作物
     private Runnable r7=new Runnable () {
 
         public void run() {
 
-            String email=action_item_value.getUser_gmail();
-            Allvege=webservice.Select_user_vege(email);
+            String gmail=action_item_value.getUser_gmail();
+            Allvege=webservice.Select_user_vege(gmail);
+            Log.v("test",":::::::::: "+Allvege);
             mUI_Handler.post(r8);
         }
 

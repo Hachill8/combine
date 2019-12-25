@@ -1,7 +1,7 @@
 package com.example.hy.calendar;
 
+import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -11,29 +11,25 @@ import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.hy.AutoSplitTextView;
 import com.example.hy.DownloadImageTask;
 import com.example.hy.GlobalVariable;
 import com.example.hy.R;
+import com.example.hy.search.VegeInfo;
 import com.example.hy.webservice;
-import com.varunest.sparkbutton.helpers.Utils;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 public class choose_calendar_info extends AppCompatActivity {
@@ -47,12 +43,16 @@ public class choose_calendar_info extends AppCompatActivity {
     private HandlerThread mThread;
     GlobalVariable choose_calendar_info;
     String choose_calendar_string;
+    ProgressDialog mLoadingDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
+        getWindow().setFlags( WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView( R.layout.activity_choose_calendar_info );
 
+        mLoadingDialog = new ProgressDialog(choose_calendar_info.this);
+        showLoadingDialog("載入中...");
         choose_calendar_info = (GlobalVariable) getApplicationContext() ;
 
         //聘請一個特約工人，有其經紀人派遣其工人做事 (另起一個有Handler的Thread)
@@ -76,7 +76,7 @@ public class choose_calendar_info extends AppCompatActivity {
             Log.v("test","split for ALL: " + choose_calendar_info.getChoose_calendar_info());
             Log.v("test","split for everyone: " + split[0]+"           "+split[1]+"           "+split[2]);
             choose_calendar_string = webservice.choose_calendar_info_cardview(split[0],split[1],split[2]);
-            mThreadHandler.post(r2);
+            mUI_Handler.post(r2);
 
         }
     };
@@ -118,6 +118,7 @@ public class choose_calendar_info extends AppCompatActivity {
                         RecyclerView recyclerView = findViewById(R.id.choose_calendar_info_recyclerview);
                         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));
                         recyclerView.setAdapter(new choose_calendar_info.CardAdapter(choose_calendar_info.this, cardviewList));
+                        dismissLoadingDialog();
                     }
                 }
             });
@@ -211,6 +212,21 @@ public class choose_calendar_info extends AppCompatActivity {
 //            cardviewList.add(i, new record_Cardview(id,"小白菜", R.drawable.icon201));
 //            id=id+1;
 //            notifyItemInserted(i);
+        }
+    }
+    private void showLoadingDialog(String message){
+        message = "載入中...";
+        mLoadingDialog.setMessage(message);
+        if(mLoadingDialog==null){
+            mLoadingDialog = new ProgressDialog(this);
+            mLoadingDialog.setMessage(message);
+        }
+        mLoadingDialog.show();
+    }
+
+    private void dismissLoadingDialog() {
+        if (mLoadingDialog != null) {
+            mLoadingDialog.dismiss();
         }
     }
 }

@@ -199,7 +199,6 @@ public class forum_post2 extends AppCompatActivity {
             @Override
             public void onEvent(ImageView button, boolean buttonState) {
                 if (buttonState) {
-                    // 此判斷為第一次使用者點擊時
                     if(likeornot.equals("未查詢到資料")) {
                         if (fg == true) {
                             likenum = likenum + 1;

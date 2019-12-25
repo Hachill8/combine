@@ -369,6 +369,7 @@ public class personal_info_edit extends AppCompatActivity {
 
             Intent intent=new Intent(personal_info_edit.this, personal_info.class);
             startActivity(intent);
+            personal_info_edit.this.finish();
         }
 
     };

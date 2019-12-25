@@ -61,6 +61,7 @@ public class personal_info extends AppCompatActivity {
             public void onClick(View v) {
                 Intent x = new Intent(personal_info.this, user_setting.class);
                 startActivity(x);
+                personal_info.this.finish();
             }
         });
 
@@ -69,6 +70,7 @@ public class personal_info extends AppCompatActivity {
             public void onClick(View v) {
                 Intent x = new Intent(personal_info.this, personal_info_edit.class);
                 startActivity(x);
+                personal_info.this.finish();
             }
         });
         mThreadHandler.post(r1);

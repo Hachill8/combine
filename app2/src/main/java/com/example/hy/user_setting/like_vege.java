@@ -1,5 +1,6 @@
 package com.example.hy.user_setting;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -49,7 +50,7 @@ public class like_vege extends AppCompatActivity {
     like_vegeadaper adapter;
     String gmail,alllikevege,alldata;
     GlobalVariable gl;
-
+    ProgressDialog mLoadingDialog;
     String[] split_line1    //切割篩選菜名
             ,split_line2    //圖片
             ,split_line3    //分開作物名稱和圖片
@@ -68,6 +69,9 @@ public class like_vege extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags( WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_like_vege);
+
+        mLoadingDialog = new ProgressDialog(like_vege.this);
+        showLoadingDialog("載入中...");
 
         //聘請一個特約工人，有其經紀人派遣其工人做事 (另起一個有Handler的Thread)
         mThread = new HandlerThread("");
@@ -88,6 +92,7 @@ public class like_vege extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(like_vege.this, user_setting.class);
                 startActivity(intent);
+                like_vege.this.finish();
             }
         });
         go_search.setOnClickListener(new View.OnClickListener() {
@@ -95,6 +100,7 @@ public class like_vege extends AppCompatActivity {
             public void onClick(View v) {
                 Intent x=new Intent(like_vege.this, search.class);
                 startActivity(x);
+                like_vege.this.finish();
             }
         });
 
@@ -184,7 +190,7 @@ public class like_vege extends AppCompatActivity {
                         recyclerView.setAdapter(new like_vegeadaper(like_vege.this, vegeList));
                     }
                     else{novege_img.setVisibility(View.VISIBLE);novege_tv.setVisibility(View.VISIBLE);go_search.setVisibility(View.VISIBLE);}
-
+                    dismissLoadingDialog();
                 }
             });
         }
@@ -264,6 +270,21 @@ public class like_vege extends AppCompatActivity {
 
         }
 
+    }
+    private void showLoadingDialog(String message){
+        message = "載入中...";
+        mLoadingDialog.setMessage(message);
+        if(mLoadingDialog==null){
+            mLoadingDialog = new ProgressDialog(this);
+            mLoadingDialog.setMessage(message);
+        }
+        mLoadingDialog.show();
+    }
+
+    private void dismissLoadingDialog() {
+        if (mLoadingDialog != null) {
+            mLoadingDialog.dismiss();
+        }
     }
 
 }

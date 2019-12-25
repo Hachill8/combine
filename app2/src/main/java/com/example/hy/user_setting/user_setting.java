@@ -148,6 +148,7 @@ public class user_setting extends AppCompatActivity
             public void onClick(View v) {
                 Intent intent = new Intent(user_setting.this, personal_info.class);
                 startActivity(intent);
+                user_setting.this.finish();
             }
         });
         personal_article.setOnClickListener(new View.OnClickListener() {
@@ -155,6 +156,7 @@ public class user_setting extends AppCompatActivity
             public void onClick(View v) {
                 Intent intent = new Intent(user_setting.this, my_post.class);
                 startActivity(intent);
+                user_setting.this.finish();
             }
         });
         personal_collect.setOnClickListener(new View.OnClickListener() {
@@ -162,6 +164,7 @@ public class user_setting extends AppCompatActivity
             public void onClick(View v) {
                 Intent intent = new Intent(user_setting.this, like_vege.class);
                 startActivity(intent);
+                user_setting.this.finish();
             }
         });
         personal_article_like.setOnClickListener(new View.OnClickListener() {
@@ -169,6 +172,7 @@ public class user_setting extends AppCompatActivity
             public void onClick(View v) {
                 Intent intent = new Intent(user_setting.this, like_post.class);
                 startActivity(intent);
+                user_setting.this.finish();
             }
         });
         personal_help.setOnClickListener(new View.OnClickListener() {
@@ -176,6 +180,7 @@ public class user_setting extends AppCompatActivity
             public void onClick(View v) {
                 Intent intent = new Intent(user_setting.this, personal_help.class);
                 startActivity(intent);
+                user_setting.this.finish();
             }
         });
         personal_signout.setOnClickListener(new View.OnClickListener() {
@@ -183,6 +188,7 @@ public class user_setting extends AppCompatActivity
             public void onClick(View v) {
                 Intent x=new Intent(user_setting.this, login.class);
                 startActivity(x);
+                user_setting.this.finish();
             }
         });
     }
