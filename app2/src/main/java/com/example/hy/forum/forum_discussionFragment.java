@@ -53,7 +53,7 @@ public class forum_discussionFragment extends Fragment implements SwipeRefreshLa
     List<forum_post> postList ;
     String forum_cardview="",gmail,all_like;
     String[] split_cardview_info,split_all_like;
-    int k;
+    int k=-1;
     Button new_post_sort,hot_post_sort;
     boolean sort=true;
 
@@ -168,10 +168,18 @@ public class forum_discussionFragment extends Fragment implements SwipeRefreshLa
                 @Override
                 public void run() {
                     String[] split_cardview = forum_cardview.split("ALL切");
-                    split_all_like = all_like.split("%");
+                    if(!all_like.equals("找不到"))
+                    {
+                        split_all_like = all_like.split("%");
+                    }
+
                     for(int i = 0 ; i < split_cardview.length ; i++) {
                         split_cardview_info = split_cardview[i].split("WS切");
-                        k = all_like.indexOf(split_cardview_info[1]);
+                        if(!all_like.equals("找不到"))
+                        {
+                            k = all_like.indexOf(split_cardview_info[6]);
+                        }
+
                         Log.v("test123456"," split_all_like: "+k);
                         //user + "WS切" + title + "WS切" + time + "WS切" + heartnum + "WS切" + commentnum + "WS切" + post_img
                         if (k>=0) {

@@ -408,10 +408,10 @@ public class webservice
         }
     }
 
-    public static String Select_like_post(String post_name,String post_title,String gmail)
+    public static String Select_keep_post(String post_name,String post_title,String gmail)
     {
-        String SOAP_ACTION = "http://tempuri.org/Select_like_post";          //命名空間+要用的函數名稱
-        String METHOD_NAME = "Select_like_post";   //函數名稱
+        String SOAP_ACTION = "http://tempuri.org/Select_keep_post";          //命名空間+要用的函數名稱
+        String METHOD_NAME = "Select_keep_post";   //函數名稱
         try {
             SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
             request.addProperty("post_name",post_name);
@@ -440,10 +440,10 @@ public class webservice
         }
     }
 
-    public static String Insert_like_post(String post_name,String post_title,String likeornot,String gmail)
+    public static String Insert_keep_post(String post_name,String post_title,String likeornot,String gmail)
     {
-        String SOAP_ACTION = "http://tempuri.org/Insert_like_post";          //命名空間+要用的函數名稱
-        String METHOD_NAME = "Insert_like_post";   //函數名稱
+        String SOAP_ACTION = "http://tempuri.org/Insert_keep_post";          //命名空間+要用的函數名稱
+        String METHOD_NAME = "Insert_keep_post";   //函數名稱
 
         //必須用try catch包著
         try {
@@ -574,10 +574,10 @@ public class webservice
         }
     }
 
-    public static String Delete_like_post(String post_name,String post_title,String gmail)
+    public static String Delete_keep_post(String post_name,String post_title,String gmail)
     {
-        String SOAP_ACTION = "http://tempuri.org/Delete_like_post";          //命名空間+要用的函數名稱
-        String METHOD_NAME = "Delete_like_post";   //函數名稱
+        String SOAP_ACTION = "http://tempuri.org/Delete_keep_post";          //命名空間+要用的函數名稱
+        String METHOD_NAME = "Delete_keep_post";   //函數名稱
 
         //必須用try catch包著
         try {
@@ -1109,6 +1109,68 @@ public class webservice
         try {
             SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
             request.addProperty("id",id);
+
+
+            SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+            envelope.bodyOut = request;
+            envelope.dotNet = true;//若WS有輸入參數必須要加這一行否則WS沒反應
+            envelope.setOutputSoapObject(request);
+            envelope.encodingStyle = "utf-8";
+            HttpTransportSE ht = new HttpTransportSE(URL);
+            ht.call(SOAP_ACTION, envelope);
+
+            // 獲取回傳數據
+            SoapObject object = (SoapObject) envelope.bodyIn;
+            Log.v("test","object: "+object);
+            // 獲取返回的結果
+            String result = object.getProperty(0).toString();
+            Log.v("test","result: "+result);
+            return result;
+        } catch (Exception e) {
+            Log.v("test","e.toString(): "+e.toString());
+            return e.toString();
+        }
+    }
+
+    public static String Add_user_like(int id,String gmail)
+    {
+        String SOAP_ACTION = "http://tempuri.org/Add_user_like";          //命名空間+要用的函數名稱
+        String METHOD_NAME = "Add_user_like";   //函數名稱
+        try {
+            SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
+            request.addProperty("post_id",id);
+            request.addProperty("gmail",gmail);
+
+
+            SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+            envelope.bodyOut = request;
+            envelope.dotNet = true;//若WS有輸入參數必須要加這一行否則WS沒反應
+            envelope.setOutputSoapObject(request);
+            envelope.encodingStyle = "utf-8";
+            HttpTransportSE ht = new HttpTransportSE(URL);
+            ht.call(SOAP_ACTION, envelope);
+
+            // 獲取回傳數據
+            SoapObject object = (SoapObject) envelope.bodyIn;
+            Log.v("test","object: "+object);
+            // 獲取返回的結果
+            String result = object.getProperty(0).toString();
+            Log.v("test","result: "+result);
+            return result;
+        } catch (Exception e) {
+            Log.v("test","e.toString(): "+e.toString());
+            return e.toString();
+        }
+    }
+
+    public static String Delete_user_like(int id,String gmail)
+    {
+        String SOAP_ACTION = "http://tempuri.org/Delete_user_like";          //命名空間+要用的函數名稱
+        String METHOD_NAME = "Delete_user_like";   //函數名稱
+        try {
+            SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
+            request.addProperty("post_id",id);
+            request.addProperty("gmail",gmail);
 
 
             SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);

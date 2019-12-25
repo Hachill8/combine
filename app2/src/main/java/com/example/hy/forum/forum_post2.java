@@ -32,6 +32,7 @@ import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -60,11 +61,11 @@ public class forum_post2 extends AppCompatActivity {
     FloatingActionButton post_message;
     EditText add_message;
     Button postTV_to_forum;
-    com.varunest.sparkbutton.SparkButton post_like;
+    com.varunest.sparkbutton.SparkButton post_like,keep_post;
     String[] split;
-    String post_all="",OKOK,likeornot,gmail;
+    String post_all="",OKOK,likeornot,gmail,user_like;
     int likenum;
-    boolean fg=true;
+    boolean fg=true,post_like_fg=false;
     //找到UI工人的經紀人，這樣才能派遣工作  (找到顯示畫面的UI Thread上的Handler)
     private Handler mUI_Handler = new Handler();
     //宣告特約工人的經紀人
@@ -81,9 +82,42 @@ public class forum_post2 extends AppCompatActivity {
         post_content_tv = (TextView) findViewById(R.id.post_content_txv);
         post_title_tv = (TextView) findViewById(R.id.post_title_txv);
         post_name = findViewById(R.id.user_name);
-        post_message = (FloatingActionButton) findViewById(R.id.post_message);
+        post_message = findViewById(R.id.post_message);
         post_time = (TextView) findViewById(R.id.post_time);
         postTV_to_forum = (Button) findViewById(R.id.postTV_to_forum);
+        keep_post = findViewById(R.id.keep_post);
+        keep_post.setEventListener(new SparkEventListener(){
+            @Override
+            public void onEvent(ImageView button, boolean buttonState) {
+                if (buttonState) {
+
+                    if(likeornot.equals("未查詢到資料")) {
+                        if (fg == true) {
+                            fg = false;likeornot="on";
+                            mThreadHandler.post(r5);
+                        }
+                    }
+                } else {
+                    if(likeornot.substring(0,2).equals("on"))
+                    {
+                        if (fg == false) {
+                            fg = true;likeornot="未查詢到資料";
+                            mThreadHandler.post(r9);
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onEventAnimationEnd(ImageView button, boolean buttonState) {
+            }
+
+            @Override
+            public void onEventAnimationStart(ImageView button, boolean buttonState) {
+
+            }
+
+        });
         post_like = findViewById(R.id.spark_button);
         post_like_tv =  findViewById(R.id.like_tv);
         postTV_to_forum.setOnClickListener(new View.OnClickListener() {
@@ -105,7 +139,7 @@ public class forum_post2 extends AppCompatActivity {
 
         //文章內容
         gl = (GlobalVariable) getApplicationContext();
-
+        gmail = gl.getUser_gmail();
         if(gl.getForum_title_click() > -1)
         {
             mThreadHandler.post(r1);
@@ -198,26 +232,21 @@ public class forum_post2 extends AppCompatActivity {
         post_like.setEventListener(new SparkEventListener(){
             @Override
             public void onEvent(ImageView button, boolean buttonState) {
-                if (buttonState) {
-                    if(likeornot.equals("未查詢到資料")) {
-                        if (fg == true) {
-                            likenum = likenum + 1;
-                            fg = false;likeornot="on";
-                            mThreadHandler.post(r3);
-                            mThreadHandler.post(r5);
-                        }
-                    }
-                } else {
-                    if(likeornot.substring(0,2).equals("on"))
-                    {
-                        if (fg == false) {
-                            likenum = likenum - 1;
-                            fg = true;likeornot="未查詢到資料";
-                            mThreadHandler.post(r3);
-                            mThreadHandler.post(r9);
-                        }
-                    }
-                }
+                    if (post_like_fg) {
+                         likenum = likenum - 1;
+                         post_like_fg=false;
+                         mThreadHandler.post(r3);
+                         Log.v("test", "ID: " + split[5] + "  gmail2: " + gmail+"  likenum: "+likenum);
+                         mThreadHandler.post(user_like_post);
+                     } else {
+                         likenum = likenum + 1;
+                         post_like_fg=true;
+                         mThreadHandler.post(r3);
+                         Log.v("test", "ID: " + split[5] + "  gmail: " + gmail+"  likenum: "+likenum);
+                         mThreadHandler.post(user_like_post);
+
+                     }
+
             }
 
             @Override
@@ -285,51 +314,82 @@ public class forum_post2 extends AppCompatActivity {
     private Runnable r3 = new Runnable() {
         @Override
         public void run() {
-            OKOK=Integer.toString(likenum);
             //針對某篇文章進行收藏，WS改的是這篇文章發布者的收藏數
-            webservice.Update_post_like(split[3],split[0],OKOK);
-            Log.v("test123456", "aLL" +split[3]+split[0]+OKOK);
+            webservice.Update_post_like(split[3],split[0],Integer.toString(likenum));
+            Log.v("test123456", "aLL" +split[3]+split[0]+likenum);
             mUI_Handler.post(r4);
         }
     };
     private Runnable r4 = new Runnable() {
         @Override
         public void run() {
-            post_like_tv.setText(OKOK);
-            Log.v("test123456", "aLL" +OKOK);
+            Log.v("test123456", "aLL" +likenum);
+            post_like_tv.setText(String.valueOf(likenum));
+
         }
     };
     private Runnable r5 = new Runnable() {
         @Override
         public void run() {
-            webservice.Insert_like_post(split[3],split[0],likeornot,gmail);
+            webservice.Insert_keep_post(split[3],split[0],likeornot,gmail);
+            Log.v("test","Insert like post: ("+split[3]+"  ,  "+split[0]+"  ,  "+likeornot+"  ,  "+gmail+")");
         }
     };
     private Runnable r7 = new Runnable() {
         @Override
         public void run() {
             //post_name、post_title、gmail進去WS查出這個使用者是否有收藏這篇文章
-            likeornot=webservice.Select_like_post(split[3],split[0],gmail);
+            likeornot=webservice.Select_keep_post(split[3],split[0],gmail);
+            Log.v("test123456","(String post_name,String post_title,String gmail) : "+ split[3]+"   "+split[0]+"   "+gmail);
             Log.v("test123456", "QQQQ:::" +likeornot+gmail);
+            user_like = webservice.Select_all_like_post(gmail);
+            Log.v("test","user like : "+user_like);
             mUI_Handler.post(r8);
         }
     };
     private Runnable r8 = new Runnable() {
         @Override
         public void run() {
+            //判斷是否收藏
             if(likeornot.substring(0,2).equals("on"))
-            {fg=false;post_like.setChecked(true);}
+            {fg=false;keep_post.setChecked(true);}
             else if(likeornot.equals("未查詢到資料"))
-            {fg=true;post_like.setChecked(false);}
+            {fg=true;keep_post.setChecked(false);}
+
+            //判斷是否有按讚
+            if(user_like.contains(split[5]))
+            {
+                post_like_fg = true;
+                post_like.setChecked(true);
+
+            }
+            else
+            {
+                post_like_fg = false;
+                post_like.setChecked(false);
+
+            }
         }
     };
     private Runnable r9 = new Runnable() {
         @Override
         public void run() {
-            webservice.Delete_like_post(split[3],split[0],gmail);
+            webservice.Delete_keep_post(split[3],split[0],gmail);
         }
     };
 
+    private Runnable user_like_post = new Runnable() {
+        @Override
+        public void run() {
+            if(post_like_fg)
+            {
+                webservice.Add_user_like(Integer.valueOf(split[5]),gmail);
+            }
+            else {
+                webservice.Delete_user_like(Integer.valueOf(split[5]),gmail);
+            }
+        }
+    };
 
 
 

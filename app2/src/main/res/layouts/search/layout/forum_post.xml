@@ -6,16 +6,25 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/post_message"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_alignParentEnd="true"
         android:layout_marginEnd="20dp"
-        android:layout_marginTop="600dp"
-        android:src="@drawable/post_chat2"
-        android:paddingEnd="10dp"
+        android:layout_alignParentEnd="true"
+        android:layout_above="@+id/post_img_view"
+        android:src="@drawable/forum_post_message"
+        android:backgroundTint="@color/primary_color"
         />
+
+    <ImageView
+        android:id="@+id/post_img_view"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_alignParentBottom="true"
+        />
+
 
     <Button
         android:id="@+id/postTV_to_forum"
@@ -195,6 +204,26 @@
                 android:gravity="center"
                 android:text="0"
                 />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.varunest.sparkbutton.SparkButton
+                    android:id="@+id/keep_post"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerInParent="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="30dp"
+                    app:sparkbutton_activeImage="@drawable/forum_post_collect_fill"
+                    app:sparkbutton_inActiveImage="@drawable/forum_post_collect_empty"
+                    app:sparkbutton_iconSize="20dp"
+
+                    app:sparkbutton_secondaryColor="@color/secondary_color"
+                    />
+
+            </RelativeLayout>
+
 
         </LinearLayout>
 

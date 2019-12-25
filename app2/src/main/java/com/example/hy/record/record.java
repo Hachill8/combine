@@ -27,6 +27,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -44,7 +45,8 @@ public class record extends AppCompatActivity
 {
     boolean fg = false;
     int num = 0,id=2;
-    Button showDialog , select_item ;
+    Button  select_item ;
+    ImageButton showDialog ;
     //找到UI工人的經紀人，這樣才能派遣工作  (找到顯示畫面的UI Thread上的Handler)
     private Handler mUI_Handler = new Handler();
     //宣告特約工人的經紀人
@@ -96,7 +98,7 @@ public class record extends AppCompatActivity
 
 
         //Dialog 建立
-        showDialog = (Button) findViewById(R.id.Select_item);
+        showDialog =  findViewById(R.id.Select_item);
 
         showDialog.setOnClickListener(new View.OnClickListener()
         {
