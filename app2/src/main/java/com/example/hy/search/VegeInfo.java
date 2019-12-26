@@ -38,6 +38,11 @@ import com.example.hy.user_setting.user_setting;
 import com.example.hy.webservice;
 import com.varunest.sparkbutton.SparkEventListener;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -52,7 +57,7 @@ public class VegeInfo extends AppCompatActivity {
     Button start_plant,choose_calendar;
     com.varunest.sparkbutton.SparkButton like_vege;
     Dialog variety_info;
-    String line="can't not found", vegeinfo_name,setdate,gmail,likeornot;
+    String line="can't not found", vegeinfo_name,setdate,gmail,likeornot,pictureurl;
     AutoSplitTextView step/**  小撇步  **/,
             container/**  容器 **/,
             soil/**  土壤 **/,
@@ -68,8 +73,9 @@ public class VegeInfo extends AppCompatActivity {
     ImageView imageview;
     String img_result; //圖片字串
     boolean fg=true;
-
+    Bitmap myBitmap;
      ProgressDialog mLoadingDialog;
+    URL url;
 
 
 //     ImageAdapter imgadapter;
@@ -215,6 +221,7 @@ public class VegeInfo extends AppCompatActivity {
                 line = webservice.VegeInfo_WS(vegeinfo_name);
 
                 img_result = webservice.downImage(vegeinfo_name);
+                Log.v("test","111122223333: "+line);
             }
             vegeinfo_goods_info = webservice.VegeInfo_Goods(vegeinfo_name);
             Log.v("test","vegeinfo goods info : "+vegeinfo_goods_info);
@@ -246,6 +253,18 @@ public class VegeInfo extends AppCompatActivity {
                             fertilizer.setText(split_line[5]);
                             bug.setText(split_line[6]);
                             harvest.setText(split_line[7]);
+                if(split_line[8].contains("http")) {
+                    pictureurl = split_line[8];
+                    try {
+                        url = new URL(pictureurl);
+                        if (url.toString().contains("http")) {
+                            mThreadHandler.post(r11);
+                        }
+
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    }
+                }
                         }
             else if (line.equals(can))
             {
@@ -260,18 +279,19 @@ public class VegeInfo extends AppCompatActivity {
                             harvest.setText(can);
                         }
                         //下載照片
-            try {
+            if(!img_result.equals("")) {
+                try {
 
-                Bitmap bitmap=null;
-                byte[] decode = Base64.decode(img_result,Base64.NO_CLOSE);
-                bitmap = BitmapFactory.decodeByteArray(decode, 0, decode.length);
-                Log.v("test","bitmap: "+decode.toString());
-                imageview.setImageBitmap(bitmap);
+                    Bitmap bitmap = null;
+                    byte[] decode = Base64.decode(img_result, Base64.NO_CLOSE);
+                    bitmap = BitmapFactory.decodeByteArray(decode, 0, decode.length);
+                    Log.v("test", "bitmap: " + decode.toString());
+                    imageview.setImageBitmap(bitmap);
 
-
-            } catch (Exception e) {
-                e.printStackTrace();
-                Log.v("test","錯誤: "+e.toString());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Log.v("test", "錯誤: " + e.toString());
+                }
             }
             if(!vegeinfo_goods_info.equals("can't not found"))
             {
@@ -286,7 +306,7 @@ public class VegeInfo extends AppCompatActivity {
                     try {
                         byte[] decode = Base64.decode(goods_img[i],Base64.NO_CLOSE);
                         bitmap = BitmapFactory.decodeByteArray(decode, 0, decode.length);
-
+                        dismissLoadingDialog();
 
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -345,6 +365,36 @@ public class VegeInfo extends AppCompatActivity {
         public void run() {
             webservice.Delete_like_vege(vegeinfo_name,gmail);
         }
+    };
+
+    private Runnable r11=new Runnable () {
+
+        public void run() {
+            HttpURLConnection connection = null;
+            try {
+                connection = (HttpURLConnection) url.openConnection();
+                connection.setDoInput(true);
+                connection.connect();
+                InputStream input = connection.getInputStream();
+                myBitmap = BitmapFactory.decodeStream(input);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            //請經紀人指派工作名稱 r，給工人做
+            mUI_Handler.post(r12);
+
+        }
+
+    };
+
+    private Runnable r12=new Runnable () {
+
+        public void run() {
+
+            imageview .setImageBitmap(myBitmap);
+            dismissLoadingDialog();
+        }
+
     };
 
     @Override

@@ -154,7 +154,7 @@ public class custom_vegeinfo extends AppCompatActivity {
 
             webservice.Insert_custom_vege("1",url_String,mvege_name.getText().toString(),medit_step.getText().toString(),medit_container.getText().toString(),
                     medit_soil.getText().toString(),medit_place.getText().toString(),medit_water.getText().toString(),medit_fertilizer.getText().toString(),medit_bug.getText().toString(),medit_harvest.getText().toString(),gmail);
-            Log.v("test","JJJJJJJJJ: "+mvege_name.getText().toString()+"/"+medit_step.getText().toString()+"/"+medit_container.getText().toString());
+            Log.v("test","JJJJJJJJJ: "+url_String+"/"+medit_step.getText().toString()+"/"+medit_container.getText().toString());
             mUI_Handler.post(r2);
         }
 
