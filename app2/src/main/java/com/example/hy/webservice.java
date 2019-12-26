@@ -801,7 +801,7 @@ public class webservice
         }
     }
 
-    public static String user_like_forum_cardview(String alllikepost)
+    public static String user_like_forum_cardview(String gmail)
     {
         String SOAP_ACTION = "http://tempuri.org/user_like_forum_cardview";          //命名空間+要用的函數名稱
         String METHOD_NAME = "user_like_forum_cardview";   //函數名稱
@@ -809,7 +809,7 @@ public class webservice
         //必須用try catch包著
         try {
             SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
-            request.addProperty("alllikepost",alllikepost);
+            request.addProperty("gmail",gmail);
 
             SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
             envelope.bodyOut = request;

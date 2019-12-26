@@ -106,19 +106,20 @@ public class like_post extends AppCompatActivity {
         mThreadHandler.post(r1);
     }
 
+//    Runnable r1 = new Runnable() {
+//        @Override
+//        public void run() {
+//            all_like_post=webservice.Select_all_like_post(gmail);
+//            Log.v("test123456","all:::::"+all_like_post);
+//            mThreadHandler.post(r3);
+//        }
+//    };
+
     Runnable r1 = new Runnable() {
         @Override
         public void run() {
             all_like_post=webservice.Select_all_like_post(gmail);
-            Log.v("test123456","all:::::"+all_like_post);
-            mThreadHandler.post(r3);
-        }
-    };
-
-    Runnable r3 = new Runnable() {
-        @Override
-        public void run() {
-            forum_cardview = webservice.user_like_forum_cardview(all_like_post);
+            forum_cardview = webservice.user_like_forum_cardview(gmail);
             Log.v("test123456","WTH:::::"+forum_cardview);
             mUI_Handler.post(r4);
         }
@@ -137,8 +138,8 @@ public class like_post extends AppCompatActivity {
                     for(int i = 0 ; i < split_cardview.length ; i++) {
                         split_cardview_info = split_cardview[i].split("WS切");
                         if(!forum_cardview.equals("can't not found")) {
-                        k = all_like_post.indexOf(split_cardview_info[1]);
-                        Log.v("test123456","all:::::"+split_cardview_info[1]);
+                        k = all_like_post.indexOf(split_cardview_info[6]);
+                        Log.v("test123456","all:::::"+split_cardview_info[6]);
                         //user + "WS切" + title + "WS切" + time + "WS切" + heartnum + "WS切" + commentnum + "WS切" + post_img
                         if (k>=0) {
                             postList.add(
@@ -185,7 +186,7 @@ public class like_post extends AppCompatActivity {
         //移除工人上的工作
         if (mThreadHandler != null) {
             mThreadHandler.removeCallbacks(r1);
-            mThreadHandler.removeCallbacks(r3);
+     //       mThreadHandler.removeCallbacks(r3);
         }
         //解聘工人 (關閉Thread)
         if (mThread != null) {
