@@ -1,5 +1,6 @@
 package com.example.hy.calendar;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -7,11 +8,16 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
+import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -24,6 +30,9 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.example.hy.AutoSplitTextView;
+import com.example.hy.DownloadImageTask;
 import com.example.hy.GlobalVariable;
 import com.example.hy.R;
 import com.example.hy.webservice;
@@ -37,10 +46,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 
 public class calendar extends AppCompatActivity {
+    List<choose_calendar_cardview> cardviewList;
     CalendarView cv1,QQ;
     TextView tv1,tv2,act_tv;
     String[] listItems,everyvege,sl;
@@ -49,20 +60,22 @@ public class calendar extends AppCompatActivity {
     Button edit,update,cancel;
     Spinner spi;
     Switch swi;
+    View sugcal_view;
     Intent intent;
     private static  final  int REQUEST_CODE=1;
-    GlobalVariable action_item_value,action_item_value2;
-    String date,decide_edit="edit",cal_data,Allvege="",setdate,pictureurl,Select_vege_name,gmail;
+    GlobalVariable action_item_value,action_item_value2,choose_calendar_info;
+    String date,decide_edit="edit",cal_data,Allvege="",setdate,pictureurl,Select_vege_name,gmail,choose_calendar_string,firstday="2019/4/28";
     //找到UI工人的經紀人，這樣才能派遣工作  (找到顯示畫面的UI Thread上的Handler)
     private Handler mUI_Handler = new Handler();
     //宣告特約工人的經紀人
     private Handler mThreadHandler;
     //宣告特約工人
     private HandlerThread mThread;
-
+    RecyclerView recyclerView;
     ImageView calendar_picture;
     Bitmap myBitmap,nopicture;
     URL url;
+    long temp2 = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +90,7 @@ public class calendar extends AppCompatActivity {
         //找到特約工人的經紀人，這樣才能派遣工作 (找到Thread上的Handler)
         mThreadHandler=new Handler(mThread.getLooper());
 
+        recyclerView= findViewById(R.id.calendar_info_recyclerview);
         calendar_picture = findViewById(R.id.calendar_picture);
         edit =(Button)findViewById(R.id.edit);
         update = (Button)findViewById(R.id.update);
@@ -89,31 +103,24 @@ public class calendar extends AppCompatActivity {
         action_item_value2= (GlobalVariable)getApplicationContext();
         spi = (Spinner)findViewById(R.id.spinner);
         swi = (Switch) findViewById(R.id.switch1);
+
         final Calendar calendar= Calendar.getInstance();
         date = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault()).format(new Date());
         tv1.setText(date);
-
+        mThreadHandler.post(r11);
         swi.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(calendar.this);
-                    builder.setTitle("提示功能☆即將推出，敬請期待!");
-                    builder.setMessage("查看引用的栽培日曆，參考種植該作物第幾天時該做什麼事!");
-                    builder.setPositiveButton("好", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-
-                        }
-                    });
-                    android.app.AlertDialog dialog=builder.create();
-                    dialog.show();
+                    recyclerView.setVisibility(View.VISIBLE);
+                    mThreadHandler.post(r9);
                 } else {
-
+                    cardviewList.clear();
+                    recyclerView.setVisibility(View.GONE);
                 }
             }
         });
-
+        choose_calendar_info = (GlobalVariable) getApplicationContext() ;
 
         spi.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -138,7 +145,23 @@ public class calendar extends AppCompatActivity {
             public void onSelectedDayChange(@NonNull CalendarView view, int y, int m, int dm) {
                 date = y+"/"+(m+1)+"/"+dm;
                 tv1.setText(date);
+                Log.v("test","WTTTTTTTH: "+firstday+"><"+date);
                 mThreadHandler.post(r3);
+                try{
+                    SimpleDateFormat sim = new SimpleDateFormat("yyyy/MM/dd");//定義日期時間格式，一定要進行ParseException的例外處理
+                    Date start = sim.parse(firstday);
+                    long startTime = start.getTime();//取得時間的unix時間
+                    Date end = sim.parse(date);//取得目前即時的時間
+                    long endTime = end.getTime();//取得時間的unix時間
+                    temp2 = (endTime-startTime)/(1000*60*60*24)+1;
+                }catch(Exception e){
+                    Log.v("test","天數錯誤: "+e);
+                }
+                if(swi.isChecked())
+                {
+                    cardviewList.clear();
+                    mThreadHandler.post(r9);
+                }
             }
         });
 
@@ -186,6 +209,7 @@ public class calendar extends AppCompatActivity {
             }
         });
 
+
         intent = getIntent();
         //把傳送進來的String型別的Message的值賦給新的變數message
         String message = intent.getStringExtra("EXTRA_MESSAGE");
@@ -197,6 +221,10 @@ public class calendar extends AppCompatActivity {
         if((!tv2.getText().equals("")) || tv2.getText().equals("")) {
             act_tv.setText(s);
         }
+
+        cardviewList = new ArrayList<>();
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(),
+                R.drawable.vege_info);
     }
 
     ///刪除某個日期的某個作物
@@ -362,6 +390,80 @@ public class calendar extends AppCompatActivity {
 
         }
     };
+    Runnable r9 = new Runnable() {
+        @Override
+        public void run() {
+           // String[] split=choose_calendar_info.getChoose_calendar_info().split("%");
+            String[] split = new String[3] ;
+            split[0] = "a123@gmail.com";
+            split[1] = "A01";
+            split[2] = "小白菜";
+            Log.v("test","split for ALL: " + choose_calendar_info.getChoose_calendar_info());
+            Log.v("test","split for everyone: " + split[0]+"           "+split[1]+"           "+split[2]);
+            choose_calendar_string = webservice.choose_calendar_info_cardview(split[0],split[1],split[2]);
+            Log.v("test","choose_calendar_info_cardview(split[0],split[1],split[2]) :  " + split[0]+"           "+split[1]+"           "+split[2]);
+            mUI_Handler.post(r10);
+
+        }
+    };
+
+    Runnable r10 = new Runnable() {
+        @Override
+        public void run() {
+            new Handler(Looper.getMainLooper()).post(new Runnable(){
+                @Override
+                public void run() {
+                    String[] all,split,start_date;
+                    if (!choose_calendar_string.equals(""))
+                    {
+                        all = choose_calendar_string.split("切");
+                        start_date = all[0].split("%");
+                        Log.v("test","choose_calendar_string:"+choose_calendar_string);
+                        for(int num = 0; num < all.length ;num ++)
+                        {
+                            split = all[num].split("%");
+
+                            Log.v("test","split:"+split[0]+"         "+split[1]+"         "+split[2]);
+                            //算天數
+                            long temp = 0;
+                            try{
+                                SimpleDateFormat sim = new SimpleDateFormat("yyyy/MM/dd");//定義日期時間格式，一定要進行ParseException的例外處理
+                                Date start = sim.parse(start_date[0]);
+                                long startTime = start.getTime();//取得時間的unix時間
+                                Date end = sim.parse(split[0]);//取得目前即時的時間
+                                long endTime = end.getTime();//取得時間的unix時間
+                                temp = (endTime-startTime)/(1000*60*60*24)+1;
+                                Log.v("test","天數: "+temp);
+                            }catch(Exception e){
+                                Log.v("test","天數錯誤: "+e);
+                            }
+
+                            //cardviewList.add(new choose_calendar_cardview(0,"2","2019-12-06","快長",bitmap));
+                            if(temp==temp2)
+                            { cardviewList.add(new choose_calendar_cardview(num,String.valueOf(temp),split[0],split[1],split[2]));}
+                            else{
+                                Toast.makeText(calendar.this, "今天沒紀錄", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+
+                        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));
+                        recyclerView.setAdapter(new calendar.CardAdapter(calendar.this, cardviewList));
+
+                    }
+                }
+            });
+        }
+    };
+    private Runnable r11=new Runnable () {
+
+        public void run() {
+
+//            firstday=webservice.select_cal_firstday("a123@gmail.com","A01","小白菜");
+        }
+
+    };
+
 
     @Override
     protected void onDestroy() {
@@ -373,10 +475,85 @@ public class calendar extends AppCompatActivity {
             mThreadHandler.removeCallbacks(r3);
             mThreadHandler.removeCallbacks(r5);
             mThreadHandler.removeCallbacks(r7);
+            mThreadHandler.removeCallbacks(r9);
+            mThreadHandler.removeCallbacks(r11);
         }
         //解聘工人 (關閉Thread)
         if (mThread != null) {
             mThread.quit();
+        }
+    }
+    private class CardAdapter extends  RecyclerView.Adapter<CardAdapter.ViewHolder>
+    {
+        private Context context;
+        List<choose_calendar_cardview> cardviewList;
+
+        CardAdapter(Context context, List<choose_calendar_cardview> cardviewList) {
+            this.context = context;
+            this.cardviewList = cardviewList;
+        }
+
+        @Override
+        public CardAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+            View view = LayoutInflater.from(context).inflate(R.layout.activity_choose_calendar_cardview,viewGroup,false);
+            return new ViewHolder(view);
+        }
+
+        @Override
+        public void onBindViewHolder(CardAdapter.ViewHolder viewHolder, int i) {
+            final choose_calendar_cardview cardview = cardviewList.get(i);
+            viewHolder.day.setText(String.valueOf(cardview.getDay()));
+            if(!cardview.getImage().equals("無圖片"))
+            {
+                //viewHolder.downloadImageTask.execute(cardview.getImage());
+                Glide.with(calendar.this).load(cardview.getImage()).into(viewHolder.img);
+            }
+            else
+            {
+                Glide.with(calendar.this).load(R.drawable.gender).into(viewHolder.img);
+            }
+
+            viewHolder.time.setText(String.valueOf((cardview.getTime())));
+            viewHolder.message.setText(String.valueOf((cardview.getMessage())));
+            viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+//                    addItem(cardviewList.size());
+//                    record_name.setRecord_vege_name(cardview.getName());
+//                    Intent intent = new Intent(record.this, record_Information2.class);
+//                    startActivity(intent);
+                }
+            });
+        }
+
+        @Override
+        public int getItemCount() {
+            return cardviewList.size();
+        }
+
+        class ViewHolder extends RecyclerView.ViewHolder{
+            DownloadImageTask downloadImageTask;
+            ImageView img;
+            TextView day,time;
+            AutoSplitTextView message;
+
+            ViewHolder(View itemView){
+                super(itemView);
+                //downloadImageTask = new DownloadImageTask((ImageView)itemView.findViewById(R.id.choose_calendar_img));
+                img = itemView.findViewById(R.id.choose_calendar_img);
+                day =  itemView.findViewById(R.id.choose_calendar_day);
+                time =  itemView.findViewById(R.id.choose_calendar_time);
+                message =  itemView.findViewById(R.id.choose_calendar_message);
+            }
+        }
+        public  void addItem(int i){
+//            fg = true;
+//            num = cardviewList.size()-1;
+//            //add(位置,資料)
+//            cardviewList.add(i, new record_Cardview(id,"小白菜", R.drawable.icon201));
+//            id=id+1;
+//            notifyItemInserted(i);
         }
     }
 }

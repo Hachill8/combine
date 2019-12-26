@@ -140,8 +140,6 @@ public class custom_vegeinfo extends AppCompatActivity {
                 else
                 {
                     mThreadHandler.post(r1);
-                    startActivity(intent);
-                    custom_vegeinfo.this.finish();
                 }
 
             }
@@ -154,7 +152,20 @@ public class custom_vegeinfo extends AppCompatActivity {
 
         public void run() {
 
-            webservice.Insert_custom_vege("1",url.toString(),vege_name,edit_step,edit_container,edit_soil,edit_place,edit_water,edit_fertilizer,edit_bug,edit_harvest,gmail);
+            webservice.Insert_custom_vege("1",url_String,mvege_name.getText().toString(),medit_step.getText().toString(),medit_container.getText().toString(),
+                    medit_soil.getText().toString(),medit_place.getText().toString(),medit_water.getText().toString(),medit_fertilizer.getText().toString(),medit_bug.getText().toString(),medit_harvest.getText().toString(),gmail);
+            Log.v("test","JJJJJJJJJ: "+mvege_name.getText().toString()+"/"+medit_step.getText().toString()+"/"+medit_container.getText().toString());
+            mUI_Handler.post(r2);
+        }
+
+    };
+
+    private Runnable r2=new Runnable () {
+
+        public void run() {
+
+            startActivity(intent);
+            custom_vegeinfo.this.finish();
         }
 
     };
