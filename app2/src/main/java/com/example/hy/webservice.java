@@ -14,6 +14,7 @@ public class webservice
     //以下字串必須完全正確，不能有空白!! (之前為了一個空白卡了兩小時...)
     private static final String NAMESPACE = "http://tempuri.org/" ;       //WebService預設的命名空間
     private static final String URL = "http://134.208.96.168/ws_test1/webservice.asmx";     //WebService的網址
+    //private static final String URL = "http://192.168.43.42/ws_test1/webservice.asmx";
     private static final String SOAP_ACTION = "http://tempuri.org/VegeInfo_WS";          //命名空間+要用的函數名稱
     private static final String METHOD_NAME = "VegeInfo_WS";   //函數名稱
 
@@ -372,7 +373,7 @@ public class webservice
         }
     }
 
-    public static String insert_cal_vege(String vege,String date,String s,String message,String url,String gmail)
+    public static String insert_cal_vege(String vege,String date,String s,String message,String url,String gmail,String plant_id)
     {
         String SOAP_ACTION = "http://tempuri.org/insert_cal_vege";          //命名空間+要用的函數名稱
         String METHOD_NAME = "insert_cal_vege";   //函數名稱
@@ -386,7 +387,7 @@ public class webservice
             request.addProperty("note",message);
             request.addProperty("picture",url);
             request.addProperty("gmail",gmail);
-
+            request.addProperty("plant_id",plant_id);
 
             SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
             envelope.bodyOut = request;
@@ -1042,7 +1043,7 @@ public class webservice
         }
     }
 
-    public static String Record_list()
+    public static String Record_list(String gmail)
     {
         String SOAP_ACTION = "http://tempuri.org/record_list";          //命名空間+要用的函數名稱
         String METHOD_NAME = "record_list";   //函數名稱
@@ -1050,7 +1051,7 @@ public class webservice
         //必須用try catch包著
         try {
             SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
-            request.addProperty("record_list_string","s");
+            request.addProperty("gmail",gmail);
 
             SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
             envelope.bodyOut = request;

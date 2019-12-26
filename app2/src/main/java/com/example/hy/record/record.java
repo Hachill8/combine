@@ -204,7 +204,7 @@ public class record extends AppCompatActivity
     Runnable record_search_r1 = new Runnable() {
         @Override
         public void run() {
-            record_search_string = webservice.Record_list();
+            record_search_string = webservice.Record_list(record_name.getUser_gmail());
             mThreadHandler.post(record_search_r2);
 
         }
@@ -226,13 +226,23 @@ public class record extends AppCompatActivity
                         split = all[0].split("%");
                         split_record_search_img = all[1].split("切");
                         int index=0;
-                        for(int i = 0;i < split.length/3;i++)
+                        if(split.length < 3)
                         {
                             split_record_search_date.add(split[index]);
                             split_record_search.add(split[index+1]);
-                            split_record_search_id.add(split[index+2]);
-                            index = index + 3;
+                            split_record_search_id.add("0");
                         }
+                        else
+                        {
+                            for(int i = 0;i < split.length/3;i++)
+                            {
+                                split_record_search_date.add(split[index]);
+                                split_record_search.add(split[index+1]);
+                                split_record_search_id.add(split[index+2]);
+                                index = index + 3;
+                            }
+                        }
+
 
 
                         //搜尋bar list view
@@ -250,6 +260,7 @@ public class record extends AppCompatActivity
                     for(int num = 0; num < split_record_search.size();num++)
                     {
                         cardviewList.add(new record_Cardview(split_record_search_id.get(num),split_record_search.get(num),split_record_search_date.get(num), split_record_search_img[num]));
+                        //cardviewList.add(new record_Cardview(String.valueOf(num),split_record_search.get(num),split_record_search_date.get(num), split_record_search_img[num]));
                     }
 
                     RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
@@ -352,6 +363,7 @@ public class record extends AppCompatActivity
             viewHolder.tx1.setText(String.valueOf(cardview.getName()));
             Glide.with(record.this).load(cardview.getImage()).into(viewHolder.plantId);
             viewHolder.tx2.setText(String.valueOf((cardview.getTime())));
+            Log.v("test","cardview.getName():  "+cardview.getName());
 
             viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -359,6 +371,7 @@ public class record extends AppCompatActivity
 
  //                   addItem(cardviewList.size());
                     record_name.setRecord_vege_name(cardview.getName());
+
                     Intent intent = new Intent(record.this, record_Information2.class);
                     startActivity(intent);
                 }

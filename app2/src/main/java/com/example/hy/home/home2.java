@@ -215,10 +215,12 @@ public class home2 extends AppCompatActivity{
                         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));
                         cardviewList.add(new home2_plant_img_cardview(0,"",R.drawable.gender));
                         cardviewList.add(new home2_plant_img_cardview(1,"",R.drawable.home_picture));
+                        recyclerView.setAdapter(new home2.CardAdapter(home2.this, cardviewList));
                     }
                     else
                     {
                         search_bt.setVisibility(View.GONE);
+                        cardviewList.clear();
                         String[] split=user_vege.split("%");
                         Log.v("test","user vege split length: "+split.length);
                         //首頁植物圖片判斷

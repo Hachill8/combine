@@ -70,7 +70,7 @@ public class calendar_memo extends AppCompatActivity {
     ProgressDialog mLoadingDialog;
     private final int REQUEST_PICK_IMAGE = 1;
     URL url;
-    String url_String="",vege,gmail;
+    String url_String="",vege,gmail,plant_id;
     Bitmap myBitmap;
 
     //找到UI工人的經紀人，這樣才能派遣工作  (找到顯示畫面的UI Thread上的Handler)
@@ -221,6 +221,7 @@ public class calendar_memo extends AppCompatActivity {
         //把傳送進來的String型別的date的值賦給新的變數
         date = intent2.getStringExtra("EXTRA_DATE");
         decide_action = intent2.getStringExtra("decide_edit");
+        plant_id = intent2.getStringExtra("plant_id");
         //在最上面textview中顯示出日期
         date_tv.setText(date);
 
@@ -238,6 +239,7 @@ public class calendar_memo extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(calendar_memo.this,calendar.class);
                 startActivity(intent);
+                calendar_memo.this.finish();
             }
         });
     }
@@ -293,7 +295,7 @@ public class calendar_memo extends AppCompatActivity {
     private Runnable r1=new Runnable () {
 
         public void run() {
-            line = webservice.insert_cal_vege(vege,date,s,message,url_String,gmail);
+            line = webservice.insert_cal_vege(vege,date,s,message,url_String,gmail,plant_id);
             //請經紀人指派工作名稱 r，給工人做
             mUI_Handler.post(r2);
 
@@ -311,6 +313,7 @@ public class calendar_memo extends AppCompatActivity {
             //啟動意圖
             Log.v("test1","line是: "+line);
             startActivity(intent);
+            calendar_memo.this.finish();
         }
 
     };

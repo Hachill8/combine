@@ -65,6 +65,8 @@ public class calendar extends AppCompatActivity {
     private static  final  int REQUEST_CODE=1;
     GlobalVariable action_item_value,action_item_value2,choose_calendar_info;
     String date,decide_edit="edit",cal_data,Allvege="",setdate,pictureurl,Select_vege_name,gmail,choose_calendar_string,firstday="2019/4/28";
+
+    String plant_id;
     //找到UI工人的經紀人，這樣才能派遣工作  (找到顯示畫面的UI Thread上的Handler)
     private Handler mUI_Handler = new Handler();
     //宣告特約工人的經紀人
@@ -126,6 +128,8 @@ public class calendar extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Select_vege_name=spi.getSelectedItem().toString();
+                plant_id = String.valueOf(spi.getSelectedItemPosition());
+                Log.v("test","plant_id spinner: "+plant_id);
                 action_item_value.setSelect_vege_name(Select_vege_name);
                 mThreadHandler.post(r3);
             }
@@ -172,6 +176,7 @@ public class calendar extends AppCompatActivity {
                 //給message起一個名字，並傳給另一個activity
                 intent2.putExtra("EXTRA_DATE",date);
                 intent2.putExtra("decide_edit",decide_edit);
+                intent2.putExtra("plant_id",plant_id);
                 startActivity(intent2);
                 calendar.this.finish();
             }

@@ -97,8 +97,9 @@ public class record_Information2 extends AppCompatActivity{
 
         public void run() {
 
-            gmail=action_item_value.getUser_email();
+            gmail=action_item_value.getUser_gmail();
             cal_data = webservice.select_cal(gmail,action_item_value.getRecord_vege_name(),date);
+            Log.v("test","(gmail,action_item_value.getRecord_vege_name(),date): "+ gmail + "    "+action_item_value.getRecord_vege_name()+"    "+date);
             Log.v("test","cal_data: "+cal_data);
             //請經紀人指派工作名稱 r，給工人做
             mUI_Handler.post(r4);

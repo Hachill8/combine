@@ -151,6 +151,7 @@ public class VegeInfo extends AppCompatActivity {
                 mThreadHandler.post(r3);
                 Intent b = new Intent(VegeInfo.this, home2.class);
                 startActivity(b);
+                VegeInfo.this.finish();
 
             }
         } );

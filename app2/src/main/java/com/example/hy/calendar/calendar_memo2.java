@@ -225,6 +225,7 @@ public class calendar_memo2 extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(calendar_memo2.this, calendar.class);
                 startActivity(intent);
+                calendar_memo2.this.finish();
             }
         });
     }
@@ -295,6 +296,7 @@ public class calendar_memo2 extends AppCompatActivity {
                 Log.v("test","url.toString: "+url_String);
             }
             startActivity(intent);
+            calendar_memo2.this.finish();
         }
 
     };
