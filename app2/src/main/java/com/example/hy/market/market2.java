@@ -1,5 +1,6 @@
 package com.example.hy.market;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -46,6 +47,7 @@ public class market2 extends AppCompatActivity
     String img_result; //圖片字串
     ImageView Product_img;
 
+
     String product_cart_info=""; //抓商品相關資料給購物車
     ProgressDialog mLoadingDialog;
     @Override
@@ -54,6 +56,9 @@ public class market2 extends AppCompatActivity
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_market3);
+
+
+
 
         //各TextViewfind ID
         etAmount = (TextView) findViewById(R.id.etAmount);

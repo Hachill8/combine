@@ -22,11 +22,13 @@
                 android:background="@drawable/market_headind_bkgd" />
 
             <Button
+                android:onClick="ShowPopup"
+                android:id="@+id/shopping_list"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginLeft="15dp"
-                android:background="@drawable/market_user">
+                android:background="@drawable/user10">
             </Button>
 
             <Button

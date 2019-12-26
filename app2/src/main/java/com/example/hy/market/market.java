@@ -1,5 +1,6 @@
 package com.example.hy.market;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import android.widget.Toast;
 
 import com.example.hy.GlobalVariable;
 import com.example.hy.R;
+import com.example.hy.ship;
 import com.example.hy.webservice;
 
 import java.util.ArrayList;
@@ -42,12 +44,16 @@ public class market extends AppCompatActivity
     String[] split_line={}; //搜尋的listview
     GlobalVariable market_item; //傳遞商品名稱
 
+    Dialog shopping_list;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         getWindow().setFlags( WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_market2);
+
+        shopping_list=new Dialog( this );
 
 
         market_item  = (GlobalVariable)getApplicationContext();
@@ -125,6 +131,33 @@ public class market extends AppCompatActivity
         RecyclerView recyclerView2 = (RecyclerView) findViewById(R.id.market2_recyclerview2);
         recyclerView2.setLayoutManager(new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL));
         recyclerView2.setAdapter(new market.CardAdapter(this, cardviewList2));
+
+    }
+
+    public void ShowPopup(View view)
+    {
+        Button btn_ship,btn_get,btn_finish,btn_cancel;
+        shopping_list.setContentView( R.layout.shopping_list_popup );
+        btn_ship=(Button)shopping_list.findViewById( R.id.btn_ship );
+        btn_get=(Button)shopping_list.findViewById( R.id.btn_get );
+        btn_finish=(Button)shopping_list.findViewById( R.id.btn_finish );
+        btn_cancel=(Button)shopping_list.findViewById( R.id.btn_cancel );
+
+
+        btn_ship.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Intent a = new Intent(market.this, ship.class);
+                startActivity(a);
+
+            }
+        } );
+
+
+        shopping_list.show();
+
+
 
     }
 

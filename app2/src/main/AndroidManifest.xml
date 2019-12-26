@@ -3,8 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.hy">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:name=".GlobalVariable"
         android:allowBackup="true"
@@ -15,6 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".ship_detail"></activity>
+        <activity android:name=".ship" />
         <activity android:name=".user_setting.personal_info_edit" />
         <activity android:name=".user_setting.personal_help" />
         <activity android:name=".user_setting.personal_info" />
@@ -34,7 +34,7 @@
         <activity android:name=".forum.forum" />
         <activity
             android:name=".market.market"
-            android:configChanges="orientation|keyboardHidden"></activity>
+            android:configChanges="orientation|keyboardHidden" />
         <activity android:name=".market.market2" />
         <activity android:name=".market.market_p4" />
         <activity android:name=".user_setting.user_setting" />
@@ -66,5 +66,7 @@
         <activity android:name=".home.home2" />
         <activity android:name=".market.market_to_pay" />
     </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
