@@ -34,6 +34,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.hy.GlobalVariable;
 import com.example.hy.R;
@@ -52,9 +53,9 @@ public class home2 extends AppCompatActivity{
     BottomSheetDialog bottomSheetDialog;
     ImageButton record,calendar,discuss,store,setting,user,hat,edit_pot;
     Dialog banboo_hat_level;
-
+    String delete_cardview_id;
     GlobalVariable GV; //首頁作物照片(暫時)
-
+    int cardview_id;
     Button taipei_life,taipei_land_lease,taipei_farmers,search_bt;
 
     List<home2_plant_img_cardview> cardviewList;
@@ -175,11 +176,6 @@ public class home2 extends AppCompatActivity{
         search_bt=(Button) findViewById(R.id.search_bt);
         search_bt.setVisibility(View.VISIBLE);
 
-
-
-
-
-
             search_bt.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -197,8 +193,6 @@ public class home2 extends AppCompatActivity{
             user_vege = webservice.Select_user_vege(gmail);
 
             mThreadHandler.post(home2_cardview_r2);
-
-
         }
     };
 
@@ -212,16 +206,19 @@ public class home2 extends AppCompatActivity{
                     Log.v("test","user_vege: "+user_vege);
                     if(user_vege.equals("can't not found"))
                     {
+                        cardviewList.clear();
                         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));
-                        cardviewList.add(new home2_plant_img_cardview(0,"",R.drawable.gender));
-                        cardviewList.add(new home2_plant_img_cardview(1,"",R.drawable.home_picture));
+                        cardviewList.add(new home2_plant_img_cardview(0,"",R.drawable.gender,""));
+                        cardviewList.add(new home2_plant_img_cardview(1,"",R.drawable.home_picture,""));
                         recyclerView.setAdapter(new home2.CardAdapter(home2.this, cardviewList));
                     }
                     else
                     {
                         search_bt.setVisibility(View.GONE);
                         cardviewList.clear();
-                        String[] split=user_vege.split("%");
+                        String[] split_all = user_vege.split("分開");
+                        String[] split=split_all[0].split("%");
+                        String[] split_index=split_all[1].split("%");
                         Log.v("test","user vege split length: "+split.length);
                         //首頁植物圖片判斷
                         for(int i = 0;i < split.length;i++)
@@ -229,31 +226,31 @@ public class home2 extends AppCompatActivity{
 
                             switch (split[i]) {
                                 case "紅蘿蔔":
-                                    cardviewList.add(new home2_plant_img_cardview(i, split[i], R.drawable.vege_carrot_pot));
+                                    cardviewList.add(new home2_plant_img_cardview(i, split[i], R.drawable.vege_carrot_pot,split_index[i]));
                                     break;
                                 case "空心菜":
-                                    cardviewList.add(new home2_plant_img_cardview(i, split[i], R.drawable.vege_kon_pot));
+                                    cardviewList.add(new home2_plant_img_cardview(i, split[i], R.drawable.vege_kon_pot,split_index[i]));
                                     break;
                                 case "秋葵":
-                                    cardviewList.add(new home2_plant_img_cardview(i, split[i], R.drawable.vege_ciu_pot));
+                                    cardviewList.add(new home2_plant_img_cardview(i, split[i], R.drawable.vege_ciu_pot,split_index[i]));
                                     break;
                                 case "小白菜":
-                                    cardviewList.add(new home2_plant_img_cardview(i, split[i], R.drawable.vege_small_pot));
+                                    cardviewList.add(new home2_plant_img_cardview(i, split[i], R.drawable.vege_small_pot,split_index[i]));
                                     break;
                                 case "大白菜":
-                                    cardviewList.add(new home2_plant_img_cardview(i, split[i], R.drawable.vege_chinese_cabbage_pot));
+                                    cardviewList.add(new home2_plant_img_cardview(i, split[i], R.drawable.vege_chinese_cabbage_pot,split_index[i]));
                                     break;
                                 case "青花菜":
-                                    cardviewList.add(new home2_plant_img_cardview(i, split[i], R.drawable.vege_broccoli_pot));
+                                    cardviewList.add(new home2_plant_img_cardview(i, split[i], R.drawable.vege_broccoli_pot,split_index[i]));
                                     break;
                                 case "茄子":
-                                    cardviewList.add(new home2_plant_img_cardview(i, split[i], R.drawable.vege_eggplant_pot));
+                                    cardviewList.add(new home2_plant_img_cardview(i, split[i], R.drawable.vege_eggplant_pot,split_index[i]));
                                     break;
                                 case "高麗菜":
-                                    cardviewList.add(new home2_plant_img_cardview(i, split[i], R.drawable.vege_cabbage_pot));
+                                    cardviewList.add(new home2_plant_img_cardview(i, split[i], R.drawable.vege_cabbage_pot,split_index[i]));
                                     break;
                                 default:
-                                    cardviewList.add(new home2_plant_img_cardview(i, split[i], R.drawable.no_vege_picture));
+                                    cardviewList.add(new home2_plant_img_cardview(i, split[i], R.drawable.no_vege_picture,split_index[i]));
                                     break;
                             }
                             Log.v("test","for 的 i : "+i);
@@ -271,6 +268,22 @@ public class home2 extends AppCompatActivity{
         }
     };
 
+    Runnable delete_cardview_r1= new Runnable() {
+        @Override
+        public void run() {
+            webservice.Delete_home2_cardview(delete_cardview_id);
+            mThreadHandler.post(home2_cardview_r1);
+            mThreadHandler.post(delete_cardview_r2);
+        }
+    };
+
+    Runnable delete_cardview_r2= new Runnable() {
+        @Override
+        public void run() {
+
+            Toast.makeText(home2.this,"刪除成功", Toast.LENGTH_SHORT).show();
+        }
+    };
 
 
     private void ShowPopUp_level()
@@ -385,11 +398,26 @@ public class home2 extends AppCompatActivity{
                 viewHolder.plant_name.setText(cardview.getId()+"  "+cardview.getName());
             }
             viewHolder.plant_img.setImageResource(cardview.getImage());
-
+            cardview_id = i;
             viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(home2.this);
+                    builder.setMessage("確定要刪除盆栽嗎?");
+                    builder.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            delete_cardview_id = cardview.getIndex();
+                            mThreadHandler.post(delete_cardview_r1);
 
+                        }
+                    });
+                    builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int id) {
+                        }
+                    });
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
 //                    addItem(cardviewList.size());
 //                    record_name.setRecord_vege_name(cardview.getName());
 //                    Intent intent = new Intent(record.this, record_Information2.class);

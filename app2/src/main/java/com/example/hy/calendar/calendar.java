@@ -375,7 +375,8 @@ public class calendar extends AppCompatActivity {
 
         public void run() {
 
-            everyvege = Allvege.split("%");
+            String[]  split = Allvege.split("分開");
+            everyvege = split[0].split("%");
             if (everyvege.equals("")) {
                 String[] novege = {"未新增作物"};
                 final String[] lunch = novege;

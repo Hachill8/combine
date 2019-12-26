@@ -117,6 +117,7 @@ public class choose_calendar extends AppCompatActivity {
                         Bitmap myBitmap=null;
                         for(int num = split_vege.size()-1; num >= 0 ;num --)
                         {
+                           Log.v("test","choose_calendar_cardview的num: "+num);
                             //choose_calendar_cardview(String id_string,String gmail,String URL,String place,String vege)
                             cardviewList.add(new choose_calendar_cardview(split_id_string.get(num),split_gmail.get(num),split_img[num],"壽豐",split_vege.get(num)));
                         }

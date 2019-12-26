@@ -6,21 +6,29 @@ import android.media.Image;
 public class home2_plant_img_cardview
 {
     private int id;
-    private String name;
+    private String name,index;
     private int image;
 
     public home2_plant_img_cardview(){
         super();
     }
 
-    public home2_plant_img_cardview(int id,String name,int image)
+    public home2_plant_img_cardview(int id,String name,int image,String index)
     {
         super();
         this.name = name;
         this.image = image;
         this.id = id;
+        this.index = index;
     }
 
+    public String getIndex(){
+        return index;
+    }
+
+    public void setIndex(){
+        this.index = index;
+    }
 
     public String getName(){
         return name;
