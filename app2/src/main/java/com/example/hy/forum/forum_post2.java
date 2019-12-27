@@ -63,7 +63,7 @@ public class forum_post2 extends AppCompatActivity {
     Button postTV_to_forum;
     com.varunest.sparkbutton.SparkButton post_like,keep_post;
     String[] split;
-    String post_all="",OKOK,likeornot,gmail,user_like;
+    String post_all="",OKOK,likeornot,gmail,user_like,post_id;
     int likenum;
     boolean fg=true,post_like_fg=false;
     //找到UI工人的經紀人，這樣才能派遣工作  (找到顯示畫面的UI Thread上的Handler)
@@ -302,6 +302,7 @@ public class forum_post2 extends AppCompatActivity {
                     post_time.setText(split[2]);
                     Log.v("test", "content_post::::: " + content_post);
                     content_post = split[1];
+                    post_id=split[5];
                     content_post = content_post.replace("\n", "<br/>");
                     if(content_post.contains("https"))
                     {
