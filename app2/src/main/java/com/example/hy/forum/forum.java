@@ -128,7 +128,7 @@ public class forum extends AppCompatActivity implements ViewPager.OnPageChangeLi
 
                 Intent x = new Intent(forum.this,forum_post2.class);
                 search_forum.setText("");
-                search_forum = null; //要重置
+                //search_forum = null; //要重置
                 startActivity(x);
 
 
