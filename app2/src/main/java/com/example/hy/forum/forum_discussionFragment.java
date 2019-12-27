@@ -271,8 +271,10 @@ public class forum_discussionFragment extends Fragment implements SwipeRefreshLa
                 @Override
                 public void onClick(View v) {
                     Search_forum_string_item.setForum_title_click(post.getId());
+                    Search_forum_string_item.setForum_title(post.getShortdesc());
                     Intent i = new Intent(getActivity(),forum_post2.class);
                     startActivity(i);
+                    getActivity().finish();
                 }
             });
 

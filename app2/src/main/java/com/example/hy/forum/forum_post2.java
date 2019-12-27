@@ -140,12 +140,12 @@ public class forum_post2 extends AppCompatActivity {
         //文章內容
         gl = (GlobalVariable) getApplicationContext();
         gmail = gl.getUser_gmail();
-        if(gl.getForum_title_click() > -1)
-        {
-            mThreadHandler.post(r1);
-        }
-        else
-        {
+//        if(gl.getForum_title_click() > -1)
+//        {
+//            mThreadHandler.post(r1);
+//        }
+//        else
+//        {
             content_post = gl.getForum_content();
             post_title_tv.setText(gl.getForum_title());
             mThreadHandler.post(r1);
@@ -159,7 +159,7 @@ public class forum_post2 extends AppCompatActivity {
 //            //文章圖片
 //            MyImageGetter myImageGetter = new MyImageGetter();
 //            post_content_tv.setText(Html.fromHtml(content_post, myImageGetter, null));
-        }
+ //       }
 
 
 
@@ -273,17 +273,17 @@ public class forum_post2 extends AppCompatActivity {
     private Runnable r1 = new Runnable() {
         @Override
         public void run() {
-            if(gl.getForum_title_click() > -1) {
-                post_all = webservice.forum_post_view(gl.getForum_title_click());
-                Log.v("test","if~~~~~~~~~~~~~~~   "+gl.getForum_title_click());
-                gl.setForum_title_click(-1);
-
-            }
-            else
-            {
+//            if(gl.getForum_title_click() > -1) {
+//                post_all = webservice.forum_post_view(gl.getForum_title_click());
+//                Log.v("test","if~~~~~~~~~~~~~~~   "+gl.getForum_title_click());
+//                gl.setForum_title_click(-1);
+//
+//            }
+//            else
+//            {
                 post_all = webservice.forum_post_view2(gl.getForum_title());
                 Log.v("test","else~~~~~~~~~~~~~~        "+gl.getForum_title());
-            }
+  //          }
 
             mUI_Handler.post(r2);
         }

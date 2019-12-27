@@ -157,7 +157,9 @@ public class forum_add_new_post extends AppCompatActivity
             }
             else
             {
+                Log.v("test","line :  "+line);
                 gl.setForum_title_click(Integer.valueOf(line));
+                gl.setForum_title(post_title.getText().toString());
                 startActivity(a);
                 //關閉activity
                 forum_add_new_post.this.finish();

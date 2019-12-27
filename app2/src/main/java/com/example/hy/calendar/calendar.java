@@ -387,6 +387,10 @@ public class calendar extends AppCompatActivity {
                 spi.setAdapter(lunchList);
             } else {
                 final String[] lunch = everyvege;
+                for(int i=0;i<lunch.length;i++)
+                {
+                    lunch[i] = i + lunch[i];
+                }
                 ArrayAdapter<String> lunchList = new ArrayAdapter<>(calendar.this,
                         R.layout.login2_select_dropdown_item,
                         lunch);
