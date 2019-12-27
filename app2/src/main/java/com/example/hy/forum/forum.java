@@ -1,6 +1,7 @@
 package com.example.hy.forum;
 
 
+import android.content.Context;
 import android.content.Intent;
 
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
 
+import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -16,6 +18,7 @@ import android.support.v4.view.ViewPager;
 
 import android.support.v7.app.AppCompatActivity;
 
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,12 +30,16 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.hy.GlobalVariable;
 import com.example.hy.R;
 
 import com.example.hy.webservice;
 
+import java.util.List;
 
 
 public class forum extends AppCompatActivity implements ViewPager.OnPageChangeListener,
@@ -45,6 +52,7 @@ public class forum extends AppCompatActivity implements ViewPager.OnPageChangeLi
     AutoCompleteTextView search_forum;
     GlobalVariable Search_forum_string_item;
     String Search_forum_string_list="";
+    String[] split_id;
     private forum_discussionFragment discussionFragment = new forum_discussionFragment();
     private forum_exchangeFragment exchangeFragment = new forum_exchangeFragment();
 
@@ -117,6 +125,7 @@ public class forum extends AppCompatActivity implements ViewPager.OnPageChangeLi
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Search_forum_string_item.setForum_title(search_forum.getText().toString());
+
                 Intent x = new Intent(forum.this,forum_post2.class);
                 search_forum.setText("");
                 search_forum = null; //要重置
@@ -142,6 +151,7 @@ public class forum extends AppCompatActivity implements ViewPager.OnPageChangeLi
         @Override
         public void run() {
             Search_forum_string_list = webservice.Search_forum_list();
+
             mThreadHandler.post(select_r2);
         }
     };
@@ -152,7 +162,10 @@ public class forum extends AppCompatActivity implements ViewPager.OnPageChangeLi
             new Handler(Looper.getMainLooper()).post(new Runnable(){
                 @Override
                 public void run() {
-                    String[] split=Search_forum_string_list.split("我是切割線");
+                    String[] split_all = Search_forum_string_list.split("分開");
+                    split_id = split_all[1].split("%");
+
+                    String[] split=split_all[0].split("我是切割線");
                     search_forum.setAdapter(new ArrayAdapter<>(forum.this,android.R.layout.simple_list_item_1,split));
                 }
             });
@@ -200,6 +213,8 @@ public class forum extends AppCompatActivity implements ViewPager.OnPageChangeLi
     public void onPageScrollStateChanged(int i) {
 
     }
+
+
 
 
 

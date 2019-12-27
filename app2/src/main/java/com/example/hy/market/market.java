@@ -43,8 +43,8 @@ public class market extends AppCompatActivity
     String good_name="can't not found"; //商品字串
     String[] split_line={}; //搜尋的listview
     GlobalVariable market_item; //傳遞商品名稱
-
-    Dialog shopping_list;
+    Button shopping_list;
+   // Dialog shopping_list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -53,7 +53,7 @@ public class market extends AppCompatActivity
         getWindow().setFlags( WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_market2);
 
-        shopping_list=new Dialog( this );
+        //shopping_list=new Dialog( this );
 
 
         market_item  = (GlobalVariable)getApplicationContext();
@@ -66,6 +66,16 @@ public class market extends AppCompatActivity
                 market.this.finish();
             }
         });
+
+        shopping_list = findViewById(R.id.shopping_list);
+        shopping_list.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(market.this,market_order_info.class);
+                startActivity(i);
+            }
+        });
+
 
         Button search_market_bar_to_productinfo = (Button)findViewById(R.id.search_market_bar_to_productinfo);
         search_market_bar_to_productinfo.setOnClickListener(new View.OnClickListener() {
@@ -134,32 +144,32 @@ public class market extends AppCompatActivity
 
     }
 
-    public void ShowPopup(View view)
-    {
-        Button btn_ship,btn_get,btn_finish,btn_cancel;
-        shopping_list.setContentView( R.layout.shopping_list_popup );
-        btn_ship=(Button)shopping_list.findViewById( R.id.btn_ship );
-        btn_get=(Button)shopping_list.findViewById( R.id.btn_get );
-        btn_finish=(Button)shopping_list.findViewById( R.id.btn_finish );
-        btn_cancel=(Button)shopping_list.findViewById( R.id.btn_cancel );
-
-
-        btn_ship.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                Intent a = new Intent(market.this, ship.class);
-                startActivity(a);
-
-            }
-        } );
-
-
-        shopping_list.show();
-
-
-
-    }
+//    public void ShowPopup(View view)
+//    {
+//        Button btn_ship,btn_get,btn_finish,btn_cancel;
+//        shopping_list.setContentView( R.layout.shopping_list_popup );
+//        btn_ship=(Button)shopping_list.findViewById( R.id.btn_ship );
+//        btn_get=(Button)shopping_list.findViewById( R.id.btn_get );
+//        btn_finish=(Button)shopping_list.findViewById( R.id.btn_finish );
+//        btn_cancel=(Button)shopping_list.findViewById( R.id.btn_cancel );
+//
+//
+//        btn_ship.setOnClickListener( new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v)
+//            {
+//                Intent a = new Intent(market.this, ship.class);
+//                startActivity(a);
+//
+//            }
+//        } );
+//
+//
+//        shopping_list.show();
+//
+//
+//
+//    }
 
 
     Runnable r1=new Runnable () {

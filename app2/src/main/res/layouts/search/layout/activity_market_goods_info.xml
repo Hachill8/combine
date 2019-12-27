@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="購買清單"
+        android:textSize="30sp"
+        android:paddingTop="18dp"
+        android:paddingStart="18dp"
+        />
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/market_tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+
+        >
+
+        <android.support.design.widget.TabItem
+            android:id="@+id/ready_to_ship"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="待出貨" />
+        <android.support.design.widget.TabItem
+            android:id="@+id/ready_to_receive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="待收貨" />
+        <android.support.design.widget.TabItem
+            android:id="@+id/order_successed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="訂單已完成" />
+        <android.support.design.widget.TabItem
+            android:id="@+id/order_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="已取消" />
+    </android.support.design.widget.TabLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/market_viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

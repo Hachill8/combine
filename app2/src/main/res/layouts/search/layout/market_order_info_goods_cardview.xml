@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/vege_card_view1"
+    android:layout_width="355dp"
+    android:layout_height="320dp"
+    android:layout_gravity="center"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+    android:layout_marginStart="10dp"
+    app:cardCornerRadius="20dp"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="20dp"
+            android:text="待出貨"
+            android:textColor="#FC9D33"
+            android:layout_marginTop="15dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+
+            />
+
+
+
+
+
+
+        <LinearLayout
+            android:id="@+id/goods_LL"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true">
+
+            <TextView
+                android:id="@+id/order_goods_num"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:text="5"/>
+
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:gravity="left|center"
+                android:textSize="20sp"
+                android:text="樣商品"/>
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:text="付款金額"/>
+
+            <TextView
+                android:id="@+id/order_goods_price"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center|left"
+                android:textColor="#FC9D33"
+                android:textSize="20sp"
+                android:text="$860"/>
+
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/order_goods_img"
+            android:layout_width="120dp"
+            android:layout_height="90dp"
+            android:layout_above="@+id/goods_LL"
+            android:layout_marginBottom="70dp"
+            android:layout_marginStart="10dp"
+            />
+
+        <TextView
+            android:id="@+id/order_goods_context"
+            android:layout_toEndOf="@+id/order_goods_img"
+            android:layout_above="@+id/goods_LL"
+            android:layout_marginBottom="70dp"
+            android:layout_marginStart="20dp"
+            android:layout_width="150dp"
+            android:layout_height="90dp"
+            android:text="123456"
+            android:textSize="15sp"/>
+
+        <View
+            android:layout_width="330dp"
+            android:layout_height="1.3dp"
+            android:layout_gravity="center"
+            android:background="#D2D5D3"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_above="@+id/goods_LL"/>
+
+    </RelativeLayout>
+
+
+
+</android.support.v7.widget.CardView>

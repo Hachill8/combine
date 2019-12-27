@@ -1132,6 +1132,35 @@ public class webservice
             return e.toString();
         }
     }
+    public static String forum_post_view2(String name_title)
+    {
+        String SOAP_ACTION = "http://tempuri.org/forum_post_view2";          //命名空間+要用的函數名稱
+        String METHOD_NAME = "forum_post_view2";   //函數名稱
+        try {
+            SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
+            request.addProperty("name_title",name_title);
+
+
+            SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+            envelope.bodyOut = request;
+            envelope.dotNet = true;//若WS有輸入參數必須要加這一行否則WS沒反應
+            envelope.setOutputSoapObject(request);
+            envelope.encodingStyle = "utf-8";
+            HttpTransportSE ht = new HttpTransportSE(URL);
+            ht.call(SOAP_ACTION, envelope);
+
+            // 獲取回傳數據
+            SoapObject object = (SoapObject) envelope.bodyIn;
+            Log.v("test","object: "+object);
+            // 獲取返回的結果
+            String result = object.getProperty(0).toString();
+            Log.v("test","result: "+result);
+            return result;
+        } catch (Exception e) {
+            Log.v("test","e.toString(): "+e.toString());
+            return e.toString();
+        }
+    }
 
     public static String Add_user_like(int id,String gmail)
     {
@@ -1513,6 +1542,35 @@ public class webservice
         try {
             SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
             request.addProperty("id",id);
+
+            SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+            envelope.bodyOut = request;
+            envelope.dotNet = true;//若WS有輸入參數必須要加這一行否則WS沒反應
+            envelope.setOutputSoapObject(request);
+            envelope.encodingStyle = "utf-8";
+            HttpTransportSE ht = new HttpTransportSE(URL);
+            ht.call(SOAP_ACTION, envelope);
+
+            // 獲取回傳數據
+            SoapObject object = (SoapObject) envelope.bodyIn;
+            Log.v("test","object: "+object);
+            // 獲取返回的結果
+            String result = object.getProperty(0).toString();
+            Log.v("test","result: "+result);
+            return result;
+        } catch (Exception e) {
+            Log.v("test","e.toString(): "+e.toString());
+            return e.toString();
+        }
+    }
+
+    public static String market_order_cardview()
+    {
+        String SOAP_ACTION = "http://tempuri.org/market_order_cardview";          //命名空間+要用的函數名稱
+        String METHOD_NAME = "market_order_cardview";   //函數名稱
+        try {
+            SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
+            //request.addProperty("","");
 
             SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
             envelope.bodyOut = request;

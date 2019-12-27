@@ -273,7 +273,18 @@ public class forum_post2 extends AppCompatActivity {
     private Runnable r1 = new Runnable() {
         @Override
         public void run() {
-            post_all = webservice.forum_post_view(gl.getForum_title_click());
+            if(gl.getForum_title_click() > -1) {
+                post_all = webservice.forum_post_view(gl.getForum_title_click());
+                Log.v("test","if~~~~~~~~~~~~~~~   "+gl.getForum_title_click());
+                gl.setForum_title_click(-1);
+
+            }
+            else
+            {
+                post_all = webservice.forum_post_view2(gl.getForum_title());
+                Log.v("test","else~~~~~~~~~~~~~~        "+gl.getForum_title());
+            }
+
             mUI_Handler.post(r2);
         }
     };

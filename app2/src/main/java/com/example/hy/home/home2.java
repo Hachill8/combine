@@ -204,7 +204,7 @@ public class home2 extends AppCompatActivity{
                 public void run() {
 
                     Log.v("test","user_vege: "+user_vege);
-                    if(user_vege.equals("can't not found"))
+                    if(user_vege.equals("找不到"))
                     {
                         cardviewList.clear();
                         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));

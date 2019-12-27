@@ -20,7 +20,7 @@ public class GlobalVariable extends Application
     private String Search_forum_string="無";
     private String User_email="";
     private String Record_vege_name="";
-    private int Forum_title_click;
+    private int Forum_title_click=-1;
     private String Select_vege_name="";
     private String Choose_calendar_gmail="無",Choose_calendar_vege="無",Choose_calendar_id_string="無";
 
