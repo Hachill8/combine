@@ -98,12 +98,12 @@ public class search extends AppCompatActivity  {
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.vege_small);
         cardviewList = new ArrayList<>();
         cardviewList.add(new vege_cardview(0,"小白菜",bitmap,"#01~12月","#約30天可採收"));
-        bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.record_vege_3);
-        cardviewList.add(new vege_cardview(1,"空心菜",bitmap,"#04~08月","#約30天可採收"));
-        bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.vege_ciu);
-        cardviewList.add(new vege_cardview(2,"秋葵",bitmap,"#04~06月","#3~4個月可以採收"));
-        bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.vege_carrot);
-        cardviewList.add(new vege_cardview(3,"紅蘿蔔",bitmap,"#08~02月","#3~4個月可採收"));
+        bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.vege_chinese_cabbage);
+        cardviewList.add(new vege_cardview(1,"大白菜",bitmap,"#10~04月","#定植後40~50天"));
+        bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.vege_eggplant);
+        cardviewList.add(new vege_cardview(2,"茄子",bitmap,"#07~08月、11~02月","#約3~4個月收"));
+        bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.vege_broccoli);
+        cardviewList.add(new vege_cardview(3,"青花菜",bitmap,"#08~12月","#定植後40~50天收"));
 
 
 
