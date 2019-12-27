@@ -477,7 +477,6 @@ public class VegeInfo extends AppCompatActivity {
         }
     }
     private void showLoadingDialog(String message){
-        message = "載入中...";
         mLoadingDialog.setMessage(message);
         if(mLoadingDialog==null){
             mLoadingDialog = new ProgressDialog(this);

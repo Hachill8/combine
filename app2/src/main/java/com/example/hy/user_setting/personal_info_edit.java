@@ -366,7 +366,7 @@ public class personal_info_edit extends AppCompatActivity {
     private Runnable r4=new Runnable () {
 
         public void run() {
-
+            gl.setUser_name(edit_name.getText().toString());
             Intent intent=new Intent(personal_info_edit.this, personal_info.class);
             startActivity(intent);
             personal_info_edit.this.finish();

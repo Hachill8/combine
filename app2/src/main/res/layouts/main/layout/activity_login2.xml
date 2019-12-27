@@ -39,6 +39,7 @@
                 android:textColor="#518D62"
                 android:background="@drawable/edit_pencil2"
                 android:hint="輸入姓名"
+                android:singleLine="true"
                 android:textColorHint="#518D62"/>
 
             <EditText
@@ -49,6 +50,7 @@
             android:textColorHint="#518D62"
             android:layout_gravity="center"
             android:textColor="#518D62"
+                android:singleLine="true"
             android:layout_marginTop="30dp"
             android:paddingLeft="47dp"
             android:inputType="phone"

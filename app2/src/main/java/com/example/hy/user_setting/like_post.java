@@ -228,6 +228,7 @@ public class like_post extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Search_forum_string_item.setForum_title_click(post.getId());
+                    Log.v("test","RRRRRR~~~~~~~~~~~~~~   "+post.getId());
                     Intent i = new Intent(like_post.this, forum_post2.class);
                     startActivity(i);
                 }

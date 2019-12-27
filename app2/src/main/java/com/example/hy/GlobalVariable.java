@@ -22,6 +22,7 @@ public class GlobalVariable extends Application
     private String Record_vege_name="";
     private int Forum_title_click=-1;
     private String Select_vege_name="";
+    private String Plant_id="";
     private String Choose_calendar_gmail="無",Choose_calendar_vege="無",Choose_calendar_id_string="無";
 
     public void setChoose_calendar_info(String choose_calendar_id_string,String choose_calendar_gmail,String choose_calendar_vege)
@@ -84,5 +85,8 @@ public class GlobalVariable extends Application
 
     public void setSelect_vege_name(String select_vege_name){this.Select_vege_name = select_vege_name;}
     public String getSelect_vege_name(){ return Select_vege_name;}
+
+    public void setPlant_id(String plant_id){this.Plant_id = plant_id;}
+    public String getPlant_id(){ return Plant_id;}
 
 }

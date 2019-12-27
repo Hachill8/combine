@@ -52,19 +52,19 @@ import java.util.Locale;
 
 public class calendar extends AppCompatActivity {
     List<choose_calendar_cardview> cardviewList;
-    CalendarView cv1,QQ;
+    CalendarView cv1;
     TextView tv1,tv2,act_tv;
-    String[] listItems,everyvege,sl;
+    String[] listItems,everyvege,sl,everyday;
     boolean[] checkedItems;
     ArrayList<Integer> mUserItems = new ArrayList<>();
     Button edit,update,cancel;
-    Spinner spi;
+    Spinner spi,spiday;
     Switch swi;
     View sugcal_view;
     Intent intent;
     private static  final  int REQUEST_CODE=1;
     GlobalVariable action_item_value,action_item_value2,choose_calendar_info;
-    String date,decide_edit="edit",cal_data,Allvege="",setdate,pictureurl,Select_vege_name,gmail,choose_calendar_string,firstday="2019/4/28";
+    String date,decide_edit="edit",cal_data,Allvege="",Select_vege_day="",pictureurl,Select_vege_name,gmail,choose_calendar_string,firstday="2019/12/12";
 
     String plant_id;
     //找到UI工人的經紀人，這樣才能派遣工作  (找到顯示畫面的UI Thread上的Handler)
@@ -104,6 +104,7 @@ public class calendar extends AppCompatActivity {
         action_item_value= (GlobalVariable)getApplicationContext();
         action_item_value2= (GlobalVariable)getApplicationContext();
         spi = (Spinner)findViewById(R.id.spinner);
+//        spiday = (Spinner)findViewById(R.id.spinner2);
         swi = (Switch) findViewById(R.id.switch1);
 
         final Calendar calendar= Calendar.getInstance();
@@ -130,6 +131,7 @@ public class calendar extends AppCompatActivity {
                 Select_vege_name=spi.getSelectedItem().toString();
                 plant_id = String.valueOf(spi.getSelectedItemPosition());
                 Log.v("test","plant_id spinner: "+plant_id);
+                action_item_value.setPlant_id(plant_id);
                 action_item_value.setSelect_vege_name(Select_vege_name);
                 mThreadHandler.post(r3);
             }
@@ -139,6 +141,19 @@ public class calendar extends AppCompatActivity {
 
             }
         });
+//        spiday.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                String selectdate=spiday.getSelectedItem().toString();
+//                Log.v("test","plant_id spinner: "+plant_id);
+//                mThreadHandler.post(r3);
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//
+//            }
+//        });
         listItems = getResources().getStringArray(R.array.action_item);
         checkedItems = new boolean[listItems.length];
 
@@ -177,8 +192,24 @@ public class calendar extends AppCompatActivity {
                 intent2.putExtra("EXTRA_DATE",date);
                 intent2.putExtra("decide_edit",decide_edit);
                 intent2.putExtra("plant_id",plant_id);
-                startActivity(intent2);
-                calendar.this.finish();
+                if(cal_data.equals("還未新增資料"))
+                {
+                    startActivity(intent2);
+                    calendar.this.finish();
+                }
+                else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(calendar.this);
+                    builder.setTitle(tv1.getText()+"的"+Select_vege_name+"已有紀錄囉!");
+                    builder.setMessage("請按修改按鈕");
+                    builder.setPositiveButton("好", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+                    AlertDialog dialog=builder.create();
+                    dialog.show();
+                }
             }
         });
         update.setOnClickListener(new View.OnClickListener() {
@@ -186,30 +217,60 @@ public class calendar extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(calendar.this, calendar_memo2.class);
                 intent.putExtra("EXTRA_DATE",date);
-                startActivity(intent);
-                calendar.this.finish();
+                if(cal_data.equals("還未新增資料")){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(calendar.this);
+                    builder.setTitle(tv1.getText()+"的"+Select_vege_name+"沒紀錄喔!");
+                    builder.setMessage("請按新增按鈕");
+                    builder.setPositiveButton("好", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+                    AlertDialog dialog=builder.create();
+                    dialog.show();
+                }
+                else
+                {
+                    startActivity(intent);
+                    calendar.this.finish();
+                }
             }
         });
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(calendar.this);
-                builder.setTitle("注意!");
-                builder.setMessage("確定要刪除"+date+Select_vege_name+"的內容嗎?");
-                builder.setPositiveButton("確定", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        mThreadHandler.post(r1);
-                    }
-                });
-                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                if(!(cal_data.equals("還未新增資料"))) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(calendar.this);
+                    builder.setTitle("注意!");
+                    builder.setMessage("確定要刪除" + date + Select_vege_name + "的內容嗎?");
+                    builder.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            mThreadHandler.post(r1);
+                        }
+                    });
+                    builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
 
-                    }
-                });
-                AlertDialog dialog = builder.create();
-                dialog.show();
+                        }
+                    });
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                }
+                else{
+                    AlertDialog.Builder builder = new AlertDialog.Builder(calendar.this);
+                    builder.setTitle(tv1.getText()+"的"+Select_vege_name+"沒資料喔!");
+                    builder.setMessage("");
+                    builder.setPositiveButton("好", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+                    AlertDialog dialog=builder.create();
+                    dialog.show();}
 
             }
         });
@@ -260,6 +321,7 @@ public class calendar extends AppCompatActivity {
         public void run() {
 
             gmail=action_item_value.getUser_gmail();
+            Select_vege_name=action_item_value.getSelect_vege_name();
             cal_data = webservice.select_cal(gmail,Select_vege_name,date);
             Log.v("test","cal_data: "+cal_data);
             //請經紀人指派工作名稱 r，給工人做
@@ -318,7 +380,7 @@ public class calendar extends AppCompatActivity {
             {
                 tv2.setText("");
                 act_tv.setText("");
-                calendar_picture.setImageBitmap(nopicture);
+                calendar_picture.setImageDrawable(null);
                 Toast.makeText(calendar.this, "未新增資料", Toast.LENGTH_SHORT).show();
 
             }
@@ -377,14 +439,15 @@ public class calendar extends AppCompatActivity {
 
             String[]  split = Allvege.split("分開");
             everyvege = split[0].split("%");
-            if (everyvege.equals("")) {
-                String[] novege = {"未新增作物"};
+            if (Allvege.equals("找不到")) {
+                String[] novege = {"你還未開始種植喔!"};
                 final String[] lunch = novege;
                 ArrayAdapter<String> lunchList = new ArrayAdapter<>(calendar.this,
                         R.layout.login2_select_dropdown_item,
                         lunch);
 
                 spi.setAdapter(lunchList);
+//                mThreadHandler.post(r13);
             } else {
                 final String[] lunch = everyvege;
                 for(int i=0;i<lunch.length;i++)
@@ -396,10 +459,50 @@ public class calendar extends AppCompatActivity {
                         lunch);
 
                 spi.setAdapter(lunchList);
+//                mThreadHandler.post(r13);
             }
 
         }
     };
+//    private Runnable r13=new Runnable () {
+//
+//        public void run() {
+//            gmail=action_item_value.getUser_gmail();
+//            Select_vege_name=action_item_value.getSelect_vege_name();
+//            plant_id=action_item_value.getPlant_id();
+//            Log.v("test123456",":::::::::: "+gmail+"//"+plant_id+"///"+Select_vege_name);
+//            Select_vege_day=webservice.Select_all_vege_day(gmail,plant_id,Select_vege_name);
+//            Log.v("test123456",":::::::::: "+Select_vege_day);
+//            mUI_Handler.post(r14);
+//        }
+//
+//    };
+//
+//    private Runnable r14=new Runnable () {
+//
+//        public void run() {
+//
+//            everyday = Select_vege_day.split("%");
+//            if (Select_vege_day.equals("找不到")) {
+//                String[] noday = {"還沒有任何紀錄喔!"};
+//
+//                final String[] lunch2 = noday;
+//                ArrayAdapter<String> lunchList2 = new ArrayAdapter<>(calendar.this,
+//                        R.layout.login2_select_dropdown_item,
+//                        lunch2);
+//
+//                spiday.setAdapter(lunchList2);
+//            } else {
+//                final String[] lunch2 = everyday;
+//                ArrayAdapter<String> lunchList2 = new ArrayAdapter<>(calendar.this,
+//                        R.layout.login2_select_dropdown_item,
+//                        lunch2);
+//
+//                spiday.setAdapter(lunchList2);
+//            }
+//
+//        }
+//    };
     Runnable r9 = new Runnable() {
         @Override
         public void run() {
@@ -487,6 +590,7 @@ public class calendar extends AppCompatActivity {
             mThreadHandler.removeCallbacks(r7);
             mThreadHandler.removeCallbacks(r9);
             mThreadHandler.removeCallbacks(r11);
+//            mThreadHandler.removeCallbacks(r13);
         }
         //解聘工人 (關閉Thread)
         if (mThread != null) {

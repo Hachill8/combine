@@ -455,7 +455,7 @@ public class calendar_memo extends AppCompatActivity {
         String mashapeKey = "c36b64ce86msh2cf38451f64a923p16a49bjsn3f0ccc47d896"; //設定自己的 Mashape Key
         String clientId = "ca76d0896a29008"; //設定自己的 Clinet ID
         String titleString = ""; //設定圖片的標題
-        showLoadingDialog("上傳中...");
+        showLoadingDialog("載入中...");
 
         AsyncHttpClient client = new AsyncHttpClient();
         client.addHeader("X-Mashape-Key", mashapeKey);
@@ -505,9 +505,7 @@ public class calendar_memo extends AppCompatActivity {
     }
 
     private void showLoadingDialog(String message){
-        if(message==null){
-            message = "載入中...";
-        }
+        mLoadingDialog.setMessage(message);
         if(mLoadingDialog==null){
             mLoadingDialog = new ProgressDialog(this);
             mLoadingDialog.setMessage(message);
