@@ -76,6 +76,7 @@ public class market_p4 extends AppCompatActivity
             public void onClick(View v) {
                 Intent i = new Intent(market_p4.this,market_to_pay.class);
                 startActivity(i);
+                market_p4.this.finish();
             }
         });
         product_amount_sum = (TextView) findViewById(R.id.product_amount_sum);
