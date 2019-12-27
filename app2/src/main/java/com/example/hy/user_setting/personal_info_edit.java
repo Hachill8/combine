@@ -30,7 +30,7 @@ public class personal_info_edit extends AppCompatActivity {
     //宣告特約工人
     private HandlerThread mThread;
     EditText edit_name,edit_phone,edit_email,edit_addr,edit_age;
-    String name,phone,email,addr,gender,expri,user_data,GOemail;
+    String name,phone,email,addr,gender,expri,user_data,GOemail,GG;
     Button user_info_confirm,user_info_cancel,Man,Woman,One_year,Two_year,Three_year;
     int Gender=0, //判斷目前選到哪個性別
             experience=0; //判斷目前種植經驗多久
