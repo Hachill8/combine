@@ -158,7 +158,7 @@ public class forum_add_new_post extends AppCompatActivity
             else
             {
                 Log.v("test","line :  "+line);
-                gl.setForum_title_click(Integer.valueOf(line));
+//                gl.setForum_title_click(Integer.valueOf(line));
                 gl.setForum_title(post_title.getText().toString());
                 startActivity(a);
                 //關閉activity
@@ -308,7 +308,7 @@ public class forum_add_new_post extends AppCompatActivity
                 int height = data.optInt("height",0);
                 //String bbcode = "[img="+width+"x"+height+"]"+link+"[/img]";
                 //String bbcode ="["+link+"]";
-                String bbcode ="<img src=\"" + link + "\">";
+                String bbcode ="\"" + link + "\"";
                 textInsertString(bbcode); //將文字插入輸入框的程式 寫在後面
             }
             @Override

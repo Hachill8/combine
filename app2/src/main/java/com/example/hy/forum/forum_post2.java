@@ -285,7 +285,7 @@ public class forum_post2 extends AppCompatActivity {
                 Log.v("test","else~~~~~~~~~~~~~~        "+gl.getForum_title());
   //          }
 
-            mUI_Handler.post(r2);
+            mThreadHandler.post(r2);
         }
     };
 
